@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.EmployeeAccount" 
+    table="employeeaccountdetails"
+>
+
+    <id
+        name="pk_cash_id"
+        type="java.lang.Long"
+        column="pk_cash_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+    
+    
+     <property
+        name="salesman"
+        type="java.lang.Long"
+        column="fk_empd_id"
+        
+        length="20"
+    />
+    
+   
+    
+   
+   <!--  
+    <property
+        name="voucherType"
+        type="java.lang.String"
+        column="voucherType"
+        not-null="true"
+        length="45"
+    /> -->
+    
+    <property
+        name="mode"
+        type="java.lang.String"
+        column="mode"
+        not-null="true"
+        length="45"
+    />
+    
+    <!--  <property
+        name="totalAmount"
+        type="java.lang.Double"
+        column="total_amount"
+        not-null="true"
+        length="45"
+    /> -->
+    
+  <!--   <property
+        name="balance"
+        type="java.lang.Double"
+        column="balance"
+        not-null="true"
+        length="45"
+    />
+     -->
+    <property
+        name="paid"
+        type="java.lang.Double"
+        column="paid"
+        not-null="true"
+        length="45"
+    />
+    
+    <property
+        name="reason"
+        type="java.lang.String"
+        column="reason"
+        not-null="true"
+        length="45"
+    />
+    
+    <property
+        name="paymentType"
+        type="java.lang.String"
+        column="paymentType"
+        not-null="true"
+        length="45"
+    />
+    
+    <property
+        name="personName"
+        type="java.lang.String"
+        column="personName"
+        not-null="true"
+        length="45"
+    />
+    
+   
+    
+     <property
+        name="date1"
+        type="java.sql.Date"
+        column="date"
+        not-null="true"
+        
+    />
+    
+     
+    
+     
+</class>
+</hibernate-mapping> 
+    

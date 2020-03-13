@@ -1,0 +1,778 @@
+
+
+
+/*function call()
+   {
+ //   var rowsValue = $('#jqGrid').jqGrid('getRowData'); 
+	 var rowCount = jQuery("#jqGrid").jqGrid('getGridParam', 'records');
+    var allRowsInGrid = $('#jqGrid').jqGrid('getGridParam','data');
+    var namePresent;
+    for (var i = 0; i < rowCount; i++) {
+        var name = datafromgrid[i].Name;
+        alert(name)
+        var firstname = name.split(/ +/);
+        alert(firstname)
+        if (firstname[0].toLowerCase() == Name.toLowerCase()) {
+            namePresent = 1;
+        }
+   }
+     var x=document.getElementById('jqGrid');
+
+
+    alert(count)
+    console.log(count)
+     var new_row = x.rows[1].cloneNode(true);
+     var len = x.rows.length;
+     len = row_count ;
+     new_row.cells[0].innerHTML = len;
+   	alert(len+"lenth");
+		 row_count++ ;
+		 alert( row_count+"rowsValue")
+		console.log(rowsValue);
+		console.log(row_count);
+   }
+ */
+
+
+/********************************** code for GET ADD TABLE DATA IN DATABASE*******************************************/
+
+function registerGOOD(){
+	
+	if(document.good.billNo.value == "")
+	{
+		alert("Please Enter Bill No!!!");
+		return false;
+		
+	}
+	
+	var num = /^[0-9]+$/;
+	if(document.good.billNo.value.match(num))
+	{
+		
+		if(document.good.supplierId.value == "selected")
+		{
+			alert("Please Select Supplier ID!!!");
+			return false;
+			
+		}
+		
+		if(document.good.catId.value == "selected")
+		{
+			alert("Please Select  Category!!!");
+			return false;
+			
+		}
+		
+		if(document.good.subCat.value == "")
+		{
+			alert("Please Select Sub Category!!!");
+			return false;
+			
+		}
+		
+		if(document.good.itemId.value == "")
+		{
+			alert("Please Select Item ID!!!");
+			return false;
+			
+		}
+		
+		if(document.good.received.value == "")
+		{
+			alert("Please Enter Recieved Name!!!");
+			return false;
+			
+		}
+		
+		var num = /^[a-zA-Z]+$/;
+		if(document.good.received.value.match(num))
+		{
+			
+			gode();
+			
+		}
+		
+		else
+		{
+			alert("Please Enter Alphabets Only In Received Column");
+			return false;
+		}	
+		
+		
+		
+	}
+	
+	else
+	{
+		alert("Please Enter Numbers Only In Bill NO Column!!!");
+		return false;
+	}	
+	
+	
+}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	function gode(){
+		
+		document.good.btn.disabled = true;
+	
+	var params= {};
+
+	var namePresent;
+	var count = jQuery("#jqGrid").jqGrid('getGridParam', 'records');
+	var allRowsInGrid = $('#jqGrid').getGridParam('data');
+
+	var action = new Array();
+
+	var AllRows=JSON.stringify(allRowsInGrid);
+	for (var i = 0; i < count; i++) {
+
+		var idVal = "";
+		if(i != 0)
+		{
+			idVal = i ;
+		}
+		var itemName = allRowsInGrid[i].itemID;
+		params["itemName"+i] = itemName;
+
+		var model = allRowsInGrid[i].model;
+		params["model"+i] = model;
+
+		var color = allRowsInGrid[i].color;
+		params["color"+i] = color;
+
+		var size = allRowsInGrid[i].size;
+		params["size"+i] = size;
+
+		var quantity = allRowsInGrid[i].quantity;
+		params["quantity"+i] = quantity;
+
+
+		var buyPrice = allRowsInGrid[i].buyPrice;
+		params["buyPrice"+i] = buyPrice;
+
+
+
+		/* var totalAmount = allRowsInGrid[i].sumFmatter;
+        params["totalAmount"+i] = totalAmount;*/
+
+
+
+		var total  = params["buyPrice"+i] * params["quantity"+i];
+
+		params["total"+i] = total;
+		for (var int = 0; int < count.length; int++) {
+
+
+
+		}
+		// params[(params["unitPrice"+i]*params["quantity"+i])]=totalAmount;
+	}
+
+
+
+	
+	var received=$('#received').val();
+	var billNo=$('#billNo').val();
+	var catId=$('#catId').val();
+	var supplierId=$('#supplierId').val();
+
+	var contactPerson=$('#contactPerson').val();
+	params["billNo"] = billNo;
+	params["received"] = received;
+	params["catId"] = catId;
+	params["supplierId"] = supplierId;
+	params["contactPerson"] = contactPerson;
+	params["count"] = count;
+
+
+
+
+
+
+	params["methodName"] = "reggoodsReceipt";
+	var dd = Object.keys(params).length;
+	console.log(count);
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+			{
+		     alert(data);
+		     if(document.good)
+		     {
+		    	 document.good.reset();
+		     }	 
+		     document.good.btn.disabled = false;
+			}
+	).error(function(jqXHR, textStatus, errorThrown){
+		if(textStatus==="timeout") {
+			$(loaderObj).hide();
+			$(loaderObj).find('#errorDiv').show();
+		}
+	});
+
+
+}
+function POHelper()
+
+{
+	var tableVals= {};
+	this.getSubCategories = getSubCategories;
+	this.getItems=getItems;
+	this.fillItemList = fillItemList;
+
+	//var items="";
+
+	
+	
+	
+/********************************** code for GET ITEM DETAILS BY CATEGORY*******************************************/
+	function getSubCategories()
+	{
+		var mainCat = $("#catId").val();
+		$("#subCat").empty();
+		$("#subCat").append($("<option></option>").attr("value","").text("Select subcategory"));
+		var params= {};
+		params["methodName"] = "getSubCategoriesByRootcategory";
+		params["catId"]= mainCat;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData = $.parseJSON(data);
+			var catmap = jsonData.list;
+			$.each(catmap,function(i,v)
+					{
+				$("#subCat").append($("<option></option>").attr("value",i).text(v.subcatName)); 
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+				});
+
+	}
+
+	function fillItemList()
+	{
+		var mainCat = $("#catId").val();
+		var subcat = $("#subCat").val();
+
+
+	}
+	
+	function getItems()
+	{
+		var mainCat = $("#catId").val();
+		var subCat = $("#subCat").val();
+		//$("#subCat").empty();
+		$("#itemId").empty();
+		$("#itemId").append($("<option></option>").attr("value","").text("Select itemLists"));
+		var params= {};
+		params["methodName"] = "getItemsBYCatandSubCategory";
+		params["catId"]= mainCat;
+		params["subCatId"]= subCat;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData1 = $.parseJSON(data);
+		   
+			//var itemMap = jsonData1.list;
+			$.each(jsonData1,function(i,v)
+					{
+				$("#itemId").append($("<option></option>").attr("value",i).text(v.itemName)); 
+
+				//tableVals[v.itemName] = v.itemName;
+				//tableVals[v.itemID] = v.itemID;
+			
+					});
+			/* 
+			$("#jqGrid").jqGrid({
+
+				//datatype:"local",
+
+				colNames: ["Item Name","Item Name","Model","Color", "Size","Quantity","Price","Total" ],
+
+				colModel: [
+				           { 	
+				        	   name: "itemName",
+				        	   width:100,
+				        	   editable: true,
+				        	   //resizable: true,
+				        	   edittype:"select",
+				        	   formatter: "select",
+				        	   editoptions:
+				        	   {  value : tableVals,
+				        	   dataEvents: [
+				                            {
+				                                type: 'change',
+				                                fn: function (e) {
+                                  
+  	
+				                                    alert("I changed");
+				                                	{ itemparams={};
+                                                       itemName = $(e.target).val();
+                                                        itemparams["itemName"]= itemName;
+                                                        itemparams["methodName"] = "getItemDetails";
+                                                        $.post('/SMT/jsp/utility/controller.jsp',itemparams,
+                                                       function(data)
+                                                			   { 
+                                                        	var jsonData = $.parseJSON(data);
+                                                        	var itemMap = jsonData.list;
+                                                        	
+                                                        	$.each(jsonData,function(i,v)
+                                                					{
+                                                        		     
+                                                        		   var itemName =  v.itemName;
+                                                        		   
+                                                        		  var  color =  v.color;  
+                                                        		   var buyPrice =v.buyPrice
+                                                     //  jsonData[jsonData.length]={itemName:"itemName",color:"color",buyPrice:"price"};
+                                                      $("#jqGrid").jqGrid('addRowData', i + 1, jsonData[i]);
+                                                     			//  jsonData[jsonData.length]={color:"color",buyPrice:"price"};
+                                                        		   var mydata = jsonData;
+                                                       			for(var i=0;i<=mydata.length;i++)
+                                                       			 
+                                                        		  
+                                                       			
+                                                					});
+                                                        	
+                                                        	 
+                                                        	
+                                                                }); 
+                                                    }//end func
+
+				                                }
+				                            
+				                            }]
+				           }
+				           
+				           
+				           },
+
+				           {
+				        	   name: "itemName",
+				        	   width: 80,
+				           },	
+				           {
+				        	   name: "model",
+				        	   width: 80,
+				           },	
+
+				           {
+				        	   name:  "color",
+				        	   width: 140,
+				           },
+
+				           {
+				        	   name: "size",
+				        	   width: 140,
+				        
+				        	 
+				        	   
+				           },
+
+				           {
+				        	   name: "quantity",
+				        	   width: 140,
+				        	   editable: true // must set editable to true if you want to make the field editable
+				           },
+
+				           {
+				        	   name:'buyPrice',
+				        	   width: 140,
+				           },
+
+				           {
+				        	   label : 'Total',
+				        	   name: "sumFmatter",
+				        	   formatter: sumFmatter,
+				        	   width: 150,
+				        	   loadComplete : function(){
+				        		   var $grid = $('#jqGrid');
+				        		   var colSum = $grid.jqGrid('getCol','sumFmatter',false,'sum');
+				        		   $grid.jqGrid('footerData','set',{sumFmatter : colSum});
+				        	   }
+				           }
+				           ],
+
+				           footerrow:true,
+				           userDataOnFooter: true,
+
+				           sortorder : 'desc',
+				           loadonce: true,
+				           viewrecords: true,
+				           width: 1000,
+				           height: 100,
+				           rowNum: 10,
+				           footerrow: true,
+				           pager: "#jqGridPager"
+			});
+
+
+ 		 
+      		
+			$('#jqGrid').navGrid('#jqGridPager',
+					// the buttons to appear on the toolbar of the grid
+					{edit: true, add: true, del: true, search: true, refresh: true, view: true, position: "left", cloneToTop: false },
+					// options for the Edit Dialog
+					{
+						editCaption: "The Edit Dialog",
+						recreateForm: true,
+						checkOnUpdate : true,
+						checkOnSubmit : true,
+						closeAfterEdit: true,
+						errorTextFormat: function (data) {
+							return 'Error: ' + data.responseText
+						}
+					},
+					// options for the Add Dialog
+					{
+						closeAfterAdd: true,
+						recreateForm: true,
+						errorTextFormat: function (data) {
+							return 'Error: ' + data.responseText
+						}
+					},
+					// options for the Delete Dailog
+					{
+						closeAfterdel:true,
+						recreateForm: true,
+						errorTextFormat: function (data) {
+							return 'Error: ' + data.responseText
+						},
+
+						onSelectRow: function(id) {
+							if (id && id !== lastSel) {
+								jQuery("#jqGrid").saveRow(lastSel, true, 'clientArray');
+								jQuery("#jqGrid").editRow(id, true);
+								lastSel = id;
+								console.log(id);
+							}
+						}
+					});
+
+
+			
+
+
+			function sumFmatter (cellvalue, options, rowObject) {
+				return options.rowData.quantity * options.rowData.unitPrice;
+
+
+			}*/
+
+
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+
+
+				});
+	}
+
+
+
+	
+	/********************************** code for GET Sub CATEGORIES BY CATEGORY*******************************************/	
+	
+
+
+
+}
+
+var pohelper = new POHelper();
+
+function sumFmatter (cellvalue, options, rowObject) {
+	return options.rowData.quantity * options.rowData.buyPrice;
+
+
+}
+
+function getItem()
+{
+
+	var itemList = "";
+	this.getItemList = getItemList;
+
+	function getItemList()
+	{
+		itemparams={};
+		itemId = $('#itemId').val();
+		itemparams["itemId"]= itemId;
+		itemparams["methodName"] = "getItemDetails";
+		$.post('/SMT/jsp/utility/controller.jsp',itemparams,
+				function(data)
+				{ 
+			var jsonData = $.parseJSON(data);
+			// 	var itemMap = jsonData.list;
+
+			$.each(jsonData,function(i,v)
+					{
+
+				var itemName =  v.itemName;
+				var  color =  v.color;  
+				var buyPrice =v.buyPrice;
+				var size = v.size;
+				
+				$("#jqGrid").jqGrid({
+					
+				
+				
+					datatype:"local",
+
+					colNames: ["itemID","Item Name","Model","Color", "Size","Quantity","Price","Total" ],
+
+					colModel: [
+					           {
+					        	   
+					        	 name:"itemID",
+					        	 hidden:true
+					           },
+					           { 	
+					        	   name: "itemName",
+					        	   width:100,
+					        	   editoptons:
+					        		   {
+					        		   value:itemId
+					        		   }
+					        	   //resizable: true,
+
+
+					           },
+					           {
+					        	   name: "model",
+					        	   width: 80,
+					           },	
+
+					           {
+					        	   name:  "color",
+					        	   width: 140,
+					        	   editable: true
+					           },
+
+					           {
+					        	   name: "size",
+					        	   width: 140,
+					        	   editable: true
+
+
+					           },
+
+					           {
+					        	   name: "quantity",
+					        	   width: 140,
+					        	   editable: true // must set editable to true if you want to make the field editable
+					           },
+
+					           {
+					        	   name:'buyPrice',
+					        	   width: 140,
+					        	   editable: true
+					           },
+
+					           {
+					        	   label : 'Total',
+					        	   name: "total",
+					        	   formatter: sumFmatter,
+					        	   width: 150,
+					        	   loadComplete : function(){
+					        		   var $grid = $('#jqGrid');
+					        		   var colSum = $grid.jqGrid('getCol','sumFmatter',false,'sum');
+					        		   $grid.jqGrid('footerData','set',{sumFmatter : colSum});
+					        	   }
+					           }
+					           ],
+
+
+					           sortorder : 'desc',
+					           
+					           loadonce: true,
+					           viewrecords: true,
+					           width: 1000,
+					           height: 100,
+					           rowNum: 10,
+
+					           pager: "#jqGridPager"
+				});
+
+				$("#jqGrid").jqGrid("navGrid", "#jqGridPager", {add: false});
+				$("#jqGrid").addRowData(i+1,jsonData[i]);
+				$('#jqGrid').navGrid('#jqGridPager',
+						// the buttons to appear on the toolbar of the grid
+						{edit: true,  del: true, search: true, refresh: true, view: true, position: "left", cloneToTop: false },
+						// options for the Edit Dialog
+						{
+							editCaption: "The Edit Dialog",
+							recreateForm: true,
+							checkOnUpdate : true,
+							checkOnSubmit : true,
+							closeAfterEdit: true,
+							errorTextFormat: function (data) {
+								return 'Error: ' + data.responseText
+							}
+						},
+						
+						// options for the Delete Dailog
+						{
+							closeAfterdel:true,
+							recreateForm: true,
+							errorTextFormat: function (data) {
+								return 'Error: ' + data.responseText
+							},
+
+							onSelectRow: function(id) {
+								if (id && id !== lastSel) {
+									jQuery("#jqGrid").saveRow(lastSel, true, 'clientArray');
+									jQuery("#jqGrid").editRow(id, true);
+									lastSel = id;
+									console.log(id);
+								}
+							}
+						});
+					});
+
+				}); 
+
+			
+	}
+}
+
+var itemby = new getItem();
+
+	
+
+
+	
+
+
+	/**/
+
+
+
+
+
+function PurchaseHelper()
+{
+	var offerList="";
+	this.getPurchaseDetailsBetweenTwoDates = getPurchaseDetailsBetweenTwoDates;
+	this.fillItemList = fillItemList;
+
+	function fillItemList()
+	{
+		var startDate = $("#fDate").val();
+		var endDate = $("#tDate").val();
+
+		var OrderId = $("#OrderId").val();
+		var insertDate = $("#insertDate").val();
+		var supplierName = $("#supplierName").val();
+		var quantity=$("#quantity").val();
+		var unitPrice=$("#unitPrice").val();
+		var totalAmount=$("#totalAmount").val();
+		//var productName=$("#productName").val();
+		var expectedDate=$("#expectedDate").val();
+	}
+
+	function getPurchaseDetailsBetweenTwoDates()
+	{
+		var params= {};
+		var startDate = $("#fDate").val();
+		var endDate = $("#tDate").val();
+
+
+		params["fDate"]= startDate;
+		params["tDate"]= endDate;
+		params["methodName"] = "getPurchaseReportBetweenTwoDates";
+
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			//alert(data);
+			var jsonData = $.parseJSON(data);
+			var catmap = jsonData.list;
+			$.each(catmap,function(i,v)
+
+					{
+
+
+				var OrderId =	v.OrderId;
+				var insertDate =	v.insertDate;
+				var expectedDate =	v.expectedDate;
+				var supplierName =	v.supplierName;
+				var quantity =	v.quantity;
+				var unitPrice =	v.unitPrice;
+				var totalAmount =	v.totalAmount;
+
+				catmap[catmap]={OrderId:"",insertDate:"",expectedDate:"",supplierName:"",quantity:"",unitPrice:"",totalAmount:""};
+				$("#list4").jqGrid({
+					datatype: "local",
+					//editurl: 'clientArray',
+					height: 350,
+					colNames:['OrderId','insertDate', 'expectedDate','supplierName', 'quantity', 'unitPrice', 'totalAmount'],
+					colModel:[
+					          {name:'OrderId'},
+					          {name:'insertDate'},
+					          {name:'expectedDate',
+					        	  editoptions: 
+					        	  {value:1} ,
+
+					        	  editable: true
+					          },
+					          {name:'supplierName',
+					        	  editable: true
+					          },
+					          {name:'quantity',
+					        	  editable: true
+					          },
+					          {name:'unitPrice',
+					        	  //editable: "readonly",
+					        	  editable: true
+
+					          },
+
+					          {name:'totalAmount',
+					        	  //editable: "readonly",
+					        	  editable: true
+
+					          },
+					          ],
+
+					          sortname: 'ID',
+					          sortorder : 'desc',
+					          loadonce: true,
+					          viewrecords: true,
+
+
+					          caption: "Local salary data added to salaries table",
+				});
+
+
+
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+						$(loaderObj).hide();
+						$(loaderObj).find('#errorDiv').show();
+					}
+				});
+	}
+
+
+
+
+}
+
+var purchase = new PurchaseHelper();
+
+function reset()
+{
+    document.good.reset();	
+}
+

@@ -1,0 +1,55 @@
+package com.smt.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.GoodsReceipt;
+import com.smt.hibernate.Podetail;
+import com.smt.utility.HibernateUtility;
+
+public class GoodsReceiveDAo {
+	
+	public Long valPODetail( GoodsReceipt  goodsReceipt)
+	{
+		String superPo = "";
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		
+		
+		
+		Long pk = (Long) session.save(goodsReceipt);
+		superPo = "SMT"+pk.toString();
+		
+	/* for (int i = 0; i < podetail.hashCode(); i++) {
+		 if ("".equals(superPo)) {
+				
+				Long pk = (Long) session.save(podetail);
+				superPo = "SMT"+pk.toString();
+				
+		     }
+			else {
+				podetail.setSuperPoId(superPo);
+				session.save(podetail);
+				
+			   }
+			
+			}*/
+	  transaction.commit();
+	  hbu.closeSession(session);
+	  return pk;
+	}
+	
+	public void updatePODetail( GoodsReceipt  goodsReceipt)
+	{
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(goodsReceipt);
+		transaction.commit();
+		hbu.closeSession(session);
+	 
+	}
+
+}

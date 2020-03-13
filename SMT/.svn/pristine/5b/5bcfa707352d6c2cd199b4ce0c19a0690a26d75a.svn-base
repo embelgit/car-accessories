@@ -1,0 +1,58 @@
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Bank Book</h2>
+	</div>
+	
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+    <script src="/SMT/staticContent/css/adi.css"></script>
+    <link href="/SMT/jsp/bank_book.jsp" rel="stylesheet"/>
+    
+    <div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div> 
+ 		
+
+<form action="bankBook" method="post" class="form-horizontal">		
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHead col-md-1"><strong>Date</strong></div>
+			<div class="rTableHead col-md-3"><strong>Particulars</strong></div>
+			<div class="rTableHead col-md-2"><strong>Voucher Type</strong></div>
+			<div class="rTableHead col-md-2"><strong>Voucher No</strong></div>
+			<div class="rTableHead col-md-2"><strong>Debit</strong></div>
+			<div class="rTableHead col-md-2"><strong>Credit</strong></div>
+		</div> 
+		
+		<div class="rTableRow">
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-3"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><select class="form-control" name="accType">
+												<option value="selected">-Type-</option>
+												<option value="saving">Payment</option>
+												<option value="current">Receipt</option>
+												<option value="current">Contra</option>
+												<option value="current">Sales</option>
+												<option value="current">Journal</option>
+											 </select></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+		</div>
+	</div> 
+	
+	<div class="wrapper">
+		<input type="button" value="Save" class="btn btn-lg btn-success btn-md" /> 
+		<input type="button" value="Cancel" class="btn btn-lg btn-danger btn-md" /> 
+		<input type="button" value="Graph Format" class="btn btn-lg btn-info btn-md" />
+	</div>
+	
+</form>
+
+<%@include file="commons/footer.jsp"%>

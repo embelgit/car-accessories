@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+<div class="container">
+	<h2 align="center">Coupon Details</h2>
+</div>
+
+<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+<link href="/SMT/staticContent/css/adi.css" rel="stylesheet"/> 
+<link href="/SMT/staticContent/css/style.css" rel="stylesheet"/>
+<script src="/SMT/staticContent/js/couponDetails.js"></script>
+
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+        </script>
+	</div>
+
+<form name="coupon" action="couponDetail" method="post" class="form-horizontal">
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Coupon Name:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="value" name="couponName" id="couponName" class="form-control" placeholder="Coupon Name" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Coupon Code:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="value" name="couponCode" id="couponCode" class="form-control" placeholder="Coupon Code" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Coupon Type:</label>
+				
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<select class="form-control" name="couponType" id="couponType">
+					<option value="selected">--Select--</option>
+					<option value="P">Percentage Disc</option>
+					<option value="A">Amount Disc</option>
+				</select>	
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Discount Amount:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="discountAmount" id="discountAmount" class="form-control" placeholder="Discount Amount" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Percentage:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="percentageDiscount" id="percentageDiscount" class="form-control" placeholder="Percentage Discount" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>IsSingle Use:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<select class="form-control" name="isSingleUse" id="isSingleUse">
+					<option value="selected">--Select--</option>
+					<option value="Y">Yes</option>
+					<option value="N">No</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>IsMultiple Use:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<select class="form-control" name="isMultipleUse" id="isMultipleUse">
+					<option value="selected">--Select--</option>
+					<option value="Y">Yes</option>
+					<option value="N">No</option>
+				</select>
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Start Date:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="date" name="startDate" id="startDate" class="form-control"/>
+			</div>
+			
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>End Date:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="date" name="endDate" id="endDate" class="form-control" />
+			</div>
+		</div>
+	</div>	
+			
+	<div class="form-group-2">
+		<div class="col-lg-12">	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Created By:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="createdBy" id="createdBy" class="form-control" placeholder="Created By" />
+			</div>
+		</div>
+	</div>
+		
+	
+	<div class="wrapper">
+		<input type="button" name="btn" value="Submit" onclick="coupondetail1()" class="btn btn-lg btn-success btn-md" />
+		<input type="button"  value="Reset" onclick="reset()" class="btn btn-lg btn-danger btn-md" />
+	</div>
+
+</form>
+
+<%@include file="commons/footer.jsp"%>

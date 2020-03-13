@@ -1,0 +1,15 @@
+package com.smt.helper;
+
+import java.util.List;
+
+import com.smt.dao.BeanDao;
+
+public class BeanHelper {
+	
+	 public List getSupplierNamAndProductName()
+	  {
+		 BeanDao beanDao = new BeanDao();
+	return	 beanDao.getAllMainCategories();
+	  } 
+
+}

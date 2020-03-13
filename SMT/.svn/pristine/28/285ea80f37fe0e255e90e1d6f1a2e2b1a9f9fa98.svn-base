@@ -1,0 +1,67 @@
+package com.smt.bean;
+
+import java.util.Date;
+
+public class ItemWiseSaleReport {
+	
+	
+	private Long orderId;
+	private String isInsertDate;
+	private Double totalAmount;
+	private Long quantity;
+	private String categoryName;
+	private String itemName;
+	private Double salePrice;
+	
+	
+	
+	public Long getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+	
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	public Long getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public String getIsInsertDate() {
+		return isInsertDate;
+	}
+	public void setIsInsertDate(String isInsertDate) {
+		this.isInsertDate = isInsertDate;
+	}
+	public Double getSalePrice() {
+		return salePrice;
+	}
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
+	}
+	
+	
+	
+	
+	
+
+}

@@ -1,0 +1,41 @@
+package com.smt.hibernate;
+
+public class TaxCreation {
+	
+	private Long taxId;
+	private String taxType;
+	private Double taxPercentage;
+	private String iaActive;
+	
+	
+	
+	
+	public String getIaActive() {
+		return iaActive;
+	}
+	public void setIaActive(String iaActive) {
+		this.iaActive = iaActive;
+	}
+	public Long getTaxId() {
+		return taxId;
+	}
+	public void setTaxId(Long taxId) {
+		this.taxId = taxId;
+	}
+	public String getTaxType() {
+		return taxType;
+	}
+	public void setTaxType(String taxType) {
+		this.taxType = taxType;
+	}
+	public Double getTaxPercentage() {
+		return taxPercentage;
+	}
+	public void setTaxPercentage(Double taxPercentage) {
+		this.taxPercentage = taxPercentage;
+	}
+	
+	
+	
+
+}

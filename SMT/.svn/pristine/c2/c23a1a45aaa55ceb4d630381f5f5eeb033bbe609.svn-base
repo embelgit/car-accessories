@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>SMT</display-name>
+  <welcome-file-list>
+    <welcome-file>/jsp/login.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>suppilerDetail</servlet-name>
+    <servlet-class>com.smt.helper.SupplierDetailHelper</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>suppilerDetail</servlet-name>
+    <url-pattern>/supplier</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>category</servlet-name>
+     <servlet-class>com.smt.helper.CategoryHelper</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>category</servlet-name>
+  	<url-pattern>/cate</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>subCategory</servlet-name>
+  	<servlet-class>com.smt.helper.SubCategoryHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>subCategory</servlet-name>
+     <url-pattern>/subcat</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>mainmaster</servlet-name>
+     <servlet-class>com.smt.helper.MainLevelMasterHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>mainmaster</servlet-name>
+     <url-pattern>/mainlevel</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>sublevelmaster</servlet-name>
+  	<servlet-class>com.smt.helper.SubLevelMasterHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+   	<servlet-name>sublevelmaster</servlet-name>
+   	<url-pattern>/sublevel</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>leaflevel</servlet-name>
+    <servlet-class>com.smt.helper.LeafLevelMAsterHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping> 
+   <servlet-name>leaflevel</servlet-name>
+   <url-pattern>/leafle</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>leafcat</servlet-name>
+  	<servlet-class>com.smt.helper.LeafCategoryHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>leafcat</servlet-name>
+  	<url-pattern>/leafcat</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  		<servlet-name>itemStock</servlet-name>
+        <servlet-class>com.smt.helper.ItemStockHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  		<servlet-name>itemStock</servlet-name>
+  		<url-pattern>/stock</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>stockdetail</servlet-name>
+  	<servlet-class>com.smt.helper.StockDetailHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>stockdetail</servlet-name>
+  	<url-pattern>/stockdetail</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ParcelDetail</servlet-name>
+  	<servlet-class>com.smt.helper.ParcelEntryHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ParcelDetail</servlet-name>
+  	<url-pattern>/parcelEntry</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>couponDetail</servlet-name>
+  	<servlet-class>com.smt.helper.CouponDetailsHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>couponDetail</servlet-name>
+  	<url-pattern>/couponDetail</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>offer</servlet-name> 
+  <servlet-class>com.smt.helper.OfferDetailHelper</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>offer</servlet-name> 
+  <url-pattern>/off</url-pattern> 
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+  		<servlet-name>product</servlet-name>
+  		<servlet-class>com.smt.helper.ProductDetailHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>product</servlet-name>
+  	<url-pattern>/pro</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  		<servlet-name>Shop</servlet-name>
+  		<servlet-class>com.smt.helper.ShopDetailHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Shop</servlet-name>
+  	<url-pattern>/shop</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>BrokerDetail</servlet-name> 
+  <servlet-class>com.smt.helper.BrokerHelper</servlet-class> 
+  </servlet>
+
+ <servlet-mapping>
+  <servlet-name>BrokerDetail</servlet-name> 
+  <url-pattern>/brokerdetail</url-pattern> 
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>EmployeeDetails</servlet-name> 
+  <servlet-class>com.smt.helper.EmployeeDetailsHelper</servlet-class> 
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>EmployeeDetails</servlet-name> 
+  <url-pattern>/empDetail</url-pattern> 
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>EMPATTENDANCE</servlet-name> 
+  <servlet-class>com.smt.helper.EmpAttendancetHelper.java</servlet-class> 
+  </servlet>
+ 
+  <servlet-mapping>
+  <servlet-name>EMPATTENDANCE</servlet-name> 
+  <url-pattern>/employeeAttendance</url-pattern> 
+  </servlet-mapping>
+  
+    
+   <servlet>
+  	<servlet-name>custFeedback</servlet-name>
+  	<servlet-class>com.smt.helper.CustomerfeedHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>custFeedback</servlet-name>
+  	<url-pattern>/customerFeedback</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ <servlet>
+  	<servlet-name>custCredit</servlet-name>
+  	<servlet-class>com.smt.helper.CustCreditHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>custCredit</servlet-name>
+  	<url-pattern>/customerCreditDetails</url-pattern>
+  </servlet-mapping>
+  
+ <servlet>
+  	<servlet-name>empLeave</servlet-name>
+  	<servlet-class>com.smt.helper.LeaveDetailHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>empLeave</servlet-name>
+  	<url-pattern>/leave</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>visitorList</servlet-name>
+  	<servlet-class>com.smt.helper.VisitorHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>visitorList</servlet-name>
+  	<url-pattern>/visitor</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>cashBankBook</servlet-name>
+  	<servlet-class>com.smt.helper.CashBankHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>cashBankBook</servlet-name>
+  	<url-pattern>/cashBankBook</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+  	<servlet-name>ItemDetails</servlet-name>
+  	<servlet-class>com.smt.helper.ItemDetailHelper</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ItemDetails</servlet-name>
+  	<url-pattern>/item</url-pattern>
+  </servlet-mapping> 
+ 
+ <servlet>
+  	<servlet-name>POAccountt</servlet-name>
+  	<servlet-class>com.smt.helper.POAccountHelper.java</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>POAccountt</servlet-name>
+  	<url-pattern>/accun</url-pattern>
+  </servlet-mapping>
+  
+ 
+  
+</web-app>

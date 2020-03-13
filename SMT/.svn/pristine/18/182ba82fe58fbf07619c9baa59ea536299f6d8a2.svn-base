@@ -1,0 +1,71 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.StockDeatailDao;
+import com.smt.hibernate.StockDetail;
+
+public class StockDetailHelper {
+
+	public void registerStockDetail(HttpServletRequest request , HttpServletResponse response)
+	
+	{
+		String isActiveYn = request.getParameter("isActiveYn");
+		System.out.println("Active"+isActiveYn);
+		String isInsertDate = request.getParameter("isInsertDate");
+		System.out.println("ins Date" + isInsertDate);
+		String isModifiedDate = request.getParameter("isModifiedDate");
+		System.out.println("modDate"+isModifiedDate);
+		String isSold = request.getParameter("isSold");
+		System.out.println("issold"+isSold);
+		String poNo = request.getParameter("poNo");
+		System.out.println("PoNo"+poNo);
+		String status = request.getParameter("status");
+		System.out.println("xasdas"+status);
+		String fk_item_stock_id = request.getParameter("fk_item_stock_id");
+		System.out.println("stock"+fk_item_stock_id);
+		String fk_item_details_id = request.getParameter("fk_item_details_id");
+		System.out.println("item" +fk_item_details_id);
+		String fk_product_id = request.getParameter("fk_product_id");
+		System.out.println("product"+fk_product_id);
+		
+		StockDetail stockDetail = new StockDetail();
+		stockDetail.setIsActiveYn(isActiveYn);
+		stockDetail.setIsSold(isSold);
+		stockDetail.setPoNo(Integer.parseInt(poNo));
+		stockDetail.setFk_item_details_id(Long.parseLong(fk_item_details_id));
+		stockDetail.setFk_item_stock_id(Long.parseLong(fk_item_stock_id));
+		stockDetail.setFk_product_id(Long.parseLong(fk_product_id));
+		stockDetail.setStatus(status);
+		
+SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+		
+		Date insdate = null;
+		try {
+		 insdate=	format.parse(isInsertDate);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		stockDetail.setIsInsertDate(insdate);
+		Date moddate = null;
+		
+		try {
+			moddate = format.parse(isModifiedDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		stockDetail.setIsModifiedDate(moddate);
+		
+		StockDeatailDao dao = new StockDeatailDao();
+		dao.valStockDetail(stockDetail);
+	}
+}

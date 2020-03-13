@@ -1,0 +1,60 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.NewOfferCreationDao;
+import com.smt.hibernate.NewOfferCreation;
+
+public class NewOfferSetailsHelper {
+
+	public void registerNewOffer(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		NewOfferCreation newOfferBean = new NewOfferCreation();
+		
+		String offer_item_id = request.getParameter("offer_item_id");
+		
+		String available_item_id = request.getParameter("available_item_id");
+		
+		String startDate = request.getParameter("startDate");
+		
+		String endDate = request.getParameter("endDate");
+		
+		String buyPrice = request.getParameter("buyPrice");
+		
+		newOfferBean.setFk_offer_id(Long.parseLong(offer_item_id));
+		newOfferBean.setAvailable_offer_id(Long.parseLong(available_item_id));;
+		newOfferBean.setBuyPrice(Double.parseDouble(buyPrice));
+		
+		 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Date adate = null;
+			try {
+			
+			adate=	format.parse(startDate);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			newOfferBean.setStartDate(adate);
+			
+			Date bdate = null;
+			try {
+			
+				bdate=	format.parse(endDate);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			newOfferBean.setEndDate(bdate);
+		
+		NewOfferCreationDao dao  = new NewOfferCreationDao();
+		dao.RegisterNewOffer(newOfferBean);
+	}
+
+}

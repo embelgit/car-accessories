@@ -1,0 +1,97 @@
+
+<%@page import="com.smt.dao.ItemDetailsDao"%>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 align="center">Authority Slip</h2>
+	</div>
+		<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+		<script src="/SMT/staticContent/js/authorityslip.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/js/jquery.jqgrid.min.js"></script>
+    <link href="/SMT/staticContent/css/style.css" rel="stylesheet"/>
+    
+
+    <link href="/SMT/jsp/authority_slip.jsp" rel="stylesheet"/>
+    
+  
+	
+<form action="auth" method="post" class="form-horizontal">
+	 <div class = "col-lg-12 form-group-1">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" >
+			<label> SMCC:</label>
+		</div>		
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 ">
+			<input class="form-control" type="text" name="smcc" id="smcc" placeholder="SMCC" />
+		</div>
+				
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" >
+			<label> SENT BY:</label>
+		</div>		
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 ">
+			<input class="form-control" type="text" name="sb" id="sendBy" placeholder="SENT BY" />
+		</div>
+	</div>
+		
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label> LOCATION:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 ">
+			<input class="form-control" type="text" name="location" id="location" placeholder="LOCATION" />
+		</div>
+				
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" >
+			<label> GOODS REQUIRED:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 ">
+			<input class="form-control" type="text" name="gr" id="goodsreceived" placeholder="GOODS REQUIRED" />
+		</div>
+	</div>
+     <div class = "col-lg-12 form-group-1">
+     	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 ">
+     		<label> Barcode No:</label>
+     	</div>
+     	 	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 ">
+     	 	<input type="text" class="form-control" id="itemId"  onchange="author.getItemList()">
+     	 	</div>
+     </div> 
+	<div style='position:absolute; top:340px; left:108px; '>
+				<table id="jqGrid" ></table>
+				<div id="jqGridPager"></div>
+			</div>
+
+	<!-- <div class = "col-lg-12 from-group-1">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label> PC Sign:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label> Out Date:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label> Taken BY:</label>
+		</div>
+	</div>
+
+	<div class = "col-lg-12 from-group-1">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<input class="form-control" type="text" name="pcSign" placeholder="PC Sign" />
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<input class="form-control" type="text" name="outDate" placeholder="Out Date" />
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<input class="form-control" type="text" name="takenBy" placeholder="Taken BY" />
+		</div>
+	</div>
+			-->
+	<div class="wrapper" style='position:absolute; top:540px; left:500px; '>
+		<input type="button" value="Save" class="btn btn-lg btn-success btn-md" onclick="getAuthority()">
+	</div>
+	 
+</form>
+

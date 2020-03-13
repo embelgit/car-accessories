@@ -1,0 +1,141 @@
+package com.smt.hibernate;
+
+public class TemporaryStock {
+	
+
+	
+	
+	public Long getPk_temp_stock_id() {
+		return pk_temp_stock_id;
+	}
+	public void setPk_temp_stock_id(Long pk_temp_stock_id) {
+		this.pk_temp_stock_id = pk_temp_stock_id;
+	}
+	public Long getBillNo() {
+		return billNo;
+	}
+	public void setBillNo(Long billNo) {
+		this.billNo = billNo;
+	}
+	public String getCheckBy() {
+		return checkBy;
+	}
+	public void setCheckBy(String checkBy) {
+		this.checkBy = checkBy;
+	}
+	public Long getContactNo() {
+		return contactNo;
+	}
+	public void setContactNo(Long contactNo) {
+		this.contactNo = contactNo;
+	}
+	public Long getReturnPeriod() {
+		return returnPeriod;
+	}
+	public void setReturnPeriod(Long returnPeriod) {
+		this.returnPeriod = returnPeriod;
+	}
+	public Long getBarcodeNo() {
+		return barcodeNo;
+	}
+	public void setBarcodeNo(Long barcodeNo) {
+		this.barcodeNo = barcodeNo;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+	public Long getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+	public double getVat() {
+		return vat;
+	}
+	public void setVat(double vat) {
+		this.vat = vat;
+	}
+	public double getVatAmount() {
+		return vatAmount;
+	}
+	public void setVatAmount(double vatAmount) {
+		this.vatAmount = vatAmount;
+	}
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	public double getOtherTax() {
+		return otherTax;
+	}
+	public void setOtherTax(double otherTax) {
+		this.otherTax = otherTax;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	
+	
+	private Long pk_temp_stock_id;
+	private Long billNo;
+	private String checkBy;
+	private Long contactNo;
+	private Long returnPeriod;
+	private Long barcodeNo;
+	private String itemName;
+	private double unitPrice;
+	private Long quantity;
+	private double vat;
+	private double vatAmount;
+	private double totalAmount;
+	private double otherTax;
+	private double total;
+	private String person_shop_name;
+	
+	
+	public String getPerson_shop_name() {
+		return person_shop_name;
+	}
+	public void setPerson_shop_name(String person_shop_name) {
+		this.person_shop_name = person_shop_name;
+	}
+	public TemporaryStock(Long pk_temp_stock_id, Long billNo, String checkBy, Long contactNo, Long returnPeriod, 
+			Long barcodeNo, String itemName, double unitPrice, Long quantity, double vat, double vatAmount,
+			double totalAmount, double otherTax, double total, String person_shop_name){
+		this.pk_temp_stock_id = pk_temp_stock_id;
+		this.billNo = billNo;
+		this.checkBy = checkBy;
+		this.contactNo = contactNo;
+		this.returnPeriod = returnPeriod;
+		this.barcodeNo = barcodeNo;
+		this.itemName = itemName;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.vat = vat;
+		this.vatAmount = vatAmount;
+		this.totalAmount = totalAmount;
+		this.otherTax = otherTax;
+		this.total = total;
+		this.person_shop_name = person_shop_name;
+		
+	}
+	
+	public TemporaryStock(){
+		
+	}
+}

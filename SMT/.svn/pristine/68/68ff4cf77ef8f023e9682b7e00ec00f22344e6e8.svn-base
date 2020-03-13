@@ -1,0 +1,54 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.CashBankBean;
+import com.smt.hibernate.Category;
+import com.smt.hibernate.SupplierAccount;
+import com.smt.utility.HibernateUtility;
+
+public class SupplierAccountDao {
+
+	public void valSupplierAcc(SupplierAccount sup) {
+		// TODO Auto-generated method stub
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+	   
+	   session.save(sup);
+	 
+		transaction.commit();
+		hbu.closeSession(session);
+		
+	}
+	
+	public List getAllSupplierAccount()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createSQLQuery("select s.supplier_name , c.billNo, c.personName,  c.paid ,c.balance,c.date ,c.total_amount  from supplieraccountdetails c  left join supplier_details s ON  c.fk_supplier_id =s.supplier_id ");
+		
+		List<Object[]> list = query.list();
+		 List<CashBankBean> polist = new ArrayList<CashBankBean>(0);
+		for (Object[] objects : list) {
+			CashBankBean bean = new CashBankBean();
+			bean.setSupplierName(objects[0].toString());
+			bean.setBillNo(Long.parseLong(objects[1].toString()));
+			bean.setPersonName(objects[2].toString());
+			bean.setPaid(Double.parseDouble(objects[3].toString()));
+			bean.setBalance(Double.parseDouble(objects[4].toString()));
+			bean.setDate(objects[5].toString());
+			bean.setTotal(Double.parseDouble(objects[6].toString()));
+			/*bean.setSupplierId(Long.parseLong(objects[0].toString()));*/
+			polist.add(bean);
+		}
+		return polist ;
+	}
+
+}

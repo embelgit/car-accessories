@@ -1,0 +1,25 @@
+package com.smt.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.RootCategory;
+
+import com.smt.utility.HibernateUtility;
+
+public class RootCategoryDao {
+	
+	public void valRootCategory( RootCategory rootCategory)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(rootCategory);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+}

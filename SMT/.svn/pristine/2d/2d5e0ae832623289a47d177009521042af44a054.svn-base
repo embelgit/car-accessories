@@ -1,0 +1,55 @@
+package com.smt.helper;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.dao.SubCategoryDao;
+import com.smt.hibernate.Category;
+import com.smt.hibernate.SubCategory;
+import com.smt.utility.HibernateUtility;
+
+public class ModifySubCatHelper {
+	
+	public void modSubCategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		String pkSubcatId = request.getParameter("pkSubcatId");
+		String isrootCat = request.getParameter("isrootCat");
+		System.out.println("sdcsd"+isrootCat);
+		String subcatName = request.getParameter("subcatName");
+		System.out.println("SubCat" +subcatName);
+		String activeYn = request.getParameter("activeYn");
+		System.out.println("active" +activeYn);
+        String isLeafCatId = request.getParameter("isLeafCatId");
+        System.out.println("sacsaa"+isLeafCatId);
+		/*String fkRootcatId = request.getParameter("fkRootcatId");
+		System.out.println("Cat Id" +fkRootcatId);*/
+        
+        SubCategory subCategory = new SubCategory();
+        subCategory.setPkSubcatId(Long.parseLong(pkSubcatId));
+        subCategory.setIsrootCat(isrootCat);
+        subCategory.setSubcatName(subcatName);
+        subCategory.setActiveYn(activeYn);
+       // subCategory.setFkRootcatId(Long.parseLong(fkRootcatId));
+        subCategory.setIsLeafCatId(isLeafCatId);
+        
+        HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		SubCategory category2 = (SubCategory) session.get(SubCategory.class, new Long(pkSubcatId));
+		System.out.println(pkSubcatId);
+		category2.setSubcatName(subcatName);
+		category2.setActiveYn(activeYn);
+		category2.setIsLeafCatId(isLeafCatId);
+		//category2.setIsrootCat(isrootCat);
+		System.out.println(category2);
+		session.saveOrUpdate(category2);
+		transaction.commit();
+        
+       
+	}
+	
+
+}

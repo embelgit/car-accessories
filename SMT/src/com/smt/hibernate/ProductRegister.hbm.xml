@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="com.smt.hibernate.ProductRegister" 
+    table="product_reg"
+>
+
+    <id
+        name="pkProductId"
+        type="java.lang.Long"
+        column="pkProductNameId"
+    >
+    
+        <generator class="increment" />
+    </id>
+  
+
+    <property
+        name="fkCategoryId"
+        type="java.lang.Long"
+        column="FkCatId"
+        
+        length="19"
+         insert="false"
+        update="false"
+    /> 
+    
+   
+       
+    <property
+        name="itemName"
+        type="java.lang.String"
+        column="ProductName"
+        
+        length="128"
+    />
+    
+     <property
+        name="vat"
+        type="java.lang.Double"
+        column="Vat"
+       
+        length="1"
+    />
+    <property
+        name="isInsertDate"
+        type="java.sql.Date"
+        column="InsertDate"
+        
+        length="19"
+    />
+    
+    <property
+        name="modelName"
+        type="java.lang.String"
+        column="modelName"
+    />
+    
+     <property
+        name="hsnsacno"
+        type="java.lang.String"
+        column="HsnSacNo"
+    />
+  <property
+        name="categoryName"
+        type="java.lang.String"
+        column="category_name"
+    />
+ 
+    <many-to-one
+        name="category"
+        class="com.smt.hibernate.Category"
+       
+    >
+     
+        <column name="FkCatId" />
+        
+    </many-to-one>
+    
+  
+ 
+   
+
+</class>
+</hibernate-mapping>

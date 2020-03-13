@@ -1,0 +1,101 @@
+<%@page import="com.smt.dao.ProductDetailDao"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smt.helper.ProductDetailHelper"%>
+<%@page import="com.smt.hibernate.ProductDetail"%>
+<%@page pageEncoding="UTF-8"%>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<% boolean isHome=false;%>
+	<%@include file="commons/header.jsp"%>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/js/jquery.jqgrid.min.js"></script>
+    <link href="/SMT/staticContent/css/style.css" rel="stylesheet"/>
+	<%@page contentType="text/html"%>
+
+	<div class="container">
+		<h2 align="center">Item Details</h2>
+	</div>
+	
+    <link href="/SMT/staticContent/css/adi.css" rel="stylesheet" />
+    <script src="/SMT/staticContent/js/ItemDetail.js"></script>
+
+	 
+    <div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+
+<form action="item" method="post" name="itemdel"  class="form-horizontal">
+	<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Product Name:</label>
+				</div>
+				<%
+					ProductDetailHelper proHelper=new ProductDetailHelper();
+					List proList = proHelper.getAllProductNames();					
+				%>
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
+					<input class="form-control" id="fk_product_id" list="fkproductid_drop" autofocus onchange="ChooseContact(this);return disable()" >
+						<datalist id="fkproductid_drop">
+					<%
+						for(int i=0;i<proList.size();i++){
+						ProductDetail category = (ProductDetail)proList.get(i);
+					%>
+						<option data-value="<%=category.getPkProductId()%>"  myid="<%=category.getItemName()%>"><%=category.getItemName() %>
+					<%
+						}
+					%>
+					</datalist>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label> Item Name:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" name="itemName" class="form-control" id="itemName" placeholder="Enter Item Name">					
+				</div>
+						
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>MMCC:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" name="MMCC" class="form-control" id="MMCC" placeholder="Enter MMCC">
+				</div>
+	
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Model:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" name="model" class="form-control" id="model" placeholder="Enter Model">
+				</div>
+			</div>
+		</div>
+	</div>			
+		
+	<div style='position:absolute; top:250px; left:400px; '>
+		<table id="jqGrid"> </table> 
+			<div id="jqGridPager"></div>
+	</div>
+		
+	<div class="wrapper">
+		<input type="button" class="btn btn-lg btn-success btn-md " onclick="return itemDetails()" value="Submit" name="btn" id="btn" style="margin-top: 240px;"  />
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

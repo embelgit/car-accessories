@@ -1,0 +1,157 @@
+package com.smt.helper;
+
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.bean.CurrentStockGraph;
+import com.smt.bean.PoItemDisplayBean;
+import com.smt.dao.CategoryDao;
+import com.smt.dao.ItemDetailsDao;
+import com.smt.dao.ItemStockDao;
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.ItemStock;
+import com.smt.hibernate.ProductDetail;
+import com.smt.hibernate.SubCategory;
+
+public class ItemStockHelper {
+	
+	public void registeritemStock(HttpServletRequest request , HttpServletResponse response)
+	{
+		ItemStock itemStock = new ItemStock();
+		
+		String branch = request.getParameter("branch");
+		
+		String defectiveQty = request.getParameter("defectiveQty");
+
+		String normalQty = request.getParameter("normalQty");
+		
+		String stock = request.getParameter("stock");
+		
+		String item_details_id = request.getParameter("itemId");
+		
+		String productId = request.getParameter("productId");
+		
+		Long normalStk = Long.parseLong(stock)-Long.parseLong(defectiveQty);
+		
+		itemStock.setProduct_id(Long.parseLong(productId));
+		
+		itemStock.setBranch(branch);
+		
+		itemStock.setDefectiveQty(Long.parseLong(defectiveQty));
+		
+		itemStock.setNormalQty((normalStk));
+		
+		itemStock.setStock(Long.parseLong(stock));		
+		
+		itemStock.setItem_details_id(Long.parseLong(item_details_id));
+		
+		itemStock.setProduct_id(Long.parseLong(productId));
+		
+		
+		
+		ItemStockDao dao = new ItemStockDao();
+		
+		dao.valItemStock(itemStock);
+	}
+	
+	public List getAllItemStocks()
+	{
+		ItemStockDao dao = new ItemStockDao();
+		return dao.getAllItemStock();
+	}
+	
+	public List getCurrentStockBYColor()
+	{
+		ItemStockDao dao1 = new ItemStockDao();
+		return dao1.getCurrentStockDetails();
+		
+	}
+
+	
+	public List getcolorByProducts(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		String itemId = request.getParameter("itemId");
+		
+		Map<Long,ItemDetail> map = new HashMap<Long,ItemDetail>();
+		
+		ItemStockDao dao = new ItemStockDao();
+		List<ItemDetail> catList = dao.getcolorByProducts(itemId);
+		for(ItemDetail c :catList)
+		{	
+			map.put(c.getPkItemId(),c);
+		}	
+		
+		return catList;
+	}
+
+	public Map getAllCurrentStock() {
+		
+		ItemStockDao dao=new ItemStockDao();
+		List list= dao.getAllCurrent();
+		Map  map =  new HashMap();
+		System.out.println("aaaaaaaaaaaaaa"+list);
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			CurrentStockGraph bean = new CurrentStockGraph();
+			bean.setStock((BigInteger)o[0]);
+			bean.setQuantity((BigInteger)o[1]);
+			
+			bean.setTotal((BigInteger)o[2]);
+			bean.setItemId((BigInteger)o[3]);
+			
+			System.out.println("***************"+o[0]+"\t"+o[3]);
+			map.put(bean.getItemId(),bean);
+		}
+		return map;
+	}
+
+	public Map getitemsByProducts(String productId) {
+		ItemStockDao dao = new ItemStockDao();
+		List list = dao.getitemsByProducts(productId);
+		Map  map1 =  new HashMap();
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			PoItemDisplayBean bean = new PoItemDisplayBean();
+			
+			bean.setItemName((String)o[0]);
+			bean.setItemID((Long)o[2]);
+		
+			System.out.println("***************"+o[0]);
+			map1.put(bean.getItemID(),bean);
+		}
+		return map1;
+
+	}
+
+	public Map getcolorByProducts(String itemId) {
+		ItemStockDao dao = new ItemStockDao();
+		List list = dao.getcolorByProducts(itemId);
+		Map  map1 =  new HashMap();
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			PoItemDisplayBean bean = new PoItemDisplayBean();
+			
+			bean.setColor((String)o[0]);
+			bean.setSize((Long)o[1]);
+		
+			System.out.println("***************"+o[0]);
+			map1.put(bean.getColor(),bean);
+		}
+		return map1;
+
+	}
+	}
+	
+		
+		
+	
+

@@ -1,0 +1,107 @@
+package com.smt.bean;
+
+
+public class CustomerBean {
+
+	
+	private String color;
+	private Long size;
+	private String itemName;
+	private Double vatPercentage;
+	private Double salePrice;
+	private Double discount;
+	private Long offerId;
+	private Long item_id;
+	private Long quantity;
+	
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+	public CustomerBean() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public Long getSize() {
+		return size;
+	}
+	public void setSize(Long size) {
+		this.size = size;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public Double getVatPercentage() {
+		return vatPercentage;
+	}
+	public void setVatPercentage(Double vatPercentage) {
+		this.vatPercentage = vatPercentage;
+	}
+	
+	public Double getSalePrice() {
+		return salePrice;
+	}
+
+
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+
+	
+	public Double getDiscount() {
+		return discount;
+	}
+
+
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+
+
+	public String getColor() {
+		return color;
+	}
+
+
+	public Long getOfferId() {
+		return offerId;
+	}
+
+
+
+	public void setOfferId(Long offerId) {
+		this.offerId = offerId;
+	}
+
+
+
+	public Long getItem_id() {
+		return item_id;
+	}
+	public void setItem_id(Long item_id) {
+		this.item_id = item_id;
+	}
+
+	
+	
+}

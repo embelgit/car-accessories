@@ -1,0 +1,159 @@
+<%@page import="com.smt.hibernate.CustomerOrder"%>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Customer Order</h2>
+	</div>
+   
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>  
+	<link href="/SMT/jsp/customer_order.jsp" rel="stylesheet"/>
+	<script src="/SMT/staticContent/css/adi.css"></script> 
+	
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>	
+
+<form action="cust" method="post" class="form-horizontal">	
+	<div class="form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label> Advance Payment:</label>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="advancePayment" class="form-control  input-sm" id="advancePayment" placeholder="Advance Payment">
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group-1">
+		<div class="col-lg-12">		
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label>Color:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="color" class="form-control  input-sm" id="color" placeholder="Color">
+			</div>
+		</div>
+	</div>
+	
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label>Customer First Name:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="customerFirstName" class="form-control  input-sm" id="customerFirstName" placeholder="Customer First Name">
+			</div>
+		</div>
+	</div>
+	
+	<div class=" form-group-1">
+		<div class="col-lg-12">	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label> Customer Last Name:</label>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="customerLastName" class="form-control  input-sm"	id="customerLastName" placeholder="Customer Last Name">
+			</div>	
+		</div>
+	</div>				
+	
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label>customerList:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<select class="form-control" name="customerList" id='customerList'>
+					<option value="selected">--Select Product--</option>
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+			</div>
+		</div>
+	</div>
+			
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label>Customer Mobile No:</label>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="customerMobileNo" class="form-control  input-sm" id="customerMobileNo" placeholder="Customer Mobile No">
+			</div>	
+		</div>
+	</div>
+	
+
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label>Item Name:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="itemName" class="form-control  input-sm" id="itemName" placeholder="Item Name">
+			</div>
+		</div>
+	</div>
+	
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label> Price:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="price" class="form-control  input-sm" id="price" placeholder="Price">
+			</div>
+		</div>
+	</div>
+	
+					
+	<td> <input value="" type="text" id='superorderId' name="superorderId" placeholder="superorderId"></td>
+	
+	
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label> Remainig Payment:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="remainigPayment" class="form-control  input-sm" id="remainigPayment" placeholder="Remainig Payment">
+			</div>
+		</div>
+	</div>
+	
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label>Size:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="size" class="form-control  input-sm" id="size" placeholder="Size">
+			</div>
+		</div>
+	</div>
+	
+	<div class=" form-group-1">
+		<div class="col-lg-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+				<label>Vat:</label>
+			</div>	
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 five">
+				<input type="text" name="vat" class="form-control  input-sm" id="vat" placeholder="Vat">
+			</div>
+		</div>
+	</div>
+			
+	<div class="wrapper">
+		<input type="button" class="btn btn-lg btn-success btn-md " onclick="customerOrder()" value="Submit">
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

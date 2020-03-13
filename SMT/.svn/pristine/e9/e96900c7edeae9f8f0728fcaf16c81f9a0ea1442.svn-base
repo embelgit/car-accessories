@@ -1,0 +1,92 @@
+<%@page import="java.util.List"%>
+<%@page import="com.smt.bean.CustomerFeedbackBean"%>
+<%@page import="com.smt.dao.CustFeedbackDao"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
+  
+  	<%-- <% boolean isHome=false;%>
+	<%@include file="commons/header.jsp"%> --%>
+	
+	<div class="container">
+		<h2 class="form-name-report">Customer Feedback List</h2>
+	</div>
+	
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link href="/SMT/staticContent/css/jquery.dataTables.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/SMT/staticContent/css/jquery.dataTables.tableTools.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="/SMT/staticContent/js/jquery.js" type="text/javascript"></script>
+		<script src="/SMT/staticContent/js/jquery.dataTables.js" type="text/javascript"></script>
+		<script src="/SMT/staticContent/js/jquery.dataTables.tableTools.min.js" type="text/javascript"></script>
+		<link href="/SMT/staticContent/css/style.css" rel="stylesheet" />
+	</head>
+
+	<div id="report">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();
+		</script>
+	</div>
+
+	<script type="text/javascript"> 
+		$(document).ready(function () {
+	         var table=$("#list").dataTable();
+			 var tableTools = new $.fn.dataTable.TableTools(table, {
+				 'sSwfPath':'//cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf',
+				 	'aButtons':['copy','print','csv',{
+					 'sExtends':'xls',
+					 'sFileName':'Data.xls',
+					 'sButtonText': 'Save to Excel'
+						}
+					]
+				});
+					$(tableTools.fnContainer()).insertBefore('#list_wrapper');
+			});
+	</script>
+	
+<body id="dt_example">
+	<%
+	CustFeedbackDao dao=new CustFeedbackDao();
+		List lis2=dao.getCustFeedDetail();
+	%>
+	
+	<div id="demo_jui">
+		<table id="list" class="display" border="1">
+			<thead>
+				<tr>
+					 <th>Customer Id</th>
+					<th>Customer Name</th>
+					<th>Mobile No</th>
+					<th>Email</th>
+					<th>Occupation</th>
+					<th>Rating</th>
+					<th>Comment</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+   				<%
+					for(int i=0;i<lis2.size();i++){
+						CustomerFeedbackBean custB=(CustomerFeedbackBean)lis2.get(i);
+				%>
+				
+				<tr>
+					<td class="align"><%=custB.getCust_id()%></td>
+					<td class="align"><%=custB.getCustomer_name()%></td>
+					<td class="align"><%=custB.getMobile_no()%></td>
+					<td class="align"><%=custB.getEmail()%></td>
+					<td class="align"><%=custB.getOccupation()%></td>
+					<td class="align"><%=custB.getRating()%></td>
+					<td class="align"><%=custB.getFeedback()%></td>
+				</tr>
+	
+				<%
+					}
+				%>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

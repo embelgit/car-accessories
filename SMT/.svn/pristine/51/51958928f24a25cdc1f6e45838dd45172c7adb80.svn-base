@@ -1,0 +1,27 @@
+package com.smt.dao;
+
+import com.smt.hibernate.AuthoritySlip;
+import com.smt.hibernate.ItemDetail;
+import com.smt.utility.HibernateUtility;
+
+public class AuthoritySlipDao {
+
+	public void registerAuthority(AuthoritySlip authoritySlip) {
+     HibernateUtility hbu = HibernateUtility.getInstance();
+		
+		org.hibernate.Session session = hbu.getHibernateSession();
+		org.hibernate.Transaction transaction = session.beginTransaction();
+	
+		Long fkitemId = authoritySlip.getItem_id();
+		ItemDetail itemDetail = (ItemDetail)session.get(ItemDetail.class, fkitemId);
+		System.out.println(itemDetail+"ItemDetails");
+		itemDetail.setStatus("2");
+		authoritySlip.setItemDetail(itemDetail);
+		System.out.println(fkitemId+"%%%%%%%%%%%%%%%%");
+	    session.save(authoritySlip);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+	}
+
+}

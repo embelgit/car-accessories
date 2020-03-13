@@ -1,0 +1,108 @@
+<?xml version="1.0"?> 
+ <!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" > 
+    <hibernate-mapping>
+    <class name="com.smt.hibernate.SaleReturn"
+    table="SaleReturn"
+    >
+    
+    <id name="pkBillId" type="java.lang.Long" column="PkSellReturnId">
+			<generator class="increment" />
+		</id>
+		
+		<property
+		name="itemName" 
+		type="java.lang.String" 
+		column="ItemName"
+		length="255" />
+		
+		<property
+		name="categoryName" 
+		type="java.lang.String" 
+		column="CategoryNane"
+		length="255" />
+		
+		 <property
+		name="quantity" 
+		type="java.lang.Long" 
+		column="OrignalQuan"
+		 />
+		 
+		  <property
+		name="editQuantity" 
+		type="java.lang.Long" 
+		column="ReturnQuantuty"
+		 />
+		 
+		   <property
+		name="afterQuantity" 
+		type="java.lang.Long" 
+		column="AfterReturnQuantity"
+		 />
+		
+		 <property
+		name="salePrice" 
+		type="java.lang.Double" 
+		column="SalePrice"
+		length="255" />
+		
+		 <property
+		name="discount" 
+		type="java.lang.Double" 
+		column="Discount"
+		length="255" />
+		
+		 <property
+		name="totalAmt" 
+		type="java.lang.Double" 
+		column="TotalAmount"
+		length="255" />
+		
+		 <property
+		name="grossamt" 
+		type="java.lang.Double" 
+		column="GrossAmount"
+		length="255" />
+		
+		<property
+		name="billNo" 
+		type="java.lang.Long" 
+		column="BillNo"
+		/>
+	
+		<property
+		name="Date" 
+		type="java.lang.String" 
+		column="BillReturnDate"
+		length="255" />
+		
+		<property
+		name="carNo" 
+		type="java.lang.String" 
+		column="CarNo"
+		length="255" />
+		
+		
+		 <property
+		name="contactNo" 
+		type="java.lang.Long" 
+		column="ContactNo"
+		 />
+		 
+		  <property
+		name="barcodeNo" 
+		type="java.lang.Long" 
+		column="BarcodeNo"
+		 />
+		
+		 <property
+		name="current_date" 
+		type="java.sql.Date" 
+		column="BillGenerateDate"
+		length="255" />
+		
+		
+		
+    </class>
+   </hibernate-mapping> 

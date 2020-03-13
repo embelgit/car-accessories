@@ -1,0 +1,92 @@
+package com.smt.helper;
+
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.bean.EmpNameWiseLeave;
+import com.smt.bean.PoItemDisplayBean;
+import com.smt.bean.PurchaseOrderReportBean;
+import com.smt.dao.CategoryDao;
+import com.smt.dao.POAccountDao;
+import com.smt.dao.PODetailDao;
+import com.smt.hibernate.POAccount;
+import com.smt.hibernate.Podetail;
+import com.smt.hibernate.SubCategory;
+
+public class POAccountHelper {
+
+
+	public void regsterPOaccount(HttpServletRequest request,
+			HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	//	String pk_account_id =request.getParameter("pk_account_id");
+		String totalAmount = request.getParameter("totalAmount");
+		String discount = request.getParameter("discount");
+		String netAmount = request.getParameter("netAmount");
+		String paymentType = request.getParameter("paymentType");
+		String amountPaid = request.getParameter("amountPaid");
+		String amountDue = request.getParameter("amountDue");
+		String due = request.getParameter("due");
+		String fk_superpo_id1 = request.getParameter("fk_superpo_id1");
+		
+		POAccount acc = new POAccount();
+		
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date adate = null;
+		try {
+		
+		adate=	format.parse(due);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		acc.setDue(adate);
+		
+		acc.setTotalAmount(Long.parseLong(totalAmount));
+		acc.setDiscount(Long.parseLong(discount));
+		acc.setNetAmount(Long.parseLong(netAmount));
+		acc.setPaymentType(paymentType);
+		acc.setAmountPaid(Long.parseLong(amountPaid));
+		acc.setAmountDue(Long.parseLong(amountDue));
+		
+		acc.setFk_superpo_id1(fk_superpo_id1);
+		
+		//acc.setPk_account_id(Long.parseLong(pk_account_id));
+		
+		POAccountDao dao = new POAccountDao();
+		dao.valPOAccount(acc);
+	}
+	
+		/*public Map getTotalAmmountBYPOSUID(String fk_superpo_id1)
+	{
+		
+		PODetailDao dao1 = new PODetailDao();
+		List catList = dao1.getTotalAmountByPOSUID(fk_superpo_id1);
+		Map  map =  new HashMap();
+		for(int i=0;i<catList.size();i++)
+		{
+			Object[] o = (Object[])catList.get(i);
+			PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+			bean.setTotalAmount((Double)o[0]);
+			//bean.setColor((String)o[1]);
+			//System.out.println("***************"+o[0]);
+			map.put(bean.getTotalAmount(),bean);
+		}
+		return map;  
+	}*/
+
+
+}

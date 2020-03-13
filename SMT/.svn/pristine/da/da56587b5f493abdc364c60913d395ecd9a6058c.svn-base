@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="com.smt.hibernate.ItemStock" 
+    table="item_stock"
+>
+
+    <id
+        name="pkItemStockId"
+        type="java.lang.Long"
+        column="pk_item_stock_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="branch"
+        type="java.lang.String"
+        column="branch"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="defectiveQty"
+        type="java.lang.Long"
+        column="defective_qty"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="normalQty"
+        type="java.lang.Long"
+        column="normal_qty"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="stock"
+        type="java.lang.Long"
+        column="stock"
+        not-null="true"
+        length="19"
+    />
+    
+     <property
+        name="product_id"
+        type="java.lang.Long"
+        column="fk_product_id"
+        not-null="true"
+        length="19"
+    />
+    
+     <property
+        name="item_details_id"
+        type="java.lang.Long"
+        column="fk_item_details_id"
+        not-null="true"
+        length="19"
+    />
+
+</class>
+</hibernate-mapping>

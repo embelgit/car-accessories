@@ -1,0 +1,32 @@
+
+<%@page import="com.smt.bean.CurrentStockDetails"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smt.helper.ItemStockHelper"%>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/js/jquery.jqgrid.min.js"></script>
+	<script src="/SMT/staticContent/js/itemstock.js"></script>
+	</head>
+	<div class="container">
+		<h2 class="form-name">Current Stock</h2>
+	</div>
+	
+	<input	class="btn btn-success" type="button" value="Search" onclick="stock.getAllCurrentStock();" >
+	
+	<div style="position: absolute;top: 100px;left: 150px">
+	<table id="list4" class="scroll" cellpadding="0" cellspacing="0"></table>
+	</div>
+	
+	
+			
+		
+	
+
+	

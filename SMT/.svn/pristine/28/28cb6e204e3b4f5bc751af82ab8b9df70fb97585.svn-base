@@ -1,0 +1,40 @@
+package com.smt.helper;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.BrokerDao;
+import com.smt.dao.CustFeedbackDao;
+import com.smt.hibernate.Broker;
+
+public class BrokerHelper {
+
+	public void regsterBroker(HttpServletRequest request,
+			HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+		String firstName = request.getParameter("firstName");
+		String middleName = request.getParameter("middleName");
+		String lastName = request.getParameter("lastName");
+		String accType = request.getParameter("accType");
+		String contactNumber = request.getParameter("contactNumber");
+		String address = request.getParameter("address");
+		String accNumber = request.getParameter("accNumber");
+		
+		
+		Broker bro = new Broker();
+		
+		bro.setFirstName(firstName);
+		bro.setMiddleName(middleName);
+		bro.setLastName(lastName);
+		bro.setAccType(accType);
+		bro.setContactNumber(Long.parseLong(contactNumber));
+		bro.setAddress(address);
+		bro.setAccNumber(Long.parseLong(accNumber));
+		
+		
+		BrokerDao dao = new BrokerDao();
+		dao.valBroker(bro);
+	}
+
+}

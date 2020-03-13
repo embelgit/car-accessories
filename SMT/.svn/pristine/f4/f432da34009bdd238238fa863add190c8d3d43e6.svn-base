@@ -1,0 +1,135 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class EmpAttendance implements Serializable{
+	
+	private Long id;
+	
+	
+	private Long totalWorkingDays;
+	
+	private Date sdate;
+	
+	private Long attended;
+	
+	private Long leave;
+	
+	private Long paidLeave;
+	
+	private Long unpaidLeave;
+	
+	private Long halfDay;
+	
+	private Long pk_attendance_id;
+
+	public EmpAttendance(Long id, Long totalWorkingDays, Date sdate, Long attended, Long leave, Long paidLeave, Long unpaidLeave, Long halfDay, Long pk_attendance_id){
+		
+		this.setAttended(attended);
+		
+		this.setHalfDay(halfDay);
+		this.setId(id);
+		this.setLeave(leave);
+	
+		this.setPaidLeave(paidLeave);
+		this.setPk_attendance_id(pk_attendance_id);
+		this.setSdate(sdate);
+		this.setTotalWorkingDays(totalWorkingDays);
+		this.setUnpaidLeave(unpaidLeave);
+		
+		
+		
+	}
+	
+	
+	public EmpAttendance(){
+		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
+
+	public Long getTotalWorkingDays() {
+		return totalWorkingDays;
+	}
+
+	public void setTotalWorkingDays(Long totalWorkingDays) {
+		this.totalWorkingDays = totalWorkingDays;
+	}
+
+	public Date getSdate() {
+		return sdate;
+	}
+
+	public void setSdate(Date sdate) {
+		this.sdate = sdate;
+	}
+
+	public Long getAttended() {
+		return attended;
+	}
+
+	public void setAttended(Long attended) {
+		this.attended = attended;
+	}
+
+	public Long getLeave() {
+		return leave;
+	}
+
+	public void setLeave(Long leave) {
+		this.leave = leave;
+	}
+
+	public Long getPaidLeave() {
+		return paidLeave;
+	}
+
+	public void setPaidLeave(Long paidLeave) {
+		this.paidLeave = paidLeave;
+	}
+
+	public Long getUnpaidLeave() {
+		return unpaidLeave;
+	}
+
+	public void setUnpaidLeave(Long unpaidLeave) {
+		this.unpaidLeave = unpaidLeave;
+	}
+
+	public Long getHalfDay() {
+		return halfDay;
+	}
+
+	public void setHalfDay(Long halfDay) {
+		this.halfDay = halfDay;
+	}
+
+	public Long getPk_attendance_id() {
+		return pk_attendance_id;
+	}
+
+	public void setPk_attendance_id(Long pk_attendance_id) {
+		this.pk_attendance_id = pk_attendance_id;
+	}
+
+
+	@Override
+	public String toString() {
+		return "EmpAttendance [id=" + id + ", totalWorkingDays="
+				+ totalWorkingDays + ", sdate=" + sdate + ", attended="
+				+ attended + ", leave=" + leave + ", paidLeave=" + paidLeave
+				+ ", unpaidLeave=" + unpaidLeave + ", halfDay=" + halfDay
+				+ ", pk_attendance_id=" + pk_attendance_id + "]";
+	}
+	
+	
+}

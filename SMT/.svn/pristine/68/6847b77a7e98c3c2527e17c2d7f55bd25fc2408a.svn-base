@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+ <!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" > 
+
+    <hibernate-mapping>
+    
+    <class name="com.smt.hibernate.EmployeeDetails" 
+    table="employeedetails"
+    >
+    
+    	<id name="id" type="java.lang.Long" column="id">
+			<generator class="increment" />
+		</id>
+		
+			
+		<property 
+		name="dob" 
+		type="java.sql.Date" 
+		column="dob"
+		not-null="true"  />
+			
+		<property 
+		name="emergancyContactNumber" 
+		type="java.lang.Long" 
+		column="emergancyContactNumber"
+		not-null="true" 
+		length="255" 
+		/>
+			
+		<property 
+		name="accountNumber" 
+		type="java.lang.Long" 
+		column="accountNumber"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="address" 
+		type="java.lang.String" 
+		column="address"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="adharNumber" 
+		type="java.lang.Long" 
+		column="adharNumber"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="bankName" 
+		type="java.lang.String" 
+		column="bankName"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="branch" 
+		type="java.lang.String" 
+		column="branch"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="city" 
+		type="java.lang.String" 
+		column="city"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="contactNumber" 
+		type="java.lang.Long" 
+		column="contactNumber"
+		not-null="true" 
+		length="255"/>
+			
+		<property 
+		name="education" 
+		type="java.lang.String" 
+		column="education"
+		not-null="true" 
+		length="255"/>
+			
+		<property 
+		name="emailId" 
+		type="java.lang.String" 
+		column="emailId"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="familyMember" 
+		type="java.lang.String" 
+		column="familyMember"
+		not-null="true" 
+		length="255" />
+		
+		<property 
+		name="firstName" 
+		type="java.lang.String" 
+		column="firstName"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="gender" 
+		type="java.lang.String" 
+		column="gender"
+	    not-null="true" 
+	    length="255" />
+			
+		<property 
+		name="ifsc" 
+		type="java.lang.Long" 
+		column="ifsc"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="joiningDate" 
+		type="java.util.Date" 
+		column="joiningDate"
+		not-null="true" />
+			
+		<property 
+		name="knownLanguage" 
+		type="java.lang.String" 
+		column="knownLanguage"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="lastName" 
+		type="java.lang.String" 
+		column="lastName"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="maritalStatus" 
+		type="java.lang.String" 
+		column="maritalStatus"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="middleName" 
+		type="java.lang.String" 
+		column="middleName"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="previousFirmAddress" 
+		type="java.lang.String" 
+		column="previousFirmAddress"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="previousFirmContactNo" 
+		type="java.lang.Long" 
+		column="previousFirmContactNo"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="previousFirmName" 
+		type="java.lang.String" 
+		column="previousFirmName"
+		not-null="true" 
+		length="255"/>
+			
+		<property 
+		name="previousJob" 
+		type="java.lang.String" 
+		column="previousJob"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="previousJobExeperiance" 
+		type="java.lang.Long" 
+		column="previousJobExeperiance"
+		not-null="true" 
+		length="255"/>
+		
+		<property 
+		name="reference" 
+		type="java.lang.String" 
+		column="reference"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="resignDate" 
+		type="java.util.Date" 
+		column="resignDate"
+		not-null="true"  />
+			
+		<property 
+		name="resignReason" 
+		type="java.lang.String" 
+		column="resignReason"
+		not-null="true" 
+		length="255" />
+			
+		<property 
+		name="salary" 
+		type="java.lang.Long" 
+		column="salary"
+		not-null="true" 
+		length="20" />
+			
+		<property 
+		name="department" 
+		type="java.lang.String" 
+		column="department"
+		not-null="true" 
+		length="255" />
+		
+		<property 
+		name="designation" 
+		type="java.lang.String" 
+		column="Designation"
+		not-null="true" 
+		length="255" />
+			
+		
+		
+		</class>
+    </hibernate-mapping>

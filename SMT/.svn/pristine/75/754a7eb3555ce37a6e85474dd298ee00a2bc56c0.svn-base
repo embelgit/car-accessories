@@ -1,0 +1,109 @@
+package com.smt.bean;
+
+import java.math.BigDecimal;
+
+public class CustomerBean {
+
+	
+	private String color;
+	private Long size;
+	private String itemName;
+	private Double vatPercentage;
+	private Double salePrice;
+	private BigDecimal discount;
+	private Long offerId;
+	private Long item_id;
+	private Long product_id;
+	private Long pkProductId;
+	
+	
+	
+	public CustomerBean() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	CustomerBean(String color,Long pkProductId, Long size,String itemName,Double vatPercentage,Double salePrice,BigDecimal discount,Long offerId,Long item_id,Long product_id){
+		
+	this.color=color;
+	this.discount=discount;
+	this.item_id=item_id;
+	this.itemName=itemName;
+	this.offerId=offerId;
+	this.product_id=product_id;
+	this.salePrice=salePrice;
+	this.size=size;
+	this.vatPercentage=vatPercentage;
+	this.pkProductId= pkProductId;
+	}
+	
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public Long getSize() {
+		return size;
+	}
+	public void setSize(Long size) {
+		this.size = size;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public Double getVatPercentage() {
+		return vatPercentage;
+	}
+	public void setVatPercentage(Double vatPercentage) {
+		this.vatPercentage = vatPercentage;
+	}
+	
+	public Double getSalePrice() {
+		return salePrice;
+	}
+
+
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
+	}
+	public Long getOfferId() {
+		return offerId;
+	}
+	public void setOfferId(Long offerId) {
+		this.offerId = offerId;
+	}
+	public Long getItem_id() {
+		return item_id;
+	}
+	public void setItem_id(Long item_id) {
+		this.item_id = item_id;
+	}
+	public Long getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
+	}
+
+	public Long getPkProductId() {
+		return pkProductId;
+	}
+
+	public void setPkProductId(Long pkProductId) {
+		this.pkProductId = pkProductId;
+	}
+	
+	
+}

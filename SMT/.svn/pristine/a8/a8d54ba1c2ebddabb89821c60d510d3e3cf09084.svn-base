@@ -1,0 +1,259 @@
+
+function itemDetails(){
+	
+	if(document.itemdel.fk_product_id.value == "")
+	{
+		alert("Please Select Product Name!!");
+		return false;
+	}	
+	
+	if(document.itemdel.itemName.value == "")
+	{
+		alert("Please Enter Item Name!!");
+		return false;
+	}
+	
+	var letterNumber = /^[a-zA-Z\ \a-zA-Z]+$/;  
+	if(document.itemdel.itemName.value.match(letterNumber)) 
+	{
+		
+		if(document.itemdel.MMCC.value == "")
+		{
+			alert("Please Enter MMCC Name!!");
+			return false;
+		}
+		
+		var letterNumber = /^[a-zA-Z]+$/;  
+		if(document.itemdel.MMCC.value.match(letterNumber)) 
+		{
+			if(document.itemdel.model.value == "")
+			{
+				alert("Please Enter Model Name!!");
+				return false;
+			}
+			
+			var letterNumber = /^[a-zA-Z]+$/;  
+			if(document.itemdel.model.value.match(letterNumber)) 
+			{
+				itemde();
+			}
+			
+			else
+			{
+				alert("Please Enter Alphabets Only In Model Name Column!!!");
+				return false;
+			}	
+		}
+		
+		else
+		{
+			alert("Please Enter Alphabets Only In MMCC Name Column!!!");
+			return false;
+		}	
+	}
+	
+	else
+	{
+		alert("Please Enter Alphabets Only In Item Name Column!!!");
+		return false;
+	}	
+}
+
+
+function itemde(){
+	
+	document.itemdel.btn.disabled = true;
+	
+	 var params= {};
+	 
+	 var namePresent;
+		var count = jQuery("#jqGrid").jqGrid('getGridParam', 'records');
+		var allRowsInGrid = $('#jqGrid').getGridParam('data');
+		
+		
+		var fff=JSON.stringify(allRowsInGrid);
+		for (var i = 0; i < count; i++) {
+	        
+	        var color = allRowsInGrid[i].color;
+	      params["color"+i]=color;
+	       var size = allRowsInGrid[i].size;
+	       params["size"+i]=size;
+	        var buyPrice = allRowsInGrid[i].buy_Price;
+	        params["buyPrice"+i]=buyPrice;
+	        var salePrice = allRowsInGrid[i].salePrice;
+	       params["salePrice"+i]=salePrice;
+		} 
+	        
+	        	var itemName= $('#itemName').val();
+	        	var model= $('#model').val();
+	        	var MMCC= $('#MMCC').val();
+	        	alert(MMCC);
+	
+	        	var fk_product_id= $('#fk_product_id').val();
+	        	alert(fk_product_id);
+	        	
+	        	
+	        	 var input = document.getElementById('fk_product_id'),
+			        list = document.getElementById('fkproductid_drop'),
+			        i,fk_product_id;
+			    for (i = 0; i < list.options.length; ++i) {
+			        if (list.options[i].value === input.value) {
+			        	fk_product_id = list.options[i].getAttribute('data-value');
+			        }
+			    }
+			    
+			    alert(fk_product_id+"hgh");
+	
+ 	
+ 	
+ 				params["fk_product_id"] = fk_product_id;
+ 				params["itemName"] = itemName;
+ 				params["model"] = model;
+ 				params["MMCC"] = MMCC;
+ 				params["count"] = count;
+ 	
+ 	
+ 	/*alert(allRowsInGrid)
+	
+ 	 params["Grid"] =""+allRowsInGrid;*/
+ 	
+ 	params["methodName"] = "doItemDetails";
+ 	
+ 	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+ 	    	{
+ 				alert(data);
+ 				if(document.itemdel) 
+				{
+				  document.itemdel.reset();
+			    }
+				document.itemdel.btn.disabled = false;
+				
+			    
+ 			}
+ 	    	).error(function(jqXHR, textStatus, errorThrown){
+ 	    		if(textStatus==="timeout") {
+ 	    			$(loaderObj).hide();
+ 	    			$(loaderObj).find('#errorDiv').show();
+ 	    		}
+ 	    	});
+ 	    	
+		}
+
+
+$(document).ready(function () {
+	var lastsel;
+		rownumbers: true,
+  		
+    		$("#jqGrid").jqGrid({
+        		editurl: 'clientArray',
+         			colNames:["Color","Size","BuyPrice","SalePrice"],
+          			
+         			colModel: [
+	                				{
+										label: 'Color',
+					               	    name:  "color",
+					                    width: 150,
+					                    editable: true
+					             	},
+					             	
+					            	{
+										label: 'Size',
+										name: "size",
+					               		idth: 150,
+					                	editable: true 
+					                },
+					                
+					            	{
+										label : 'BuyPrice',
+					                    name: "buy_Price",
+										editable: true,
+					                    width: 150,
+					                   
+					                },
+					                
+									{
+										label: 'SalePrice',	
+										name:'salePrice',
+										width: 150,
+					                    editable: true
+									
+									}
+				          		],
+           
+						            data:[],
+									sortorder : 'desc',
+									loadonce: true,
+									viewrecords: true,
+						            width: 600,
+						            height: 150,
+						            rowNum: 10,
+						            pager: "#jqGridPager"
+     					   });
+
+        $('#jqGrid').navGrid('#jqGridPager',
+            // the buttons to appear on the toolbar of the grid
+            { edit: true, add: true, del: true, search: true, refresh: true, view: true, position: "left", cloneToTop: false },
+            // options for the Edit Dialog
+            {
+                editCaption: "The Edit Dialog",
+                recreateForm: true,
+				checkOnUpdate : true,
+				checkOnSubmit : true,
+                closeAfterEdit: true,
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                }
+            },
+            // options for the Add Dialog
+            {
+                closeAfterAdd: true,
+                recreateForm: true,
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                }
+            },
+            // options for the Delete Dailog
+            {
+            	closeAfterdel:true,
+            	 recreateForm: true,
+            	
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+            onSelectRow: function(id) {
+                if (id && id !== lastSel) {
+                    jQuery("#jqGrid").saveRow(lastSel, true, 'clientArray');
+                    jQuery("#jqGrid").editRow(id, true);
+                    lastSel = id;
+                    console.log(id);
+                }
+            }
+    	});
+        
+    });
+
+
+function disable(){
+	
+	if(document.itemdel.itemName.value !== "")
+	{
+		document.itemdel.itemName.disabled = true;
+		return false;
+	}	
+ 
+}
+
+function ChooseContact(data){
+	
+	
+	document.getElementById("itemName").value=(data.options[data.selectedIndex].getAttribute("myid"));
+	
+	
+}
+
+function reset()
+{
+	document.itemdel.reset();
+}
+
+

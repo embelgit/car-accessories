@@ -1,0 +1,180 @@
+package com.smt.dao;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.transform.Transformers;
+
+import com.smt.bean.CategoryList;
+import com.smt.bean.CustomerBean;
+import com.smt.bean.ItemList;
+import com.smt.bean.ItemWisePurchase;
+import com.smt.bean.ItemWiseSaleReport;
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.ProductDetail;
+import com.smt.hibernate.SupplierDetail;
+import com.smt.utility.HibernateUtility;
+
+public class ItemDetailsDao {
+	
+	public void valItemDetail( ItemDetail itemDetail)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		
+		org.hibernate.Session session = hbu.getHibernateSession();
+		org.hibernate.Transaction transaction = session.beginTransaction();
+		itemDetail.setIsActiveYn("Y");
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateobj = new Date();
+		itemDetail.setIsInsertDate(dateobj);
+		itemDetail.setIsModifiedDate(dateobj);
+		itemDetail.setStatus("1");
+		Long fk_product_id = itemDetail.getFk_product_id();
+		ProductDetail productDetail = (ProductDetail) session.get(ProductDetail.class, new Long(fk_product_id));
+		itemDetail.setProductDetail(productDetail);
+	    session.save(itemDetail);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+
+	}
+	
+  
+	public List getAllItems()
+	{
+		
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from ItemDetail ");
+		List list = query.list();
+		//System.out.println("List"+list);
+		return list;
+	}
+
+
+	public List getColorAndSize()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("select i.color,i.size from ItemDetail i");
+		List list = query.list();
+		//System.out.println("Item List iiiii"+list);
+		return list;
+		
+	}
+	
+	public List getItemsBYCatandSubCategory(String catID,String subCatID)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("select i.pkItemId,i.color,i.itemName,i.buy_Price,i.size,i.pkItemId from ItemDetail as i join i.productDetail where i.productDetail.category.pkCategoryId="+catID);
+		List list = query.list();																																		
+		System.out.println(list.size());
+	
+		//System.out.println("Item List iiiii"+list);
+		return list;
+		
+	}
+	
+	
+public List getAllItemDetails(String itemName){
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		
+		Query query=session.createQuery("SELECT i.pkItemId,i.color,i.itemName,i.buy_Price,i.size,i.model from ItemDetail  i   where i.pkItemId="+itemName);
+			
+		List list = query.list();	
+		System.out.println(list.size()+"*************");	
+		hbu.closeSession(session);
+	return list;
+	}
+
+public List getItemWiseSaleReport(){
+	
+	HibernateUtility hbu = HibernateUtility.getInstance();
+	Session session = hbu.getHibernateSession();
+	Query query=session.createSQLQuery("select c.pk_order_id,Date(c.is_insert_date),c.quantity*o.sale_price,c.quantity,c1.category_name,i.item_name, o.sale_price from customer_order c left join offer_details o ON c.fk_offerrr_id=o.pk_itemoffer_id left join item_details i ON o.fk_item_id=i.pk_item_id left join product_details p ON i.fk_product_id=p.pk_product_id left join categories c1 ON p.fk_cat_id=c1.pk_category_id");
+	List <Object[]> list=query.list();
+	List<ItemWiseSaleReport> itemBean=new ArrayList<ItemWiseSaleReport>(0);
+	for (Object[] object : list) {
+		System.out.println(Arrays.toString(object));
+	
+		ItemWiseSaleReport iBean=new ItemWiseSaleReport();
+		iBean.setOrderId(Long.parseLong(object[0].toString()));
+		iBean.setIsInsertDate(object[1].toString());
+		iBean.setTotalAmount(Double.parseDouble(object[2].toString()));
+		iBean.setQuantity(Long.parseLong(object[3].toString()));
+		iBean.setCategoryName(object[4].toString());
+		iBean.setItemName(object[5].toString());
+		iBean.setSalePrice(Double.parseDouble(object[6].toString()));
+		itemBean.add(iBean);
+	}
+	return itemBean;
+}
+
+public List getItemWisePurchaseReport(){
+	
+	HibernateUtility hbu = HibernateUtility.getInstance();
+	Session session = hbu.getHibernateSession();
+	Query query=session.createSQLQuery("select po.po_id,po.quantity,po.unit_price,po.total_Amount,Date(po.insertDate),i.item_name from purchaseorderdetails po left join item_details i ON po.fk_item_id=i.pk_item_id ORDER BY i.item_name");
+	List <Object[]> list=query.list();
+	List<ItemWisePurchase> itemBean=new ArrayList<ItemWisePurchase>(0);
+	 for (Object[] object : list) {
+		 System.out.println(Arrays.toString(object));
+		 
+		 ItemWisePurchase iBean=new ItemWisePurchase();
+		 
+		 iBean.setPoid(Long.parseLong(object[0].toString()));
+		 iBean.setQuantity(Long.parseLong(object[1].toString()));
+		 iBean.setUnitPrice(Double.parseDouble(object[2].toString()));
+		 iBean.setTotalAmount(Double.parseDouble(object[3].toString()));
+		 iBean.setInsertDate(object[4].toString());
+		 iBean.setItemName(object[5].toString());
+		 itemBean.add(iBean);
+		 
+		 
+	 }
+return itemBean;	
+}
+
+
+public List getItemList(){
+	HibernateUtility hbu = HibernateUtility.getInstance();
+	Session session = hbu.getHibernateSession();
+	Query query=session.createSQLQuery("select pk_item_id, item_name from item_details");
+	
+	List <Object[]> list=query.list();
+	List<ItemList> itBean = new ArrayList<ItemList>(0);
+	
+	for (Object[] object : list) {
+		 System.out.println(Arrays.toString(object));
+		 
+		 	ItemList itemBean = new ItemList();
+		 	itemBean.setPk_item_id(Long.parseLong(object[0].toString()));
+		 	itemBean.setItem_name(object[1].toString());
+		 	
+		 	
+		 	itBean.add(itemBean);
+	}
+		return itBean;
+}
+
+
+public static void main(String args[])
+{
+	ItemDetailsDao dao= new ItemDetailsDao();
+	dao.getItemsBYCatandSubCategory("1","2");
+}
+	
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.POAccount" 
+    table="POAccount"
+>
+
+    <id
+        name="pk_account_id"
+        type="java.lang.Long"
+        column="pk_account_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+    
+    
+     <property
+        name="fk_superpo_id1"
+        type="java.lang.String"
+        column="fk_superpo_id"
+       
+      
+    />
+    
+    <property
+        name="totalAmount"
+        type="java.lang.Long"
+        column="Total_Amount"
+        not-null="false"
+        length="20"
+    />
+    
+    <property
+        name="discount"
+        type="java.lang.Long"
+        column="Discount"
+        not-null="false"
+        length="20"
+    />
+    
+    <property
+        name="netAmount"
+        type="java.lang.Long"
+        column="Net_Amount"
+        not-null="false"
+        length="20"
+    />
+    
+    <property
+        name="paymentType"
+        type="java.lang.String"
+        column="Payment_Type"
+        not-null="false"
+        length="20"
+    />
+    
+    <property
+        name="amountPaid"
+        type="java.lang.Long"
+        column="Amount_Paid"
+        not-null="false"
+        length="20"
+    />
+    
+    <property
+        name="amountDue"
+        type="java.lang.Long"
+        column="Amount_Due"
+        not-null="false"
+        length="20"
+    />
+    
+     <property
+        name="due"
+        type="java.sql.Date"
+        column="Due_Date"
+        not-null="false"
+        
+    />
+    
+    
+    
+    
+ </class>
+</hibernate-mapping>

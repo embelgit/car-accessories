@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+
+
+<class 
+    name="com.smt.hibernate.TemporaryStock" 
+    table="temporaryStock"
+>
+
+    <id
+        name="pk_temp_stock_id"
+        type="java.lang.Long"
+        column="pk_temp_stock_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="billNo"
+        type="java.lang.Long"
+        column="billNo"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="checkBy"
+        type="java.lang.String"
+        column="checkBy"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="contactNo"
+        type="java.lang.Long"
+        column="contactNo"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="returnPeriod"
+        type="java.lang.Long"
+        column="returnPeriod"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="barcodeNo"
+        type="java.lang.Long"
+        column="barcodeNo"
+        length="255"
+    />
+    
+    <property
+        name="itemName"
+        type="java.lang.String"
+        column="itemName"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="unitPrice"
+        type="java.lang.Double"
+        column="unitPrice"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="quantity"
+        type="java.lang.Long"
+        column="quantity"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="vat"
+        type="java.lang.Double"
+        column="vat"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="vatAmount"
+        type="java.lang.Double"
+        column="vatAmount"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="totalAmount"
+        type="java.lang.Double"
+        column="totalAmount"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="otherTax"
+        type="java.lang.Double"
+        column="otherTax"
+        not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="total"
+        type="java.lang.Double"
+        column="total"
+        not-null="true"
+        length="255"
+    />
+    
+     <property
+        name="person_shop_name"
+        type="java.lang.String"
+        column="person_shop_name"
+        not-null="true"
+        length="255"
+    />
+
+   
+
+</class>
+</hibernate-mapping>

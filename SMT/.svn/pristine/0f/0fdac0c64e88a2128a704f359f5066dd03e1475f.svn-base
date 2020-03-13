@@ -1,0 +1,367 @@
+package com.smt.helper;
+
+import java.math.BigInteger;
+import java.security.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.bean.PoItemDisplayBean;
+import com.smt.bean.PurchaseOrderReportBean;
+import com.smt.dao.BeanDao;
+import com.smt.dao.CategoryDao;
+import com.smt.dao.ItemDetailsDao;
+import com.smt.dao.PODetailDao;
+import com.smt.dao.SupplierDetailDao;
+import com.smt.hibernate.Podetail;
+import com.smt.hibernate.SubCategory;
+import com.smt.utility.HibernateUtility;
+
+public class PODetailHelper {
+
+	@SuppressWarnings("unused")
+	public void regPoDetail(HttpServletRequest request , HttpServletResponse response)
+	{
+		Podetail podetail = new Podetail();
+		
+		
+		
+		//Integer length = Integer.parseInt(request.getParameter("row_count"));	
+		
+		
+		Integer count = Integer.parseInt(request.getParameter("count"));
+		
+		Long superPOId=0L;
+		PODetailDao dao = new PODetailDao();
+		 Double totalAmount=0d;
+		for(int i =0 ; i<=count;i++)
+		{
+			String typeOfPo = request.getParameter("typeOfPo");
+			podetail.setTypeOfPo(typeOfPo);
+			
+			String billType = request.getParameter("billType");
+			podetail.setBillType(billType);
+			
+			String mobNumber = request.getParameter("mobNumber");
+			podetail.setMobNumber(Long.parseLong(mobNumber));
+			
+			String supplierId = request.getParameter("supplierId");
+			podetail.setSupplierId(Long.parseLong(supplierId));
+			
+			String catId = request.getParameter("catId");
+			podetail.setCatId(Long.parseLong(catId));
+			
+			String email = request.getParameter("email");
+			podetail.seteMail(email);
+			
+			
+			String approvedBy = request.getParameter("approved");
+			podetail.setApprovedBy(approvedBy);
+			
+
+			String contactPerson =request.getParameter("contactPerson");
+			podetail.setContactPerson(contactPerson);
+			
+			String paymentType = request.getParameter("paymentType");
+			podetail.setPaymentType(paymentType);
+			
+			String expectedDate = request.getParameter("expectedDate");
+	        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+			Date expDate = null;
+			try {
+				expDate=	format.parse(expectedDate);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			podetail.setExpectedDate(expDate);
+				
+			podetail.setActiveYn("Y");
+			DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+			Date dateobj = new Date();
+			System.out.println(df.format(dateobj));
+		
+			podetail.setInsertDate(dateobj);
+		   
+			podetail.setModifyDate(dateobj);
+	
+	
+			
+			
+			String itemName = request.getParameter("itemName"+i);
+				
+			if (itemName == null) {
+				
+				break;
+			}
+			else {
+				podetail.setItemId(Long.parseLong(itemName));
+				
+			}
+			String model = request.getParameter("model"+i);
+			if (model == null) {
+				break;
+			}
+			else {
+				
+				podetail.setModel(model);
+				
+			}
+			
+			String color = request.getParameter("color"+i);
+            if(color == null){
+            	break ;
+            }
+			else {
+				podetail.setColor(color);
+			}
+			
+
+			String size = request.getParameter("size"+i);
+			
+			if(size==null)
+			{
+				break ;
+			}
+			else {
+				podetail.setSize(Long.parseLong(size));
+			}
+			
+
+			String quantity = request.getParameter("quantity"+i);
+			
+			if(quantity==null)
+			{
+				break ;
+			}
+			else {
+				podetail.setQuantity(Long.parseLong(quantity));
+			}
+			String buyPrice = request.getParameter("buyPrice"+i);
+           if(buyPrice==null)
+           {
+        	   break ;
+           }
+			 
+           else {
+        	   podetail.setUnitPrice(Double.parseDouble(buyPrice));
+		}
+			
+			
+			
+			Double  total = (double) (Double.parseDouble(quantity) * Double.parseDouble(buyPrice));
+			podetail.setTotalAmount(total);
+		
+			totalAmount=totalAmount+total;
+			System.out.println(totalAmount+"********************");
+			/*String superPo = request.getParameter("superPo");
+			podetail.setSuperPoId(superPo);		*/	
+			
+
+			
+			if (i > 0) {
+				podetail.setSuperPoId("SMT" + superPOId);
+			}
+			Long tempid = dao.valPODetail(podetail);
+
+			if (i == 0)
+			superPOId = tempid;
+
+		}  
+		
+		Podetail SuperpoItemById = getPoItemById(superPOId);
+		SuperpoItemById.setSuperPoId("SMT" + superPOId);
+		
+		dao.updatePODetail(SuperpoItemById);
+	   System.out.println(SuperpoItemById.toString()+"***************************"+totalAmount);
+	   request.setAttribute("message", totalAmount);
+   
+	   //request.getSession().setAttribute("ItemTotal", totalAmount);
+	}
+	public Podetail getPoItemById(Long poid)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery(" from Podetail p where p.poid=:poid");
+		//Query query = session.createQuery("select s.supplierName from SupplierDetail s where s.supplierName=:supplierName");
+		query.setParameter("poid", poid);
+		Podetail uniqueResult = (Podetail) query.uniqueResult();
+		return uniqueResult;
+		
+	}
+	
+	/*public List getPuchaseDetailsBYDate( Date startDate , Date endDate)
+	{
+		
+		
+		PODetailDao dao = new PODetailDao();
+		SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+		String str="21-02-2014";
+
+		try {
+			startDate = format.parse(str) ;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String str2 = "02-12-2019";
+		try {
+			endDate = format.parse(str2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dao.getPurchaseDetailsDateWise(startDate, endDate);
+	}
+	*/
+	
+	public List getAllPurchaseOrderDetailsByYEAR( Date startYear , Date endYear)
+	{
+		PODetailDao dao = new PODetailDao();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy");
+		String str="2014";
+
+		try {
+			startYear = format.parse(str) ;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String str2 = "2018";
+		try {
+			endYear = format.parse(str2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dao.getPurchaseOrderDetailsByYEAR(startYear, endYear);
+	}
+	
+	public List gateAllSuppliers()
+	{
+		BeanDao dao = new BeanDao();
+		List list = dao.getAllMainCategories();
+		
+	
+		return list;
+	}
+	
+	public List getAllSuppliers()
+	{
+		SupplierDetailDao dao = new SupplierDetailDao();
+		
+		return dao.getAllSupplier();
+		
+	}
+	
+	public List getAllMainCategories()
+	{
+		return new CategoryDao().getAllMainCategories();
+	}
+	
+	public List getSubCategoriesByRootcategory(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		String catId = request.getParameter("catId");
+		
+		Map<Long,SubCategory> map = new HashMap<Long,SubCategory>();
+		
+		CategoryDao dao = new CategoryDao();
+		List<SubCategory> catList = dao.getSubCategoriesByRootcategory(catId);
+		for(SubCategory c :catList)
+		{	
+			map.put(c.getPkSubcatId(),c);
+		}	
+		
+		return catList;
+	}
+
+	public List getPuchaseDetailsBYDate(HttpServletRequest request,
+			HttpServletResponse response) {
+          String fDate = request.getParameter("fDate");
+          String tDate = request.getParameter("tDate");
+		
+		Map<Long,PurchaseOrderReportBean> map = new HashMap<Long,PurchaseOrderReportBean>();
+		
+		PODetailDao dao = new PODetailDao();
+		List<PurchaseOrderReportBean> catList = dao.getPurchaseDetailsDateWise(fDate,tDate);
+		
+		
+		return catList;
+	}
+	public Map getItemsBYBILL(String billNo) {
+
+		PODetailDao dao = new PODetailDao();
+		List list= dao.getPODetailsByBillNO(billNo);
+		Map  map =  new HashMap();
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+			bean.setColor((String)o[0]);
+			bean.setProductName((String)o[1]);
+			bean.setQuantity((Integer)o[2]);
+			bean.setUnitPrice((Double)o[3]);
+			bean.setItemID((BigInteger)o[4]);
+			bean.setSupplierName((String)o[5]);
+			bean.setInsDate((java.sql.Timestamp)o[6]);
+			bean.setSupplier_id((BigInteger)o[7]);
+			System.out.println("***************"+o[1]+"\t"+o[4]);
+			map.put(bean.getItemID(),bean);
+		}
+		return map;
+	}
+	
+	
+	public Map getSAllBillBYSuppliers(String supplierId) {
+
+		PODetailDao dao = new PODetailDao();
+		List list= dao.getSAllBillBYSuppliers(supplierId);
+		Map  map =  new HashMap();
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+			bean.setBillNo((BigInteger)o[0]);
+			//bean.setTotalAmount((Double)o[1]);
+			System.out.println("***************"+o[0]);
+			map.put(bean.getBillNo(),bean);
+			
+		}
+		return map;
+	}
+	
+	
+	public Map getTotalAmtByBillNO( String billNo)
+	{
+		PODetailDao dao = new PODetailDao();
+		List list = dao.getTotalAmtByBillNO(billNo);
+		Map  map =  new HashMap();
+		
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+			bean.setTotalAmount((Double)o[0]);
+			System.out.println("***************"+o[0]);
+			map.put(bean.getTotalAmount(),bean);
+		}
+		return map;
+	}
+
+	
+
+}

@@ -1,0 +1,139 @@
+<%@page import="com.smt.hibernate.ProductDetail"%>
+<%@page import="com.smt.helper.ProductDetailHelper"%>
+<%@page import="com.smt.dao.ItemDetailsDao"%>
+<%-- <%@page import="com.smt.helper.CategoryHelper"%> --%>
+<%@page import="com.smt.helper.ItemStockHelper"%>
+<%-- <%@page import="com.smt.hibernate.ProductDetail"%>
+<%@page import="com.smt.helper.ProductDetailHelper"%> --%>
+<%@page import="com.smt.hibernate.ItemDetail"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smt.helper.ItemDetailHelper"%>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	
+	<% boolean isHome=false;%>
+	<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 align="center">Item Stock</h2>
+	</div>
+		
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>  
+	<script src="/SMT/staticContent/js/itemstock.js"></script> 
+	
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+	
+	<script type="text/javascript">
+		function getval(data) {
+		   	alert(data.options[data.selectedIndex].getAttribute("myid"));
+		    	document.getElementById("color").value=(data.options[data.selectedIndex].getAttribute("myid"));
+		    	document.getElementById("size").value=(data.options[data.selectedIndex].getAttribute("myid1"));
+		    }
+	</script>
+	
+<form action="stock" method="post" name="itemst" class="form-horizontal" >	
+	<div class="col-lg-12">
+		<div class=" form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Product Name:</label>
+				</div>	
+				<%
+					ProductDetailHelper productDetailHelper = new ProductDetailHelper();
+				    List itemList = productDetailHelper.getAllProductNames();
+				%>
+	
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" name="productId" id="productId" onchange="stockhelper.getitems()" >
+						<option value="">--Select Product--</option>
+						<%
+							for(int i=0;i<itemList.size();i++){
+							ProductDetail detail = (ProductDetail)itemList.get(i);
+						%>
+						
+						<option value="<%=detail.getPkProductId()%>">
+							<%=detail.getItemName() %> </option>
+						<%
+							}
+						%>
+					</select>
+				</div>
+			
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Item List:</label>
+				</div>
+					
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id='itemId'  name="itemId" onchange="colordETAILS.getcolor()">
+					</select>
+				</div>
+			</div>
+		</div>
+		
+		<div class=" form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Color List:</label>
+				</div>
+					
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id="color"  name="color" >
+					</select>
+				</div>
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Size:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id="size"  name="size" >
+					</select>
+				</div>
+		     </div>
+		</div>
+		
+		<div class="form-group-2">
+			<div class="col-lg-12">		
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label> Branch:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" name="branch" class="form-control" id="branch" placeholder="Branch">
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label> Stock:</label>
+				</div>
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" name="stock" class="form-control"	id="stock" placeholder="Stock">
+				</div>	
+				
+			</div>
+		</div>
+		
+		<div class=" form-group-2">
+			<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Defective Qty:</label>
+				</div>	
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" name="defectiveQty" class="form-control" id="defectiveQty" placeholder="Defective Qty">
+				</div>
+				
+				
+				
+			</div>
+		</div>				
+	</div>
+				
+	<div class="wrapper">
+		<input type="button" class="btn btn-lg btn-success btn-md " onclick="return itemStockADd()" value="Submit" />
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

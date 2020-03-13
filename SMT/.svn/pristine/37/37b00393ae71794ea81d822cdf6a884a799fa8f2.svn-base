@@ -1,0 +1,51 @@
+package com.smt.dao;
+
+
+import java.util.List;
+
+import net.sf.hibernate.odmg.Transaction;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.OfferDetail;
+import com.smt.utility.HibernateUtility;
+
+
+
+public class OfferDetailDao {
+	
+	
+	public void valOfferDetail(OfferDetail offerDetail){
+		
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		org.hibernate.Transaction transaction=session.beginTransaction();
+		//ItemDetail itemDetail = (ItemDetail) session.load(ItemDetail.class, new Long(1));
+		
+		//System.out.println("item_1"+itemDetail);
+		session.save(offerDetail);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+		
+		
+	}
+	
+	
+public List getAllOffer(){
+	
+	HibernateUtility hbu=HibernateUtility.getInstance();
+	Session session=hbu.getHibernateSession();
+	Query query = session.createQuery("from OfferDetail");
+	List list = query.list();
+	hbu.closeSession(session);
+	
+	return list;
+	
+	
+}
+
+}

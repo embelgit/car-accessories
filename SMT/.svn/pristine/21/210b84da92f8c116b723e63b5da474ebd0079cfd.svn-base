@@ -1,0 +1,45 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.EmployeeAttendBean;
+import com.smt.hibernate.EmpAttendance;
+import com.smt.utility.HibernateUtility;
+
+public class EmpAttendanceDao {
+
+	public void valEmpAttendance(EmpAttendance empAttend) {
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(empAttend);
+		transaction.commit();
+		hbu.closeSession(session);	
+		
+	
+		
+	}
+
+	
+public List getEmpNameWiseAttend(Long EmpName){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select e.id, e.firstName, e.department, e.Designation, em.total_working_day, em.attended_day, em.leave_day, em.paid_leave_day, em.unpaid_leave_day, em.half_day from employeedetails e left join Employee_Attendance em ON e.id = em.fk_empattend_id where e.id="+EmpName);
+		
+		//Query query=session.createSQLQuery("select e.id, e.firstName, e.department, e.Designation, em.total_working_day, em.attended_day, em.leave_day, em.paid_leave_day, em.unpaid_leave_day, em.half_day from employeedetails e inner join Employee_Attendance em ON e.id = em.fk_empattend_id where em.fk_empattend_id like="+EmpName);
+		
+		List  list=query.list();
+		
+		return list;
+		
+	}
+	
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="com.smt.dao.NewOfferCreationDao"%>
+<%@page import="com.smt.bean.NewOfferBean"%>
+<%@page import="com.smt.hibernate.ShopDetail"%>
+<%@page import="com.smt.helper.ShopDetailHelper"%>
+<%@page import="com.smt.hibernate.ProductDetail"%>
+<%@page import="com.smt.helper.ProductDetailHelper"%>
+<%@page import="com.smt.hibernate.OfferDetail"%>
+<%@page import="com.smt.helper.OfferDetailHelper"%>
+<%@page import="com.smt.hibernate.ItemDetail"%>
+<%@page import="com.smt.helper.ItemDetailHelper"%>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Offer Creation</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+      
+    <script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+    <link href="/SMT/staticContent/css/style.css" rel="stylesheet" />
+    <script src="/SMT/staticContent/js/newofferDetail.js" > </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+<!--style type="text/css">	
+body { 	
+		background-image :url("background.jpg");
+		background-position: fill;
+		background-attachment: fixed;
+		color 		: Navy; 
+		font-size	: 15px;
+		font-family : Tahoma;
+   	}
+</style-->
+
+<script type="text/javascript">
+function ChooseContact(data){
+	//document.getElementById("buyPrice")(data.options[data.selectedIndex].getAttribute("myid"));
+	document.getElementById("buyPrice").value=(data.options[data.selectedIndex].getAttribute("myid"));
+	document.getElementById("itemName").value=(data.options[data.selectedIndex].getAttribute("myid2"));	
+}
+
+function selectName(data){
+	
+	document.getElementById("shopName").value=(data.options[data.selectedIndex].getAttribute("myid1"));
+}
+
+</script>
+</head>
+<%@page import="com.smt.hibernate.ItemDetail"%>
+<%@page import="com.smt.helper.ItemDetailHelper"%>
+<%@page import="java.util.List"%>
+
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+<%@page contentType="text/html"%>
+
+	<div class="container">
+		<h2 align="center"> Offer Creation </h2>
+	</div>
+	
+<%
+	NewOfferCreationDao creationDao = new NewOfferCreationDao();
+    creationDao.getAllOfferByOfferId();
+
+%>
+    
+	
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+	
+<div class="container">	
+<form name="offd" action="off" method="post" class="form-horizantal">
+	<div class="col-lg-12">
+	
+		<div class="form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Offer Item Name:</label>
+				</div>
+					
+					<%
+						OfferDetailHelper idHelper=new OfferDetailHelper();
+						List idList = idHelper.getAllOffer();					
+					%>
+			
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select id="offer_item_id" class="form-control" onChange="ChooseContact(this)">
+						<option value="selected" >-- --</option>
+						
+						<%
+							for(int i=0;i<idList.size();i++){
+							NewOfferBean item=(NewOfferBean)idList.get(i);
+						%>	
+							<option value="<%=item.getOfferId()%>"> <%=item.getItemName()%>  </option>
+						<%
+							}
+						%>	
+					</select>
+				</div>
+				
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Item Name:</label>
+				</div>
+					
+					<%
+						ItemDetailHelper idHelper2=new ItemDetailHelper();
+						List idList2 = idHelper2.getAllItemsBygroup();					
+					%>
+			
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select id="available_item_id" class="form-control" onChange="ChooseContact(this)">
+						<option value="selected" >-- --</option>
+						
+						<%
+							for(int i=0;i<idList2.size();i++){
+							ItemDetail item=(ItemDetail)idList2.get(i);
+						%>	
+							<option value="<%=item.getPkItemId()%>"  myid2="<%=item.getItemName()%>" myid="<%=item.getBuy_Price()%>">  <%=item.getItemName()%> </option>
+						<%
+							}
+						%>	
+					</select>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" id="itemName" name="itemName" class="form-control" plceholder="Item Name">
+				</div>
+				</div>
+			</div>
+		
+
+		
+			
+		<div class="form-group-2">
+			<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Start Date:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">			 
+					<input type="date" class="form-control" name="startDate" id="startDate" placeholder="Start Date" />
+				</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>End Date:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">			 
+					<input type="date" class="form-control" name="endDate" id="endDate" placeholder="End Date" />
+				</div>
+				
+			</div>
+		</div>
+		<div class="form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Buy Price:</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">			 
+					<input type="text" class="form-control" name="buyPrice" id="buyPrice" placeholder="Buy Price" />
+				</div>
+			</div>
+			</div>
+	</div>
+	
+	<div class="wrapper">
+		<input type="button" name="btn" onclick="newofferDetails()" class="btn btn-lg btn-success btn-md" value="Submit" /> 
+		<input type="button" value="Print" class="btn btn-lg btn-primary btn-md" />
+	</div>
+
+</form>
+</div>	
+	<%@include file="commons/footer.jsp"%>
+
+	

@@ -1,0 +1,229 @@
+
+<%@page import="com.smt.hibernate.SubCategory"%>
+<%@page import="com.smt.helper.SubCategoryHelper"%>
+<%@page import="com.smt.hibernate.SupplierDetail"%>
+<%@page import="com.smt.helper.SupplierDetailHelper"%>
+<%@page import="com.smt.hibernate.Category"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smt.helper.CategoryHelper"%>
+
+
+
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/js/jquery.jqgrid.min.js"></script>
+    <link href="/SMT/staticContent/css/style.css" rel="stylesheet"/>
+    <script src="/SMT/staticContent/js/podetails.js"></script>
+    <script type="text/javascript">
+  
+    </script>
+    
+    <div class="container">
+		<h2 align="center">Purchase Order Details</h2>
+	</div>
+<body>
+	<form action="po" method="post" name="pod" class="form-horizontal">
+		<div class="col-lg-12">
+			<div class="form-group-2">
+				<div class="col-lg-12">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+						<label>Supplier Name:</label>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+						<%
+							SupplierDetailHelper poHelper = new SupplierDetailHelper();
+							List supplierList = poHelper.getAllSuppliers();
+						%>
+							<input list="supplierId_drop" id="supplierId" class="form-control">
+							<datalist id="supplierId_drop">
+							
+						<%
+								for(int i =0 ;i<supplierList.size();i++)
+							{
+								SupplierDetail supplier = (SupplierDetail)supplierList.get(i);
+						%>
+								<option data-value="<%=supplier.getSupplierId()%>" value="<%=supplier.getSupplierName()%>"> 
+						<%   	
+							}	
+						%>
+							</datalist>
+						</div>
+     
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Category:</label>
+						</div>
+						<%
+							CategoryHelper helper = new CategoryHelper();
+							List mainCategoryList = helper.getAllMainCategories();
+						%>	
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input list="catId_drop" id="catId" class="form-control" onchange="pohelper.getSubCategories()">
+							<datalist id="catId_drop">
+							
+						<%
+							for(int i=0;i<mainCategoryList.size();i++){
+								Category category = (Category)mainCategoryList.get(i);
+						%>
+							<option data-value="<%=category.getPkCategoryId()%>" value="<%=category.getCategoryName() %>">
+						<%
+							}
+						%>
+							</datalist>
+						</div>
+						
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Sub Category:</label>
+						</div>
+						
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" id='subCat' onchange='pohelper.getItems()' name="subCat">
+							</select>
+						</div>
+					</div>
+				</div>
+    
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Type Of PO:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" id="typeOfPo" name="typeOfPo" >
+								<option value="selected">Select Option</option>
+								<option value="bycall">By Call</option>
+								<option value="bymail">By Mail</option>
+								<option value="f2f">Face To Face</option>
+							</select>
+						</div>
+						
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Payment Type:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" id='paymentType' name="paymentType">
+								<option value="selected">Select Payment Type</option>
+								<option value="cash">Cash</option>
+								<option value="check">Check</option>
+								<option value="dd">DD</option>
+							</select>
+						</div>
+	
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label> Person Name:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id="contactPerson" name="contactPerson" placeholder="Contect Person Name" />
+						</div>
+					</div>
+				</div>
+	
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Person Number:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id="mobNumber" name="mobNumber" placeholder="Contect Person Number" />
+						</div>
+      
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Bill Type:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" id="billType" name="billType">
+								<option value="selected">--Select Bill Type--</option>
+								<option value="cash">Cash</option>
+								<option value="check">Check</option>
+								<option value="dd">DD</option>
+							</select>
+						</div>
+						
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			   				<label>Expected Date:</label> 
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="date" id='expectedDate'name="expectedDate" class="form-control" placeholder="expected Date" > 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+					<div class="form-group-2">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Item List:</label>
+						</div>
+						
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" id='itemId'  name="itemId" onchange="itemby.getItemList();">
+								
+				
+							</select>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			   				<label>Email Id:</label> 
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id='email'name="email" class="form-control" placeholder="Email Id" > 
+						</div>
+						
+						
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			   				<label>Approved By:</label> 
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id='approved'name="approved" class="form-control" placeholder="Approved By" > 
+						</div>
+					</div>
+					</div>
+					
+					
+ 
+			<div style='position:absolute; top:440px; left:108px; '>
+				<table id="jqGrid" ></table>
+				<div id="jqGridPager"></div>
+			</div>
+		<div class="form-group-2" style="position:absolute; top:600px; left:900px; ">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+      <label style="margin-left: -53px;"> GrossTotal</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+    <strong>  <input  type="text" name="resolution" id="resolution" value="GrossTotal" onkeyup=""  ></strong>
+	 
+	  </div>		
+	 </div>
+	 
+	 <div class="form-group-2" style="position:absolute; top:650px; left:900px; ">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+      <label style="margin-left: -53px;"> Amount</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+	<strong> <input  type="text" name="amount" id="amount" onkeyup="changeAmount();" ></strong>
+
+	  </div>		
+	 </div>
+	 
+	 <div class="form-group-2" style="position:absolute; top:700px; left:900px; ">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+    <strong>  <label  style="margin-left: -53px;"> CahngeAMT</label></strong>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+    <strong> <input  type="text" name="changeAmt" id="changeAmt" ></strong>
+	  </div>		
+	 </div>
+		
+		<div class="wrapper"  style="position: absolute;top: 450px ; left: 530px">
+			<input type="button" class="btn btn-lg btn-success btn-md" onclick=" registerPO();clacRes();" value="Register" style="margin-top: 210px;" /> 
+			<input type="reset" value="Cancel" class="btn btn-lg btn-danger btn-md" style="margin-top: 210px;" />
+		</div>
+			   
+		
+		 
+	</form>
+ </body>
+
+	

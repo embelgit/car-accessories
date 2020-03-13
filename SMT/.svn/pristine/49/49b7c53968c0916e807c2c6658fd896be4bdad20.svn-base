@@ -1,0 +1,177 @@
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Customer Details (Credit) </h2>
+	</div>
+	
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<script src="/SMT/staticContent/js/CustomerCreditDetails.js"></script>
+    <script src="/SMT/staticContent/css/adi.css"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+		
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+		
+<form action="customerCreditDetails" name="custcred" method="post" class="form-horizontal" style=" align: center">
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Date:</label>
+			</div>	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">	
+				<input class="form-control" type="date"  id="billDate"/>	  
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Bill No:</label>
+			</div>	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">	
+				<input class="form-control" type="text" name="billNo" id="billNo" placeholder="Bill No" />  
+			</div>
+		</div>
+	</div>		
+	
+	
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Name:</label>
+			</div>		
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input class="form-control" type="text" name="name" id="name" placeholder="First Name" />
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input class="form-control" type="text" name="middleName" id="middleName" placeholder="Middle Name" />
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input class="form-control" type="text" name="lastName" id="lastName" placeholder="Last Name" />
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Address:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input class="form-control" type="text" name="address" id="address" placeholder="Address" />
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Landmark:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input class="form-control" type="text" name="landmark" id="landmark" placeholder="Landmark" />
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>State:</label>
+			</div>	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">	
+				<select class="form-control" name="state" id="state">
+					<option value="selected">-Select State--</option>
+					<option value="maharashtra">Maharashtra</option>
+					<option value="andhrapradesh">Andhra Pradesh</option>
+					<option value="arunachalpradesh">Arunachal Pradesh</option>
+					<option value="assam">Assam</option>
+					<option value="bihar">Bihar</option>
+					<option value="patna">Patna</option>
+				</select>	  
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>District:</label>
+			</div>	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">	
+				<select class="form-control" name="district" id="district">
+					<option value="selected">-Select District-</option>
+					<option value="pune">Pune</option>
+					<option value="mumbai">Mumbai</option>
+					<option value="nanded">Nanded</option>
+					<option value="parbhani">Parbhani</option>
+					<option value="aurangabad">Aurangabad</option>
+					<option value="latur">Latur</option>
+				</select>	  
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>City/Town:</label>
+			</div>	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">	
+				<select class="form-control" name="city" id="city">
+					<option value="selected">-Select City/Town-</option>
+					<option value="pune">Pune</option>
+					<option value="mumbai">Mumbai</option>
+					<option value="nanded">Nanded</option>
+					<option value="parbhani">Parbhani</option>
+					<option value="aurangabad">Aurangabad</option>
+					<option value="latur">Latur</option>
+				</select>	  
+			</div>
+				
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Pin Code:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input class="form-control" type="text" name="pinCode" id="pinCode" placeholder="Pin Code" />
+			</div>
+		</div>
+	</div>		
+
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Mobile No:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input class="form-control" type="text" name="mobileNo" id="mobileNo" placeholder="Mobile No" />
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Email Id:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input class="form-control" type="text" name="emailId" id="emailId" placeholder="Email Id " />
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Refered By:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input class="form-control" type="text" name="referedBy" id="referedBy" placeholder="Refered By" />
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="wrapper">
+		<input type="button" value="Save" class="btn btn-lg btn-success btn-md" name="btn" onclick="return customerCredit()"/>  
+		<input type="button" value="Reset" class="btn btn-lg btn-danger btn-md" onclick="reset()"/>
+	</div>
+	
+</form>
+		<%@include file="commons/footer.jsp"%>

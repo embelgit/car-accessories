@@ -1,0 +1,126 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+import com.smt.bean.CategoryWisePurchase;
+import com.smt.bean.CategoryWiseSaleReport;
+import com.smt.bean.CurrentStockDetails;
+import com.smt.hibernate.Category;
+import com.smt.utility.HibernateUtility;
+
+public class CategoryDao {
+
+	
+	public void valCategory( Category category)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(category);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+	public List getAllMainCategories()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from Category");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+	}
+	
+	public List getCategoryWisePurchaseReport(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		//Query query=session.createSQLQuery("select po.po_id,s.supplier_name,i.item_name,i.color,i.size,po.quantity,po.totalAmount from purchaseorderdetails po left join  supplier_details s ON po.fk_supplier_id=s.supplier_id left join product_details p left join ON p.fk_vendor_id=p.pk_product_id left join item_details i ON i.fk_product_id=i.pk_item_id ORDER BY i.item_name");
+		Query query=session.createSQLQuery("select po.po_id,s.supplier_name,c.category_name,i.item_name,i.color,i.size,po.quantity,po.total_Amount from purchaseorderdetails po left join categories c ON po.fk_category_id=c.pk_category_id left join product_details p ON p.fk_cat_id=p.pk_product_id left join supplier_details s ON p.fk_vendor_id=s.supplier_id left join item_details i ON i.fk_product_id=p.pk_product_id ORDER BY c.category_name");
+		List <Object[]> list=query.list();
+		List<CategoryWisePurchase> categoryBean=new ArrayList<CategoryWisePurchase>(0);
+		
+		for (Object[] object : list) {
+			 //System.out.println(Arrays.toString(object));
+		
+			 CategoryWisePurchase cBean=new CategoryWisePurchase();
+			 cBean.setPoid(Long.parseLong(object[0].toString()));
+			 cBean.setSupplierName(object[1].toString());
+			 cBean.setCategoryName(object[2].toString());
+			 cBean.setItemName(object[3].toString());
+			 cBean.setColor(object[4].toString());
+			 cBean.setSize(Long.parseLong(object[5].toString()));
+			 cBean.setQuantity(Long.parseLong(object[6].toString()));
+			 cBean.setTotalAmount(Double.parseDouble(object[7].toString()));
+			 categoryBean.add(cBean);	 
+		}
+		return categoryBean;
+	}
+	
+	
+	public List getCategoryWiseSaleReport(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select c.pk_order_id,i.item_name,c1.category_name,c.quantity,o.sale_price,c.totalAmt from customer_order c left join offer_details o ON c.fk_offerrr_id=o.pk_itemoffer_id left join item_details i ON o.fk_item_id=i.pk_item_id left join product_details p ON i.fk_product_id=p.pk_product_id left join categories c1 ON p.fk_cat_id=c1.pk_category_id ");
+		
+		List <Object[]> list=query.list();
+		List<CategoryWiseSaleReport> cBean=new ArrayList<CategoryWiseSaleReport>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 CategoryWiseSaleReport catBean=new CategoryWiseSaleReport();
+			 catBean.setOrderId(Long.parseLong(object[0].toString()));
+			 catBean.setItemName(object[1].toString());
+			 catBean.setCategoryName(object[2].toString());
+			 catBean.setQuantity(Long.parseLong(object[3].toString()));
+			 catBean.setSalePrice(Double.parseDouble(object[4].toString()));
+			 catBean.setTotalAmount(Double.parseDouble(object[5].toString()));
+			 cBean.add(catBean);
+			 	 
+		}
+		return cBean;
+		
+	}
+	
+	public List getSubCategoriesByRootcategory(String mainCatId)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from SubCategory sc where  sc.fkRootcatId ="+mainCatId);
+		System.out.println("**************"+query);
+		List list = query.list();
+	
+		return list;
+	}
+	
+	public List getSubCategoriesByRootcategoryFORPO(String mainCatId)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from SubCategory sc where  sc.fkRootcatId ="+mainCatId);
+		System.out.println("**************"+query);
+		List list = query.list();
+	
+		return list;
+	}
+
+	public List getCategoryName() {
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query =session.createQuery("select categoryName from Category");
+		
+		List <Object[]> list=query.list();
+		
+		return list;
+	}
+}

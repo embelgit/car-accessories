@@ -1,0 +1,195 @@
+package com.smt.hibernate;
+
+import java.sql.Date;
+import java.util.Set;
+
+public class AuthoritySlip {
+
+	private Long authorityId;
+
+	private String mmcc;
+
+	private String sentBy;
+
+	private String location;
+
+	private String goodsRequired;
+
+	private String color;
+	
+	private Double size;
+	
+	private String model;
+	
+	private Long quantity;
+	
+	private Long item_id;
+	
+	private java.util.Date isinsertDate;
+	
+	private java.util.Date isModifiedDate;
+	
+	
+	private com.smt.hibernate.ItemDetail itemDetail;
+
+
+	public AuthoritySlip(Long authorityId, String mmcc, String sentBy,
+			String location, String goodsRequired, String color, Double size,
+			String model, Long quantity, Long item_id,
+			java.util.Date isinsertDate, java.util.Date isModifiedDate,
+			ItemDetail itemDetail) {
+		super();
+		this.authorityId = authorityId;
+		this.mmcc = mmcc;
+		this.sentBy = sentBy;
+		this.location = location;
+		this.goodsRequired = goodsRequired;
+		this.color = color;
+		this.size = size;
+		this.model = model;
+		this.quantity = quantity;
+		this.item_id = item_id;
+		this.isinsertDate = isinsertDate;
+		this.isModifiedDate = isModifiedDate;
+		this.itemDetail = itemDetail;
+	}
+
+
+	public AuthoritySlip() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Long getAuthorityId() {
+		return authorityId;
+	}
+
+
+	public void setAuthorityId(Long authorityId) {
+		this.authorityId = authorityId;
+	}
+
+
+	public String getMmcc() {
+		return mmcc;
+	}
+
+
+	public void setMmcc(String mmcc) {
+		this.mmcc = mmcc;
+	}
+
+
+	public String getSentBy() {
+		return sentBy;
+	}
+
+
+	public void setSentBy(String sentBy) {
+		this.sentBy = sentBy;
+	}
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+	public String getGoodsRequired() {
+		return goodsRequired;
+	}
+
+
+	public void setGoodsRequired(String goodsRequired) {
+		this.goodsRequired = goodsRequired;
+	}
+
+
+	public String getColor() {
+		return color;
+	}
+
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+
+	public Double getSize() {
+		return size;
+	}
+
+
+	public void setSize(Double size) {
+		this.size = size;
+	}
+
+
+	public String getModel() {
+		return model;
+	}
+
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public Long getItem_id() {
+		return item_id;
+	}
+
+
+	public void setItem_id(Long item_id) {
+		this.item_id = item_id;
+	}
+
+
+	public java.util.Date getIsinsertDate() {
+		return isinsertDate;
+	}
+
+
+	public void setIsinsertDate(java.util.Date isinsertDate) {
+		this.isinsertDate = isinsertDate;
+	}
+
+
+	public java.util.Date getIsModifiedDate() {
+		return isModifiedDate;
+	}
+
+
+	public void setIsModifiedDate(java.util.Date isModifiedDate) {
+		this.isModifiedDate = isModifiedDate;
+	}
+
+
+	public com.smt.hibernate.ItemDetail getItemDetail() {
+		return itemDetail;
+	}
+
+
+	public void setItemDetail(com.smt.hibernate.ItemDetail itemDetail) {
+		this.itemDetail = itemDetail;
+	}
+
+
+	
+}

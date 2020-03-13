@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.SupplierDetail" 
+    table="supplier_details"
+>
+
+    <id
+        name="supplierId"
+        type="java.lang.Long"
+        column="supplier_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+   
+    <property
+        name="address"
+        type="java.lang.String"
+        column="address"
+        not-null="false"
+        length="255"
+    />
+  
+  
+  <property
+        name="brokerId"
+        type="java.lang.Long"
+        column="Broker_id"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="anniversary"
+        type="java.sql.Date"
+        column="anniversary"
+        not-null="false"
+        length="10"
+    />
+    <property
+        name="bankName"
+        type="java.lang.String"
+        column="bank_name"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="birthday"
+        type="java.sql.Date"
+        column="birthday"
+        not-null="false"
+        length="10"
+    />
+    <property
+        name="branchName"
+        type="java.lang.String"
+        column="branch_name"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="brand"
+        type="java.lang.String"
+        column="brand"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="city"
+        type="java.lang.String"
+        column="city"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="contactPerson"
+        type="java.lang.String"
+        column="contact_person"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="creditLimit"
+        type="java.lang.Double"
+        column="credit_limit"
+        not-null="false"
+        length="22"
+    />
+    
+    <property
+        name="discount"
+        type="java.lang.Double"
+        column="discount"
+        not-null="false"
+        length="22"
+    />
+    <property
+        name="cstNo"
+        type="java.lang.Long"
+        column="cst_no"
+        not-null="false"
+        length="19"
+    />
+     <property
+        name="micrNo"
+        type="java.lang.Long"
+        column="micr_no"
+        not-null="false"
+        length="19"
+    />
+    
+     <property
+        name="accountNo"
+        type="java.lang.Long"
+        column="account_no"
+        not-null="false"
+        length="19"
+    />
+    <property
+        name="panNo"
+        type="java.lang.Long"
+        column="pan_no"
+        not-null="false"
+        length="19"
+    />
+    <property
+        name="email"
+        type="java.lang.String"
+        column="email"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="ifscCode"
+        type="java.lang.Long"
+        column="ifsc_code"
+        not-null="false"
+        length="19"
+    />
+
+   <!--  <property
+        name="offer"
+        type="java.lang.String"
+        column="offer"
+        not-null="false"
+        length="255"
+    /> -->
+    <property
+        name="partyType"
+        type="java.lang.String"
+        column="party_type"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="paymentType"
+        type="java.lang.String"
+        column="payment_type"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="pin"
+        type="java.lang.Long"
+        column="pin"
+        not-null="false"
+        length="19"
+    />
+    <property
+        name="productType"
+        type="java.lang.String"
+        column="product_type"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="state"
+        type="java.lang.String"
+        column="state"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="supplierName"
+        type="java.lang.String"
+        column="supplier_name"
+        not-null="false"
+        length="255"
+    />
+    <property
+        name="tinNo"
+        type="java.lang.Long"
+        column="tin_no"
+        not-null="false"
+        length="19"
+    />
+    
+     <property
+        name="mobileno"
+        type="java.lang.Long"
+        column="mobileNo"
+        not-null="false"
+        length="19"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to ProductDetail -->
+    <set
+        name="productDetails"
+        lazy="true"
+        inverse="true"
+        table="product_details"
+		cascade="save-update"
+    >
+        <key>
+            <column name="fk_vendor_id"  not-null="true"/>
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.ProductDetail"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

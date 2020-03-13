@@ -1,0 +1,50 @@
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+   	<script src="/SMT/staticContent/css/adi.css"></script>
+    <link href="/SMT/jsp/dashboard.jsp" rel="stylesheet"/>
+
+<form action="dashboard" method="post" class="form-horizontal">
+	<div class="div1">
+		<% boolean isHome=false;%>
+		<%@include file="commons/header.jsp"%>
+	</div>
+	
+	<div class="div2">
+	<label>Shortcuts</label>
+	</div>
+	
+	<div class="div3">
+	<label>Notification</label>
+	</div>
+	
+	<div class="div4">
+	<label>Dashboard</label>
+	</div>
+	
+	<div class="div5">
+		<div class="wrapper">
+			<input type="button" value="Growth" class="btn btn-lg btn-info btn-md" style="margin-top: -161px;" />
+			<input type="button" value="Today's Target" class="btn btn-lg btn-danger btn-md" style="margin-top: -161px;" />
+			<input type="button" value="Yesterdays's Sale" class="btn btn-lg btn-primary btn-md" style="margin-top: -161px;" />
+			<input type="button" value="Customer Feedback" class="btn btn-lg btn-success btn-md" style="margin-top: -161px;" />
+		</div>
+	</div>
+	
+	<div class="div6">
+		<h2> Monthly Sale Graph</h2> 
+	</div>
+	
+	
+	<div class="div7">
+		 <h2>Top Selling Item List</h2> 
+	</div>
+	
+	<div class="div8">
+		<h2>Employee Target</h2>		 
+	</div>
+	
+	<div class="div9">
+		<h2>Offer And Discount</h2>
+	</div> 
+
+</form>
+

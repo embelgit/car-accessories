@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.Visitor" 
+    table="visitor"
+>
+
+    <id
+        name="pk_visit_id"
+        type="java.lang.Long"
+        column="pkvisitid"
+    >
+    
+        <generator class="increment" />
+    </id>
+    
+    <property
+        name="reminder"
+        type="java.sql.Date"
+        column="reminder"
+        not-null="true"
+        
+    />
+    
+     <property
+        name="name"
+        type="java.lang.String"
+        column="name"
+        not-null="true"
+        length="15"
+    />
+    
+    <property
+        name="contact"
+        type="java.lang.Long"
+        column="contact_no"
+        not-null="true"
+        length="15"
+    />
+    
+   
+     <property
+        name="address"
+        type="java.lang.String"
+        column="address"
+        not-null="false"
+        length="30"
+    />
+    
+     <property
+        name="city"
+        type="java.lang.String"
+        column="city"
+        not-null="false"
+        length="15"
+    />
+    
+    <property
+        name="landmark"
+        type="java.lang.String"
+        column="landmark"
+        not-null="false"
+        length="25"
+    />
+    
+     <property
+        name="occu"
+        type="java.lang.String"
+        column="occupation"
+        not-null="false"
+        length="15"
+    />
+    
+     <property
+        name="comname"
+        type="java.lang.String"
+        column="company_name"
+        not-null="false"
+        length="15"
+    />
+    
+    <property
+        name="narration"
+        type="java.lang.String"
+        column="narration"
+        not-null="true"
+        length="15"  
+    />
+    
+     </class>
+</hibernate-mapping>

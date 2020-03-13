@@ -1,0 +1,130 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import com.smt.bean.PurchaseOrderReportBean;
+
+public class POAccount implements Serializable{
+	
+	  private Long pk_account_id; 
+	  
+	  private String fk_superpo_id1;
+	  
+	  private Long totalAmount;
+	  
+	  private Long discount;
+	  
+	  private Long netAmount;
+	  
+	  private String paymentType;
+	  
+	  private Long amountPaid;
+	  
+	  private Long amountDue;
+	  
+	  private Date due;
+	  
+	  public POAccount (Long pk_account_id, String fk_superpo_id1,Long totalAmount, Long discount, Long netAmount, String paymentType, Long amountPaid, Long amountDue, Date due){
+		  
+		  this.getPk_account_id();
+		  this.getFk_superpo_id1();
+		  this.getTotalAmount();
+		  this.getDiscount();
+		  this.getNetAmount();
+		  this.getPaymentType();
+		  this.getAmountPaid();
+		  this.getAmountDue();
+		  this.getDue();
+		  
+		  
+	  }
+	  
+	  
+	  public POAccount(){
+		  
+	  }
+
+	public Long getPk_account_id() {
+		return pk_account_id;
+	}
+
+	public void setPk_account_id(Long pk_account_id) {
+		this.pk_account_id = pk_account_id;
+	}
+
+	
+
+	public Long getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Long totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public Long getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Long discount) {
+		this.discount = discount;
+	}
+
+	public Long getNetAmount() {
+		return netAmount;
+	}
+
+	public void setNetAmount(Long netAmount) {
+		this.netAmount = netAmount;
+	}
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public Long getAmountPaid() {
+		return amountPaid;
+	}
+
+	public void setAmountPaid(Long amountPaid) {
+		this.amountPaid = amountPaid;
+	}
+
+	public Long getAmountDue() {
+		return amountDue;
+	}
+
+	public void setAmountDue(Long amountDue) {
+		this.amountDue = amountDue;
+	}
+
+	public Date getDue() {
+		return due;
+	}
+
+	public void setDue(Date due) {
+		this.due = due;
+	}
+
+
+	public String getFk_superpo_id1() {
+		return fk_superpo_id1;
+	}
+
+
+	public void setFk_superpo_id1(String fk_superpo_id1) {
+		this.fk_superpo_id1 = fk_superpo_id1;
+	}
+
+
+	
+	
+	
+
+}

@@ -1,0 +1,41 @@
+package com.smt.helper;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.SubLevelMasterDao;
+import com.smt.hibernate.LeafLevelMaster;
+import com.smt.hibernate.MainLevelMaster;
+import com.smt.hibernate.SubLevelMaster;
+
+public class SubLevelMasterHelper {
+	
+	public void registerSubLevelMaster(HttpServletRequest request , HttpServletResponse response)
+	{
+		String subLevelName = request.getParameter("subLevelName");
+		SubLevelMaster subLevelMaster = new SubLevelMaster();
+		subLevelMaster.setSubLevelName(subLevelName);
+		
+		MainLevelMaster levelMaster = new MainLevelMaster();
+	    levelMaster.setPkMainlevelId((long) 1);
+	     
+	    subLevelMaster.setMainLevelMaster(levelMaster);
+	    
+	    LeafLevelMaster leafLevelMaster = new LeafLevelMaster();
+	    leafLevelMaster.setActiveYn("y");
+	    leafLevelMaster.setLeafLevelName("fgt");
+	    leafLevelMaster.setMainLevelMaster(levelMaster);
+	   
+	    Set<LeafLevelMaster> set = new HashSet<LeafLevelMaster>();
+	    set.add(leafLevelMaster);
+	    
+	    subLevelMaster.setLeafLevelMasters(set);
+	    SubLevelMasterDao dao = new SubLevelMasterDao();
+	    dao.valSubLevel(subLevelMaster);
+	    
+	}
+
+}

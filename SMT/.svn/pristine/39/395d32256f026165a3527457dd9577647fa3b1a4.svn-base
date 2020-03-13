@@ -1,0 +1,395 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class Podetail implements Serializable {
+
+    /** identifier field */
+    private Long poid;
+
+    /**  persistent field */
+    private String activeYn;
+
+    /**  persistent field */
+    private String color;
+
+    /**  persistent field */
+    private String contactPerson;
+
+    /** persistent field */
+    private Double discount;
+
+    /**  persistent field */
+    private Date insertDate;
+
+    /**  persistent field */
+    private Date expectedDate;
+
+    
+   /* *//**  persistent field *//*
+    private String isDiscount;
+*/
+    /** persistent field */
+    private Long itemId;
+    
+    /**  persistent field */
+    private String itemName;
+    
+    /**  persistent field */
+    private String eMail;
+    
+    /**  persistent field */
+    private String approvedBy;
+
+   /**  persistent field */
+    private String model;
+
+    /**  persistent field */
+    private Date modifyDate;
+
+   /* *//**  persistent field *//*
+    private String netAmountInWords;*/
+
+   /* *//** persistent field *//*
+    private Double netTotal;*/
+
+    /**  persistent field */
+    private String paymentType;
+
+    /** persistent field */
+    private Long quantity;
+
+    /** persistent field */
+    private Long size;
+
+    /**  persistent field */
+    private String superPoId;
+
+  
+    /** persistent field */
+    private Double totalAmount;
+
+    /** persistent field */
+    private String typeOfPo;
+
+    /** persistent field */
+    private Double unitPrice;
+
+    /** persistent field */
+    private Long supplierId;
+
+    /** persistent field */
+    private Long catId;
+
+    /** persistent field */
+    private Long mobNumber;
+    
+    /** persistent field */
+    private String billType;
+    
+    /** persistent field */
+    private Double itemDiscount;
+    
+    /** full constructor */
+    public Podetail(Long poid,String eMail,String approvedBy, String itemName ,Double itemDiscount, Long mobNumber,String billType ,  Date modifyDate,  Long supplierId,Long catId  , Date expectedDate,  String activeYn, String color, String contactPerson, Double discount, Date insertDate, Long itemId, String model, String netAmountInWords, String paymentType, Long quantity, Long size, String  superPoId,Double tax, Double totalAmount, String typeOfPo, Double unitPrice) {
+        this.poid = poid;
+        this.activeYn = activeYn;
+        this.color = color;
+        this.contactPerson = contactPerson;
+        this.discount = discount;
+        this.insertDate = insertDate;
+        this.mobNumber = mobNumber;
+        this.itemId = itemId;
+        this.billType = billType;
+        this.model = model;
+        this.modifyDate = modifyDate;
+        this.itemDiscount= itemDiscount;
+        this.paymentType = paymentType;
+        this.quantity = quantity;
+        this.size = size;
+        this.superPoId = superPoId;
+        this.totalAmount = totalAmount;
+        this.typeOfPo = typeOfPo;
+        this.unitPrice = unitPrice;
+        this.supplierId = supplierId;
+        this.expectedDate = expectedDate;
+        this.catId = catId;
+        this.itemName = itemName;
+        this.eMail=eMail;
+        this.approvedBy=approvedBy;
+    }
+
+    /** default constructor */
+    public Podetail() {
+    }
+
+    /** minimal constructor */
+    public Podetail(Long poid,Long catId, String billType ,Long mobNumber, Date  expectedDate,Long itemId, String typeOfPo,  String paymentType,String model,Date modifyDate,   String contactPerson ,Date insertDate,String color,String activeYn, Double discount, Long quantity, Long size, Long supplierId, Double tax, Double totalAmount, Double unitPrice) {
+    	  this.poid = poid;
+          this.activeYn = activeYn;
+          this.color = color;
+          this.contactPerson = contactPerson;
+          this.discount = discount;
+          this.insertDate = insertDate;
+          this.itemId = itemId;
+          this.model = model;
+          this.modifyDate = modifyDate;
+          this.billType = billType;
+          this.mobNumber = mobNumber;
+          this.paymentType = paymentType;
+          this.quantity = quantity;
+          this.size = size;
+       
+
+          this.totalAmount = totalAmount;
+          this.typeOfPo = typeOfPo;
+          this.unitPrice = unitPrice;
+          this.supplierId = supplierId;
+          this.expectedDate = expectedDate;
+          this.catId = catId;
+    }
+
+    
+    
+    public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public Double getItemDiscount() {
+		return itemDiscount;
+	}
+
+	public void setItemDiscount(Double itemDiscount) {
+		this.itemDiscount = itemDiscount;
+	}
+
+	public Long getPoid() {
+        return this.poid;
+    }
+
+    public void setPoid(Long poid) {
+        this.poid = poid;
+    }
+
+    public String getActiveYn() {
+        return this.activeYn;
+    }
+
+    public void setActiveYn(String activeYn) {
+        this.activeYn = activeYn;
+    }
+
+  
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getContactPerson() {
+        return this.contactPerson;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public Double getDiscount() {
+        return this.discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Date getInsertDate() {
+        return this.insertDate;
+    }
+
+    public void setInsertDate(Date insertDate) {
+        this.insertDate = insertDate;
+    }
+
+
+    public String getModel() {
+        return this.model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+   
+
+    public Date getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+	public String getPaymentType() {
+        return this.paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public Long getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Long getSize() {
+        return this.size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+   
+
+   
+
+
+    public String getSuperPoId() {
+		return superPoId;
+	}
+
+	public void setSuperPoId(String superPoId) {
+		this.superPoId = superPoId;
+	}
+
+	public Double getTotalAmount() {
+        return this.totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public String getTypeOfPo() {
+        return this.typeOfPo;
+    }
+
+    public void setTypeOfPo(String typeOfPo) {
+        this.typeOfPo = typeOfPo;
+    }
+
+    public Double getUnitPrice() {
+        return this.unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+  
+
+    public Long getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
+	public Long getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(Long supplierId) {
+		this.supplierId = supplierId;
+	}
+
+	
+	public Date getExpectedDate() {
+		return expectedDate;
+	}
+
+	public void setExpectedDate(Date expectedDate) {
+		this.expectedDate = expectedDate;
+	}
+	
+	
+
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+
+	public Long getCatId() {
+		return catId;
+	}
+
+	public void setCatId(Long catId) {
+		this.catId = catId;
+	}
+
+	public Long getMobNumber() {
+		return mobNumber;
+	}
+
+	public void setMobNumber(Long mobNumber) {
+		this.mobNumber = mobNumber;
+	}
+
+	public String getBillType() {
+		return billType;
+	}
+
+	public void setBillType(String billType) {
+		this.billType = billType;
+	}
+
+	@Override
+	public String toString() {
+		return "Podetail [poid=" + poid + ", activeYn=" + activeYn + ", color="
+				+ color + ", contactPerson=" + contactPerson + ", discount="
+				+ discount + ", insertDate=" + insertDate + ", expectedDate="
+				+ expectedDate + ", itemId=" + itemId + ", model=" + model
+				+ ", modifyDate=" + modifyDate + ", paymentType=" + paymentType
+				+ ", quantity=" + quantity + ", size=" + size + ", superPoId="
+				+ superPoId + ", totalAmount=" + totalAmount + ", typeOfPo="
+				+ typeOfPo + ", unitPrice=" + unitPrice + ", supplierId="
+				+ supplierId + ", catId=" + catId + ", mobNumber=" + mobNumber
+				+ ", billType=" + billType + ", itemDiscount=" + itemDiscount
+				+ "]";
+	}
+
+	
+
+	
+
+	
+	
+}

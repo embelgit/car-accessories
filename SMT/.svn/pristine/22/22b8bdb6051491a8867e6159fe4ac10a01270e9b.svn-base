@@ -1,0 +1,69 @@
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Brand Name wise Stock Movement</h2>
+	</div>
+	
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+    <script src="/SMT/staticContent/css/adi.css"></script>
+    <link href="/SMT/jsp/bank_book.jsp" rel="stylesheet"/>
+    
+    <div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div> 
+
+
+<form action="bankBook" method="post" class="form-horizontal">
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label>Item Name:</label>
+		</div>	
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input type="text" name="iName" class="form-control" placeholder="Item Name">
+		</div>	
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input type="button" value="Search" class="btn btn-success" />
+		</div>	
+	</div>
+	
+	<div class="rTable" style="padding-top:0px;">
+		<div class="rTableRow">
+			<div class="rTableHead col-md-1"><strong>Sr No</strong></div>
+			<div class="rTableHead col-md-1"><strong>Date</strong></div>
+			<div class="rTableHead col-md-2"><strong>Brand</strong></div>
+			<div class="rTableHead col-md-1"><strong>Entry No.</strong></div>
+			<div class="rTableHead col-md-1"><strong>Batch No.</strong></div>
+			<div class="rTableHead col-md-1"><strong>Quantity In</strong></div>
+			<div class="rTableHead col-md-2"><strong>Date</strong></div>
+			<div class="rTableHead col-md-1"><strong>Entry No.</strong></div>
+			<div class="rTableHead col-md-1"><strong>Batch No.</strong></div>
+			<div class="rTableHead col-md-1"><strong>Quantity Out</strong></div>
+		</div>
+	
+		<div class="rTableRow">
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>	
+		</div>
+	</div>
+
+	<div class="wrapper">
+		<input type="button" value="print" class="btn btn-lg btn-primary btn-md">
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

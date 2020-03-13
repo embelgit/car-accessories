@@ -1,0 +1,318 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class ProductDetail implements Serializable {
+
+    /** identifier field */
+    private Long pkProductId;
+
+    /** persistent field */
+    private Long fkSupplierId;
+    
+    /** persistent field */
+    private Long fkCategoryId; 
+    
+    /** persistent field */
+    private Long fkSubCatId;
+    
+    /** persistent field */  
+    private Long fkBrandId;
+    
+    /** persistent field */
+    private Long fkShopId1;
+  
+    /** persistent field */
+    private Double commision;
+
+    /** persistent field */
+    private String isAlternateProduct;
+
+    /** persistent field */
+    private String isItem;
+
+    /** persistent field */
+    private String isVat;
+
+    /** persistent field */
+    private String itemName;
+
+    
+
+    /** persistent field */
+    private Double vatPercentage;
+    
+    /** persistent field */
+    private String isActiveYn;
+    
+    /** persistent field */
+    private Date isInsertDate;
+    
+    /** persistent field */
+    private Date isModifiedDate;
+    
+    
+
+   /** persistent field */
+    private com.smt.hibernate.SupplierDetail supplierDetail;
+
+    /** persistent field */
+    private com.smt.hibernate.BrandDetail brandDetail;
+
+    /** persistent field */
+    private com.smt.hibernate.Category category;
+     
+    /** persistent field */
+    private com.smt.hibernate.SubCategory subCategory;
+    
+    /** persistent field */
+    private com.smt.hibernate.ShopDetail shopDetails;
+    
+
+    /** persistent field */
+    private Set itemDetails;
+
+    /** persistent field */
+    private Set stockDetails;
+
+    /** persistent field */
+    private Set itemStocks;
+
+    /** full constructor */
+    public ProductDetail(Long pkProductId,Long fkShopId1, Long fkSubCatId, Double commision, String isAlternateProduct, String isItem, String isVat, String itemName,  Double vatPercentage,com.smt.hibernate.ShopDetail shopDetails,  com.smt.hibernate.SupplierDetail supplierDetail, com.smt.hibernate.BrandDetail brandDetail, com.smt.hibernate.Category category, com.smt.hibernate.SubCategory subCategory, Set itemDetails, Set stockDetails, Set itemStocks,String isActiveYn,Date isInsertDate,Date isModifiedDate, Long fkSupplierId,Long fkCategoryId,Long fkBrandId ) {
+        this.pkProductId = pkProductId;
+       
+        this.commision = commision;
+        this.isAlternateProduct = isAlternateProduct;
+        this.isItem = isItem;
+        this.isVat = isVat;
+        this.itemName = itemName;
+        this.vatPercentage = vatPercentage;
+        this.supplierDetail = supplierDetail;
+        this.brandDetail = brandDetail;
+        this.category = category;
+        this.subCategory = subCategory;
+        this.itemDetails = itemDetails;
+        this.stockDetails = stockDetails;
+        this.itemStocks = itemStocks;
+        this.isActiveYn = isActiveYn;
+        this.isInsertDate = isInsertDate;
+        this.isModifiedDate = isInsertDate;
+        this.fkSupplierId=fkSupplierId;
+        this.fkCategoryId=fkCategoryId;
+        this.fkBrandId=fkBrandId;
+        this.fkSubCatId=fkSubCatId;
+        this.fkShopId1=fkShopId1;
+        this.shopDetails=shopDetails;
+        
+    }
+
+    /** default constructor */
+    public ProductDetail() {
+    }
+
+    public Long getPkProductId() {
+        return this.pkProductId;
+    }
+
+    public void setPkProductId(Long pkProductId) {
+        this.pkProductId = pkProductId;
+    }
+
+    
+
+    public Double getCommision() {
+        return this.commision;
+    }
+
+    public void setCommision(Double commision) {
+        this.commision = commision;
+    }
+
+    public String getIsAlternateProduct() {
+        return this.isAlternateProduct;
+    }
+
+    public void setIsAlternateProduct(String isAlternateProduct) {
+        this.isAlternateProduct = isAlternateProduct;
+    }
+
+    public String getIsItem() {
+        return this.isItem;
+    }
+
+    public void setIsItem(String isItem) {
+        this.isItem = isItem;
+    }
+
+    public String getIsVat() {
+        return this.isVat;
+    }
+
+    public void setIsVat(String isVat) {
+        this.isVat = isVat;
+    }
+
+    public String getItemName() {
+        return this.itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+    public Double getVatPercentage() {
+        return this.vatPercentage;
+    }
+
+    public void setVatPercentage(Double vatPercentage) {
+        this.vatPercentage = vatPercentage;
+    }
+
+    public com.smt.hibernate.SupplierDetail getSupplierDetail() {
+        return this.supplierDetail;
+    }
+
+    public void setSupplierDetail(com.smt.hibernate.SupplierDetail supplierDetail) {
+        this.supplierDetail = supplierDetail;
+    }
+
+    public com.smt.hibernate.BrandDetail getBrandDetail() {
+        return this.brandDetail;
+    }
+
+    public void setBrandDetail(com.smt.hibernate.BrandDetail brandDetail) {
+        this.brandDetail = brandDetail;
+    }
+
+    public com.smt.hibernate.Category getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(com.smt.hibernate.Category category) {
+        this.category = category;
+    }
+
+    public Set getItemDetails() {
+        return this.itemDetails;
+    }
+
+    public void setItemDetails(Set itemDetails) {
+        this.itemDetails = itemDetails;
+    }
+
+    public Set getStockDetails() {
+        return this.stockDetails;
+    }
+
+    public void setStockDetails(Set stockDetails) {
+        this.stockDetails = stockDetails;
+    }
+
+    public Set getItemStocks() {
+        return this.itemStocks;
+    }
+
+    public void setItemStocks(Set itemStocks) {
+        this.itemStocks = itemStocks;
+    }
+    
+    
+
+    public String getIsActiveYn() {
+		return isActiveYn;
+	}
+
+	public void setIsActiveYn(String isActiveYn) {
+		this.isActiveYn = isActiveYn;
+	}
+
+	public Date getIsInsertDate() {
+		return isInsertDate;
+	}
+
+	public void setIsInsertDate(Date isInsertDate) {
+		this.isInsertDate = isInsertDate;
+	}
+
+	public Date getIsModifiedDate() {
+		return isModifiedDate;
+	}
+
+	public void setIsModifiedDate(Date isModifiedDate) {
+		this.isModifiedDate = isModifiedDate;
+	}
+
+	public com.smt.hibernate.SubCategory getSubCategory() {
+		return subCategory;
+	}
+
+	public void setSubCategory(com.smt.hibernate.SubCategory subCategory) {
+		this.subCategory = subCategory;
+	}
+	
+	public Long getFkSupplierId() {
+		return fkSupplierId;
+	}
+
+	public void setFkSupplierId(Long fkSupplierId) {
+		this.fkSupplierId = fkSupplierId;
+	}
+
+	public Long getFkCategoryId() {
+		return fkCategoryId;
+	}
+
+	public void setFkCategoryId(Long fkCategoryId) {
+		this.fkCategoryId = fkCategoryId;
+	}
+
+	public Long getFkBrandId() {
+		return fkBrandId;
+	}
+
+	public void setFkBrandId(Long fkBrandId) {
+		this.fkBrandId = fkBrandId;
+	}
+
+	public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkProductId", getPkProductId())
+            .toString();
+    }
+
+	public Long getFkSubCatId() {
+		return fkSubCatId;
+	}
+
+	public void setFkSubCatId(Long fkSubCatId) {
+		this.fkSubCatId = fkSubCatId;
+	}
+
+	
+
+	public com.smt.hibernate.ShopDetail getShopDetails() {
+		return shopDetails;
+	}
+
+	public void setShopDetails(com.smt.hibernate.ShopDetail shopDetails) {
+		this.shopDetails = shopDetails;
+	}
+
+	public Long getFkShopId1() {
+		return fkShopId1;
+	}
+
+	public void setFkShopId1(Long fkShopId1) {
+		this.fkShopId1 = fkShopId1;
+	}
+	
+	
+	
+
+}

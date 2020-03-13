@@ -1,0 +1,249 @@
+package com.smt.helper;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.bean.ItemList;
+import com.smt.dao.GoodsReceiveDAo;
+import com.smt.dao.PODetailDao;
+import com.smt.hibernate.GoodsReceipt;
+import com.smt.hibernate.Podetail;
+import com.smt.utility.HibernateUtility;
+
+public class GoodsReceiptHelper {
+	
+	public void reggoods(HttpServletRequest request , HttpServletResponse response)
+	{
+		GoodsReceipt podetail = new GoodsReceipt();
+		
+		
+		
+		//Integer length = Integer.parseInt(request.getParameter("row_count"));	
+		
+		
+		Integer count = Integer.parseInt(request.getParameter("count"));
+		
+		Long superPOId=0L;
+		GoodsReceiveDAo dao = new GoodsReceiveDAo();
+		 Double totalAmount=0d;
+		for(int i =0 ; i<=count;i++)
+		{
+			
+			
+			String supplierId = request.getParameter("supplierId");
+			podetail.setSupplierId(Long.parseLong(supplierId));
+			
+			String fkshopId = request.getParameter("shopId");
+			System.out.println(fkshopId);
+			podetail.setFkshopId(Long.parseLong(fkshopId));
+			String catId = request.getParameter("catId");
+			podetail.setCatId(Long.parseLong(catId));
+			
+			String email = request.getParameter("email");
+			podetail.seteMail(email);
+			
+			String billNo = request.getParameter("billNo");
+			podetail.setBillNo(Long.parseLong(billNo));
+			
+			String received = request.getParameter("received");
+			podetail.setReceivedBy(received);
+			System.out.println(received);
+
+			String contactPerson =request.getParameter("contactPerson");
+			podetail.setContactPerson(contactPerson);
+		
+			
+				
+			podetail.setActiveYn("Y");
+			DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+			Date dateobj = new Date();
+			System.out.println(df.format(dateobj));
+		
+			podetail.setInsertDate(dateobj);
+		   
+			podetail.setModifyDate(dateobj);
+	
+	
+			HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			
+			String itemName = request.getParameter("itemName"+i);
+				
+			String vat = request.getParameter("vat");
+			
+			if (vat == null) {
+				
+				break;
+			}
+			else {
+				podetail.setVat(Double.parseDouble(vat));
+			}
+		
+			if (itemName == null) {
+				
+				break;
+			}
+			else {
+				podetail.setItemId(Long.parseLong(itemName));
+				
+			}
+			String model = request.getParameter("model"+i);
+			if (model == null) {
+				break;
+			}
+			else {
+				
+				podetail.setModel(model);
+				
+			}
+			
+			String color = request.getParameter("color"+i);
+            if(color == null){
+            	break ;
+            }
+			else {
+				podetail.setColor(color);
+			}
+			
+
+			String size = request.getParameter("size"+i);
+			System.out.println(size+"SIXE");
+			if(size==null)
+			{
+				break ;
+			}
+			else {
+				
+				podetail.setSize(Double.parseDouble(size));
+			}
+			
+
+			String quantity = request.getParameter("quantity"+i);
+			
+			if(quantity==null)
+			{
+				break ;
+			}
+			else {
+				podetail.setQuantity(Long.parseLong(quantity));
+			}
+			String buyPrice = request.getParameter("buyPrice"+i);
+           if(buyPrice==null)
+           {
+        	   break ;
+           }
+			 
+           else {
+        	   podetail.setUnitPrice(Double.parseDouble(buyPrice));
+		}
+			
+			
+			
+			Double  total = (double) (Double.parseDouble(quantity) * Double.parseDouble(buyPrice));
+			podetail.setTotalAmount(total);
+		
+			totalAmount=totalAmount+total;
+			System.out.println(totalAmount+"********************");
+			/*String superPo = request.getParameter("superPo");
+			podetail.setSuperPoId(superPo);		*/	
+			
+
+			
+			if (i > 0) {
+				podetail.setSuperPoId("SMT" + superPOId);
+			}
+			Long tempid = dao.valPODetail(podetail);
+
+			if (i == 0)
+			superPOId = tempid;
+
+		}  
+		
+		/*GoodsReceipt SuperpoItemById = getPoItemById(superPOId);
+		SuperpoItemById.setSuperPoId("SMT" + superPOId);
+		
+		dao.updatePODetail(SuperpoItemById);
+	   System.out.println(SuperpoItemById.toString()+"***************************"+totalAmount);
+	   request.setAttribute("message", totalAmount);
+   */
+	}
+	public GoodsReceipt getPoItemById(Long goods_Id)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery(" from GoodsReceipt p where p.goods_Id=:goods_Id");
+		//Query query = session.createQuery("select s.supplierName from SupplierDetail s where s.supplierName=:supplierName");
+		query.setParameter("goods_Id", goods_Id);
+		GoodsReceipt uniqueResult = (GoodsReceipt
+				) query.uniqueResult();
+		return uniqueResult;
+		
+	}
+	
+	
+	public List getItemDays() {
+		 java.util.Date date = new java.util.Date();
+		    
+		    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		 
+		    String data = (dateFormat.format(date)); //2014/08/06 15:59:4 
+		    
+		    
+		    System.out.println(data);
+		GoodsReceiveDAo dao = new GoodsReceiveDAo();
+		List list = dao.getitemsDays();
+		//Map  map1 =  new HashMap();
+		List<ItemList> itBean = new ArrayList<ItemList>(0);
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			 Date aDate = null;
+				try {
+					aDate = dateFormat.parse(data);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				    java.sql.Date bdate = (java.sql.Date)o[0];
+
+				    Calendar with = Calendar.getInstance();
+				    with.setTime(aDate);
+				    Calendar to = Calendar.getInstance();
+				    to.setTime(bdate);
+				    to.set(Calendar.YEAR, with.get(Calendar.YEAR));
+				    int withDAY = with.get(Calendar.DAY_OF_YEAR);
+				    int toDAY = to.get(Calendar.DAY_OF_YEAR);
+
+				    int diffDay = withDAY- toDAY ;
+
+				    System.out.println(diffDay);
+			
+			ItemList bean = new ItemList();
+			bean.setInsertDate((java.sql.Date)o[0]);
+			bean.setItem_name((String)o[1]);
+			bean.setColor((String)o[2]);
+			bean.setDays(diffDay);
+			
+			itBean.add(bean);
+			//System.out.println("***************"+o[0]+"\t"+o[5]);
+			//map1.put(bean.getItem_name(),bean);
+		}
+		return itBean;
+
+	}
+	
+
+}

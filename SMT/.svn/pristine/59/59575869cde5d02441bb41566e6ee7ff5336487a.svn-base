@@ -1,0 +1,77 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import com.smt.dao.TemporaryStockDao;
+//import com.smt.bea.PODetailBean;
+//import com.smt.dao.BeanDao;
+//import com.smt.dao.PODetailDao;
+//import com.smt.dao.ProductDetailDao;
+import com.smt.hibernate.TemporaryStock;
+//import com.smt.hibernate.Podetail;
+
+public class TemporaryStockHelper {
+	
+	public void regTemporaryStock(HttpServletRequest request , HttpServletResponse response)
+	
+	{
+		
+		String billNo = request.getParameter("billNo");
+		String checkBy = request.getParameter("checkBy");
+		String contactNo = request.getParameter("contactNo");
+		String returnPeriod = request.getParameter("returnPeriod");
+		String barcodeNo = request.getParameter("barcodeNo");
+		String itemName = request.getParameter("itemName");
+		String unitPrice = request.getParameter("unitPrice");
+		String quantity = request.getParameter("quantity");
+		String vat = request.getParameter("vat");
+		String vatAmount = request.getParameter("vatAmount");
+		String totalAmount = request.getParameter("totalAmount");
+		String otherTax = request.getParameter("otherTax");
+		String total = request.getParameter("total");
+		String person_shop_name = request.getParameter("person_shop_name");
+		
+		
+		
+		
+		
+		
+		
+		
+		TemporaryStock ts = new TemporaryStock();
+		
+		ts.setBillNo(Long.parseLong(billNo));
+		ts.setCheckBy(checkBy);
+		ts.setContactNo(Long.parseLong(contactNo));
+		ts.setReturnPeriod(Long.parseLong(returnPeriod));
+		ts.setBarcodeNo(Long.parseLong(barcodeNo));
+		ts.setItemName(itemName);
+		ts.setUnitPrice(Double.parseDouble(unitPrice));
+		ts.setQuantity(Long.parseLong(quantity));
+		ts.setVat(Double.parseDouble(vat));
+		ts.setVatAmount(Double.parseDouble(vatAmount));
+		ts.setTotalAmount(Double.parseDouble(totalAmount));
+		ts.setOtherTax(Double.parseDouble(otherTax));
+		ts.setTotal(Double.parseDouble(total));
+		ts.setPerson_shop_name(person_shop_name);
+		
+		
+		TemporaryStockDao tmps = new TemporaryStockDao();
+		tmps.valTemp(ts);
+		
+		
+		
+		
+	}
+	
+
+}

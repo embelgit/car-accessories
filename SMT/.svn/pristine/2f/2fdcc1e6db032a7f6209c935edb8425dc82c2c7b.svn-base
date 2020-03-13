@@ -1,0 +1,125 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class UserDetail implements Serializable {
+
+    /** identifier field */
+    private Long pkUserId;
+
+    /** nullable persistent field */
+    private String addressLine1;
+
+    /** nullable persistent field */
+    private String addressLine2;
+
+    /** nullable persistent field */
+    private String firstName;
+
+    /** nullable persistent field */
+    private String lastName;
+
+    /** nullable persistent field */
+    private String middleName;
+
+    /** nullable persistent field */
+    private String mobileNumber1;
+
+    /** nullable persistent field */
+    private String mobileNumber2;
+
+    /** full constructor */
+    public UserDetail(Long pkUserId, String addressLine1, String addressLine2, String firstName, String lastName, String middleName, String mobileNumber1, String mobileNumber2) {
+        this.pkUserId = pkUserId;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.mobileNumber1 = mobileNumber1;
+        this.mobileNumber2 = mobileNumber2;
+    }
+
+    /** default constructor */
+    public UserDetail() {
+    }
+
+    /** minimal constructor */
+    public UserDetail(Long pkUserId) {
+        this.pkUserId = pkUserId;
+    }
+
+    public Long getPkUserId() {
+        return this.pkUserId;
+    }
+
+    public void setPkUserId(Long pkUserId) {
+        this.pkUserId = pkUserId;
+    }
+
+    public String getAddressLine1() {
+        return this.addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return this.addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return this.middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getMobileNumber1() {
+        return this.mobileNumber1;
+    }
+
+    public void setMobileNumber1(String mobileNumber1) {
+        this.mobileNumber1 = mobileNumber1;
+    }
+
+    public String getMobileNumber2() {
+        return this.mobileNumber2;
+    }
+
+    public void setMobileNumber2(String mobileNumber2) {
+        this.mobileNumber2 = mobileNumber2;
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkUserId", getPkUserId())
+            .toString();
+    }
+
+}

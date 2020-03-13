@@ -1,0 +1,47 @@
+package com.smt.helper;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.ShopDetailDao;
+import com.smt.hibernate.ShopDetail;
+
+public class ShopDetailHelper {
+
+	
+	public void doShopReg(HttpServletRequest request, HttpServletResponse response){
+		
+		String shopName=request.getParameter("shopName");
+		String ownerName=request.getParameter("ownerName");
+		String address=request.getParameter("address");
+		String contactNo=request.getParameter("contactNo");
+		String contactPersonName=request.getParameter("contactPersonName");
+		String tinNo=request.getParameter("tinNo");
+		
+		ShopDetail shopD=new ShopDetail();
+		
+		System.out.println("/*******************in controller***************/");
+		
+		shopD.setShopName(shopName);
+		shopD.setOwnerName(ownerName);
+		shopD.setAddress(address);
+		shopD.setContactNo(Long.parseLong(contactNo));
+		shopD.setContactPersonName(contactPersonName);
+		shopD.setTinNo(Long.parseLong(tinNo));
+
+		
+		ShopDetailDao sdao=new ShopDetailDao();
+		sdao.valShopDetail(shopD);
+	}
+	
+	public List getAllShopDetail(){
+		
+		ShopDetailDao dao=new ShopDetailDao();
+		return dao.getAllShopDetail();
+		
+	}
+	
+
+}

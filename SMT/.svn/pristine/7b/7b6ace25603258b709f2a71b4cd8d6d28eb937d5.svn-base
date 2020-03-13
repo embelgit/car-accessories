@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+<div class="container">
+	<h2 align="center">Parcel Entry</h2>
+</div>
+
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<link href="/SMT/staticContent/css/adi.css" rel="stylesheet"/> 
+	<link href="/SMT/staticContent/css/style.css" rel="stylesheet"/>
+	<script src="/SMT/staticContent/js/parcelEntry.js"></script>
+    
+    <div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+
+<form name="parcel" action="parcelEntry" method="post" class="form-horizontal">
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Challan No:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="value" name="challanNo" id="challanNo" class="form-control" placeholder="Challan No" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Invoice No:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="value" name="invoiceNo" id="invoiceNo" class="form-control" placeholder="Invoice No" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Supplier Name:</label>
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="supplierName" id="supplierName" class="form-control" placeholder="Supplier Name" />
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Transport Name:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="transportName" id="transportName" class="form-control" placeholder="Transport Name" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Invoice Amount:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="invoiceAmount" id="invoiceAmount" class="form-control" placeholder="Invoice Amount" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Paid Amount:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="paidAmount" id="paidAmount" class="form-control" placeholder="Paid Amount" />
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group-2">
+		<div class="col-lg-12">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Transport Fees:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="transportFees" id="transportFees" class="form-control" placeholder="Transport Fees" />
+			</div>
+
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Checked In By:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="checkInBy" id="checkInBy" class="form-control" placeholder="Checked In By" />
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Checked  By:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="checkedBy" id="checkedBy" class="form-control" placeholder="Checked  By" />
+			</div>
+		</div>
+	</div>	
+			
+	<div class="form-group-2">
+		<div class="col-lg-12">	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Total Paid:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="totalPaid" id="totalPaid" class="form-control" placeholder="Total Paid" />
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper">
+		<input type="button" name="btn" value="Submit" onclick="return parcelEntry()" class="btn btn-lg btn-success btn-md" />
+	</div>
+
+</form>
+
+<%@include file="commons/footer.jsp"%>

@@ -1,0 +1,38 @@
+package com.smt.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.TaxCreation;
+import com.smt.utility.HibernateUtility;
+
+public class TaxCerationDao {
+	
+	public void createTax( TaxCreation creation)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+	   
+	   session.save(creation);
+	 
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+	
+	public List getAllMainTax()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from TaxCreation");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+	}
+	
+}

@@ -1,0 +1,66 @@
+
+<%@page import="java.util.List"%>
+<%@page import="com.smt.dao.PODetailDao"%>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%
+	boolean isHome = false;
+%>
+<%@include file="commons/header.jsp"%>
+
+<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+
+    <script src="/SMT/staticContent/js/goodsReturn.js"></script>
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/js/jquery.jqgrid.min.js"></script> 
+
+    
+
+
+<link href="/SMT/jsp/purchase_return.jsp" rel="stylesheet" />
+
+<div class="container">
+	<h2 align="center">Purchase Return </h2>
+</div>
+
+
+
+<div class="date-field col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<label>Date:</label> <input type="date" name="date">
+</div>
+
+<form action="goodsReturn" method="post" class="form-horizontal">
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-12">
+
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+					<label> Bill No:</label>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 four">
+					<input class="form-control" type="text" id="billNo" name="billNo"
+						placeholder="Bill No"  onkeyup="items.getitems()"/>
+						
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div> -->
+				
+			<div style='position:absolute; top:300px; left:108px; '>
+			
+		 <table id="jqGrid" ></table>
+			<div id="jqGridPager"></div>	
+			</div>	
+			
+
+	<div class="wrapper" style='position:absolute; top:500px; left:108px; '>
+	<input type="button" value="Submit" class="btn btn-lg btn-success btn-md" onclick="purchaseReturn()"/>  
+	<input type="button" value="Print" class="btn btn-lg btn-info btn-md" />
+</div>
+
+</form>
+

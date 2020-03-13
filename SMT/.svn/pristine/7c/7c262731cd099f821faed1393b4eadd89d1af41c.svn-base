@@ -1,0 +1,78 @@
+package com.smt.helper;
+
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.ParcelEntryDao;
+import com.smt.hibernate.ParcelEntry;
+
+public class ParcelEntryHelper {
+	
+			public void parcelEntryDetails(HttpServletRequest request, HttpServletResponse response){
+				
+				String invoiceNo = request.getParameter("invoiceNo");
+				String challanNo = request.getParameter("challanNo");
+				String supplierName = request.getParameter("supplierName");
+				String transportName = request.getParameter("transportName");
+				String invoiceAmount = request.getParameter("invoiceAmount");
+				String paidAmount = request.getParameter("paidAmount");
+				String transportFees = request.getParameter("transportFees");
+				String checkInBy = request.getParameter("checkInBy");
+				String totalPaid = request.getParameter("totalPaid");
+				String insertDate = request.getParameter("insertDate");
+				String modifiedDate = request.getParameter("modifiedDate");
+				String checkedBy = request.getParameter("checkedBy");
+				
+				
+			ParcelEntry pentry = new ParcelEntry();
+			
+//__________________BigDecimals____________________________//
+			
+			BigDecimal bd1 = new BigDecimal(invoiceAmount);
+			pentry.setInvoiceAmount(bd1);
+			
+			BigDecimal bd2 = new BigDecimal(paidAmount);
+			pentry.setPaidAmount(bd2);
+				
+			BigDecimal bd3 = new BigDecimal(transportFees);
+			pentry.setTransportFees(bd3);
+			
+			BigDecimal bd4 = new BigDecimal(totalPaid);
+			pentry.setTotalPaid(bd4);
+				
+			
+//________________Strings___________________________________//
+			
+			
+			pentry.setSupplierName(supplierName);
+			pentry.setCheckedBy(checkedBy);
+			pentry.setCheckInBy(checkInBy);
+			pentry.setTransportName(transportName);
+			
+			
+//________________Longs___________________________________//
+			
+			
+			pentry.setChallanNo(Long.parseLong(challanNo));
+			pentry.setInvoiceNo(Long.parseLong(invoiceNo));
+			
+			
+			ParcelEntryDao pedao = new ParcelEntryDao();
+			pedao.valParcelEntry(pentry);
+			
+			
+			
+			}
+		
+
+}

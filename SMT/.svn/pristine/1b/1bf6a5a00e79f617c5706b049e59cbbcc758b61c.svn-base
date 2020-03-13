@@ -1,0 +1,420 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class GoodsReceipt implements Serializable {
+
+    /** identifier field */
+    private Long goods_Id;
+
+    /**  persistent field */
+    private String activeYn;
+
+    /**  persistent field */
+    private String color;
+
+    /**  persistent field */
+    private String contactPerson;
+
+    /** persistent field */
+    private Double discount;
+
+    /**  persistent field */
+    private Date insertDate;
+
+    private Long fkshopId;
+
+    
+   /* *//**  persistent field *//*
+    private String isDiscount;
+*/
+    /** persistent field */
+    private Long itemId;
+    
+    private String itemName;
+    
+    /**  persistent field */
+    private String eMail;
+    
+    /**  persistent field */
+    private String receivedBy;
+
+    /**  persistent field *//*
+    private String itemName;*/
+
+    /**  persistent field */
+    private String model;
+
+    /**  persistent field */
+    private Date modifyDate;
+
+   /* *//**  persistent field *//*
+    private String netAmountInWords;*/
+
+   /* *//** persistent field *//*
+    private Double netTotal;*/
+
+   
+
+    /** persistent field */
+    private Long quantity;
+
+    /** persistent field */
+    private Double size;
+
+    /**  persistent field */
+    private String superPoId;
+
+    private Long billNo;
+    
+    /** persistent field */
+    private Double totalAmount;
+
+   
+    /** persistent field */
+    private Double unitPrice;
+
+    /** persistent field */
+    private Long supplierId;
+
+    /** persistent field */
+    private Long catId;
+
+    private Double vat ;
+    
+    /** persistent field */
+    private Double itemDiscount;
+
+
+
+	public GoodsReceipt(Long goods_Id, String activeYn, String color,
+			String contactPerson, Double discount, Date insertDate,
+			Long fkshopId, Long itemId, String itemName, String eMail,
+			String receivedBy, String model, Date modifyDate, Long quantity,
+			Double size, String superPoId, Long billNo, Double totalAmount,
+			Double unitPrice, Long supplierId, Long catId, Double itemDiscount,Double vat) {
+		super();
+		this.goods_Id = goods_Id;
+		this.activeYn = activeYn;
+		this.color = color;
+		this.contactPerson = contactPerson;
+		this.discount = discount;
+		this.insertDate = insertDate;
+		this.fkshopId = fkshopId;
+		this.itemId = itemId;
+		this.itemName = itemName;
+		this.eMail = eMail;
+		this.receivedBy = receivedBy;
+		this.model = model;
+		this.modifyDate = modifyDate;
+		this.quantity = quantity;
+		this.size = size;
+		this.superPoId = superPoId;
+		this.billNo = billNo;
+		this.totalAmount = totalAmount;
+		this.unitPrice = unitPrice;
+		this.supplierId = supplierId;
+		this.catId = catId;
+		this.itemDiscount = itemDiscount;
+		this.vat= vat ;
+	}
+
+
+
+	public GoodsReceipt() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	
+	
+	public Double getVat() {
+		return vat;
+	}
+
+
+
+	public void setVat(Double vat) {
+		this.vat = vat;
+	}
+
+
+
+	public Long getGoods_Id() {
+		return goods_Id;
+	}
+
+
+
+	public void setGoods_Id(Long goods_Id) {
+		this.goods_Id = goods_Id;
+	}
+
+
+
+	public String getActiveYn() {
+		return activeYn;
+	}
+
+
+
+	public void setActiveYn(String activeYn) {
+		this.activeYn = activeYn;
+	}
+
+
+
+	public String getColor() {
+		return color;
+	}
+
+
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+
+
+	public String getContactPerson() {
+		return contactPerson;
+	}
+
+
+
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+
+
+
+	public Double getDiscount() {
+		return discount;
+	}
+
+
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+
+
+	public Date getInsertDate() {
+		return insertDate;
+	}
+
+
+
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
+	}
+
+
+
+	public Long getFkshopId() {
+		return fkshopId;
+	}
+
+
+
+	public void setFkshopId(Long fkshopId) {
+		this.fkshopId = fkshopId;
+	}
+
+
+
+	public Long getItemId() {
+		return itemId;
+	}
+
+
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
+
+
+	public String getItemName() {
+		return itemName;
+	}
+
+
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+
+
+	public String geteMail() {
+		return eMail;
+	}
+
+
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+
+
+	public String getReceivedBy() {
+		return receivedBy;
+	}
+
+
+
+	public void setReceivedBy(String receivedBy) {
+		this.receivedBy = receivedBy;
+	}
+
+
+
+	public String getModel() {
+		return model;
+	}
+
+
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+
+
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+
+
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+	
+
+
+
+	public Double getSize() {
+		return size;
+	}
+
+
+
+	public void setSize(Double size) {
+		this.size = size;
+	}
+
+
+
+	public String getSuperPoId() {
+		return superPoId;
+	}
+
+
+
+	public void setSuperPoId(String superPoId) {
+		this.superPoId = superPoId;
+	}
+
+
+
+	public Long getBillNo() {
+		return billNo;
+	}
+
+
+
+	public void setBillNo(Long billNo) {
+		this.billNo = billNo;
+	}
+
+
+
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+
+
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+
+
+
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+
+
+	public Long getSupplierId() {
+		return supplierId;
+	}
+
+
+
+	public void setSupplierId(Long supplierId) {
+		this.supplierId = supplierId;
+	}
+
+
+
+	public Long getCatId() {
+		return catId;
+	}
+
+
+
+	public void setCatId(Long catId) {
+		this.catId = catId;
+	}
+
+
+
+	public Double getItemDiscount() {
+		return itemDiscount;
+	}
+
+
+
+	public void setItemDiscount(Double itemDiscount) {
+		this.itemDiscount = itemDiscount;
+	}
+
+
+
+	
+	
+}

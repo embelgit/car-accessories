@@ -1,0 +1,96 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class SubCategory implements Serializable {
+
+    /** identifier field */
+    private Long pkSubcatId;
+
+    /** persistent field */
+    private String activeYn;
+
+    /** persistent field */
+    private Long fkRootcatId;
+
+    /** persistent field */
+    private String isLeafCatId;
+
+    /** persistent field */
+    private String isrootCat;
+
+    /** persistent field */
+    private String subcatName;
+
+    /** full constructor */
+    public SubCategory(Long pkSubcatId, String activeYn, Long fkRootcatId, String isLeafCatId, String isrootCat, String subcatName) {
+        this.pkSubcatId = pkSubcatId;
+        this.activeYn = activeYn;
+        this.fkRootcatId = fkRootcatId;
+        this.isLeafCatId = isLeafCatId;
+        this.isrootCat = isrootCat;
+        this.subcatName = subcatName;
+    }
+
+    /** default constructor */
+    public SubCategory() {
+    }
+
+    public Long getPkSubcatId() {
+        return this.pkSubcatId;
+    }
+
+    public void setPkSubcatId(Long pkSubcatId) {
+        this.pkSubcatId = pkSubcatId;
+    }
+
+    public String getActiveYn() {
+        return this.activeYn;
+    }
+
+    public void setActiveYn(String activeYn) {
+        this.activeYn = activeYn;
+    }
+
+    public Long getFkRootcatId() {
+        return this.fkRootcatId;
+    }
+
+    public void setFkRootcatId(Long fkRootcatId) {
+        this.fkRootcatId = fkRootcatId;
+    }
+
+    public String getIsLeafCatId() {
+        return this.isLeafCatId;
+    }
+
+    public void setIsLeafCatId(String isLeafCatId) {
+        this.isLeafCatId = isLeafCatId;
+    }
+
+    public String getIsrootCat() {
+        return this.isrootCat;
+    }
+
+    public void setIsrootCat(String isrootCat) {
+        this.isrootCat = isrootCat;
+    }
+
+    public String getSubcatName() {
+        return this.subcatName;
+    }
+
+    public void setSubcatName(String subcatName) {
+        this.subcatName = subcatName;
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkSubcatId", getPkSubcatId())
+            .toString();
+    }
+
+}

@@ -1,0 +1,24 @@
+package com.smt.dao;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.utility.HibernateUtility;
+
+public class UserActivityDao 
+{
+
+	public void valadateUser(String userName, String password) {
+		
+		String query = "select user from UserInfo as user where userName ='"+userName+"' and password ='"+password+"'" ;
+		HibernateUtility hbu = HibernateUtility.getInstance();
+	
+		Session session = hbu.getHibernateSession();
+		
+		Query qry = session.createQuery(query);
+		
+		qry.list();
+		hbu.closeSession(session);
+	}
+
+}

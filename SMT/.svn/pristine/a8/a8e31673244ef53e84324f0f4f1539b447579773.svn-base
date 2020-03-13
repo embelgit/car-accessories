@@ -1,0 +1,34 @@
+package com.smt.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.MainLevelMaster;
+import com.smt.utility.HibernateUtility;
+
+public class MainLevelMasterDao {
+
+	public void valMainLevel( MainLevelMaster  mainLevelMaster)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(mainLevelMaster);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+	
+	public List getAllMainLevelMaster()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from MainLevelMaster");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+	}
+}

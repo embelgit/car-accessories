@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+       <!-- Database connection settings -->
+       <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+       <property name="connection.url">jdbc:mysql://localhost:3306/smt_sc</property>
+       <property name="connection.username">root</property>
+       <property name="connection.password">root</property>
+
+		<!-- <property name="hibernate.validator.autoregister_listeners">false</property>
+		<property name="hibernate.validator.apply_to_ddl">false</property>
+        JDBC connection pool (use the built-in)
+        --><property name="connection.pool_size">1</property>
+
+       <!-- SQL dialect -->
+       <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+       <!-- Disable the second-level cache  -->
+       <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+       <!-- Echo all executed SQL to stdout -->
+       <property name="show_sql">true</property>
+       
+       <mapping resource="com/smt/hibernate/BrandDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/Category.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/CustomerOrder.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/ItemDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/ItemStock.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/LeafCategory.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/LeafLevelMaster.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/MainLevelMaster.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/OfferDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/ProductDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/StockDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/SubCategory.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/SubLevelMaster.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/SupplierDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/UserAccessAssociation.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/UserInfo.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/UserDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/Podetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/ParcelEntry.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/CouponDetails.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/CustFeedback.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/CustCredit.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/EmployeeDetails.hbm.xml" /> 
+       <mapping resource="com/smt/hibernate/LeaveDetail.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/Visitor.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/CashBank.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/TaxCreation.hbm.xml" /> 
+  	   <mapping resource="com/smt/hibernate/TemporaryStock.hbm.xml" />
+  	   <mapping resource="com/smt/hibernate/ShopDetail.hbm.xml" /> 
+  	   <mapping resource="com/smt/hibernate/Broker.hbm.xml" /> 
+  	   <mapping resource="com/smt/hibernate/EmpAttendance.hbm.xml" /> 
+  	    <mapping resource="com/smt/hibernate/GoodsReceipt.hbm.xml"/>  
+       <mapping resource="com/smt/hibernate/GoodsReturn.hbm.xml"/>
+        <mapping resource="com/smt/hibernate/LoyalityProgram.hbm.xml"/>
+        <mapping resource="com/smt/hibernate/POAccount.hbm.xml"/>
+        <mapping resource="com/smt/hibernate/AuthoritySlip.hbm.xml"/>
+        <mapping resource="com/smt/hibernate/SupplierAccount.hbm.xml"/>
+        <mapping resource="com/smt/hibernate/CreditAccount.hbm.xml"/>
+        <mapping resource="com/smt/hibernate/EmployeeAccount.hbm.xml"/>
+        
+    </session-factory>
+
+</hibernate-configuration>

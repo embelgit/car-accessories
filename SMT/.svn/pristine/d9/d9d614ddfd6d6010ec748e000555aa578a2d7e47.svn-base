@@ -1,0 +1,158 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class SupplierAccount implements Serializable{
+	
+	
+	  private Long pk_cash_id; 
+	  
+	  private Long billNo;
+	  
+	  private Long supplier;
+	  
+	
+	  
+	  private String voucherType;
+	  
+	  private String mode;
+	  
+	  private Double totalAmount;
+	  
+	  private String reason;
+	
+	  private String paymentType;
+	  
+      private String personName;
+	  
+	
+	  private Date date1;
+	  
+	 private Double paid ;
+	 
+	 private Double balance;
+
+	public SupplierAccount(Long pk_cash_id, Long billNo, Long supplier,
+			String voucherType, String mode, Double totalAmount, String reason,
+			String paymentType, String personName, Date date1, Double paid,
+			Double balance) {
+		super();
+		this.pk_cash_id = pk_cash_id;
+		this.billNo = billNo;
+		this.supplier = supplier;
+		this.voucherType = voucherType;
+		this.mode = mode;
+		this.totalAmount = totalAmount;
+		this.reason = reason;
+		this.paymentType = paymentType;
+		this.personName = personName;
+		this.date1 = date1;
+		this.paid = paid;
+		this.balance = balance;
+	}
+
+	public SupplierAccount() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Long getPk_cash_id() {
+		return pk_cash_id;
+	}
+
+	public void setPk_cash_id(Long pk_cash_id) {
+		this.pk_cash_id = pk_cash_id;
+	}
+
+	public Long getBillNo() {
+		return billNo;
+	}
+
+	public void setBillNo(Long billNo) {
+		this.billNo = billNo;
+	}
+
+	public Long getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Long supplier) {
+		this.supplier = supplier;
+	}
+
+	public String getVoucherType() {
+		return voucherType;
+	}
+
+	public void setVoucherType(String voucherType) {
+		this.voucherType = voucherType;
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public Date getDate1() {
+		return date1;
+	}
+
+	public void setDate1(Date date1) {
+		this.date1 = date1;
+	}
+
+	public Double getPaid() {
+		return paid;
+	}
+
+	public void setPaid(Double paid) {
+		this.paid = paid;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+	
+
+}

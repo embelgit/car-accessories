@@ -1,0 +1,39 @@
+function authoslip(){
+	
+	var smcc= $('#smcc').val();
+	var sb= $('#sb').val();
+	var location= $('#location').val();
+	var gr= $('#gr').val();
+	var pcSign= $('#pcSign').val();
+	var outDate= $('#outDate').val();
+	var takenBy= $('#takenBy').val();
+	
+	
+	var params= {};
+	
+	params ["smcc"] = smcc;
+	params ["sb"] = sb;
+	params ["location"] = location;
+	params ["gr"] = gr;
+	params ["pcSign"] = pcSign;
+	params ["outDate"] = outDate;
+	params ["takenBy"] = takenBy;
+	
+	
+	params["methodName"] = "regAthority";
+	
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	{   
+		        
+				alert(data);
+			
+			  }
+	    	).error(function(jqXHR, textStatus, errorThrown){
+	    		if(textStatus==="timeout") {
+	    			$(loaderObj).hide();
+	    			$(loaderObj).find('#errorDiv').show();
+	    		}
+	    	});
+	
+	
+}

@@ -1,0 +1,125 @@
+<%@page import="java.util.List"%>
+<%@page import="com.smt.hibernate.Visitor"%>
+<%@page import="com.smt.dao.VisitorDao"%>
+<%@page import="com.smt.bean.VisitorBean"%>
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<script type="text/javascript">
+		function ChooseContact(data){
+			document.getElementById("id").value=(data.options[data.selectedIndex].getAttribute("myid1"));
+			document.getElementById("name1").value=(data.options[data.selectedIndex].getAttribute("myid2"));
+			document.getElementById("contact1").value=(data.options[data.selectedIndex].getAttribute("myid3"));
+			document.getElementById("address1").value=(data.options[data.selectedIndex].getAttribute("myid4"));
+			document.getElementById("city1").value=(data.options[data.selectedIndex].getAttribute("myid5"));
+			document.getElementById("occupation1").value=(data.options[data.selectedIndex].getAttribute("myid6"));
+			document.getElementById("comname1").value=(data.options[data.selectedIndex].getAttribute("myid7"));
+			document.getElementById("narration1").value=(data.options[data.selectedIndex].getAttribute("myid8"));
+			document.getElementById("reminder1").value=(data.options[data.selectedIndex].getAttribute("myid9"));
+		}
+	</script>
+
+	<div class="container">
+		<h2 class="form-name"> Visitor List</h2>
+	</div>
+	
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<script src="/SMT/staticContent/js/visitor.js"></script>
+	<link href="/SMT/staticContent/css/style.css" rel="stylesheet"/>
+    
+    <div id="report">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();
+		</script>
+	</div>
+    
+   
+
+<form action="visitor" name="visit" method="post" class="form-horizontal">
+	<div class="col-lg-12 ">
+		<div class=" col-lg-12 form-group-1 ">
+        	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Name :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="name" id="name" class="form-control" placeholder="name">
+			</div>
+          
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Contact No :</label>
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="contact" id="contact" class="form-control" placeholder="Mob no">
+			</div>
+		</div>
+      
+      	<div class=" col-lg-12 form-group-1 ">
+        	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Address :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="address" id="address" class="form-control" placeholder="Address">
+			</div>
+          
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>City :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="city" id="city" class="form-control" placeholder="City">
+			</div>
+        </div>
+           
+      	<div class=" col-lg-12 form-group-1 ">
+        	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Landmark :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="landmark" id="landmark" class="form-control" placeholder="Landmark">
+			</div>
+          
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Occupation :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="occu" id="occu" class="form-control" placeholder="Occupation">
+			</div>
+        </div>
+      
+      	<div class=" col-lg-12 form-group-1 ">
+        	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Company Name :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="comname" id="comname" class="form-control" placeholder="Company Name">
+			</div>
+          
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Narration :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="text" name="narration" id="narration" class="form-control" placeholder="Narration">
+			</div>
+       	</div>
+      
+       	<div class=" col-lg-12 form-group-1 ">
+       		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Reminder :</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+				<input type="date" name="reminder" id="reminder" class="form-control" />
+		    </div>
+        </div>
+	</div>      
+       
+  	<div class="wrapper" style="margin-left:-400px">
+		<input type="button" value="Save" name="btn" id="btn" onclick="visitord()" class="btn btn-lg btn-success btn-md" />
+		<input type="button" value="Cancel" class="btn btn-lg btn-danger btn-md" />
+		<a href="http://localhost:8080/SMT/jsp/visitor_list.jsp" target="_blank"><h4 style="margin-top: -25px;  margin-left: 280px;">Visitor List</h4></a>
+   </div>
+	          
+</form>
+
+	<%@include file="commons/footer.jsp"%>

@@ -1,0 +1,179 @@
+package com.smt.hibernate;
+
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+public class ParcelEntry {
+	
+	
+//___________________________________________Getters__And__Setters_____________________________________//	
+	
+	
+	public long getPkParcelEntryId() {
+		return pkParcelEntryId;
+	}
+
+	public void setPkParcelEntryId(long pkParcelEntryId) {
+		this.pkParcelEntryId = pkParcelEntryId;
+	}
+
+	public long getInvoiceNo() {
+		return invoiceNo;
+	}
+
+	public void setInvoiceNo(long invoiceNo) {
+		this.invoiceNo = invoiceNo;
+	}
+
+	public long getChallanNo() {
+		return challanNo;
+	}
+
+	public void setChallanNo(long challanNo) {
+		this.challanNo = challanNo;
+	}
+
+	public String getSupplierName() {
+		return supplierName;
+	}
+
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
+	}
+
+	public String getTransportName() {
+		return transportName;
+	}
+
+	public void setTransportName(String transportName) {
+		this.transportName = transportName;
+	}
+
+	public BigDecimal getInvoiceAmount() {
+		return invoiceAmount;
+	}
+
+	public void setInvoiceAmount(BigDecimal invoiceAmount) {
+		this.invoiceAmount = invoiceAmount;
+	}
+
+	public BigDecimal getPaidAmount() {
+		return paidAmount;
+	}
+
+	public void setPaidAmount(BigDecimal paidAmount) {
+		this.paidAmount = paidAmount;
+	}
+
+	public BigDecimal getTransportFees() {
+		return transportFees;
+	}
+
+	public void setTransportFees(BigDecimal transportFees) {
+		this.transportFees = transportFees;
+	}
+
+	public String getCheckInBy() {
+		return checkInBy;
+	}
+
+	public void setCheckInBy(String checkInBy) {
+		this.checkInBy = checkInBy;
+	}
+
+	public BigDecimal getTotalPaid() {
+		return totalPaid;
+	}
+
+	public void setTotalPaid(BigDecimal totalPaid) {
+		this.totalPaid = totalPaid;
+	}
+
+	public Date getInsertDate() {
+		return insertDate;
+	}
+
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+
+	public String getCheckedBy() {
+		return checkedBy;
+	}
+
+	public void setCheckedBy(String checkedBy) {
+		this.checkedBy = checkedBy;
+	}
+		
+//__________________________Fields_________________________________________//	
+	
+	
+					private long pkParcelEntryId;
+					private long invoiceNo;
+					private long challanNo;
+					private String supplierName;
+					private String transportName;
+					private BigDecimal invoiceAmount;
+					private BigDecimal paidAmount;
+					private BigDecimal transportFees;
+					private String checkInBy;
+					private BigDecimal totalPaid;
+					private Date insertDate;
+					private Date modifiedDate;
+					private String checkedBy;
+	
+
+//_____________________Full__Constructor__________________________________________//
+	
+	
+	public ParcelEntry(	long pkParcelEntryId, long invoiceNo, long challanNo, String supplierName, 
+						String transportName, BigDecimal invoiceAmount, BigDecimal paidAmount, 
+						BigDecimal transportFees, String checkInBy, BigDecimal totalPaid, 
+						Date insertDate, Date modifiedDate, String checkedBy)
+	
+				
+					{
+						this.pkParcelEntryId = pkParcelEntryId;
+						this.invoiceNo = invoiceNo;
+						this.challanNo = challanNo;
+						this.supplierName = supplierName;
+						this.transportName = transportName;
+						this.invoiceAmount = invoiceAmount;
+						this.paidAmount	= paidAmount;
+						this.transportFees = transportFees;
+						this.checkInBy =checkInBy;
+						this.totalPaid = totalPaid;
+						this.insertDate = insertDate;
+						this.modifiedDate = modifiedDate;
+						this.checkedBy = checkedBy;
+					}
+	
+	
+//____________________Default__Constructor________________________________________//
+	
+	
+	
+	public ParcelEntry()
+		{
+		
+		}
+	
+	
+	
+	
+	
+	
+
+}

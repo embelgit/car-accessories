@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.UserInfo" 
+    table="user_info"
+>
+
+    <id
+        name="pkUserId"
+        type="java.lang.Long"
+        column="pk_user_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="activeYn"
+        type="java.lang.String"
+        column="active_YN"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="addressLine1"
+        type="java.lang.String"
+        column="address_line1"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="addressLine2"
+        type="java.lang.String"
+        column="address_line2"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="firstName"
+        type="java.lang.String"
+        column="first_name"
+        not-null="true"
+        length="128"
+    />
+    <property
+        name="insertDate"
+        type="java.sql.Timestamp"
+        column="insert_date"
+        length="19"
+    />
+    <property
+        name="lastName"
+        type="java.lang.String"
+        column="last_name"
+        not-null="true"
+        length="128"
+    />
+    <property
+        name="middleName"
+        type="java.lang.String"
+        column="middle_name"
+        not-null="true"
+        length="128"
+    />
+    <property
+        name="mobileNumber1"
+        type="java.lang.String"
+        column="mobile_number1"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="mobileNumber2"
+        type="java.lang.String"
+        column="mobile_number2"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="modifiedDate"
+        type="java.sql.Timestamp"
+        column="modified_date"
+        length="19"
+    />
+    <property
+        name="userLevel"
+        type="java.lang.Integer"
+        column="user_level"
+        length="10"
+    />
+    <property
+        name="userName"
+        type="java.lang.String"
+        column="user_name"
+        not-null="true"
+        length="128"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to UserAccessAssociation -->
+    <set
+        name="userAccessAssociations"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="fk_user_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.UserAccessAssociation"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+function temp(){
+			var billNo= $('#billNo').val();
+			var checkBy = $('#checkBy').val();
+			var contactNo=$('#contactNo').val();
+		   var returnPeriod=$('#returnPeriod').val();
+		   var barcodeNo=$('#barcodeNo').val();
+		   var itemName=$('#itemName').val();
+		   var unitPrice=$('#unitPrice').val();
+		   var quantity=$('#quantity').val();
+		   var vat=$('#vat').val();
+		   var vatAmount=$('#vatAmount').val();
+		   var totalAmount=$('#totalAmount').val();
+		   var otherTax=$('#otherTax').val();
+		   var total=$('#total').val();
+		   var person_shop_name=$('#person_shop_name').val();
+		   
+				
+			var params= {};
+			
+			params ["billNo"] = billNo;
+			params ["checkBy"] = checkBy;
+			params ["contactNo"] = contactNo;
+			params ["returnPeriod"] = returnPeriod;
+			params ["barcodeNo"] = barcodeNo;
+			params ["itemName"] = itemName;
+			params ["unitPrice"] = unitPrice;
+			params ["quantity"] = quantity;
+			params ["vat"] = vat;
+			params ["vatAmount"] = vatAmount;
+			params ["totalAmount"] = totalAmount;
+			params ["otherTax"] = otherTax;
+			params ["total"] = total;
+			params ["person_shop_name"] = person_shop_name;
+			
+			
+			params["methodName"] = "regTemp";
+	    	
+	    	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	    	{
+	    				alert(data);
+	    			}
+	    	    	).error(function(jqXHR, textStatus, errorThrown){
+	    	    		if(textStatus==="timeout") {
+	    	    			$(loaderObj).hide();
+	    	    			$(loaderObj).find('#errorDiv').show();
+	    	    		}
+	    	    	});
+	    	
+	    }
+	    
+			
+			

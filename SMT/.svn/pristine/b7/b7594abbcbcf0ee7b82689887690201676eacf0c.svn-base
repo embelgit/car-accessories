@@ -1,0 +1,188 @@
+package com.smt.dao;
+
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.ItemList;
+import com.smt.hibernate.GoodsReceipt;
+import com.smt.hibernate.ItemStock;
+import com.smt.hibernate.Podetail;
+import com.smt.utility.HibernateUtility;
+
+public class GoodsReceiveDAo {
+	
+	public Long valPODetail( GoodsReceipt  goodsReceipt)
+	{
+		String superPo = "";
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+	
+		long itemId = goodsReceipt.getItemId();
+		Long quantity = goodsReceipt.getQuantity();
+		
+	Query query = session.createSQLQuery("SELECT COUNT(*) from item_stock where fk_item_details_id="+itemId);
+		
+		BigInteger uniqueResult2 =  (BigInteger) query.uniqueResult();
+		//List list = query.list();
+		int intVal = uniqueResult2.intValue();
+		System.out.println(intVal);
+		//int size = list.size();
+		if(intVal==0)
+		{
+			ItemStock stock = new ItemStock();
+			
+			stock.setItem_details_id(itemId);
+			stock.setNormalQty(quantity);
+			session.save(stock);
+		}
+		else if(intVal==1) {
+			
+			Query query2 = session.createQuery("from ItemStock where item_details_id="+itemId);
+			ItemStock uniqueResult = (ItemStock) query2.uniqueResult();
+			Long pkItemStockId = uniqueResult.getPkItemStockId();
+			ItemStock gReceipt = (ItemStock) session.get(ItemStock.class, pkItemStockId);
+			Long quantity2 = gReceipt.getNormalQty();
+			Long  qUSN= quantity2+quantity;
+			gReceipt.setNormalQty(qUSN);
+			session.update(gReceipt);
+		}
+		/*Long goods_Id = result.getPkItemStockId();
+		
+		ItemStock gReceipt = (ItemStock) session.get(ItemStock.class, goods_Id);
+		Long quantity2 = gReceipt.getNormalQty();
+		Long  qUSN= quantity2+quantity;
+		gReceipt.setNormalQty(qUSN);
+		session.update(gReceipt);*/
+			
+			
+		
+		
+		
+		/*ItemStock stock = new ItemStock();
+		
+		stock.setItem_details_id(itemId);
+		stock.setNormalQty(quantity);
+		session.persist(stock);
+		*/
+		Long pk = (Long) session.save(goodsReceipt);
+		superPo = "SMT"+pk.toString();
+		
+	/* for (int i = 0; i < podetail.hashCode(); i++) {
+		 if ("".equals(superPo)) {
+				
+				Long pk = (Long) session.save(podetail);
+				superPo = "SMT"+pk.toString();
+				
+		     }
+			else {
+				podetail.setSuperPoId(superPo);
+				session.save(podetail);
+				
+			   }
+			
+			}*/
+	  transaction.commit();
+	  hbu.closeSession(session);
+	  return pk;
+	}
+	
+	public void updatePODetail( GoodsReceipt  goodsReceipt)
+	{
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(goodsReceipt);
+		transaction.commit();
+		hbu.closeSession(session);
+	 
+	}
+	
+	public List getAllGoodsReceive()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from GoodsReceipt");
+		List list = query.list();
+		return list;
+		
+	}
+	
+	public List getitemsDays()
+	{
+		 java.util.Date date = new java.util.Date();
+		    
+		    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		 
+		    String data = (dateFormat.format(date)); //2014/08/06 15:59:4 
+		    
+		    
+		    System.out.println(data);
+		    
+		    
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select Date(g.insertDate),i.item_name,i.color ,i.pk_item_id from  goodsreceipt g left join item_details i ON g.fk_item_id=i.pk_item_id");
+		
+		List<Object[]> list = query.list();
+		/*List<ItemList> itBean = new ArrayList<ItemList>(0);
+		
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			// String da = object[0].toString();
+			 Date aDate = null;
+			try {
+				aDate = dateFormat.parse(data);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			    Date bDate = null;
+				try {
+					bDate = dateFormat.parse(object[0].toString());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			    Calendar with = Calendar.getInstance();
+			    with.setTime(aDate);
+			    Calendar to = Calendar.getInstance();
+			    to.setTime(bDate);
+			    to.set(Calendar.YEAR, with.get(Calendar.YEAR));
+			    int withDAY = with.get(Calendar.DAY_OF_YEAR);
+			    int toDAY = to.get(Calendar.DAY_OF_YEAR);
+
+			    int diffDay = withDAY- toDAY ;
+
+			    System.out.println(diffDay);
+			
+			 	ItemList itemBean = new ItemList();
+			 	
+			 	itemBean.setInsertDate(object[0].toString());
+			 	itemBean.setItem_name(object[1].toString());
+			 	itemBean.setColor(object[2].toString());
+			 	itemBean.setDays(diffDay);
+			 	itBean.add(itemBean);
+		}
+		
+			return itBean;
+		
+		*/
+		return list;
+	}
+
+}

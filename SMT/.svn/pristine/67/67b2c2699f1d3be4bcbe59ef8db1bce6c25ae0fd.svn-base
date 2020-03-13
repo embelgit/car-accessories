@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+    <hibernate-mapping>
+    
+    <class name="com.smt.hibernate.CouponDetails" table="coupon_details">
+    
+    	<id name="pkCouponId" type="java.lang.Long" column="pk_coupon_id">
+			<generator class="increment" />
+		</id>
+		
+		<property name="couponName" type="java.lang.String" column="coupon_name"
+			not-null="true" length="255" />
+			
+		<property name="couponCode" type="java.lang.String" column="coupon_code"
+			not-null="true" length="255" />
+			
+		<property name="couponType" type="java.lang.String" column="coupon_type"
+			not-null="true" length="1" />
+			
+		<property name="isSingleUse" type="java.lang.String" column="is_single_use"
+			not-null="true" length="1" />
+			
+		<property name="isMultipleUse" type="java.lang.String" column="is_multiple_use"
+			not-null="true" length="1" />
+			
+		<property name="isActiveYn" type="java.lang.String" column="is_activeYN"
+			not-null="false" length="1" />
+			
+		<property name="createdBy" type="java.lang.String" column="created_by"
+			not-null="true" length="255" />
+			
+		<property name="discountAmount" type="java.math.BigDecimal" column="discount_amount"
+			not-null="true" length="255" />
+			
+		<property name="percentageDiscount" type="java.math.BigDecimal" column="percentage_discount"
+			not-null="true" length="255" />
+			
+		<property name="startDate" type="java.sql.Date" column="start_date"
+			not-null="true"  />
+			
+		<property name="endDate" type="java.sql.Date" column="end_date"
+			not-null="true"  />
+			
+		<property name="insertDate" type="java.sql.Date" column="insert_date"
+			not-null="false"  />
+			
+		<property name="modifiedDate" type="java.sql.Date" column="modified_date" not-null="false" />
+		
+		</class>
+    </hibernate-mapping>

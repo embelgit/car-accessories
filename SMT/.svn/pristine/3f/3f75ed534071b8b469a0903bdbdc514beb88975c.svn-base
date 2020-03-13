@@ -1,0 +1,173 @@
+package com.smt.dao;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.AgeWiseStock;
+import com.smt.bean.CurrentStockDetails;
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.ItemStock;
+import com.smt.hibernate.ProductDetail;
+import com.smt.hibernate.StockDetail;
+import com.smt.utility.HibernateUtility;
+
+public class ItemStockDao {
+
+	
+	public void valItemStock( ItemStock itemStock)
+	{
+		
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+	  	
+			
+		Long stockid=(Long) session.save(itemStock);
+		   ItemStock itemS  = (ItemStock) session.get(ItemStock.class, new Long(stockid));
+		
+		Long item_details_id2 = itemStock.getItem_details_id();
+	    ItemDetail itemDetail  = (ItemDetail) session.get(ItemDetail.class, new Long(item_details_id2));
+		
+	    Long product_id = itemStock.getProduct_id();
+	    ProductDetail productDetail  = (ProductDetail) session.get(ProductDetail.class, new Long(product_id));
+
+	    System.out.println(productDetail);
+		System.out.println(itemDetail);
+			
+			long stock = itemStock.getNormalQty();
+			System.out.println("Stock DE" +stock);
+			
+			for (long i = 0; i < stock; i++) 
+			{
+			StockDetail stockDetail = new StockDetail();
+			stockDetail.setIsActiveYn("y");
+			stockDetail.setIsSold("N");
+			stockDetail.setStatus("s");
+			stockDetail.setItemStock(itemS);
+			stockDetail.setProductDetail(productDetail);
+			stockDetail.setItemDetail(itemDetail);
+			//DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			Date dateobj = new Date();
+			stockDetail.setIsInsertDate(dateobj);
+			stockDetail.setIsModifiedDate(dateobj);
+			stockDetail.setPoNo(101);
+			session.save(stockDetail);
+
+			}
+
+		
+			
+		transaction.commit();
+      hbu.closeSession(session);
+		
+	}
+	
+	public List getAllItemStock()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from ItemStock");
+		List list = query.list();
+		
+		
+		
+		return list;
+	}
+	
+	public List getCurrentStockDetails()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createSQLQuery("SELECT s.supplier_name, c.category_name , sc.subcat_name , lfc.cat_name , i.item_Name ,i.color , i.size ,i.sale_price, st.normal_qty from leaf_categories lfc left join sub_categories sc ON  lfc.fk_subcat_id=sc.pk_subcat_id left join categories c ON sc.fk_rootcat_id=c.pk_category_id left join product_details p ON p.fk_cat_id=p.pk_product_id left join  supplier_details s ON p.fk_vendor_id = s.supplier_id left join item_details i ON i.fk_product_id=i.pk_item_id  left join item_stock st ON st.fk_item_details_id=st.pk_item_stock_id  order by i.color");
+	    List<Object[]> list = query.list();
+	    
+		 List<CurrentStockDetails> stockList = new ArrayList<CurrentStockDetails>(0);
+
+	    
+	    for (Object[] object : list) {
+	    	
+	    	CurrentStockDetails currentStockDetails = new CurrentStockDetails();
+	    	currentStockDetails.setSupplierName(object[0].toString());
+	    	currentStockDetails.setCategoryName(object[1].toString());
+	    	currentStockDetails.setSubCategoryName(object[2].toString());
+	    	currentStockDetails.setLeafCategoryName(object[3].toString());
+	    	currentStockDetails.setItemName(object[4].toString());
+	    	currentStockDetails.setColor(object[5].toString());
+	    	currentStockDetails.setSize(Long.parseLong(object[6].toString()));
+	    	currentStockDetails.setSalePrice(Double.parseDouble(object[7].toString()));
+	    	currentStockDetails.setAvailableQuantity(Long.parseLong(object[8].toString()));
+	    	//currentStockDetails.setTotalQuantity(Long.parseLong(object[8].toString()));
+	    	//currentStockDetails.setMrp(Double.parseDouble(object[7].toString()));
+			stockList.add(currentStockDetails);
+		}
+		return stockList;
+	    
+	
+	}
+
+	public List getitemsByProducts(String productId)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery(" select sc.itemName ,sc.salePrice ,sc.pkItemId from ItemDetail sc where  sc.productDetail  ="+productId );
+		System.out.println("**************"+query);
+		List list = query.list();
+	
+		return list;
+	}
+	
+	public List getcolorByProducts(String itemId)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("select  sc.color , sc.size from ItemDetail sc where  sc.pkItemId ="+itemId);
+		System.out.println("**************"+query);
+		List list = query.list();
+	
+		return list;
+	}
+
+	public List getAllCurrent() {
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createSQLQuery("select i.stock,c.quantity,(i.stock-c.quantity),i1.pk_item_id from item_stock i left join item_details i1 ON i.fk_item_details_id=i1.pk_item_id left join offer_details o ON o.fk_item_id=i1.pk_item_id left join customer_order c ON c.fk_offerrr_id=o.pk_itemoffer_id");
+		return query.list();
+	}
+	
+	public List getAgeWiseStock()
+	{
+		//Date date = new Date();
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("SELECT e.is_insert_date, e.item_name, i.stock from item_details e left join item_stock i on i.fk_item_details_id = e.pk_item_id");
+		System.out.println("**************"+query);
+		/*List list = query.list();
+		System.out.println(list);*/
+		
+		 List<Object[]> list = query.list();
+		 System.out.println(list);
+		    
+		 List<AgeWiseStock> stock = new ArrayList<AgeWiseStock>(0);
+
+	    
+	    for (Object[] object : list) {
+	    	
+	    	AgeWiseStock st = new AgeWiseStock();
+	    	
+	    	
+	    }
+	
+		return list;
+	}
+}

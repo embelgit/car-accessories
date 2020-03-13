@@ -1,0 +1,63 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import com.smt.dao.VisitorDao;
+import com.smt.hibernate.Visitor;
+
+public class VisitorHelper {
+
+	public void regsterVisitor(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		
+		
+		String name = request.getParameter("name");
+		String contact = request.getParameter("contact");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String landmark = request.getParameter("landmark");
+		String occu = request.getParameter("occu");
+		String comname = request.getParameter("comname");
+		String narration = request.getParameter("narration");
+		String reminder = request.getParameter("reminder");
+		
+		
+		Visitor visit = new Visitor();
+	
+        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+		
+		Date adate = null;
+		try {
+		
+		adate=	format.parse(reminder);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		visit.setReminder(adate);
+		
+		
+		visit.setName(name);
+		visit.setContact(Long.parseLong(contact));
+		visit.setAddress(address);
+		visit.setCity(city);
+		visit.setLandmark(landmark);
+		visit.setOccu(occu);
+		visit.setComname(comname);
+		visit.setNarration(narration);
+		
+		
+
+		VisitorDao dao = new VisitorDao();
+		dao.valVisitor(visit);
+		
+	}
+
+}

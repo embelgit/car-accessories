@@ -1,0 +1,154 @@
+package com.smt.hibernate;
+
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+public class CouponDetails {
+	
+	
+	//____________Getters_And_Setters______________
+	
+		public long getPkCouponId() {
+			return pkCouponId;
+		}
+		public void setPkCouponId(long pkCouponId) {
+			this.pkCouponId = pkCouponId;
+		}
+		public String getCouponName() {
+			return couponName;
+		}
+		public void setCouponName(String couponName) {
+			this.couponName = couponName;
+		}
+		public String getCouponCode() {
+			return couponCode;
+		}
+		public void setCouponCode(String couponCode) {
+			this.couponCode = couponCode;
+		}
+		public String getCouponType() {
+			return couponType;
+		}
+		public void setCouponType(String couponType) {
+			this.couponType = couponType;
+		}
+		public String getIsSingleUse() {
+			return isSingleUse;
+		}
+		public void setIsSingleUse(String isSingleUse) {
+			this.isSingleUse = isSingleUse;
+		}
+		public String getIsMultipleUse() {
+			return isMultipleUse;
+		}
+		public void setIsMultipleUse(String isMultipleUse) {
+			this.isMultipleUse = isMultipleUse;
+		}
+		public String getIsActiveYn() {
+			return isActiveYn;
+		}
+		public void setIsActiveYn(String isActiveYn) {
+			this.isActiveYn = isActiveYn;
+		}
+		public String getCreatedBy() {
+			return createdBy;
+		}
+		public void setCreatedBy(String createdBy) {
+			this.createdBy = createdBy;
+		}
+		public BigDecimal getDiscountAmount() {
+			return discountAmount;
+		}
+		public void setDiscountAmount(BigDecimal discountAmount) {
+			this.discountAmount = discountAmount;
+		}
+		public BigDecimal getPercentageDiscount() {
+			return percentageDiscount;
+		}
+		public void setPercentageDiscount(BigDecimal percentageDiscount) {
+			this.percentageDiscount = percentageDiscount;
+		}
+		
+		public Date getStartDate() {
+			return startDate;
+		}
+		public void setStartDate(Date startDate) {
+			this.startDate = startDate;
+		}
+		public Date getEndDate() {
+			return endDate;
+		}
+		public void setEndDate(Date endDate) {
+			this.endDate = endDate;
+		}
+		public Date getInsertDate() {
+			return insertDate;
+		}
+		public void setInsertDate(Date insertDate) {
+			this.insertDate = insertDate;
+		}
+		public Date getModifiedDate() {
+			return modifiedDate;
+		}
+		public void setModifiedDate(Date modifiedDate) {
+			this.modifiedDate = modifiedDate;
+		}
+		
+	
+	
+	//Fields________________________
+	
+	private long pkCouponId;
+	private String couponName;
+	private String couponCode;
+	private String couponType;
+	private String isSingleUse;
+	private String isMultipleUse;
+	private String isActiveYn;
+	private String createdBy;
+	private BigDecimal discountAmount;
+	private BigDecimal percentageDiscount;
+	private Date startDate;
+	private Date endDate;
+	private Date insertDate;
+	private Date modifiedDate;
+	
+
+//_____________Full_Constructor________________
+	
+	public CouponDetails(long pkCouponId, String couponName, String couponCode, String couponType,
+						String isSingleUse, String isMultipleUse, String isActiveYn, String createdBy,
+						BigDecimal discountAmount, BigDecimal percentageDiscount, Date startDate,
+						Date endDate, Date insertDate, Date modifiedDate)
+	
+	{
+			this.pkCouponId = pkCouponId;
+			this.couponName = couponName;
+			this.couponCode = couponCode;
+			this.couponType = couponType;
+			this.isSingleUse = isSingleUse;
+			this.isMultipleUse = isMultipleUse;
+			this.isActiveYn = isActiveYn;
+			this.createdBy = createdBy;
+			this.discountAmount = discountAmount;
+			this.percentageDiscount = percentageDiscount;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.insertDate = insertDate;
+			this.modifiedDate = modifiedDate;
+	}
+	
+	
+//________Default_contructor___________________
+	
+	
+				public CouponDetails()
+				{
+					
+				}
+	
+}

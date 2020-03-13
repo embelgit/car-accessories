@@ -1,0 +1,131 @@
+
+<%@page import="java.util.List"%>
+<%@page import="com.smt.helper.CategoryHelper"%>
+<%@page import="com.smt.hibernate.Category"%>
+<%@page import="com.smt.helper.SubCategoryHelper"%>
+<%@page import="com.smt.dao.SubCategoryDao"%>
+<%@page import="com.smt.hibernate.SubCategory"%>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Sub Category</h2>
+	</div>
+	
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<script src="/SMT/staticContent/js/subcategory.js"></script>
+	<link href="/SMT/staticContent/css/adi.css" rel="stylesheet"/>
+	<script src="/SMT/staticContent/js/uppercase.js"></script>
+	
+	<script type="text/javascript">
+	    function ChooseContact(){
+		//document.getElementById("buyPrice")(data.options[data.selectedIndex].getAttribute("myid"));
+		//document.cat.categoryName.value == (data.options[data.selectedIndex].getAttribute("value"));
+	
+		<%
+			SubCategoryHelper subCategoryHelper = new SubCategoryHelper();
+			List subcatList= subCategoryHelper.getAllMainSubCategories();
+		%>
+	    <%
+			for(int i=0;i<subcatList.size();i++){
+		
+				SubCategory subcategory = (SubCategory)subcatList.get(i);
+		 %>
+
+    		var value ="<%=subcategory.getSubcatName()%>";
+				if(document.subcat.subcatName.value == value)
+					{
+						document.subcat.btn.disabled = true;	
+						alert(value+"\n"+"Sub Category Name Already Exist..!!!"); 
+	 			if(document.getElementById) 
+ 	 				{
+		 				document.subcat.reset();
+	 				}
+	 					document.subcat.btn.disabled = false;
+						return false;
+					}
+   			<%
+				}
+    		%>
+	    }
+	</script>
+
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		   
+		   $(document).ready(function(){
+	        	$('[data-toggle="tooltip"]').tooltip()
+	        });
+		</script>
+	</div>
+	
+<form action="subcat" name="subcat" method="post" class="form-horizontal">
+	<div class = "col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Category:</label>
+			</div>
+			
+				<%
+					CategoryHelper catHelper = new CategoryHelper();
+		   			List catList = catHelper.getAllMainCategories();
+				%>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input list="fkRootcatId_drop" id="fkRootcatId" style="margin-left: -70px;" class="form-control">
+				<datalist id="fkRootcatId_drop">
+				
+				<%
+					for(int i=0;i<catList.size();i++){
+						Category category = (Category)catList.get(i);
+				%>
+				
+					<option data-value="<%=category.getPkCategoryId()%>" value="<%=category.getCategoryName() %>">
+				<%
+					}
+				%>
+				</datalist>
+			</div>		
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Sub-category:</label>
+			</div>	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<input type="text" name="subcatName" id="subcatName" class="form-control" data-toggle="tooltip" title="Enter Alphabets Only.!!!" autofocus onkeyup="preventsubcat();changeToUpper();return ChooseContact();" placeholder="Sub-category">
+				<p id="rq">*Enter Alphabets only.</p>			
+			</div>
+		</div>
+	</div>
+	
+	<div> 
+		<input type="button"  value="Save" class="btn btn-lg btn-Success btn-md" name="btn" onclick="return categoryd()" style="margin-left: 245px;" />
+		<a href="http://localhost:8080/SMT/jsp/leaf_category.jsp"> <h5 style="margin-left: 325px; margin-top: -28px; color: #ff0000; padding-bottom: 20px;">Add New Leaf-Category</h5></a>
+	</div>
+		
+	<!-- <div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHead col-md-1" style="margin-left: 110px;"><strong>Sr No</strong></div>
+			<div class="rTableHead col-md-2"><strong>Category</strong></div>
+			<div class="rTableHead col-md-2"><strong>Sub-Category</strong></div>
+		</div>
+		
+		<div class="rTableRow">
+			<div class="rTableCell col-md-1" style="margin-left: 110px;"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+		</div>
+	</div>
+			
+	<div style="margin-left: 225px;"> 
+		<input type="button" value="Edit" class="btn btn-lg btn-danger btn-md" />
+		<input type="button" value="Delete" class="btn btn-lg btn-primary btn-md" />  
+		<input type="button" value="Add" class="btn btn-lg btn-success btn-md" /> 
+	</div> -->
+
+</form>
+
+	<%@include file="commons/footer.jsp"%>

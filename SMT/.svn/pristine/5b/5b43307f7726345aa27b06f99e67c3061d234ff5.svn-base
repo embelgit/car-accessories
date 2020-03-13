@@ -1,0 +1,51 @@
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Supplier Ledger</h2>
+	</div>
+	
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+    <script src="/SMT/staticContent/css/adi.css"></script>
+    <link href="/SMT/jsp/supplier_ledger.jsp" rel="stylesheet"/>
+	
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+
+<form action="supplierLedger" method="post" class="form-horizontal">
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHead col-md-1"><strong>Sr No</strong></div>
+			<div class="rTableHead col-md-1"><strong>Date</strong></div>
+			<div class="rTableHead col-md-2"><strong>Account Type</strong></div>
+			<div class="rTableHead col-md-2"><strong>Opening Balance</strong></div>
+			<div class="rTableHead col-md-2"><strong>Debit</strong></div>
+			<div class="rTableHead col-md-2"><strong>Credit</strong></div>
+			<div class="rTableHead col-md-2"><strong>Closing Balance</strong></div>
+		</div>
+		
+		<div class="rTableRow">
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><select class="form-control" name="accType">
+												<option value="selected">-Type-</option>
+												<option value="saving">Saving</option>
+												<option value="current">Current</option>
+											 </select></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+		</div>
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

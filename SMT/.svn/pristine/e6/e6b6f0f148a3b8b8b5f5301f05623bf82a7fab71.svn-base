@@ -1,0 +1,61 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+
+
+
+
+import com.smt.bean.EmpNameWiseLeave;
+import com.smt.hibernate.LeaveDetail;
+import com.smt.utility.HibernateUtility;
+
+public class LeaveDetailDao {
+	
+	public void valLeaveDetail( LeaveDetail leavedetail)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(leavedetail);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+	
+public List getEmpNameWiseLeave(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select l.type_of_leave, e.firstName, l.reason, l.approved_by, l.fk_emp_id from leave_detail l left join employeedetails e ON l.fk_emp_id = e.id group by e.id;");
+		
+		List <Object[]> list=query.list();
+		List<EmpNameWiseLeave> empbean=new ArrayList<EmpNameWiseLeave>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 EmpNameWiseLeave empleave =new EmpNameWiseLeave();
+			 empleave.setTypeofleave(object[0].toString());
+			 empleave.setEmpName(object[1].toString());
+			 empleave.setReason(object[2].toString());
+			 empleave.setApprovedby(object[3].toString());
+			 empleave.setId(Long.parseLong(object[4].toString()));
+			 
+			
+			 
+			 
+			
+			 empbean.add(empleave);
+			 	 
+		}
+		return empbean;
+		
+	}
+
+
+}

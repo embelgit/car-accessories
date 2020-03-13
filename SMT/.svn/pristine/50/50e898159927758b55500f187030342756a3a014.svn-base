@@ -1,0 +1,61 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Set;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class BrandDetail implements Serializable {
+
+    /** identifier field */
+    private Long pkBrandId;
+
+    /** persistent field */
+    private Set itemDetails;
+
+    /** persistent field */
+    private Set productDetails;
+
+    /** full constructor */
+    public BrandDetail(Long pkBrandId, Set itemDetails, Set productDetails) {
+        this.pkBrandId = pkBrandId;
+        this.itemDetails = itemDetails;
+        this.productDetails = productDetails;
+    }
+
+    /** default constructor */
+    public BrandDetail() {
+    }
+
+    public Long getPkBrandId() {
+        return this.pkBrandId;
+    }
+
+    public void setPkBrandId(Long pkBrandId) {
+        this.pkBrandId = pkBrandId;
+    }
+
+    public Set getItemDetails() {
+        return this.itemDetails;
+    }
+
+    public void setItemDetails(Set itemDetails) {
+        this.itemDetails = itemDetails;
+    }
+
+    public Set getProductDetails() {
+        return this.productDetails;
+    }
+
+    public void setProductDetails(Set productDetails) {
+        this.productDetails = productDetails;
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkBrandId", getPkBrandId())
+            .toString();
+    }
+
+}

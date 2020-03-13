@@ -1,0 +1,23 @@
+package com.smt.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.POAccount;
+import com.smt.utility.HibernateUtility;
+
+public class POAccountDao {
+
+	public void valPOAccount(POAccount acc) {
+		// TODO Auto-generated method stub
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(acc);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+	}
+
+}

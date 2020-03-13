@@ -1,0 +1,142 @@
+package com.smt.dao;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.EmpBirthday;
+import com.smt.bean.EmployeeList;
+import com.smt.bean.SalesmanDetailBean;
+import com.smt.hibernate.EmployeeDetails;
+import com.smt.utility.HibernateUtility;
+
+public class EmployeeDetailsDao {
+	
+	public void valEmployeeDetails(EmployeeDetails ed1){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+	
+		
+		session.save(ed1);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+	
+
+	public List getAllMainEmployee()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from EmployeeDetails");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+	}
+	
+	
+public List getAllSalesmanDetail(String key) {
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		
+		Query query = session.createQuery("SELECT e.id,e.firstName from EmployeeDetails e where e.id="+key);
+		List<Object[]> list = query.list();
+		 List<SalesmanDetailBean> itemlist = new ArrayList<SalesmanDetailBean>(0);
+		 
+		 for (Object[] objects : list) {
+			 SalesmanDetailBean bean = new SalesmanDetailBean();
+			 	bean.setEmpId(Long.parseLong(objects[0].toString()));
+			 	bean.setEmpName(objects[1].toString());
+			 	//bean.setFkEmpId(Long.parseLong(objects[2].toString()));
+			System.out.println(Arrays.toString(objects));
+			 itemlist.add(bean);
+			}
+		
+		return itemlist;
+	}
+
+	
+	public List getEmployeList(){
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select id, address, firstName, contactNumber, joiningDate, lastName from employeedetails ");
+		
+		List <Object[]> list=query.list();
+		List<EmployeeList> eBean = new ArrayList<EmployeeList>(0);
+		
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 	EmployeeList empBean = new EmployeeList();
+			 	empBean.setEmpId(Long.parseLong(object[0].toString()));
+			 	empBean.setAddress(object[1].toString());
+			 	empBean.setEmpName(object[2].toString());
+			 	empBean.setContactNo(Long.parseLong(object[3].toString()));
+			 	empBean.setJoiningDate(object[4].toString());
+			 	empBean.setLastname(object[5].toString());
+			 	eBean.add(empBean);
+		}
+			return eBean;
+	}
+	
+	public List getAllEmpBirthday(){
+	    Date date = new Date();
+	    
+	    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+	 
+	    String data = (dateFormat.format(date)); //2014/08/06 15:59:4
+	    
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select firstName ,lastName ,contactNumber ,DOB from employeedetails where DOB="+data);
+		
+		List <Object[]> list=query.list();
+		List<EmpBirthday> empb=new ArrayList<EmpBirthday>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 EmpBirthday empbir =new EmpBirthday();
+			 empbir.setFirstname(object[0].toString());
+			 empbir.setLastname(object[1].toString());
+			 empbir.setContactno(Long.parseLong(object[2].toString()));
+			 empbir.setDob(object[3].toString());
+		
+			
+			 empb.add(empbir);
+			 	 
+		}
+		return empb;
+	
+	}
+
+
+	public List getEditEmployee1(Long empId) {
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("select e.dob, e.emergancyContactNumber, e.accountNumber, e.address, e.adharNumber, e.bankName, e.branch, e.city, e.contactNumber, e.education, e.emailId, e.familyMember, e.gender, e.ifsc, e.joiningDate, e.knownLanguage, e.maritalStatus, e.previousFirmAddress, e.previousFirmContactNo, e.previousFirmName, e.previousJob, e.previousJobExeperiance, e.reference, e.resignReason, e.salary, e.department, e.designation from EmployeeDetails e where  id ="+empId);
+		//query.setParameter("empId", empId);
+		System.out.println("**************"+query);
+		List list = query.list();
+      	System.out.println(list);
+		return list;
+		
+		
+	}
+
+
+	
+
+}

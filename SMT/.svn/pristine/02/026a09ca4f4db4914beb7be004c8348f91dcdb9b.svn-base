@@ -1,0 +1,222 @@
+<%@page import="java.util.List"%>
+<%@page import="com.smt.hibernate.EmployeeDetails"%>
+<%@page import="com.smt.bean.EmployeeAttendBean" %>
+<%@page import="com.smt.dao.EmployeeDetailsDao"%>
+<%@page import="com.smt.dao.EmpAttendanceDao"%>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Employee Attendance</h2>
+	</div>
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/js/jquery.jqgrid.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/css/ui.jqgrid.min.css">
+    
+    
+	
+	<script src="/SMT/staticContent/js/empAttendance.js"></script>
+ 
+	<link href="/SMT/staticContent/css/style.css" rel="stylesheet"/>
+    <link href="/SMT/jsp/employee_attendance.jsp" rel="stylesheet"/>
+    
+<script type="text/javascript">
+function ChooseContact(data){
+	//document.getElementById("buyPrice")(data.options[data.selectedIndex].getAttribute("myid"));
+	document.getElementById("name").value=(data.options[data.selectedIndex].getAttribute("myid1"));
+	document.getElementById("department").value=(data.options[data.selectedIndex].getAttribute("myid2"));
+	document.getElementById("designation").value=(data.options[data.selectedIndex].getAttribute("myid3"));
+	
+	
+}
+</script>
+    
+    
+    <div id="date1">
+		<label id="demo"></label>
+
+		<script>
+           var d = new Date();
+           document.getElementById("demo").innerHTML = d.toDateString();;
+        </script>
+	</div>
+    
+    
+<form action="employeeAttendance" name="empatd" method="post" class="form-horizontal">
+	
+	
+	<div class="date-field col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<strong>From:</strong> <input type="date" name="date" />
+		<strong>To:</strong>  <input type="date" name="date" /> 
+		<input	class="btn btn-success" type="submit" value="Search" >
+	</div>
+	
+	<%
+		EmployeeDetailsDao dao=new EmployeeDetailsDao();
+			List empList= dao.getAllMainEmployee(); 
+	
+	%>
+	
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Id:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<select class="form-control" id="id" name="id" onChange="ChooseContact(this)">
+			<option value="selected" >--Select EmpID--</option>
+		<%
+		for(int i=0;i<empList.size();i++){
+			
+			EmployeeDetails empD=(EmployeeDetails)empList.get(i);
+		
+		
+		%>
+		
+		
+			
+			<option  myid1="<%=empD.getFirstName()%>", myid2="<%=empD.getDepartment()%>" , myid3="<%=empD.getDesignation()%>"><%=empD.getId() %> </option>
+			
+	
+		   <%
+		      }
+		     %>
+		</select>
+		</div>
+	
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Name:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input class="form-control" type="text" name="name" id="name" placeholder="Name" />
+		</div>
+		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Department:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="margin-left: -45px;">
+			<input class="form-control" type="text" name="department" id="department" placeholder="Department" />
+		</div>
+	</div>
+	
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Designation:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input class="form-control" type="text" name="designation" id="designation" placeholder="Designation" />
+		</div>
+				
+		<!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Category:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input class="form-control" type="text" name="category" placeholder="Category" />
+		</div> -->
+		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label>Total Working Days:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="margin-left: -45px;">
+			<input class="form-control" type="text" name="totalWorkingDays" id="totalWorkingDays" placeholder="Total Working Days" />
+		</div>
+		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label>Date:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="margin-left: -45px;">
+			<input class="form-control" type="date" name="sdate" id="sdate" placeholder="Current Date" />
+		</div>
+		
+		
+	</div>
+	
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Attended:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input class="form-control" type="text" name="attended" id="attended" placeholder="Attended" />
+		</div>
+				
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Leave:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input class="form-control" type="text" name="leave" id="leave" placeholder="Leave" />
+		</div>
+		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Paid Leave:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="margin-left: -45px;">
+			<input class="form-control" type="text" name="paidLeave" id="paidLeave" placeholder="Paid Leave" />
+		</div>
+	</div>
+	
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Unpaid Leave:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input class="form-control" type="text" name="unpaidLeave" id="unpaidLeave" placeholder="Unpaid Leave" />
+		</div>
+				
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Half Day:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input class="form-control" type="text" name="halfDay" id="halfDay" placeholder="Half Day" />
+		</div>
+	</div>
+	
+	<div class="wrapper">
+		<input type="button" value="Save" name="btn" onclick="return empattendance()" class="btn btn-lg btn-success btn-md" /> 
+		<input type="button" value="Edit" class="btn btn-lg btn-primary btn-md" /> 
+		<input type="button" value="Reset" class="btn btn-lg btn-danger btn-md" onclick="reset()"/> 
+	</div>
+	
+	
+	
+</form>
+
+<%@include file="commons/footer.jsp"%>	
+
+     <%-- <%
+		EmployeeDetailsDao dao1=new EmployeeDetailsDao();
+			List emplist= dao1.getAllMainEmployee(); 
+	
+	   %>
+	
+	
+	
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label> Employee Name:</label>
+		</div>		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<select class="form-control" id="EmpName" name="EmpName" onchange="shree.empAttend()">
+			<option value="selected" >--Select EmpName--</option>
+	        <%
+		     for(int i=0;i<emplist.size();i++){
+			
+			EmployeeDetails empA=(EmployeeDetails)emplist.get(i);
+		
+		
+		     %>
+		     
+			<option value="<%=empA.getId()%>"><%=empA.getFirstName()%></option>
+			
+		     <%
+		      }
+		     %>
+	     </select>
+	     
+	     </div>
+	  </div>   
+	  <div style='position:absolute; top:550px; left:108px; '>
+				<table id="jqGrid"></table>		
+			</div>
+ --%>

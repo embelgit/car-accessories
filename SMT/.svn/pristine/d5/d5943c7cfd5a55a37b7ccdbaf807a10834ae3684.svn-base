@@ -1,0 +1,615 @@
+package com.smt.utility;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.omg.PortableServer.POAHelper;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.smt.helper.GoodsReceiptHelper;
+import com.smt.bean.CustomerBean;
+import com.smt.bean.SalesmanDetailBean;
+import com.smt.dao.SubLevelMasterDao;
+import com.smt.helper.AuthoritySlipHelper;
+import com.smt.helper.BrokerHelper;
+import com.smt.helper.CashBankHelper;
+import com.smt.helper.CategoryHelper;
+import com.smt.helper.CouponDetailsHelper;
+import com.smt.helper.CustCreditHelper;
+import com.smt.helper.CustomerOrderHelper;
+import com.smt.helper.CustomerfeedHelper;
+import com.smt.helper.EmpAttendancetHelper;
+import com.smt.helper.EmployeeDetailsHelper;
+import com.smt.helper.GoodsReturnHelper;
+import com.smt.helper.ItemDetailHelper;
+import com.smt.helper.ItemStockHelper;
+import com.smt.helper.LoyalityProgramHelper;
+import com.smt.helper.POAccountHelper;
+import com.smt.helper.PODetailHelper;
+import com.smt.helper.ShopDetailHelper;
+import com.smt.helper.LeafCategoryHelper;
+import com.smt.helper.LeafLevelMAsterHelper;
+import com.smt.helper.LeaveDetailHelper;
+import com.smt.helper.MainLevelMasterHelper;
+import com.smt.helper.OfferDetailHelper;
+import com.smt.helper.ParcelEntryHelper;
+import com.smt.helper.ProductDetailHelper;
+import com.smt.helper.RootCategoryHelper;
+import com.smt.helper.StockDetailHelper;
+import com.smt.helper.SubCategoryHelper;
+import com.smt.helper.SubLevelMasterHelper;
+import com.smt.helper.SupplierDetailHelper;
+import com.smt.helper.TaxCreationHelper;
+import com.smt.helper.TemporaryStockHelper;
+import com.smt.helper.UserActivityHelper;
+import com.smt.helper.VisitorHelper;
+import com.smt.hibernate.LeafLevelMaster;
+import com.smt.hibernate.Podetail;
+import com.smt.hibernate.SubCategory;
+import com.smt.hibernate.SupplierDetail;
+import com.smt.hibernate.Category;
+import com.smt.dao.CategoryDao;
+public class Controller 
+{
+
+	private String toJson(Object data)
+    {
+        Gson gson = new GsonBuilder().setPrettyPrinting ().disableHtmlEscaping ().create ();
+        return gson.toJson(data);
+    }
+	public String doUserLogin(HttpServletRequest request,HttpServletResponse response)
+	{
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
+		UserActivityHelper helper = new UserActivityHelper();
+		//helper.validateUser();
+		return toJson("Responing");
+	}
+	
+	public String doSupplierDetails(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		SupplierDetailHelper helper = new SupplierDetailHelper();
+		helper.doSupplier(request, response);
+		return toJson("Data Added Successfully");
+	}
+	
+	public String editSupp(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		SupplierDetailHelper helper = new SupplierDetailHelper();
+		helper.editSupplier(request, response);
+		return toJson("Data Updated Successfully");
+	}
+	
+	public String doProductDetail(HttpServletRequest request,HttpServletResponse response)
+	{
+		ProductDetailHelper helper=new ProductDetailHelper();
+		helper.doProductReg(request, response);
+		return toJson("Data Added Successfully");
+	}
+	
+	
+	public String doItemDetails(HttpServletRequest req, HttpServletResponse res)
+	{
+		
+		ItemDetailHelper helper = new ItemDetailHelper();
+		helper.validateUser(req, res);	
+		return toJson("Data Added Successfully");
+	}
+	public String regCategory(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		CategoryHelper helper = new CategoryHelper();
+		helper.registerCategory(request, response);
+	  
+		return toJson("Data Added Successsfully");
+	}
+	
+	public String getSubCategoriesByRootcategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		ProductDetailHelper helper  = new ProductDetailHelper();
+		List categories =  helper.getSubCategoriesByRootcategory(request,response);
+		Map<String,List> returnMap = new HashMap<String,List>();
+		returnMap.put("list",categories);
+		System.out.println("$$$$$$$$$$$$$$$$"+returnMap);
+		return toJson(returnMap);
+	}
+	
+	/*public String getTotalAmmountBySuperPOID(HttpServletRequest request , HttpServletResponse response)
+	{
+		
+		String fk_superpo_id1= request.getParameter("fk_superpo_id1");
+		POAccountHelper helper  = new POAccountHelper();
+		Map map = helper.getTotalAmmountBYPOSUID(fk_superpo_id1);
+		Map<String,List> returnMap = new HashMap<String,List>();
+		String xyz= toJson(map); 
+		System.out.println(xyz);
+		return xyz;
+	}*/
+	
+	public String getSupplier(HttpServletRequest request , HttpServletResponse response)
+	{
+		
+		String supplierName= request.getParameter("supplierName");
+		Long suppilerId = Long.parseLong(supplierName);
+		SupplierDetailHelper helper  = new SupplierDetailHelper();
+		Map map = helper.getEditSupplier(suppilerId);
+		Map<String,List> returnMap = new HashMap<String,List>();
+		String xyz= toJson(map); 
+		System.out.println(xyz);
+		return xyz;
+	}
+	
+	public String getEmployee(HttpServletRequest request , HttpServletResponse response)
+	{
+		
+		String firstName= request.getParameter("firstName");
+		Long empId = Long.parseLong(firstName);
+		EmployeeDetailsHelper helper  = new EmployeeDetailsHelper();
+		Map map = helper.getEditEmployee(empId);
+		Map<String,List> returnMap = new HashMap<String,List>();
+		String xyz= toJson(map); 
+		System.out.println(xyz);
+		return xyz;
+	}
+	
+	/*public String getSubCategoriesByRootcategoryForPO(HttpServletRequest request , HttpServletResponse response)
+	{
+		PODetailHelper helper  = new PODetailHelper();
+		List categories =  helper.getSubCategoriesByRootcategory(request,response);
+		Map<String,List> returnMap = new HashMap<String,List>();
+		returnMap.put("list",categories);
+		System.out.println("$$$$$$$$$$$$$$$$"+returnMap);
+		return toJson(returnMap);
+	}
+	*/
+	public String getItemsBYCatandSubCategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		String catID= request.getParameter("catId");
+		String subCatID=request.getParameter("subCatId");
+		ItemDetailHelper helper= new ItemDetailHelper();
+		Map map = helper.getItemsBYCatandSubCategory(catID, subCatID);
+		String xyz= toJson(map); 
+		System.out.println(xyz);
+		return xyz;
+	}
+	
+	public String getLeafcatBYCatandSubCategory(HttpServletRequest request , HttpServletResponse response){
+		
+		String catID= request.getParameter("catId");
+		String subCatID=request.getParameter("subCatId");
+		ProductDetailHelper helper=new ProductDetailHelper();
+		Map leafcat = helper.getLeafcatBYCatandSubCategory(catID, subCatID);
+		String aa=toJson(leafcat);
+		System.out.println(aa);
+		return aa;
+	}
+	
+	public String getItemDetails(HttpServletRequest request , HttpServletResponse response)
+	{
+		String itemName= request.getParameter("itemId");
+		ItemDetailHelper helper = new ItemDetailHelper();
+		Map items =	helper.getItemDetails(itemName);
+		String xyz= toJson(items); 
+		System.out.println(xyz);
+	    return xyz;
+	}
+	
+	public String getitemsByProducts(HttpServletRequest request , HttpServletResponse response)
+	{
+		String productId= request.getParameter("productId");
+		ItemStockHelper helper  = new ItemStockHelper();
+		Map items =	helper.getitemsByProducts(productId);
+		String xyz= toJson(items); 
+		System.out.println(xyz);
+	    return xyz;
+	}
+	
+	public String getcolorByProducts(HttpServletRequest request , HttpServletResponse response)
+	{
+		String itemId= request.getParameter("itemId");
+		ItemStockHelper helper  = new ItemStockHelper();
+		Map items =	helper.getcolorByProducts(itemId);
+		String xyz= toJson(items); 
+		System.out.println(xyz);
+	    return xyz;
+	}
+	
+	public String regSubCategory(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		SubCategoryHelper helper = new SubCategoryHelper();
+		helper.regSubCategory(request, response);	
+		return toJson("Data Added Successfully");
+	}
+	
+	public String regMainLevelMater(HttpServletRequest request , HttpServletResponse response)
+	{
+		MainLevelMasterHelper helper = new MainLevelMasterHelper();
+		helper.regMainLevelMaster(request, response);
+		return toJson("Data Added Successfully");
+	}
+	
+	public String regSubLevelMater(HttpServletRequest request , HttpServletResponse response)
+	{
+		SubLevelMasterHelper helper = new SubLevelMasterHelper();
+		helper.registerSubLevelMaster(request, response);
+		return toJson("Data Added Successfully");
+	}
+	
+	public String regLeafLevelMater(HttpServletRequest request , HttpServletResponse response)
+	{
+		LeafLevelMAsterHelper helper = new LeafLevelMAsterHelper();
+		helper.registerLeafLevelMaster(request, response);
+		return toJson("Data Added Successfully");
+	}
+	
+	public String regLeafCategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		LeafCategoryHelper helper = new LeafCategoryHelper();
+		helper.registerLeafCat(request, response);
+		return toJson("Data Added Successfully");
+	}
+	
+  /*public String validateName(String sname)
+  {
+	  System.out.println("IN CONTROLLER");
+	  SupplierDetailHelper helper = new SupplierDetailHelper();
+	  helper.getSupplierName(sname);
+	  return sname;
+	  
+  }*/
+  
+ 
+  public String regItemStock(HttpServletRequest request , HttpServletResponse response)
+  {
+	  System.out.println("IN CONTROLLER");
+	   ItemStockHelper helper = new ItemStockHelper();
+	   helper.registeritemStock(request, response);
+	   return toJson("Data Added Successfully");
+	   
+	
+  }
+  
+  
+  public String regPODetails(HttpServletRequest request , HttpServletResponse response)
+  {
+	  System.out.println("IN CONTROLLER");
+   PODetailHelper helper = new PODetailHelper();
+   helper.regPoDetail(request, response);
+   return toJson("Data Added Successfully");
+  }
+  
+  public String regStockDetail(HttpServletRequest request , HttpServletResponse response)
+  {
+	  System.out.println("IN CONTROLLER");
+	   StockDetailHelper helper = new StockDetailHelper();
+	   helper.registerStockDetail(request, response);
+	   return toJson("Data Added Successfully");
+	   
+	
+  }
+  
+  public String regParcelEntry(HttpServletRequest request , HttpServletResponse response)
+  {
+	  System.out.println("IN CONTROLLER");
+	  ParcelEntryHelper helper = new  ParcelEntryHelper();
+	   helper.parcelEntryDetails(request, response);
+	   return toJson("Data Added Successfully");
+	   
+	
+  }
+  
+  public String regCouponDetails(HttpServletRequest request , HttpServletResponse response)
+  {
+	  System.out.println("IN CONTROLLER");
+	  CouponDetailsHelper helper = new  CouponDetailsHelper();
+	   helper.couponDetailsHelp(request, response);
+	   return toJson("Data Added Successfully");
+	   
+	
+  }
+  
+  public String regOfferDetail(HttpServletRequest request,HttpServletResponse response) throws IOException
+  {
+		OfferDetailHelper helper=new OfferDetailHelper();
+		helper.offerDetails(request, response);
+		return toJson("Data Added Successfully");
+		
+	}
+  
+
+	public String regShop(HttpServletRequest request,HttpServletResponse response)
+	{
+		ShopDetailHelper helper=new ShopDetailHelper();
+		helper.doShopReg(request, response);
+		return toJson("Data Added Successfully");
+		
+	}
+  
+  public String regDetails(HttpServletRequest request , HttpServletResponse response)
+  {
+	  System.out.println("IN CONTROLLER");
+	  EmployeeDetailsHelper edh = new EmployeeDetailsHelper();
+	  edh.employeeDetails(request, response);
+	  return toJson("Data Added Successfully");
+	   
+	
+  }
+  
+  public String regEmpEdit(HttpServletRequest request , HttpServletResponse response)
+  {
+	  System.out.println("IN CONTROLLER");
+	  EmployeeDetailsHelper edh = new EmployeeDetailsHelper();
+	
+	  edh.employeeEdit(request, response);
+	  return toJson("Data Updated Successfully");
+	   
+	
+  }
+  
+  public String regRootCategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		RootCategoryHelper helper = new RootCategoryHelper();
+		helper.regRootCategory(request, response);
+		return toJson("Data Added Successfully");
+	}
+  
+  public String regempAttend(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+	    EmpAttendancetHelper helper = new EmpAttendancetHelper();
+		helper.regsterEmpAttend(request, response);	
+		return toJson("Data Added Successfully");
+	}
+  
+  public String getAttendanceByEmp(HttpServletRequest request,HttpServletResponse response)
+	{
+	    String EmpName= request.getParameter("EmpName");
+	    EmpAttendancetHelper helper = new EmpAttendancetHelper();
+	    Map map = helper.getAttemp(Long.parseLong(EmpName));
+	    String xyz= toJson(map); 
+		System.out.println(xyz);
+		return xyz;
+	}
+
+public String regBroker(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+	    BrokerHelper helper = new BrokerHelper();
+		helper.regsterBroker(request, response);	
+		return toJson("Data Added Successfully");
+	}
+  
+  public String regCustfeed(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		CustomerfeedHelper helper = new CustomerfeedHelper();
+		helper.regCustfeed(request, response);	
+		return toJson("Data Added Successfully");
+	}
+  
+  public String regCustCredit(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		CustCreditHelper helper = new CustCreditHelper();
+		helper.regsterCustCredit(request, response);	
+		return toJson("Data Added Successfully");
+	}
+  
+  public String regleavede(HttpServletRequest request,HttpServletResponse response)
+ 	{
+ 		
+ 		LeaveDetailHelper helper = new LeaveDetailHelper();
+ 		helper.regsterLeaveDetail(request, response);	
+ 		return toJson("Data Added Successfully");
+ 	}
+  
+  public String regVisitor(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+	    VisitorHelper helper = new VisitorHelper();
+		helper.regsterVisitor(request, response);	
+		return toJson("Data Added Successfully");
+	}
+  
+  public String regcashbook(HttpServletRequest request,HttpServletResponse response)
+ 	{
+ 		
+ 	    CashBankHelper helper = new CashBankHelper();
+ 		helper.regsterCashBank(request, response);	
+ 		return toJson("Data Added Successfully");
+ 	}
+  
+  public String regTaxCreation(HttpServletRequest request , HttpServletResponse response)
+	{
+		  System.out.println("IN CONTROLLER");
+	   TaxCreationHelper helper = new TaxCreationHelper();
+	   helper.registerTAx(request, response);
+	   return toJson("Data Added Successfully");
+		   
+		
+	}
+	
+	public String regTemp(HttpServletRequest request , HttpServletResponse response)
+	{
+		  System.out.println("IN CONTROLLER");
+	  TemporaryStockHelper thelper = new TemporaryStockHelper();
+	   thelper.regTemporaryStock(request, response);
+	   return toJson("Data Added Successfully");
+		   
+		
+	}
+	
+	public String getAllCurrentStockReport(HttpServletRequest request , HttpServletResponse response){
+		ItemStockHelper helper = new ItemStockHelper();
+	    List stockList =helper.getCurrentStockBYColor();
+	    return toJson(stockList);
+	}
+	
+	
+	public String getAllCategoryReport(HttpServletRequest request , HttpServletResponse response){
+		CategoryHelper helper = new CategoryHelper();
+	    List stockList =helper.getCategoryName();
+	    
+	    
+	    Map<String,List> returnMap = new HashMap<String,List>();
+		returnMap.put("list",stockList);
+		System.out.println("$$$$$$$$$$$$$$$$"+returnMap);
+		return toJson(returnMap);
+	}
+	
+	
+	
+	public String reggoodsReceipt(HttpServletRequest request , HttpServletResponse response)
+	{
+		  System.out.println("IN CONTROLLER");
+	  GoodsReceiptHelper thelper = new GoodsReceiptHelper();
+	   thelper.reggoods(request, response);
+	   return toJson("Data Added Successfully");
+		   
+		
+	}
+	public String getAllCurrentStockGraph(HttpServletRequest request , HttpServletResponse response){
+		
+		
+		ItemStockHelper helper= new ItemStockHelper();
+		Map map = helper.getAllCurrentStock();
+		String xyz= toJson(map); 
+		System.out.println(xyz);
+		return xyz;
+		
+	}
+	
+	
+	public String returngoodsReceipt(HttpServletRequest request , HttpServletResponse response)
+	{
+		  System.out.println("IN CONTROLLER");
+	  GoodsReturnHelper thelper = new GoodsReturnHelper();
+	   thelper.reggoods(request, response);
+	   return toJson("Data Added Successfully");
+		   
+		
+	}
+	
+	
+	
+	public String getItemsByBill(HttpServletRequest request , HttpServletResponse response)
+	{
+		String billNo= request.getParameter("billNo");
+		PODetailHelper helper= new PODetailHelper();
+		Map map = helper.getItemsBYBILL(billNo);
+		String xyz= toJson(map); 
+		System.out.println(xyz);
+		return xyz;
+	}
+	
+	 public String regLoyalityProgram(HttpServletRequest request,HttpServletResponse response)
+		{
+			
+		    LoyalityProgramHelper helper = new LoyalityProgramHelper();
+			helper.regsterLoyProgram(request, response);	
+			return toJson("Data Added Successfully");
+		}
+	
+
+	  public String regPOAccount(HttpServletRequest request,HttpServletResponse response)
+		{
+			
+		    POAccountHelper helper = new POAccountHelper();
+			helper.regsterPOaccount(request, response);	
+			return toJson("Data Added Successfully");
+		}
+	  
+	  
+	  public String doauthoritySlip(HttpServletRequest request , HttpServletResponse response)
+	  {
+		  System.out.println("IN CONTROLLER");
+		 AuthoritySlipHelper  edh = new AuthoritySlipHelper();
+		  edh.doauthoritySlip(request, response);
+		  return toJson("Data Added Successfully");
+		   
+		
+	  }	
+	  
+	  public String getSAllBillBYSuppliers(HttpServletRequest request , HttpServletResponse response)
+		{
+			String supplierId= request.getParameter("supplier");
+			PODetailHelper helper= new PODetailHelper();
+			Map map = helper.getSAllBillBYSuppliers(supplierId);
+			String xyz= toJson(map); 
+			System.out.println(xyz);
+			return xyz;
+		}
+		
+	  public String getTotalAmtByBillNO(HttpServletRequest request , HttpServletResponse response)
+		{
+			String billNo= request.getParameter("billNo");
+			PODetailHelper helper= new PODetailHelper();
+			Map map = helper.getTotalAmtByBillNO(billNo);
+			String xyz= toJson(map); 
+			System.out.println(xyz);
+			return xyz;
+		}
+	  
+	  public String regemployeecashbook(HttpServletRequest request , HttpServletResponse response)
+	  {
+		  System.out.println("IN CONTROLLER");
+		  EmployeeDetailsHelper edh = new EmployeeDetailsHelper();
+		  edh.regemployeecashbook(request, response);
+		  return toJson("Data Added Successfully");
+		   
+		
+	  }
+	  public String regcreditcustcashbook(HttpServletRequest request , HttpServletResponse response)
+	  {
+		  System.out.println("IN CONTROLLER");
+		  CustCreditHelper  edh = new CustCreditHelper();
+		  edh.regcustloyeecashbook(request, response);
+		  return toJson("Data Added Successfully");
+		   
+		
+	  }	
+	  
+	  public String fetchCust(HttpServletRequest request , HttpServletResponse response){
+			
+			CustomerOrderHelper  helper=new CustomerOrderHelper();
+			CustomerBean customer =  helper.getDetailsById(request,response);
+			Map<String,CustomerBean> returnMap = new HashMap<String,CustomerBean>();
+			returnMap.put("offer",customer);
+			System.out.println("$$$$$$$$$$$$$$$$"+returnMap);
+			return toJson(returnMap);
+		}
+
+
+	public String getSalesmanName(HttpServletRequest request , HttpServletResponse response){
+		
+		EmployeeDetailsHelper helper=new EmployeeDetailsHelper();
+		SalesmanDetailBean sales=helper.getSalesmanDetail(request,response);
+		Map<String,SalesmanDetailBean> returnMap = new HashMap<String,SalesmanDetailBean>();
+		returnMap.put("offer",sales);
+		System.out.println("$$$$$$$$$$$$$$$$"+returnMap);
+		return toJson(returnMap);
+	}
+		
+	public String doCustomerOrder(HttpServletRequest request,HttpServletResponse response){
+			
+			CustomerOrderHelper helper=new CustomerOrderHelper();
+			helper.doCustomer(request, response);
+			return toJson("Data Added Successfully");
+		}
+
+	  
+	  
+}
+

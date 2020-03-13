@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+ 
+ <hibernate-mapping>
+   
+    <class
+       name="com.smt.hibernate.TaxCreation" 
+    table="tax_creation"
+>
+
+    <id
+        name="taxId"
+        type="java.lang.Long"
+        column="pk_tax_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+         
+    <property
+        name="taxType"
+        type="java.lang.String"
+        column="tax_Type"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="taxPercentage"
+        type="java.lang.Double"
+        column="tax_Percentagwe"
+        not-null="true"
+        length="128"
+    />
+     <property
+        name="iaActive"
+        type="java.lang.String"
+        column="is_active_YN"
+        not-null="true"
+        length="1"
+    />
+    
+    
+    </class>
+ 
+ </hibernate-mapping>

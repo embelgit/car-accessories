@@ -1,0 +1,78 @@
+package com.smt.dao;
+
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.EmployeeList;
+import com.smt.bean.ParcelEntryBean;
+import com.smt.hibernate.ParcelEntry;
+import com.smt.utility.HibernateUtility;
+
+public class ParcelEntryDao {
+	
+			public void valParcelEntry(ParcelEntry pentry1){
+				
+				HibernateUtility hbu = HibernateUtility.getInstance();
+				
+				Session session = hbu.getHibernateSession();
+				Transaction transaction = session.beginTransaction();
+				
+				DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+				Date dateobj = new Date();
+				System.out.println(df.format(dateobj));
+				pentry1.setInsertDate(dateobj);
+				
+				
+				session.save(pentry1);
+				transaction.commit();
+				hbu.closeSession(session);
+				}
+			
+			
+			public List getAllParcelDetail()
+			{
+				HibernateUtility hbu = HibernateUtility.getInstance();
+				Session session = hbu.getHibernateSession();
+				Query query = session.createQuery("from ParcelEntry");
+				List list = query.list();
+				hbu.closeSession(session);
+				
+				return list;
+				/*List <Object[]> list=query.list();
+				List<ParcelEntryBean> eBean = new ArrayList<ParcelEntryBean>(0);
+				
+				for (Object[] object : list) {
+					 System.out.println(Arrays.toString(object));
+					 
+					 ParcelEntryBean empBean = new ParcelEntryBean();
+					 	empBean.setPkParcelEntryId(Long.parseLong(object[0].toString()));
+					 	empBean.setInvoiceNo(Long.parseLong(object[1].toString()));
+					 	empBean.setSupplierName(object[2].toString());
+					 	empBean.setChallanNo(Long.parseLong(object[3].toString()));
+					 	empBean.setTransportName(object[4].toString());
+					 	empBean.setInvoiceNo(Long.parseLong(object[5].toString()));
+					 	
+					 	empBean.setPaidAmount(Double.parseDouble(object[6].toString()));
+					 	empBean.setTransportFees(Double.parseDouble(object[7].toString()));
+					 	empBean.setTotalPaid(Double.parseDouble(object[8].toString()));
+					 	empBean.setCheckInBy(object[9].toString());
+					 	empBean.setInsertDate(object[10].toString());
+					 	empBean.setCheckedBy(object[11].toString());
+					 	
+					 	eBean.add(empBean);
+				}
+					return eBean;*/
+			}
+			
+	
+
+}

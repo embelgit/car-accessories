@@ -1,0 +1,371 @@
+
+
+
+function showData() {
+        var theSelect = demoForm.item_details_id;
+        var item_details_id = document.getElementById('item_details_id');
+        item_details_id.innerHTML = ('This option\'s index number is: ' + theSelect.selectedIndex );
+        
+    }
+
+
+
+
+function itemStockADd(){
+	
+	if(document.itemst.productId.value == "")
+	{
+		alert("Please Select Product Name!!!");
+		return false;
+	}
+	
+	if(document.itemst.itemId.value == "")
+	{
+		alert("Please Select Item Name!!!");
+		return false;
+	}
+	
+	if(document.itemst.color.value == "")
+	{
+		alert("Please Select Color Name!!!");
+		return false;
+	}
+	
+	if(document.itemst.size.value == "")
+	{
+		alert("Please Select Size!!!");
+		return false;
+	}
+	
+	if(document.itemst.branch.value == "")
+	{
+		alert("Please Enter Branch Name!!!");
+		return false;
+	}
+	
+	var letterNumber = /^[a-zA-Z]+$/;  
+	if(document.itemst.branch.value.match(letterNumber)) 
+	{
+		if(document.itemst.defectiveQty.value == "")
+		{
+			alert("Please Enter Defective Quntity!!!");
+			return false;
+		}
+		
+		var letterNumber = /^[0-9]+$/;  
+		if(document.itemst.defectiveQty.value.match(letterNumber)) 
+		{
+			
+			/*if(document.itemst.normalQty.value == "")
+			{
+				alert("Please Enter Normal Quntity!!!");
+				return false;
+			}
+			
+			var letterNumber = /^[0-9]+$/;  
+			if(document.itemst.normalQty.value.match(letterNumber)) 
+			{
+*/				if(document.itemst.stock.value == "")
+				{
+					alert("Please Enter Stock!!!");
+					return false;
+				}
+				
+				var letterNumber = /^[0-9]+$/;  
+				if(document.itemst.stock.value.match(letterNumber)) 
+				{
+					iteme();
+					
+				}
+				else
+				{
+					alert("Please Enter Numbers Only Stock Column");
+					return false;
+				}	
+		/*		
+			}
+			else
+			{
+				alert("Please Enter Numbers Only Normal Qty Column");
+				return false;
+			}	*/
+			
+		}
+		else
+		{
+			alert("Please Enter Numbers Only In Defective Qty Column");
+			return false;
+		}	
+		
+	}
+	else
+	{
+		alert("Please Enter Alphabets Only In Branch Column");
+		return false;
+	}	
+
+}
+      
+       function iteme(){
+	
+	
+			var branch= $('#branch').val();
+			var defectiveQty = $('#defectiveQty').val();
+			var normalQty=$('#normalQty').val();
+		   var stock=$('#stock').val();
+		   var productId=$('#productId').val();
+         var itemId=$('#itemId').val();
+
+				
+			var params= {};
+			
+			params ["branch"] = branch;
+			params ["defectiveQty"] = defectiveQty;
+			params ["stock"] = stock;
+			params ["productId"] = productId;
+			params ["itemId"] = itemId;
+			
+			
+			params["methodName"] = "regItemStock";
+	    	
+	    	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	    	{
+	    				alert(data);
+	    			}
+	    	    	).error(function(jqXHR, textStatus, errorThrown){
+	    	    		if(textStatus==="timeout") {
+	    	    			$(loaderObj).hide();
+	    	    			$(loaderObj).find('#errorDiv').show();
+	    	    		}
+	    	    	});
+	    	
+	    }
+	  
+function stockHelper()
+{
+	var offerList="";
+	this.getAllCurrentStock = getAllCurrentStock;
+	this.getAllCurrent=getAllCurrent;
+	this.fillItemList = fillItemList;
+
+	function fillItemList()
+	{
+		var supplierName = $("#supplierName").val();
+		var categoryName = $("#categoryName").val();
+		var subCategoryName = $("#subCategoryName").val();
+		var leafCategoryName = $("#leafCategoryName").val();
+		var itemName = $("#itemName").val();
+		var color=$("#color").val();
+		var size=$("#size").val();
+		//var mrp=$("#mrp").val();
+		//var totalQuantity=$("#totalQuantity").val();
+		//var soldQuantity=$("#soldQuantity").val();
+		var availableQuantity=$("#availableQuantity").val();
+		//var valuation=$("#valuation").val();
+	}
+
+	function getAllCurrentStock()
+	{
+		var params= {};
+		
+		params["methodName"] = "getAllCurrentStockReport";
+
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			alert(data);
+			var jsonData = $.parseJSON(data);
+			var catmap = jsonData.list;
+			$.each(jsonData,function(i,v)
+
+					{
+				var supplierName =v.supplierName;
+				var categoryName =v.categoryName;
+				var subCategoryName = v.subCategoryName;
+				var leafCategoryName = v.leafCategoryName;
+				var itemName =v.itemName;
+				var color=v.color;
+				var size=v.size;
+				//var mrp=v.mrp;
+				//var totalQuantity=v.totalQuantity;
+				//var soldQuantity=v.soldQuantity;
+				var availableQuantity=v.availableQuantity;
+				//var valuation=v.valuation;
+
+				jsonData[jsonData]={supplierName:"",categoryName:"",subCategoryName:"",leafCategoryName:"",itemName:"",color:"",size:"",availableQuantity:""};
+				$("#list4").jqGrid({
+					datatype: "local",
+					//editurl: 'clientArray',
+					height: 350,
+					colNames:['supplierName','categoryName', 'subCategoryName','leafCategoryName', 'itemName', 'color', 'size','availableQuantity'],
+					colModel:[
+					          {name:'supplierName'},
+					          {name:'categoryName'},
+					          {name:'subCategoryName',
+					        
+					          },
+					          {name:'leafCategoryName',
+					        	  editable: true
+					          },
+					          {name:'itemName',
+					        	  editable: true
+					          },
+					          {name:'color',
+					        	  //editable: "readonly",
+					        	  editable: true
+
+					          },
+					             {name:'size',
+					        	  //editable: "readonly",
+					        	  editable: true
+
+					          },
+					           {name:'availableQuantity',
+					        	  //editable: "readonly",
+					        	  editable: true
+
+					          },
+					           ],
+
+					          sortname: 'ID',
+					          sortorder : 'desc',
+					          loadonce: true,
+					          viewrecords: true,
+
+
+					          caption: "Local salary data added to salaries table",
+				});
+
+				var mydata = jsonData;
+				for(var i=0;i<mydata.length;i++){$("#list4").addRowData(i,mydata[i]);
+				}
+
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+						$(loaderObj).hide();
+						$(loaderObj).find('#errorDiv').show();
+					}
+				});
+	}
+
+
+
+
+function getAllCurrent(){
+	
+	var params= {};
+	
+	params["methodName"] = "getAllCurrentStockGraph";
+
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+			{
+		alert(data)
+		var jsonData = $.parseJSON(data);
+		var catmap = jsonData.list;
+		$.each(jsonData,function(i,v)
+
+				{
+				var quantity=v.quantity;
+				var stock=v.stock;
+	
+});
+});
+}
+}
+var stock = new stockHelper();
+			
+			
+function ItemHelper()
+
+{
+
+	this.getitems = getitems;
+	//this.fillItemList = fillItemList;
+
+	//var items="";
+
+	function fillItemList()
+	{
+		var productId = $("#productId").val();
+		var itemId = $("#itemId").val();
+
+
+	}
+	function getitems()
+	{
+		var productId = $("#productId").val();
+		$("#itemId").empty();
+		$("#itemId").append($("<option></option>").attr("value","").text("Select items"));
+		var params= {};
+		params["methodName"] = "getitemsByProducts";
+		params["productId"]= productId;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData = $.parseJSON(data);
+			var catmap = jsonData.list;
+			$.each(jsonData,function(i,v)
+					{
+				$("#itemId").append($("<option></option>").attr("value",i).text(v.itemName)); 
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+				});
+
+	}
+
+
+
+}
+
+var stockhelper = new ItemHelper();
+
+
+function ItemColorHelper()
+
+{
+
+	this.getcolor = getcolor;
+	this.fillColorList = fillColorList;
+
+	//var items="";
+
+	function fillColorList()
+	{
+		var itemId = $("#itemId").val();
+		var color = $("#color").val();
+
+
+	}
+	function getcolor()
+	{
+		var itemId = $("#itemId").val();
+		$("#color").empty();
+		$("#size").empty();
+		$("#color").append($("<option></option>").attr("value","").text("Select color"));
+		$("#size").append($("<option></option>").attr("value","").text("Select size"));
+		var params= {};
+		params["methodName"] = "getcolorByProducts";
+		params["itemId"]= itemId;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData = $.parseJSON(data);
+			var catmap = jsonData.list;
+			$.each(jsonData,function(i,v)
+					{
+				$("#color").append($("<option></option>").attr("value",i).text(v.color));
+				$("#size").append($("<option></option>").attr("value",i).text(v.size));
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+				});
+			}
+}
+
+var colordETAILS = new ItemColorHelper();

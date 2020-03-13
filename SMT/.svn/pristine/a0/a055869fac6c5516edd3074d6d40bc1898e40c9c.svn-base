@@ -1,0 +1,86 @@
+package com.smt.helper;
+
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.CouponDetailsDao;
+import com.smt.hibernate.CouponDetails;
+
+public class CouponDetailsHelper {
+	
+	public void couponDetailsHelp(HttpServletRequest request, HttpServletResponse response){
+		
+			String couponName = request.getParameter("couponName");
+			String couponCode = request.getParameter("couponCode");
+			String couponType = request.getParameter("couponType");
+			String isSingleUse = request.getParameter("isSingleUse");
+			String isMultipleUse = request.getParameter("isMultipleUse");
+			String isActiveYn = request.getParameter("isActiveYn");
+			String createdBy = request.getParameter("createdBy");
+			String discountAmount = request.getParameter("discountAmount");
+			String percentageDiscount = request.getParameter("percentageDiscount");
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");
+			String insertDate = request.getParameter("insertDate");
+			String modifiedDate = request.getParameter("modifiedDate");
+			
+			
+		CouponDetails cd = new CouponDetails();
+		
+		//Strings--------
+		
+		cd.setCouponName(couponName);
+		cd.setCouponCode(couponCode);
+		cd.setCouponType(couponType);
+		cd.setCreatedBy(createdBy);
+		cd.setIsActiveYn(isActiveYn);
+		cd.setIsMultipleUse(isMultipleUse);
+		cd.setIsSingleUse(isSingleUse);
+		
+		
+		//BigDecimal----------
+		
+		
+	SimpleDateFormat format = new SimpleDateFormat("mm-dd-yyyy");
+		
+		Date adate = null;
+		try {
+		 adate=	format.parse(startDate);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		cd.setStartDate(adate);
+		
+		
+		Date adate1 = null;
+		try {
+			adate1=	format.parse(endDate);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		cd.setEndDate(adate1);
+		
+		BigDecimal bdc1 = new BigDecimal(discountAmount);
+		cd.setDiscountAmount(bdc1);
+		
+		BigDecimal bdc2 = new BigDecimal(percentageDiscount);
+		cd.setPercentageDiscount(bdc2);
+	
+		CouponDetailsDao cdao = new CouponDetailsDao();
+		cdao.valCouponDetails(cd);
+		
+		
+	}
+}

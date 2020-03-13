@@ -1,0 +1,308 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.ItemWisePrice;
+import com.smt.bean.PurchaseOrderReportBean;
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.Podetail;
+import com.smt.utility.HibernateUtility;
+
+public class PODetailDao {
+	
+	public Long valPODetail( Podetail  podetail)
+	{
+		String superPo = "";
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		
+		
+		
+		Long pk = (Long) session.save(podetail);
+		superPo = "SMT"+pk.toString();
+	
+	  transaction.commit();
+	  hbu.closeSession(session);
+	  return pk;
+	}
+	
+	public void updatePODetail( Podetail  podetail)
+	{
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(podetail);
+		transaction.commit();
+		hbu.closeSession(session);
+	 
+	}
+		
+		
+		
+		
+		
+	
+	public List getPurchaseDetailsDateWise(String fDate , String tDate)
+	{
+	
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createSQLQuery(" SELECT  po.po_id ,DATE(po.insertDate) ,  s.supplier_name , p.item_name , DATE(po.expectedDate) ,  po.quantity , po.unit_Price ,(po.quantity*po.unit_Price), po.total_Amount   from purchaseorderdetails po left join  supplier_details s ON po.fk_supplier_id=s.supplier_id left join product_details p ON p.fk_vendor_id=p.pk_product_id left join Item_Details i ON i.fk_product_id=i.pk_item_id   where po.insertDate BETWEEN :stDate AND :edDate");
+        query.setParameter("stDate", fDate);
+        query.setParameter("edDate", tDate);
+        List<Object[]> list = query.list();
+	 List<PurchaseOrderReportBean> polist = new ArrayList<PurchaseOrderReportBean>(0);
+
+        for (Object[] object : list) {
+        	System.out.println(Arrays.toString(object));
+        	PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+        	bean.setOrderId(Long.parseLong(object[0].toString()));
+        	bean.setInsertDate(object[1].toString());
+        	bean.setSupplierName(object[2].toString());
+        	//bean.setSupplierName(object[2].toString());
+        	bean.setProductName(object[3].toString());
+        	bean.setExpectedDate(object[4].toString());
+        	bean.setQuantity(Integer.parseInt(object[5].toString()));
+        	bean.setUnitPrice(Double.parseDouble(object[6].toString()));
+        	bean.setTotalAmount(Double.parseDouble(object[7].toString()));
+        	polist.add(bean);
+		}
+      /*  List<PODetailBean> polist = new ArrayList<PODetailBean>(0); 
+        for (Object[] objects : list)
+        {
+        	PODetailBean bean = new PODetailBean();
+        	//bean.set
+        	System.out.println("\n*****************"+objects[0]);
+        	System.out.println("\n*****************"+objects[1]);
+        	System.out.println("\n*****************"+objects[2]);
+        	
+        }*/
+       /* for(Object[] ob: list)
+        { 
+        	Bean bean = new Bean();
+        	String supplierId = ob[0].toString();
+        	bean.setSupplierId(Long.parseLong(supplierId));
+        	System.out.println(supplierId);
+        	String color = ob[1].toString();
+        	System.out.println(color);
+        }
+        */
+		return polist;
+	}	 
+        public List getPurchaseOrderDetailsByYEAR(Date startyear , Date endYear)
+		{
+		       
+			HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			Query query = session.createSQLQuery(" select po.poid ,po.insertDate , po.quantity , po.unitPrice , po.totalAmount ,  s.supplierName , p.itemName , from Podetail po left join  SupplierDetail s ON po.supplierId=s.supplierId left join ProductDetail p ON p.supplierId=p.pkProductId left join ItemDetail i ON i.fk_product_id=i.pkItemId   where p.insertDate BETWEEN :stDate AND :edDate");
+	        query.setParameter("stDate", startyear);
+	        query.setParameter("edDate", endYear);
+	        List list = query.list();
+	        
+	        for (Object object : list) {
+				System.out.println(object);
+			}
+		 
+		return list;
+        
+	}
+        
+        
+    
+     public List getPODetailsByBillNO(String billNo)
+     {
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			Query query = session.createSQLQuery("select  g.color , i.item_name  , g.quantity , g.unit_price ,i.pk_item_id ,s.supplier_name ,g.insertDate ,s.supplier_id from goodsreceipt g left join  supplier_details s ON g.fk_supplier_id=s.supplier_id left join item_details i ON g.fk_item_id=i.pk_item_id where billNo="+billNo);
+			
+			return query.list();
+			
+			
+     }
+     public List getSAllBillBYSuppliers(String supplierId)
+     {
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			Query query = session.createSQLQuery("select g.billNo  ,s.supplier_name  ,s.supplier_id from goodsreceipt g left join  supplier_details s ON g.fk_supplier_id=s.supplier_id left join item_details i ON g.fk_item_id=i.pk_item_id where g.fk_supplier_id="+supplierId);
+			
+			 List list = query.list();
+			 System.out.println(list);
+			 return list ;
+			 
+     }
+	
+     
+     public List getTotalAmtByBillNO(String billNo)
+     {
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			Query query = session.createSQLQuery("select floor(SUM(g.total_Amount)) ,g.billNo from goodsreceipt g where  g.billNo="+billNo );
+			
+			return query.list();
+			
+			
+     }
+     
+     public List getaTotalAmountBySupplier()
+     {
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			String sql = " SELECT ss.supplier_name , floor(SUM(s.total_Amount)) AS totalAMount ,floor(SUM(s.tax_vat)) ";
+            sql += " FROM goodsreceipt s left join supplier_details ss ON s.fk_supplier_id=ss.supplier_id ";
+            sql += " GROUP BY ss.supplier_name ";
+            
+            Query query = session.createSQLQuery(sql);
+            List<Object[]> list = query.list();
+            
+       	 List<PurchaseOrderReportBean> polist = new ArrayList<PurchaseOrderReportBean>(0);
+
+       	for (Object[] object : list) {
+			
+       		PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+       		bean.setSupplierName(object[0].toString());
+       		bean.setTotalAmount(Double.parseDouble(object[1].toString()));
+       		bean.setVatTotal(Double.parseDouble(object[2].toString()));
+       		System.out.println(Arrays.toString(object));
+       		
+       		
+       		polist.add(bean);
+		}
+       
+			return polist;
+            
+    	 
+     }
+     
+     public List getaTotalAmountByBill()
+     {
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			String sql = " SELECT s.billNo , floor(SUM(s.total_Amount)) AS totalAMount ,floor(SUM(s.tax_vat)) ";
+            sql += " FROM goodsreceipt s left join supplier_details ss ON s.fk_supplier_id=ss.supplier_id ";
+            sql += " GROUP BY s.billNo ";
+            
+            Query query = session.createSQLQuery(sql);
+            List<Object[]> list = query.list();
+            
+       	 List<PurchaseOrderReportBean> polist = new ArrayList<PurchaseOrderReportBean>(0);
+
+       	for (Object[] object : list) {
+			
+       		PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+       		bean.setSupplierName(object[0].toString());
+       		bean.setTotalAmount(Double.parseDouble(object[1].toString()));
+       		bean.setVatTotal(Double.parseDouble(object[2].toString()));
+       		System.out.println(Arrays.toString(object));
+       		
+       		
+       		polist.add(bean);
+		}
+       
+			return polist;
+            
+    	 
+     }
+	
+     
+     public List getaTotalAmountByItemWise()
+     {
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			String sql = " SELECT i.item_name , floor(SUM(g.total_Amount)) AS totalAMount ,floor(SUM(g.tax_vat)) ";
+            sql += " FROM goodsreceipt g left join item_details i ON g.fk_item_id=i.pk_item_id ";
+            sql += " GROUP BY i.item_name ";
+            
+            Query query = session.createSQLQuery(sql);
+            List<Object[]> list = query.list();
+            
+       	 List<PurchaseOrderReportBean> polist = new ArrayList<PurchaseOrderReportBean>(0);
+
+       	for (Object[] object : list) {
+			
+       		PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+       		bean.setProductName(object[0].toString());
+       		bean.setTotalAmount(Double.parseDouble(object[1].toString()));
+       		bean.setVatTotal(Double.parseDouble(object[2].toString()));
+       		System.out.println(Arrays.toString(object));
+       		
+       		
+       		polist.add(bean);
+		}
+       
+			return polist;
+            
+    	 
+     }
+     
+     
+     public List getItemAGeWise()
+     {
+    	 
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			Query query = session.createQuery("select i.itemName ,i.salePrice from ItemDetail i where i.salePrice >= 0 and i.salePrice <= 30");
+			 List<Object[]> list = query.list();
+			System.out.println(list);
+			
+			 List<ItemWisePrice> polist = new ArrayList<ItemWisePrice>(0);
+
+		       	for (Object[] object : list) {
+					
+		       		ItemWisePrice bean = new ItemWisePrice();
+		       		bean.setItemName((String)object[0]);
+		       		bean.setPrice((Double)object[1]);
+		       		System.out.println(Arrays.toString(object));
+		       		
+		       		
+		       		polist.add(bean);
+				}
+			return polist;
+			
+	
+     }
+     
+     
+     
+     public List getaTotalAmountByShopWise()
+     {
+    	 HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			String sql = " SELECT s.shop_name , floor(SUM(g.total_Amount)) AS totalAMount ,floor(SUM(g.tax_vat)) ";
+            sql += " FROM goodsreceipt g left join item_details i ON g.fk_item_id=i.pk_item_id  left join product_details p ON i.fk_product_id=p.pk_product_id  left join shop_detail s ON p.fk_shop_id = s.shop_id";
+            sql += " GROUP BY s.shop_name ";
+            
+            Query query = session.createSQLQuery(sql);
+            List<Object[]> list = query.list();
+            
+       	 List<PurchaseOrderReportBean> polist = new ArrayList<PurchaseOrderReportBean>(0);
+
+       	for (Object[] object : list) {
+			
+       		PurchaseOrderReportBean bean = new PurchaseOrderReportBean();
+       		bean.setShopName(object[0].toString());
+       		bean.setTotalAmount(Double.parseDouble(object[1].toString()));
+       		bean.setVatTotal(Double.parseDouble(object[2].toString()));
+       		System.out.println(Arrays.toString(object));
+       		
+       		
+       		polist.add(bean);
+		}
+       
+			return polist;
+            
+    	 
+     }
+     
+     
+     
+     
+}

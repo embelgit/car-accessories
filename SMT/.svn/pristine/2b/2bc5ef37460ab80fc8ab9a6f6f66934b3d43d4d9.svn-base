@@ -1,0 +1,269 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class ItemDetail implements Serializable {
+
+  
+
+	/** identifier field */
+    private Long pkItemId;
+
+    /** persistent field */
+    private Double buy_Price;
+
+    /** persistent field */
+    private String color;
+
+    /** persistent field */
+    private String isActiveYn;
+
+    /** persistent field */
+    private String isAlternative;
+
+    /** persistent field */
+    private Date isInsertDate;
+
+    /** persistent field */
+    private Date isModifiedDate;
+
+    /** persistent field */
+    private String itemName;
+
+    /** persistent field */
+    private Double salePrice;
+
+    /** persistent field */
+    private Long size;
+
+    /** persistent field */
+    private String MMCC;
+    
+    /** persistent field */
+    private String model;
+    
+    /** persistent field */
+    private String status;
+    
+    /** persistent field */
+    private com.smt.hibernate.BrandDetail brandDetail;
+
+    /** persistent field */
+    private com.smt.hibernate.ProductDetail productDetail;
+
+    /** persistent field */
+    private Set stockDetails;
+
+    /** persistent field */
+    private Set itemStocks;
+
+    /** persistent field */
+    private Set offerDetails;
+    
+    /** persistent field */
+    private Long fk_product_id;
+
+    /** full constructor */
+    public ItemDetail(Long pkItemId,String model,String MMCC,String status  ,Long fk_product_id, Double buy_Price, String color, String isActiveYn, String isAlternative, Date isInsertDate, Date isModifiedDate, String itemName, Double salePrice, Long size, com.smt.hibernate.BrandDetail brandDetail, com.smt.hibernate.ProductDetail productDetail, Set stockDetails, Set itemStocks, Set offerDetails) {
+        this.pkItemId = pkItemId;
+        this.buy_Price=buy_Price;
+        this.color = color;
+        this.isActiveYn = isActiveYn;
+        this.isAlternative = isAlternative;
+        this.isInsertDate = isInsertDate;
+        this.isModifiedDate = isModifiedDate;
+        this.itemName = itemName;
+        this.salePrice = salePrice;
+        this.size = size;
+        this.brandDetail = brandDetail;
+        this.productDetail = productDetail;
+        this.stockDetails = stockDetails;
+        this.itemStocks = itemStocks;
+        this.offerDetails = offerDetails;
+        this.fk_product_id=fk_product_id;
+        this.MMCC = MMCC;
+        this.status = status ;
+        this.model=model;
+    }
+
+   
+	/** default constructor */
+    public ItemDetail() {
+    }
+
+    public Long getPkItemId() {
+        return this.pkItemId;
+    }
+
+    public void setPkItemId(Long pkItemId) {
+        this.pkItemId = pkItemId;
+    }
+
+    
+
+    public String getModel() {
+		return model;
+	}
+
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+
+	public String getColor() {
+        return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getIsActiveYn() {
+        return this.isActiveYn;
+    }
+
+    public void setIsActiveYn(String isActiveYn) {
+        this.isActiveYn = isActiveYn;
+    }
+
+    public String getIsAlternative() {
+        return this.isAlternative;
+    }
+
+    public void setIsAlternative(String isAlternative) {
+        this.isAlternative = isAlternative;
+    }
+
+    public Date getIsInsertDate() {
+        return this.isInsertDate;
+    }
+
+    public void setIsInsertDate(Date isInsertDate) {
+        this.isInsertDate = isInsertDate;
+    }
+
+    public Date getIsModifiedDate() {
+        return this.isModifiedDate;
+    }
+
+    public void setIsModifiedDate(Date isModifiedDate) {
+        this.isModifiedDate = isModifiedDate;
+    }
+
+    public String getItemName() {
+        return this.itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+  
+   
+	public Double getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public Long getSize() {
+        return this.size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public com.smt.hibernate.BrandDetail getBrandDetail() {
+        return this.brandDetail;
+    }
+
+    public void setBrandDetail(com.smt.hibernate.BrandDetail brandDetail) {
+        this.brandDetail = brandDetail;
+    }
+
+    public com.smt.hibernate.ProductDetail getProductDetail() {
+        return this.productDetail;
+    }
+
+    public void setProductDetail(com.smt.hibernate.ProductDetail productDetail) {
+        this.productDetail = productDetail;
+    }
+
+    public Set getStockDetails() {
+        return this.stockDetails;
+    }
+
+    public void setStockDetails(Set stockDetails) {
+        this.stockDetails = stockDetails;
+    }
+
+    public Set getItemStocks() {
+        return this.itemStocks;
+    }
+
+    public void setItemStocks(Set itemStocks) {
+        this.itemStocks = itemStocks;
+    }
+
+    public Set getOfferDetails() {
+        return this.offerDetails;
+    }
+
+    public void setOfferDetails(Set offerDetails) {
+        this.offerDetails = offerDetails;
+    }
+
+    public Double getBuy_Price() {
+		return buy_Price;
+	}
+
+
+	public void setBuy_Price(Double buy_Price) {
+		this.buy_Price = buy_Price;
+	}
+	
+	
+    public Long getFk_product_id() {
+		return fk_product_id;
+	}
+
+
+	public void setFk_product_id(Long fk_product_id) {
+		this.fk_product_id = fk_product_id;
+	}
+
+
+	public String getMMCC() {
+		return MMCC;
+	}
+
+
+	public void setMMCC(String mMCC) {
+		MMCC = mMCC;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	
+	
+
+	
+}

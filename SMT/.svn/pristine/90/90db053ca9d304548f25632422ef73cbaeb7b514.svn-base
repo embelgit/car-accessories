@@ -1,0 +1,185 @@
+package com.smt.helper;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+
+
+
+import org.apache.commons.lang.StringUtils;
+
+import com.smt.dao.OfferDetailDao;
+import com.smt.hibernate.OfferDetail;
+
+
+
+public class OfferDetailHelper {
+	
+	
+	
+	public void offerDetails(HttpServletRequest request, HttpServletResponse response) throws IOException
+	
+	{
+		FileInputStream fstream = new FileInputStream("C:/Users/ADITYA/Desktop/barcose/input.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+		FileWriter fw = new FileWriter("C:/Users/ADITYA/Desktop/barcose/Output.txt");
+		BufferedWriter bw = new BufferedWriter(fw);
+		String strLine;
+		String str1;
+
+		
+		
+		String discount=request.getParameter("discount");
+		String buyPrice = request.getParameter("buyPrice");
+		System.out.println("buyPrice"+buyPrice);
+		String commision = request.getParameter("commision");
+		System.out.println("comm"+commision);
+		String salePrice = request.getParameter("salePrice");
+		System.out.println("salePrice"+salePrice);
+		String item_id= request.getParameter("item_id");
+		System.out.println("item_id"+item_id);
+		String quantity=request.getParameter("quantity");
+		String shopName=request.getParameter("shopName");
+		String itemName=request.getParameter("itemName");
+		
+		OfferDetail odetail = new OfferDetail();
+		
+		BigDecimal bDecimal = new BigDecimal(buyPrice);
+		odetail.setBuyPrice(bDecimal);
+	
+	
+		
+		BigDecimal bDecimal1 = new BigDecimal(commision);
+		odetail.setCommision(bDecimal1);
+		
+		odetail.setItem_id(Long.parseLong(item_id));
+	
+		
+		BigDecimal bDecimal2 = new BigDecimal(salePrice);
+		odetail.setSalePrice(bDecimal2);
+		
+		BigDecimal bDecimal3=new BigDecimal(discount);
+		odetail.setDiscount(bDecimal3);
+		
+		System.out.println("=============================================++"+salePrice);
+		
+		
+		OfferDetailDao oddao = new OfferDetailDao();
+		oddao.valOfferDetail(odetail);
+		while ((strLine = br.readLine()) != null)   {
+			
+			if(strLine.equals("~item_id"))
+				
+			{
+				str1=br.readLine();
+	                strLine = str1 + item_id;
+	              
+	        	}
+			else if(strLine.equals("~price"))
+				
+	             {
+	                	 str1=br.readLine();
+	                     strLine = str1 + buyPrice;
+	                    
+	                    
+	             }
+				
+			 else if(strLine.equals("~commision"))
+					
+	            {
+				   
+					
+				   str1=br.readLine();
+					
+	                    strLine = str1 + commision;
+	                  
+	            }
+				
+			 else if(strLine.equals("~salePrice"))
+					
+	            {commision =StringUtils.leftPad(commision, 4,"0");
+					str1=br.readLine();
+	                    strLine = str1 + salePrice;
+	                  
+	            }
+				
+			 else if(strLine.equals("~quantity"))
+					
+	         {
+				 quantity =StringUtils.leftPad(quantity, 4,"0");
+					str1=br.readLine();
+	                 strLine = str1 + quantity;
+	               
+	         }
+				
+			 else if(strLine.equals("~shopName"))
+					
+	         {
+				 	//quantity =StringUtils.leftPad(quantity, 4,"0");
+					str1=br.readLine();
+	                 strLine = str1 + shopName;
+	               
+	         }
+				
+			 else if(strLine.equals("~itemName"))
+					
+	         {
+				 	//quantity =StringUtils.leftPad(quantity, 4,"0");
+					str1=br.readLine();
+	                 strLine = str1 + itemName;
+	               
+	         }
+				 
+				System.out.println(strLine);
+				bw.write(strLine+"\r\n");
+				
+			  // Print the content on the console
+			 // System.out.println (strLine);
+			}
+		
+		bw.close();
+		//Close the input stream
+		br.close();
+		List cmdAndArgs = Arrays.asList("cmd", "/c", "printbatch.bat");
+		File dir = new File("C:/Users/ADITYA/Desktop/barcose");
+
+		ProcessBuilder pb = new ProcessBuilder(cmdAndArgs);
+		pb.directory(dir);
+		Process p = pb.start();
+		/*// String filePath = "C:/Users/ADITYA/Desktop/barcose/printbatch.bat";
+		 String  filePath="C:/Users/ADITYA/Desktop/barcose/printbatch.bat";
+		//Process p = Runtime.getRuntime().exec(filePath);
+		 Runtime rn=Runtime.getRuntime();
+		 Process pr=rn.exec(filePath);*/
+		// System.out.println(p);
+//		 Process p = Runtime.getRuntime().exec(filePath);
+			}
+		
+		
+		
+	
+	public List getAllOffer(){
+		
+	OfferDetailDao dao=new OfferDetailDao();
+	return dao.getAllOffer();
+		
+	}
+	
+	
+	
+	
+	
+	}

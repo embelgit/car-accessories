@@ -1,0 +1,447 @@
+
+var sum=0;
+var length;
+var newrow;
+var rowId;
+function customerOrder(){
+	var params= {};
+	
+	 var customerMobileNo= $('#customerMobileNo').val();
+	 var customerFirstName= $('#customerFirstName').val();
+	 var PaymentType= $('#PaymentType').val();
+	
+	var count = jQuery("#list4").jqGrid('getGridParam', 'records');
+	var allRowsInGrid = $('#list4').getGridParam('data');
+	
+	var AllRows=JSON.stringify(allRowsInGrid);
+	for (var i = 0; i < count; i++) {
+		
+		
+		var offerId = allRowsInGrid[i].offerId;
+		params["offerId"+i] = offerId;
+		
+        var itemName = allRowsInGrid[i].itemName;
+		params["itemName"+i] = itemName;
+		 
+    	var color = allRowsInGrid[i].color;
+    	params["color"+i] = color;
+    	
+        var quantity = allRowsInGrid[i].quantity;
+    	params["quantity"+i] = quantity;
+    	
+    	
+        var salePrice = allRowsInGrid[i].salePrice;
+    	params["salePrice"+i] = salePrice;
+    	
+    	
+    	var vatPercentage = allRowsInGrid[i].vatPercentage;
+    	params["vatPercentage"+i] = vatPercentage;
+    	
+    	
+    	var total = allRowsInGrid[i].total;
+    	params["total"+i] = total;
+    	
+    	
+    	var totals=((quantity) * (salePrice)+(quantity) * (salePrice)/(vatPercentage));
+    	
+    	sum= sum + totals;
+    	
+	}
+	
+	
+ 	params["customerFirstName"] = customerFirstName;
+ 	params["customerMobileNo"] = customerMobileNo;
+ 	params["PaymentType"] = PaymentType;
+ 	params["count"] = count;
+ 	
+ 
+ 	
+ 	
+ 	params["methodName"] = "doCustomerOrder";
+ 	
+ 	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+ 	    	{
+ 				
+ 			}
+ 	    	).error(function(jqXHR, textStatus, errorThrown){
+ 	    		if(textStatus==="timeout") {
+ 	    			$(loaderObj).hide();
+ 	    			$(loaderObj).find('#errorDiv').show();
+ 	    		}
+ 	    	})}
+
+
+function groTot(){
+	
+	 document.getElementById("resolution").value = sum;
+	
+}
+
+function changeAmount ()
+{
+	  var amount=$('#amount').val();
+	  amount = sum-amount ;
+	  document.getElementById("changeAmt").value = amount;
+}
+
+
+/*else
+{
+	return false;
+}*/	
+
+function OfferHelper()
+{
+	
+	var offerList="";
+	this.getitemData = getitemData;
+	this.getSalesman=getSalesman;
+		
+	function getitemData(){ 
+		var value = document.getElementById("key").value;
+		if(value.length ==1){
+		
+		var params= {};
+		//var sam= $('#key').val();
+		//var mainId= $('#key').val();
+
+		params["methodName"] ="fetchCust";
+		params["key"]=value;
+		var count=0;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+ 	    	{
+ 				
+				var jsonData = $.parseJSON(data);
+			//	var catmap = data.offer;
+			//	alert(jsonData.offer);
+			
+				//var mainId= $('#key').val();
+				
+			
+		
+			
+		        function sumFmatter (cellvalue, options, rowObject)
+		        {
+		        	return    (options.rowData.quantity * options.rowData.salePrice+options.rowData.quantity * options.rowData.salePrice/(options.rowData.vatPercentage));
+		        }
+		        
+		        
+		       
+		       count = jQuery("#list4").jqGrid('getGridParam', 'records'); 
+		       var rowdata =$("#list4").jqGrid('getGridParam','data');
+		       //alert("ROWDATA"+rowdata);
+		       var ids = jQuery("#list4").jqGrid('getDataIDs');
+			 
+			
+			  var ori_quantity,offerId;
+			  for (var j = 0; j < count; j++) 
+			  {
+				offerId = rowdata[j].offerId;
+				//params["offerId"+i] = offerId;
+				 var rowId = ids[j];
+				 var rowData = jQuery('#list4').jqGrid ('getRowData', rowId);
+				
+				if (offerId==jsonData.offer.offerId) {
+			    	ori_quantity = rowdata[j].quantity+1;
+				//	alert(ori_quantity);
+			    	
+			    	$("#list4").jqGrid("setCell", rowId, "quantity", ori_quantity);
+			    	newrow=false;
+			    	break;
+				}
+				else
+				{
+					newrow = true;
+				}
+			 }
+			 if(newrow== true)
+			 {
+				 $("#list4").addRowData(count,jsonData.offer); 
+			 }
+			  			
+			for (var k = 0; k < count; k++) 
+				{
+			
+				}	
+			
+			$("#list4").jqGrid({
+				datatype: "local",
+				
+				colNames:['offerId','Item Name','color', 'Quantity', 'Price', 'VAT', 'Total','Employee Name'],
+				colModel:[ 
+				          
+				     {
+				    	 name:'offerId',
+				    	 hidden:true,
+				    	
+				    	 
+				     },
+				           
+				    {name:'itemName',
+						
+					},
+					{	name:'color'},
+					{	name:'quantity',
+						editable: true,
+						sorttype: "integer"
+					},
+					{	name:'salePrice',
+						
+					},
+					{	name:'vatPercentage',
+						
+					},
+					{	name:'total',
+						formatter: sumFmatter,
+						editable: "readonly",
+						editable: true
+					
+					},
+					{
+						name:'empName',
+						
+					}
+				],
+				footerrow: true,
+				userDataOnFooter: true,		
+				idPrefix : "a",
+				sortorder : 'desc',
+				loadonce: true,
+				viewrecords: true,
+				width: 780,
+                height: 200,
+                rowNum: 10,
+				pager: "#jqGridPager",
+				caption: "Local salary data added to salaries table",
+				
+			});
+			
+			if(count==0 || count==null)
+			{
+				
+				$("#list4").addRowData(0,jsonData.offer);
+			}
+			var value= $('#key').val('');
+		
+			 $('#list4').navGrid('#jqGridPager',
+		                // the buttons to appear on the toolbar of the grid
+		                { edit: true, add: false, del: true, search: true, refresh: true, view: true, position: "left", cloneToTop: false },
+		                // options for the Edit Dialog
+		                {
+		                    editCaption: "The Edit Dialog",
+		                    recreateForm: true,
+							checkOnUpdate : true,
+							checkOnSubmit : true,
+		                    closeAfterEdit: true,
+		                    errorTextFormat: function (data) {
+		                        return 'Error: ' + data.responseText
+		                    }
+		                },
+		                // options for the Add Dialog
+		                {
+		                    closeAfterAdd: true,
+		                    recreateForm: true,
+		                    errorTextFormat: function (data) {
+		                        return 'Error: ' + data.responseText
+		                    }
+		                },
+		                // options for the Delete Dailog
+		                {
+		                	closeAfterdel:true,
+		                	 recreateForm: true,
+		                	
+		                    errorTextFormat: function (data) {
+		                        return 'Error: ' + data.responseText
+		                    }
+		                		
+		               /* onSelectRow: function(id) {
+							if (id && id !== lastSel) {
+								jQuery("#list4").saveRow(lastSel, true, 'clientArray');
+								jQuery("#list4").editRow(id, true);
+								lastSel = id;
+								console.log(id);
+							}
+						}*/
+		                
+		               
+		                });
+			 
+			 
+				
+	//});
+				
+ 			})
+ 	    	.error(function(jqXHR, textStatus, errorThrown){
+ 	    		if(textStatus==="timeout") {
+ 	    			$(loaderObj).hide();
+ 	    			$(loaderObj).find('#errorDiv').show();
+ 	    		}
+ 	    	})
+	}
+}
+	
+	
+	function getSalesman(){
+		var value = document.getElementById("key").value;
+		if(value.length ==2){
+			
+			var params={};
+			params["methodName"]="getSalesmanName";
+			params["key"]=value;
+			$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+		 	    	{
+				var jsonData = $.parseJSON(data);
+				alert(data)
+				$.each(jsonData,function(i,v){
+				var empName=v.empName;
+				//$("#list4").addRowData(0,jsonData.offer);
+				$("#list4").jqGrid("setCell", rowId, "empName", empName);
+				newrow=false;
+				})	
+				})
+			
+		}
+		}
+}    
+var offer = new OfferHelper();
+
+/*************************Report Code*******************/
+	function saleHelper()
+{
+	var offerList="";
+	this.getSaleDetailsBetweenTwoDates = getSaleDetailsBetweenTwoDates;
+	this.fillItemList = fillItemList;
+
+	function fillItemList()
+	{
+		var startDate = $("#fDate").val();
+		var endDate = $("#tDate").val();
+		var OrderId = $("#OrderId").val();
+		var discount = $("#discount").val();
+		var soldDate = $("#soldDate").val();
+		var quantity=$("#quantity").val();
+		var SalePrice=$("#SalePrice").val();
+		var totalAmount=$("#totalAmount").val();
+		//var netAmount=$("#netAmount").val();
+		var tax=$("#tax").val();
+	}
+
+	function getSaleDetailsBetweenTwoDates()
+	{
+		var params= {};
+		var startDate = $("#fisDate").val();
+		var endDate = $("#endDate").val();
+
+
+		params["fisDate"]= startDate;
+		params["endDate"]= endDate;
+		params["methodName"] = "getSaleReportBetweenTwoDates";
+
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			//alert(data);
+			var jsonData = $.parseJSON(data);
+			var catmap = jsonData.list;
+			$.each(catmap,function(i,v)
+
+					{
+				var OrderId = v.orderId;
+				var discount = v.discount;
+				var soldDate = v.soldDate;
+				var quantity=v.quantity;
+				var SalePrice=v.SalePrice;
+				var totalAmount=v.totalAmount;
+				//var netAmount=$("#netAmount").val();
+				var tax=v.tax;
+
+				catmap[catmap]={OrderId:"",soldDate:"",SalePrice:"",quantity:"",discount:"",totalAmount:""};
+				$("#list4").jqGrid("clearGridData");
+				$("#list4").jqGrid({
+					datatype: "local",
+					//editurl: 'clientArray',
+					height: 350,
+					colNames:['OrderId','soldDate', 'SalePrice','quantity', 'discount', 'totalAmount'],
+					colModel:[
+					          {name:'orderId'},
+					          {name:'soldDate'},
+					          {name:'SalePrice',
+					        	  editoptions: 
+					        	  {value:1} ,
+
+					        	  editable: true
+					          },
+					          {name:'discount',
+					        	  editable: true
+					          },
+					          {name:'quantity',
+					        	  editable: true
+					          },
+					         
+					          {name:'totalAmount',
+					        	  //editable: "readonly",
+					        	  editable: true
+
+					          },
+					          ],
+
+					          sortname: 'ID',
+					          sortorder : 'desc',
+					          loadonce: true,
+					          viewrecords: true,
+
+
+					          caption: "Sale Report",
+				});
+
+				var mydata = catmap;
+				for(var i=0;i<mydata.length;i++){
+				$("#list4").addRowData(i,mydata[i]);
+			
+				}
+				 $('#list4').navGrid('#jqGridPager',
+			                // the buttons to appear on the toolbar of the grid
+			                { edit: true, add: false, del: true, search: true, refresh: true, view: true, position: "left", cloneToTop: false },
+			                // options for the Edit Dialog
+			                {
+			                    editCaption: "The Edit Dialog",
+			                    recreateForm: true,
+								checkOnUpdate : true,
+								checkOnSubmit : true,
+			                    closeAfterEdit: true,
+			                    errorTextFormat: function (data) {
+			                        return 'Error: ' + data.responseText
+			                    }
+			                },
+			                // options for the Add Dialog
+			                {
+			                    closeAfterAdd: true,
+			                    recreateForm: true,
+			                    errorTextFormat: function (data) {
+			                        return 'Error: ' + data.responseText
+			                    }
+			                },
+			                // options for the Delete Dailog
+			                {
+			                	closeAfterdel:true,
+			                	 recreateForm: true,
+			                	
+			                    errorTextFormat: function (data) {
+			                        return 'Error: ' + data.responseText
+			                    }
+			                
+			               
+			                });
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+						$(loaderObj).hide();
+						$(loaderObj).find('#errorDiv').show();
+					
+					}
+				});
+	}
+
+}
+
+var sale = new saleHelper();

@@ -1,0 +1,67 @@
+package com.smt.dao;
+
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sf.hibernate.odmg.Transaction;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.bean.NewOfferBean;
+import com.smt.bean.PODetailBean;
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.OfferDetail;
+import com.smt.utility.HibernateUtility;
+
+
+
+public class OfferDetailDao {
+	
+	
+	public void valOfferDetail(OfferDetail offerDetail){
+		
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		org.hibernate.Transaction transaction=session.beginTransaction();
+		//ItemDetail itemDetail = (ItemDetail) session.load(ItemDetail.class, new Long(1));
+		
+		//System.out.println("item_1"+itemDetail);
+		session.save(offerDetail);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+		
+		
+	}
+	
+	
+public List getAllOffer(){
+	
+	HibernateUtility hbu=HibernateUtility.getInstance();
+	Session session=hbu.getHibernateSession();
+	Query query = session.createSQLQuery(" select o.pk_itemoffer_id , i.item_name from offer_details o left join item_details i ON o.fk_item_id=i.pk_item_id group by i.item_name ");
+	List<Object[]> list = query.list();
+	
+	List<NewOfferBean> beans = new ArrayList<NewOfferBean>(0);
+	
+	
+		for (Object[] objects : list) {
+			NewOfferBean bean = new NewOfferBean();
+			bean.setOfferId(Long.parseLong(objects[0].toString()));
+			bean.setItemName(objects[1].toString());
+			
+			beans.add(bean);
+		}
+		return beans;
+		
+	
+	
+}
+
+
+
+}

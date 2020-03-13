@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.Category" 
+    table="categories"
+>
+
+    <id
+        name="pkCategoryId"
+        type="java.lang.Long"
+        column="pk_category_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="activeYn"
+        type="java.lang.String"
+        column="active_YN"
+        not-null="false"
+        length="1"
+    />
+    <property
+        name="categoryName"
+        type="java.lang.String"
+        column="category_name"
+        not-null="true"
+        length="128"
+    />
+    <property
+        name="isleafCat"
+        type="java.lang.String"
+        column="isleaf_cat"
+        not-null="false"
+        length="1"
+    />
+    <property
+        name="isrootCat"
+        type="java.lang.String"
+        column="isroot_cat"
+        not-null="false"
+        length="1"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to ProductDetail -->
+    <set
+        name="productDetails"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="fk_cat_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.ProductDetail"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

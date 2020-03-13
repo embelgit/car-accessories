@@ -1,0 +1,21 @@
+package com.smt.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.StockDetail;
+import com.smt.utility.HibernateUtility;
+
+public class StockDeatailDao {
+	
+	public void valStockDetail( StockDetail stockDetail)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(stockDetail);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+}

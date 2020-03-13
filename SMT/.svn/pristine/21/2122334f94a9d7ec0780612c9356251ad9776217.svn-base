@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.MainLevelMaster" 
+    table="main_level_master"
+>
+
+    <id
+        name="pkMainlevelId"
+        type="java.lang.Long"
+        column="pk_mainlevel_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="activeYn"
+        type="java.lang.String"
+        column="active_YN"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="isRootLevel"
+        type="java.lang.String"
+        column="is_root_level"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="levelId"
+        type="java.lang.Integer"
+        column="level_id"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="mainLevelName"
+        type="java.lang.String"
+        column="main_level_name"
+        not-null="true"
+        length="128"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to LeafLevelMaster -->
+    <set
+        name="leafLevelMasters"
+        lazy="true"
+        inverse="true"
+		cascade="save-update"
+    >
+        <key>
+            <column name="fk_main_level_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.LeafLevelMaster"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to SubLevelMaster -->
+    <set
+        name="subLevelMasters"
+        lazy="true"
+        inverse="true"
+		cascade="save-update"
+    >
+        <key>
+            <column name="fk_main_level_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.SubLevelMaster"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

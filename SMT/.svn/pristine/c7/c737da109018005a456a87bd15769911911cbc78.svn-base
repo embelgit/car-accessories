@@ -1,0 +1,47 @@
+package com.smt.helper;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.CategoryDao;
+import com.smt.dao.SubCategoryDao;
+import com.smt.hibernate.SubCategory;
+
+public class SubCategoryHelper {
+	
+	public void regSubCategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		
+		String isrootCat = request.getParameter("isrootCat");
+		System.out.println("sdcsd"+isrootCat);
+		String subcatName = request.getParameter("subcatName");
+		System.out.println("SubCat" +subcatName);
+		String activeYn = request.getParameter("activeYn");
+		System.out.println("active" +activeYn);
+        String isLeafCatId = request.getParameter("isLeafCatId");
+        System.out.println("sacsaa"+isLeafCatId);
+		String fkRootcatId = request.getParameter("fkRootcatId");
+		System.out.println("Cat Id" +fkRootcatId);
+        
+        SubCategory subCategory = new SubCategory();
+        subCategory.setIsrootCat(isrootCat);
+        subCategory.setSubcatName(subcatName);
+        subCategory.setActiveYn(activeYn);
+        subCategory.setFkRootcatId(Long.parseLong(fkRootcatId));
+        subCategory.setIsLeafCatId(isLeafCatId);
+        
+
+        
+        SubCategoryDao dao = new SubCategoryDao();
+        dao.valCategory(subCategory);
+	}
+	
+	public List getAllMainSubCategories()
+	{
+		SubCategoryDao dao = new SubCategoryDao();
+		return dao.getAllSubCategories();
+				
+	}
+}

@@ -1,0 +1,99 @@
+package com.smt.dao;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+
+
+
+
+
+
+
+
+import com.smt.bean.CustomerBirthday;
+import com.smt.bean.CustomerBean;
+import com.smt.bean.CustomerFeedbackBean;
+import com.smt.bean.VisitorBean;
+import com.smt.hibernate.CustFeedback;
+import com.smt.utility.HibernateUtility;
+
+public class CustFeedbackDao {
+	
+	public void valCustFeedback( CustFeedback custfeedback)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(custfeedback);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+	
+public List getCustFeedDetail(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select cust_id, customer_name, mobile_no, email, occupation, rating, feedback from customer_feedback");
+		
+		List <Object[]> list=query.list();
+		List<CustomerFeedbackBean> customerFeedBeans=new ArrayList<CustomerFeedbackBean>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 CustomerFeedbackBean customer =new CustomerFeedbackBean();
+			 customer.setCust_id(Long.parseLong(object[0].toString()));
+			 customer.setCustomer_name(object[1].toString());
+			 customer.setMobile_no(Long.parseLong(object[2].toString()));
+			 customer.setEmail(object[3].toString());
+			 customer.setOccupation(object[4].toString());
+			 customer.setRating(Long.parseLong(object[5].toString()));
+			 customer.setFeedback(object[6].toString());
+			 
+			 customerFeedBeans.add(customer);
+			 	 
+		}
+		return customerFeedBeans;
+		
+	}
+
+public List getAllCustBirthday(){
+   java.util.Date date = new java.util.Date();
+    
+    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+ 
+    String data = (dateFormat.format(date)); //2014/08/06 15:59:4
+    
+	HibernateUtility hbu = HibernateUtility.getInstance();
+	Session session = hbu.getHibernateSession();
+	Query query=session.createSQLQuery("select customer_name , mobile_no , birthday from customer_feedback where birthday="+data);
+	
+	List <Object[]> list=query.list();
+	List<CustomerBirthday> custb=new ArrayList<CustomerBirthday>(0);
+	for (Object[] object : list) {
+		 System.out.println(Arrays.toString(object));
+		 
+		 CustomerBirthday custbir =new CustomerBirthday();
+		 custbir.setCustomerName(object[0].toString());
+		 custbir.setMobileNO(Long.parseLong(object[1].toString()));
+		 custbir.setDofb(object[2].toString());
+	
+		
+		 custb.add(custbir);
+		 	 
+	}
+	return custb;
+	
+}
+
+
+
+}

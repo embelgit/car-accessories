@@ -1,0 +1,150 @@
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Payment Due Details (Supplier)</h2>
+	</div>
+	
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+    <script src="/SMT/staticContent/css/adi.css"></script>
+    <link href="/SMT/jsp/payment_due_detail(supplier).jsp" rel="stylesheet"/>
+    
+    <div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>		
+		
+<form action="paymentDueDetail(Supplier)" method="post" class="form-horizontal">
+	<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label>Supplier Name:</label>
+			</div>	
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">	
+				 <input type="text" name="supplierName" class="form-control" id="supplierName" placeholder="Supplier Name"> 
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> PO:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="po" class="form-control" id="po" placeholder="PO">
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Bill No:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="billNo" class="form-control" id="billNo" placeholder="Bill No">
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> PO Date:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="date" name="poDate" class="form-control" id="poDate" >
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Bill Date:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="date" name="billDate" class="form-control" id="billDate" >
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Total Amount:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="totalAmount" class="form-control" id="totalAmount" placeholder="Total Amount">
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Paid Cash:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="paidCash" class="form-control" id="paidCash" placeholder="Paid Cash">
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Total Credit:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="totalCredit" class="form-control" id="totalCredit" placeholder="Total Credit">
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> Credit Paid:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="creditPaid" class="form-control" id="creditPaid" placeholder="Credit Paid">
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> EMI:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="emi" class="form-control" id="emi" placeholder="EMI/Month">
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> On or Before:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="date" name="onOrBefore" class="form-control" id=" onOrBefor" >
+					Due Date
+			</div>
+		</div>
+	</div>
+	
+		<div class="col-lg-12">
+		<div class="form-group-1">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> EMI:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="text" name="emi" class="form-control" id="emi" placeholder="EMI/Month">
+			</div>
+			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+				<label> After:</label>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+				<input type="date" name="after" class="form-control" id="after" >
+					Due Date
+			</div>
+		</div>
+	</div>
+	
+	<div class="wrapper">
+		<input type="button" value="Save" class="btn btn-lg btn-success btn-md" />
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

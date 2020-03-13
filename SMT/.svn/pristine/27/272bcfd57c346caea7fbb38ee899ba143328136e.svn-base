@@ -1,0 +1,66 @@
+package com.smt.helper;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.CategoryDao;
+import com.smt.dao.MainLevelMasterDao;
+import com.smt.hibernate.LeafLevelMaster;
+import com.smt.hibernate.MainLevelMaster;
+import com.smt.hibernate.SubLevelMaster;
+import com.smt.hibernate.UserAccessAssociation;
+import com.smt.hibernate.UserInfo;
+
+public class MainLevelMasterHelper {
+
+	public void regMainLevelMaster(HttpServletRequest request , HttpServletResponse response)
+	{
+		String activeYn = request.getParameter("activeYn");
+		String isRootLevel = request.getParameter("isRootLevel");
+		String levelId = request.getParameter("levelId");
+		String mainLevelName = request.getParameter("mainLevelName");
+		
+		MainLevelMaster master = new MainLevelMaster();
+		master.setActiveYn(activeYn);
+		master.setIsRootLevel(isRootLevel);
+		master.setLevelId(Integer.parseInt(levelId));
+		master.setMainLevelName(mainLevelName);
+		
+		/*LeafLevelMaster levelMaster = new LeafLevelMaster();
+		levelMaster.setActiveYn("y");
+		levelMaster.setLeafLevelName("svdd");
+		levelMaster.setMainLevelMaster(master);
+		
+		SubLevelMaster subLevelMaster = new SubLevelMaster();
+		subLevelMaster.setMainLevelMaster(master);
+		subLevelMaster.setSubLevelName("ccassa");
+		
+		UserInfo info = new UserInfo();
+		info.setActiveYn("y");
+		info.setAddressLine1("Pune");
+		info.setAddressLine2("Namede");
+		info.setFirstName("dsvsd");
+		info.setLastName("zczdsc");
+		
+		
+		UserAccessAssociation accessAssociation = new UserAccessAssociation();
+		accessAssociation.setActiveYn("y");
+		accessAssociation.setLeafLevelMaster(levelMaster);
+		accessAssociation.setSubLevelMaster(subLevelMaster);
+		accessAssociation.setSubLevelMaster(subLevelMaster);
+		accessAssociation.setUserInfo(info);*/
+		
+		MainLevelMasterDao dao = new MainLevelMasterDao();
+		dao.valMainLevel(master);
+		
+	}
+	
+	public List getAllMainLevelMaster()
+	{
+		MainLevelMasterDao dao = new MainLevelMasterDao();
+		return dao.getAllMainLevelMaster();
+	}
+	
+}

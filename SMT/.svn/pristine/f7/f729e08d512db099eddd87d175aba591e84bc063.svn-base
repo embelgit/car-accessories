@@ -1,0 +1,94 @@
+package com.smt.helper;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.EmpAttendanceDao;
+import com.smt.bean.EmployeeAttendBean;
+import com.smt.hibernate.EmpAttendance;
+
+public class EmpAttendancetHelper {
+
+	public void regsterEmpAttend(HttpServletRequest request,
+			HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+		String id = request.getParameter("id");
+		
+		String totalWorkingDays = request.getParameter("totalWorkingDays");
+		String sdate = request.getParameter("sdate");
+		String attended = request.getParameter("attended");
+		String leave = request.getParameter("leave");
+		String paidLeave = request.getParameter("paidLeave");
+		String unpaidLeave = request.getParameter("unpaidLeave");
+		String halfDay = request.getParameter("halfDay");
+		
+		
+		EmpAttendance empAttend = new EmpAttendance();
+		
+		
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date adate = null;
+		try {
+		
+		adate=	format.parse(sdate);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		empAttend.setSdate(adate);
+		
+		
+		empAttend.setAttended(Long.parseLong(attended));
+		
+		empAttend.setHalfDay(Long.parseLong(halfDay));
+		empAttend.setId(Long.parseLong(id));
+		empAttend.setLeave(Long.parseLong(leave));
+	
+		empAttend.setPaidLeave(Long.parseLong(paidLeave));
+		empAttend.setTotalWorkingDays(Long.parseLong(totalWorkingDays));
+		empAttend.setUnpaidLeave(Long.parseLong(unpaidLeave));
+		
+		EmpAttendanceDao dao = new EmpAttendanceDao();
+		dao.valEmpAttendance(empAttend);
+		
+		}
+
+    public Map getAttemp(Long empName){
+	
+	EmpAttendanceDao dao1 = new EmpAttendanceDao();
+	List list= dao1.getEmpNameWiseAttend(empName);
+	Map  map =  new HashMap();
+	for(int i=0;i<list.size();i++)
+	{
+		Object[] o = (Object[])list.get(i);
+		EmployeeAttendBean empattend = new EmployeeAttendBean();
+		 empattend.setId((BigInteger)o[0]);
+		 empattend.setEmpName((String)o[1]);
+		 empattend.setDepartment((String)o[2]);
+		 empattend.setDesignation((String)o[3]);
+		 empattend.setTotalworkday((BigInteger)o[4]);
+		 empattend.setAttendday((BigInteger)o[5]);
+		 empattend.setLeaveday((BigInteger)o[6]);
+		 empattend.setPaidleaveday((BigInteger)o[7]);
+		 empattend.setUnpaidleaveday((BigInteger)o[8]);
+		 empattend.setHalfday((BigInteger)o[9]);
+		 
+		map.put(empattend.getId(),empattend);
+		System.out.println("***************"+o[0]+"\t"+empattend);
+	}
+	
+	return map;
+  }
+    
+}

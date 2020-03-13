@@ -1,0 +1,72 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import com.smt.dao.LeaveDetailDao;
+
+import com.smt.hibernate.LeaveDetail;
+
+public class LeaveDetailHelper {
+
+	public void regsterLeaveDetail(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+		String emp_id = request.getParameter("emp_id");
+		String empName = request.getParameter("empName");
+		String typeofleave = request.getParameter("typeofleave");
+		String fdate = request.getParameter("fdate");
+		String tdate = request.getParameter("tdate");
+		String reason = request.getParameter("reason");
+		String approvedBy = request.getParameter("approvedBy");
+		
+
+		LeaveDetail leavedetail = new LeaveDetail();
+		
+		
+		leavedetail.setEmp_id(Long.parseLong(emp_id));
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		
+		Date adate = null;
+		try {
+		
+		adate=	format.parse(fdate);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		leavedetail.setFdate(adate);
+		
+		
+        	
+		Date bdate = null;
+		try {
+		
+		bdate=	format.parse(tdate);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		leavedetail.setTdate(bdate);
+		
+		
+		
+		
+		leavedetail.setEmpName(empName);
+		leavedetail.setTypeofleave(typeofleave);
+		leavedetail.setReason(reason);
+		leavedetail.setApprovedBy(approvedBy);
+		
+		
+		LeaveDetailDao dao = new LeaveDetailDao();
+		dao.valLeaveDetail(leavedetail);
+		
+	}
+
+}

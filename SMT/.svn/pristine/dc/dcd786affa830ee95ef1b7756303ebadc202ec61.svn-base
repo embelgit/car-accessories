@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+
+
+<class 
+    name="com.smt.hibernate.ItemDetail" 
+    table="item_details"
+>
+
+    <id
+        name="pkItemId"
+        type="java.lang.Long"
+        column="pk_item_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="buy_Price"
+        type="java.lang.Double"
+        column="buy_Price"
+     
+        length="22"
+    />
+    
+   
+    <property
+        name="color"
+        type="java.lang.String"
+        column="color"
+        not-null="true"
+        length="128"
+    />
+    
+     <property
+        name="model"
+        type="java.lang.String"
+        column="model"
+        not-null="true"
+        length="128"
+    />
+    <property
+        name="isActiveYn"
+        type="java.lang.String"
+        column="is_active_YN"
+        not-null="true"
+        length="1"
+    />
+    
+    <property
+        name="isInsertDate"
+        type="java.sql.Timestamp"
+        column="is_insert_date"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="isModifiedDate"
+        type="java.sql.Timestamp"
+        column="is_modified_date"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="itemName"
+        type="java.lang.String"
+        column="item_name"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="salePrice"
+        type="java.lang.Double"
+        column="sale_price"
+        not-null="true"
+        length="22"
+    />
+    <property
+        name="size"
+        type="java.lang.Long"
+        column="size"
+        not-null="true"
+        length="19"
+    />
+    
+     <property
+        name="MMCC"
+        type="java.lang.String"
+        column="MMCC"
+        not-null="true"
+        length="22"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="status"
+        not-null="true"
+        length="1"
+    />  
+    
+    <many-to-one
+        name="brandDetail"
+        class="com.smt.hibernate.BrandDetail"
+        not-null="true"
+    >
+        <column name="fk_brand_id" />
+    </many-to-one>
+    
+    <set
+        name="stockDetails"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="fk_item_details_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.StockDetail"
+        />
+    </set>
+    
+    <set
+        name="itemStocks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="fk_item_details_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.ItemStock"
+        />
+    </set>
+    
+    <set
+        name="offerDetails"
+        lazy="true"
+        inverse="true"
+		cascade="save-update"
+    >
+        <key>
+            <column name="fk_item_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.OfferDetail"
+        />
+    </set>
+  
+     <many-to-one
+        name="productDetail"
+        class="com.smt.hibernate.ProductDetail"
+        not-null="true"
+        cascade="save-update"
+    >
+        <column name="fk_product_id" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,100 @@
+<%@page import="java.util.List"%>
+<%@page import="com.smt.helper.CategoryHelper"%>
+<%@page import="com.smt.hibernate.Category"%>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name-report">Category</h2>
+	</div>
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<script src="/SMT/staticContent/js/category.js"></script>
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.3/js/jquery.jqgrid.min.js"></script>
+	
+	
+	
+	<script src="/SMT/staticContent/js/uppercase.js"></script>
+	<link href="/SMT/staticContent/css/adi.css" rel="stylesheet"/>
+	
+	<script type="text/javascript">
+	    function ChooseContact(){
+			//document.getElementById("buyPrice")(data.options[data.selectedIndex].getAttribute("myid"));
+			//document.cat.categoryName.value == (data.options[data.selectedIndex].getAttribute("value"));
+	
+	        <%
+				CategoryHelper catHelper = new CategoryHelper();
+		   		List catList = catHelper.getAllMainCategories();
+			%>
+	
+			<%
+				for(int i=0;i<catList.size();i++){
+				Category category = (Category)catList.get(i);
+    		%>
+
+    		var value ="<%=category.getCategoryName()%>";
+				if(document.cat.categoryName.value == value)
+					{
+						document.cat.btn.disabled = true;	
+						alert("Category Name Already Exist..!!!");
+				if(document.cat) 
+					{
+	  					document.cat.reset();
+    				}
+						document.cat.btn.disabled = false;
+						return false;
+					}
+   			<%
+				}
+    		%>
+		}
+	</script>
+
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		   
+		   $(document).ready(function(){
+	       $('[data-toggle="tooltip"]').tooltip()
+	       		});
+		</script>
+	</div>
+
+
+<form action="cate" method="post" name="cat" class="form-horizontal"><p>
+	<div class = "col-lg-12 form-group-1">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+			<label style="margin-left: 370px;" >Category:</label>
+		</div>	
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 first">
+			<input type="text" name="categoryName" id="categoryName" class="form-control" data-toggle="tooltip" title="Enter Alphabets Only...!!!" placeholder="Category Name" autofocus onkeyup="preventcat();changeToUpperCase();return ChooseContact();" style="margin-left: 310px;">
+			<p id="rq"  style="margin-left: 293px;">*Enter Alphabets only.</p>
+		</div>
+	</div>
+	
+	<div> 
+		<input type="button" name="btn" onclick="return categoryd()" value="Save" class="btn btn-lg btn-Success btn-md" style="margin-left: 500px;" />
+		<a href="http://localhost:8080/SMT/jsp/subcategory.jsp"> <h5 style="margin-left: 565px; margin-top: -28px; color: #ff0000; padding-bottom: 20px;">Add New Sub-Category</h5></a>
+		<!-- <input type="button" value="Show Category" class="btn btn-info btn-md btn-lg"  onclick="category11.getAllCategory();" > -->
+	</div>
+	
+	
+	
+	<!-- <div style="position: absolute;top: 100px;left: 150px">
+	<table id="list4" class="scroll" cellpadding="0" cellspacing="0"></table>
+	</div> -->
+	
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

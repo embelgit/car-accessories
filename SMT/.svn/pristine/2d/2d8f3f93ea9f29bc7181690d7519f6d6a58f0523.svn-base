@@ -1,0 +1,21 @@
+package com.smt.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.SubLevelMaster;
+import com.smt.utility.HibernateUtility;
+
+public class SubLevelMasterDao {
+	
+	public void valSubLevel( SubLevelMaster  subLevelMaster)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(subLevelMaster);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+}

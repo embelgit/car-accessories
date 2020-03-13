@@ -1,0 +1,91 @@
+<%@page import="java.util.List"%>
+<%@page import="com.smt.bean.EmployeeList"%>
+<%@page import="com.smt.dao.EmployeeDetailsDao"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
+  
+  	<%-- <% boolean isHome=false;%>
+	<%@include file="commons/header.jsp"%> --%>
+	
+	<div class="container">
+		<h2 class="form-name-report">Employee List</h2>
+	</div>
+   
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link href="/SMT/staticContent/css/jquery.dataTables.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/SMT/staticContent/css/jquery.dataTables.tableTools.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="/SMT/staticContent/js/jquery.js" type="text/javascript"></script>
+		<script src="/SMT/staticContent/js/jquery.dataTables.js" type="text/javascript"></script>
+		<script src="/SMT/staticContent/js/jquery.dataTables.tableTools.min.js" type="text/javascript"></script>
+		<link href="/SMT/staticContent/css/style.css" rel="stylesheet" />
+	</head>
+	
+	<div id="report">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+
+	<script type="text/javascript"> 
+		$(document).ready(function () {
+	         var table=$("#list").dataTable();
+			 var tableTools = new $.fn.dataTable.TableTools(table, {
+				 'sSwfPath':'//cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf',
+				 	'aButtons':['copy','print','csv',{
+					 'sExtends':'xls',
+					 'sFileName':'Data.xls',
+					 'sButtonText': 'Save to Excel'
+						}
+					]
+				});
+					$(tableTools.fnContainer()).insertBefore('#list_wrapper');
+			});
+	</script>
+	
+<body id="dt_example">
+	<%
+	EmployeeDetailsDao dao=new EmployeeDetailsDao();
+		List lis2=dao.getEmployeList();
+	%>
+		<div id="demo_jui">
+			<table id="list" class="display" border="1">
+				<thead>
+					<tr>
+						<th>Employee ID</th>
+						<th>Employee Name</th>
+						<th>Contact No</th>
+						<th>Address</th>
+						<th>Joining Date</th>
+						<!-- <th>Employee Photo</th> -->
+					</tr>
+				</thead>
+				
+				<tbody>
+   				<%
+					for(int i=0;i<lis2.size();i++){
+					EmployeeList empB=(EmployeeList)lis2.get(i);
+				%>
+				
+				<tr>
+					<td class="align"><%=empB.getEmpId()%></td>
+					<td class="align"><%=empB.getEmpName()%>    <%=empB.getLastname()%></td>
+					<td class="align"><%=empB.getContactNo()%></td>
+					<td class="align"><%=empB.getAddress()%></td>
+					<td class="align"><%=empB.getJoiningDate()%></td>
+					<%-- <td class="align"><%=empB.getTotalAmount()%></td> --%>
+				</tr>
+	
+				<%
+					}
+				%>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html> 
+	
+	

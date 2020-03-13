@@ -1,0 +1,136 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Set;
+
+public class ShopDetail implements Serializable {
+
+	/** identifier field */
+	private Long shopId;
+	
+	/** persistent field */
+	private String shopName;
+	
+	/** persistent field */
+	private String ownerName;
+	
+	/** persistent field */
+	private String address;
+	
+	/** persistent field */
+	private Long contactNo;
+	
+	/** persistent field */
+	private String contactPersonName;
+	
+	/** persistent field */
+	private Long tinNo;
+	
+	/** persistent field */
+    private Set productDetails;
+	
+	/** full constructor */
+	public ShopDetail(Long shopId,Set productDetails, String contactPersonName, String shopName,String ownerName,String address,Long contactNo,Long tinNo) {
+		// TODO Auto-generated constructor stub
+		
+		this.shopId=shopId;
+		this.shopName=shopName;
+		this.ownerName=ownerName;
+		this.address=address;
+		this.contactNo=contactNo;
+		this.tinNo=tinNo;
+		this.contactPersonName=contactPersonName;
+		this.productDetails=productDetails;
+		
+	}
+
+
+	public Long getShopId() {
+		return shopId;
+	}
+
+
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
+
+
+	public String getShopName() {
+		return shopName;
+	}
+
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public Long getContactNo() {
+		return contactNo;
+	}
+
+
+	public void setContactNo(Long contactNo) {
+		this.contactNo = contactNo;
+	}
+
+
+	public Long getTinNo() {
+		return tinNo;
+	}
+
+
+	public void setTinNo(Long tinNo) {
+		this.tinNo = tinNo;
+	}
+
+
+	public String getContactPersonName() {
+		return contactPersonName;
+	}
+
+
+	public void setContactPersonName(String contactPersonName) {
+		this.contactPersonName = contactPersonName;
+	}
+	
+	
+
+
+	public Set getProductDetails() {
+		return productDetails;
+	}
+
+
+	public void setProductDetails(Set productDetails) {
+		this.productDetails = productDetails;
+	}
+
+
+	public ShopDetail() {
+		
+	}
+	
+	
+	
+}

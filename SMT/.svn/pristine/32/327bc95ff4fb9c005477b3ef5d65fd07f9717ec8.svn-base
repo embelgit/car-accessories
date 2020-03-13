@@ -1,0 +1,22 @@
+package com.smt.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.LeafLevelMaster;
+import com.smt.utility.HibernateUtility;
+
+public class LeafLevelMasterDao {
+	
+	public void valLeafLevel( LeafLevelMaster  leafLevelMaster)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(leafLevelMaster);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+
+}

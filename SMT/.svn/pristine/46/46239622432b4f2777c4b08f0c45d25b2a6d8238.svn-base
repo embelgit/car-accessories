@@ -1,0 +1,104 @@
+package com.smt.helper;
+
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.AuthoritySlipDao;
+import com.smt.dao.ItemDetailsDao;
+import com.smt.hibernate.AuthoritySlip;
+import com.smt.hibernate.ItemDetail;
+
+public class AuthoritySlipHelper {
+
+	public void doauthoritySlip(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		
+		AuthoritySlip authoritySlip=new AuthoritySlip();
+		Integer count = Integer.parseInt(request.getParameter("count"));
+
+		
+		System.out.println(count);
+		for(int i =0 ; i<=count;i++)
+		{
+
+			String smcc = request.getParameter("smcc");
+			System.out.println("MMCC"+smcc);
+
+
+			String sendBy = request.getParameter("sendBy");
+			
+			String location = request.getParameter("location");
+			
+			String goodsreceived = request.getParameter("goodsreceived");
+			
+			
+			
+			
+			String itemId = request.getParameter("itemID"+i);
+
+			if (itemId == null) {
+
+				break;
+			}
+			else {
+				System.out.println(itemId+"dsvdfsd");
+				authoritySlip.setItem_id(Long.parseLong(itemId));
+
+			}
+			String color = request.getParameter("color"+i);
+			System.out.println(color);
+			if (color == null) {
+
+				break;
+			}
+			else {
+				authoritySlip.setColor(color);
+
+			}
+			String size = request.getParameter("size"+i);
+			System.out.println(size);
+
+			if (size == null) {
+
+				break;
+			}
+			else {
+				authoritySlip.setSize(Double.parseDouble(size));
+
+			}
+			String quantity = request.getParameter("quantity"+i);
+			System.out.println(quantity);
+
+			if (quantity == null) {
+
+				break;
+			}
+			else {
+				authoritySlip.setQuantity(Long.parseLong(quantity));
+
+			}
+			
+			Date dateobj = new Date();
+			
+			authoritySlip.setIsinsertDate(dateobj);
+			
+			System.out.println(dateobj);
+			
+			authoritySlip.setIsModifiedDate(dateobj);
+			
+			authoritySlip.setGoodsRequired(goodsreceived);
+			authoritySlip.setLocation(location);
+			authoritySlip.setMmcc(smcc);
+			authoritySlip.setSentBy(sendBy);
+			AuthoritySlipDao dao = new AuthoritySlipDao();
+			dao.registerAuthority(authoritySlip);
+		}
+		
+		
+
+	}
+
+}

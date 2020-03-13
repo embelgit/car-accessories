@@ -1,0 +1,180 @@
+package com.smt.dao;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import com.smt.bean.CustomerBean;
+import com.smt.bean.SaleReports;
+import com.smt.hibernate.CustomerOrder;
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.ItemStock;
+import com.smt.hibernate.OfferDetail;
+import com.smt.hibernate.ProductDetail;
+import com.smt.hibernate.StockDetail;
+import com.smt.hibernate.SubCategory;
+import com.smt.utility.HibernateUtility;
+
+public class CustomerOrderDao {
+
+	public Long valCustomerOrder(CustomerOrder customerOrder){
+		Long reduce = null ;
+		String sup="";
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		org.hibernate.Transaction transaction=session.beginTransaction();
+		
+		customerOrder.setIsActiveYn("Y");
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Date dateobj = new Date();
+		System.out.println(df.format(dateobj));
+	
+		customerOrder.setIsInsertDate(dateobj);
+	   
+		customerOrder.setIsModifiedDate(dateobj);	
+		
+		
+		Long pk=(Long)session.save(customerOrder);
+		sup="SMT"+pk.toString();
+		long stock = customerOrder.getQuantity();
+		Long offerId = customerOrder.getOfferId();
+		System.out.println("Stock DE" +stock);
+
+		//System.out.println(offerId);
+		
+		OfferDetail offerDetail = (OfferDetail) session.load(OfferDetail.class, new Long(offerId));
+        Long item_id = offerDetail.getItem_id();
+        System.out.println(item_id+"****************ITEMID********************");
+        
+        ItemDetail itemDetail = (ItemDetail) session.load(ItemDetail.class, new Long(item_id));
+        Set itemStocks = itemDetail.getItemStocks();
+        Long stock2 = null ;
+        for (Iterator iterator2 = 
+        		itemStocks.iterator(); iterator2.hasNext();){
+        	ItemStock certName = (ItemStock) iterator2.next(); 
+        	Long normalQty = certName.getNormalQty();
+        	System.out.println("stockQuan"+normalQty);
+        	Long quantity = customerOrder.getQuantity();
+        	System.out.println(quantity+"SoldQuan");
+        	reduce=normalQty-quantity;
+        }
+      
+        /*  System.out.println(normalQty+"normal");
+         Long quantity = customerOrder.getQuantity();
+         System.out.println(quantity+"quantity");
+         reduce = normalQty-quantity;
+          branch = certName.getBranch();
+          defectiveQty = certName.getDefectiveQty();
+         stock2 = certName.getStock();
+         product_id = certName.getProduct_id();
+         item_details_id = certName.getItem_details_id();
+         //Set stockDetails = certName.getStockDetails();
+         System.out.println(reduce+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+     	
+		
+   }
+        for (long i = 0; i < reduce; i++) 
+		{
+		ItemStock iStock = new ItemStock();
+		iStock.setNormalQty(reduce);
+		iStock.setBranch(branch);
+		iStock.setDefectiveQty(defectiveQty);
+		iStock.setStock(stock2);
+		iStock.setProduct_id(product_id);
+		iStock.setItem_details_id(item_details_id);
+		session.saveOrUpdate(iStock);
+		}*/
+       
+		transaction.commit();
+		hbu.closeSession(session);
+		return pk;
+		}
+
+	
+	public void updateCustomer(CustomerOrder customerOrder){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(customerOrder);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+		public List getAllItemDetails(String key){
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		
+		Query query=session.createQuery("SELECT  i.itemName,i.color ,o.salePrice,o.discount,p.vatPercentage,o.pkItemofferId  from ProductDetail p LEFT JOIN p.itemDetails i LEFT JOIN i.offerDetails o  where o.pkItemofferId="+key);
+			
+		//query.setParameter("pkItemofferId", key);
+			
+				List<Object[]> list = query.list();
+			 List<CustomerBean> itemlist = new ArrayList<CustomerBean>(0);
+			 
+			 for (Object[] objects : list) {
+				 CustomerBean bean = new CustomerBean();
+				bean.setItemName(objects[0].toString());
+				bean.setColor(objects[1].toString());
+				bean.setSalePrice(Double.parseDouble(objects[2].toString()));
+				//bean.setDiscount(Double.parseDouble(objects[3].toString()));
+				bean.setVatPercentage(Double.parseDouble(objects[4].toString()));
+				bean.setOfferId(Long.parseLong(objects[5].toString()));
+				bean.setQuantity(1L);
+				System.out.println(Arrays.toString(objects));
+				 itemlist.add(bean);
+				}
+			
+			return itemlist;
+	
+	}
+	public List getSaleDetailsDateWise(String startDate,String endDate){
+	
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+/*		Query query = session.createQuery("select c.orderId ,Date( c.is_insert_date) ,c.quantity , c.price , c.vat , o.discound  from CustomerOrder c left join OfferDetail o where  c.orderId=o.pk_itemoffer_id");
+*/		Query query2 = session.createSQLQuery("select c.pk_order_id ,DATE(c.is_insert_date) , c.quantity , o.sale_price ,o.discound , c.vat,(c.quantity * o.sale_price), c.totalAmt from customer_order c left join offer_details o ON c.fk_offerrr_id=o.pk_itemoffer_id where c.is_insert_date BETWEEN :stDate AND :edDate ");
+		query2.setParameter("stDate", startDate);
+        query2.setParameter("edDate", endDate);
+        List<Object[]> list = query2.list();
+		List<SaleReports> saleList= new ArrayList<SaleReports>(0);
+		
+		
+		for (Object[] object : list) {
+			
+			SaleReports reports = new SaleReports();
+			reports.setOrderId(Long.parseLong(object[0].toString()));
+			reports.setSoldDate(object[1].toString());
+			reports.setQuantity(Long.parseLong(object[2].toString()));
+			//reports.setSalePrice(Double.parseDouble(object[3].toString()));
+
+			//reports.setDiscount(Double.parseDouble(object[4].toString()));
+			reports.setTax(Double.parseDouble(object[5].toString()));
+			//reports.setTotalAmount(Double.parseDouble(object[6].toString()));
+			saleList.add(reports);
+		}
+		return saleList;
+		
+	}
+
+		
+}
+
+

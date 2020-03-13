@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.LeaveDetail" 
+    table="leave_detail"
+>
+
+    <id
+        name="pkleaveid"
+        type="java.lang.Long"
+        column="pk_leave_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+    
+     <property
+        name="emp_id"
+        type="java.lang.Long"
+        column="fk_emp_id"
+        not-null="true"
+        length="15"
+    />
+    
+    
+    
+   <property
+        name="typeofleave"
+        type="java.lang.String"
+        column="type_of_leave"
+        not-null="true"
+        length="15"
+    />
+    
+    <property
+        name="fdate"
+        type="java.sql.Date"
+        column="fromdate"
+        not-null="true"
+        
+    />
+    
+      <property
+        name="tdate"
+        type="java.sql.Date"
+        column="todate"
+        not-null="true"
+        
+    />
+    
+     <property
+        name="reason"
+        type="java.lang.String"
+        column="reason"
+        not-null="true"
+        length="15"
+    />
+    
+    <property
+        name="approvedBy"
+        type="java.lang.String"
+        column="approved_by"
+        not-null="true"
+        length="15"
+    />
+    
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to ItemDetail -->
+   <!--  <many-to-one
+        name="itemDetail"
+        class="com.smt.hibernate.ItemDetail"
+        not-null="true"
+    >
+        <column name="fk_item_id" />
+    </many-to-one> -->
+
+</class>
+</hibernate-mapping>

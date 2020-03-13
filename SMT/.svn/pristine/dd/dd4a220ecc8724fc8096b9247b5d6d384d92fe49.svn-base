@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 23, 2016 6:06:30 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.smt.hibernate.NewOfferCreation" table="extendedoffer">
+        <id name="new_offer_id" type="java.lang.Long">
+            <column name="new_offer_id" />
+            <generator class="increment" />
+        </id>
+        <property 
+        name="fk_offer_id" 
+        type="java.lang.Long">
+       <column name="fk_offer_id" />
+        </property>
+        <property 
+        name="available_offer_id" 
+        type="java.lang.Long">
+            <column name="available_offer_id" />
+        </property>
+        
+         <property 
+        name="buyPrice" 
+        type="java.lang.Double">
+            <column name="buyPrice" />
+        </property>
+        <property 
+        name="startDate" 
+        type="java.sql.Date">
+        <column name="startDate" />
+        </property>
+        <property 
+        name="endDate" 
+        type="java.sql.Date">
+       <column name="endDate" />
+        </property>
+        <property name="is_insert_Date" type="java.sql.Date">
+            <column name="is_insert_Date" />
+        </property>
+    </class>
+</hibernate-mapping>

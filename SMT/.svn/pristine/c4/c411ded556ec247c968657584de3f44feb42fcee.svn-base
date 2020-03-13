@@ -1,0 +1,156 @@
+package com.smt.helper;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.dao.GoodsReceiveDAo;
+import com.smt.dao.GoodsReturnDao;
+import com.smt.hibernate.GoodsReceipt;
+import com.smt.hibernate.GoodsReturn;
+import com.smt.utility.HibernateUtility;
+
+public class GoodsReturnHelper {
+	
+	public void reggoods(HttpServletRequest request , HttpServletResponse response)
+	{
+		GoodsReturn podetail = new GoodsReturn();
+		
+		
+		
+		//Integer length = Integer.parseInt(request.getParameter("row_count"));	
+		
+		
+		Integer count = Integer.parseInt(request.getParameter("count"));
+		
+		Long superPOId=0L;
+		GoodsReturnDao dao = new GoodsReturnDao();
+		 Double totalAmount=0d;
+		for(int i =0 ; i<=count;i++)
+		{
+			
+			
+			
+			
+			
+			String billNo = request.getParameter("billNo");
+			podetail.setBillNo(Long.parseLong(billNo));
+			
+			
+
+		
+		
+			
+				
+			podetail.setActiveYn("Y");
+			DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+			Date dateobj = new Date();
+			System.out.println(df.format(dateobj));
+		
+			podetail.setInsertDate(dateobj);
+		   
+			podetail.setModifyDate(dateobj);
+	
+	
+			String supplier_id = request.getParameter("supplier_id"+i);
+			System.out.println(supplier_id+"********************");
+			if (supplier_id == null) {
+				
+				break;
+			}
+			else {
+				podetail.setSupplierId(Long.parseLong(supplier_id));
+				
+			}
+			
+			String itemName = request.getParameter("itemName"+i);
+				
+			if (itemName == null) {
+				
+				break;
+			}
+			else {
+				podetail.setItemId(Long.parseLong(itemName));
+				
+			}
+			
+			
+			String color = request.getParameter("color"+i);
+            if(color == null){
+            	break ;
+            }
+			else {
+				podetail.setColor(color);
+			}
+			
+
+
+			String quantity = request.getParameter("quantity"+i);
+			
+			if(quantity==null)
+			{
+				break ;
+			}
+			else {
+				podetail.setQuantity(Long.parseLong(quantity));
+			}
+			String unitPrice = request.getParameter("unitPrice"+i);
+           if(unitPrice==null)
+           {
+        	   break ;
+           }
+			 
+           else {
+        	   podetail.setUnitPrice(Double.parseDouble(unitPrice));
+		}
+			
+			
+			
+			Double  total = (double) (Double.parseDouble(quantity) * Double.parseDouble(unitPrice));
+			podetail.setTotalAmount(total);
+		
+			totalAmount=totalAmount+total;
+			System.out.println(totalAmount+"********************");
+			/*String superPo = request.getParameter("superPo");
+			podetail.setSuperPoId(superPo);		*/	
+			
+
+			
+			if (i > 0) {
+				podetail.setSuperReturnId("SMT" + superPOId);
+			}
+			Long tempid = dao.valPOReturnDetail(podetail);
+
+			if (i == 0)
+			superPOId = tempid;
+
+		}  
+		
+		GoodsReturn SuperpoItemById = getPoItemById(superPOId);
+		SuperpoItemById.setSuperReturnId("SMT" + superPOId);
+		
+		dao.updatePOReturnDetail(SuperpoItemById);
+	   System.out.println(SuperpoItemById.toString()+"***************************"+totalAmount);
+	   request.setAttribute("message", totalAmount);
+   
+	}
+	public GoodsReturn getPoItemById(Long Return_Goods_Id)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery(" from GoodsReturn p where p.Return_Goods_Id=:Return_Goods_Id");
+		//Query query = session.createQuery("select s.supplierName from SupplierDetail s where s.supplierName=:supplierName");
+		query.setParameter("Return_Goods_Id", Return_Goods_Id);
+		GoodsReturn uniqueResult = (GoodsReturn
+				) query.uniqueResult();
+		return uniqueResult;
+		
+	}
+
+}

@@ -1,0 +1,109 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Set;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class MainLevelMaster implements Serializable {
+
+    /** identifier field */
+    private Long pkMainlevelId;
+
+    /** persistent field */
+    private String activeYn;
+
+    /** persistent field */
+    private String isRootLevel;
+
+    /** persistent field */
+    private Integer levelId;
+
+    /** persistent field */
+    private String mainLevelName;
+
+    /** persistent field */
+    private Set leafLevelMasters;
+
+    /** persistent field */
+    private Set subLevelMasters;
+
+    /** full constructor */
+    public MainLevelMaster(Long pkMainlevelId, String activeYn, String isRootLevel, Integer levelId, String mainLevelName, Set leafLevelMasters, Set subLevelMasters) {
+        this.pkMainlevelId = pkMainlevelId;
+        this.activeYn = activeYn;
+        this.isRootLevel = isRootLevel;
+        this.levelId = levelId;
+        this.mainLevelName = mainLevelName;
+        this.leafLevelMasters = leafLevelMasters;
+        this.subLevelMasters = subLevelMasters;
+    }
+
+    /** default constructor */
+    public MainLevelMaster() {
+    }
+
+    public Long getPkMainlevelId() {
+        return this.pkMainlevelId;
+    }
+
+    public void setPkMainlevelId(Long pkMainlevelId) {
+        this.pkMainlevelId = pkMainlevelId;
+    }
+
+    public String getActiveYn() {
+        return this.activeYn;
+    }
+
+    public void setActiveYn(String activeYn) {
+        this.activeYn = activeYn;
+    }
+
+    public String getIsRootLevel() {
+        return this.isRootLevel;
+    }
+
+    public void setIsRootLevel(String isRootLevel) {
+        this.isRootLevel = isRootLevel;
+    }
+
+    public Integer getLevelId() {
+        return this.levelId;
+    }
+
+    public void setLevelId(Integer levelId) {
+        this.levelId = levelId;
+    }
+
+    public String getMainLevelName() {
+        return this.mainLevelName;
+    }
+
+    public void setMainLevelName(String mainLevelName) {
+        this.mainLevelName = mainLevelName;
+    }
+
+    public Set getLeafLevelMasters() {
+        return this.leafLevelMasters;
+    }
+
+    public void setLeafLevelMasters(Set leafLevelMasters) {
+        this.leafLevelMasters = leafLevelMasters;
+    }
+
+    public Set getSubLevelMasters() {
+        return this.subLevelMasters;
+    }
+
+    public void setSubLevelMasters(Set subLevelMasters) {
+        this.subLevelMasters = subLevelMasters;
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkMainlevelId", getPkMainlevelId())
+            .toString();
+    }
+
+}

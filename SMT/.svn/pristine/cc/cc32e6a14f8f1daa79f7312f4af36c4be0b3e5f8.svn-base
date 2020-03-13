@@ -1,0 +1,297 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class CustomerOrder implements Serializable {
+
+    /** identifier field */
+    private Long orderId;
+
+    /** persistent field */
+    private Double advancePayment;
+
+    /** persistent field */
+    private String color;
+    
+    
+    /** persistent field */
+    private Long quantity;
+
+    /** persistent field */
+    private String customerFirstName;
+
+    /** persistent field */
+    private String customerLastName;
+
+    /** persistent field */
+    private String customerList;
+
+    /** persistent field */
+    private Long customerMobileNo;
+
+    /** persistent field */
+    private Long offerId;
+
+    /** persistent field */
+    private Double price;
+
+    /** persistent field */
+    private Double remainigPayment;
+
+    /** persistent field */
+    private Long size;
+
+    /** persistent field */
+    private String superorderId;
+
+    /** persistent field */
+    private Double vat;
+    
+    /** persistent field */
+    private String isActiveYn;
+    
+    /** persistent field */
+    private Date isInsertDate;
+    
+    /** persistent field */
+    private Date isModifiedDate;
+    
+    
+    /** persistent field */
+    private Double totalAmount;
+    
+    
+    /** persistent field */
+    private String paymentType;
+    
+    private Long empId;
+    
+    /** full constructor */
+    public CustomerOrder(Long orderId,Long empId, String paymentType, Double totalAmount,String isActiveYn,Date isInsertDate,Date isModifiedDate, Double advancePayment,Long quantity, String color, String customerFirstName, String customerLastName, String customerList, Long customerMobileNo,  Long offerId, Double price, Double remainigPayment, Long size, String superorderId, Double vat) {
+        this.orderId = orderId;
+        this.paymentType= paymentType;
+        this.advancePayment = advancePayment;
+        this.color = color;
+        this.customerFirstName = customerFirstName;
+        this.customerLastName = customerLastName;
+        this.customerList = customerList;
+        this.customerMobileNo = customerMobileNo;
+        this.empId=empId;
+        this.offerId = offerId;
+        this.price = price;
+        this.remainigPayment = remainigPayment;
+        this.size = size;
+        this.superorderId = superorderId;
+        this.vat = vat;
+        this.quantity=quantity;
+        this.isActiveYn=isActiveYn;
+        this.isInsertDate=isInsertDate;
+        this.isModifiedDate=isModifiedDate;
+        this.totalAmount=totalAmount;
+    }
+
+    
+    /** default constructor */
+    public CustomerOrder() {
+    }
+
+    public Long getOrderId() {
+        return this.orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Double getAdvancePayment() {
+        return this.advancePayment;
+    }
+
+    public void setAdvancePayment(Double advancePayment) {
+        this.advancePayment = advancePayment;
+    }
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getPaymentType() {
+		return paymentType;
+	}
+
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+
+	public String getCustomerFirstName() {
+        return this.customerFirstName;
+    }
+
+    public void setCustomerFirstName(String customerFirstName) {
+        this.customerFirstName = customerFirstName;
+    }
+
+    public String getCustomerLastName() {
+        return this.customerLastName;
+    }
+
+    public void setCustomerLastName(String customerLastName) {
+        this.customerLastName = customerLastName;
+    }
+
+    public String getCustomerList() {
+        return this.customerList;
+    }
+
+    public void setCustomerList(String customerList) {
+        this.customerList = customerList;
+    }
+
+    public Long getCustomerMobileNo() {
+        return this.customerMobileNo;
+    }
+
+    public void setCustomerMobileNo(Long customerMobileNo) {
+        this.customerMobileNo = customerMobileNo;
+    }
+
+  
+
+    public Long getOfferId() {
+        return this.offerId;
+    }
+
+    public void setOfferId(Long offerId) {
+        this.offerId = offerId;
+    }
+
+    public Double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getRemainigPayment() {
+        return this.remainigPayment;
+    }
+
+    public void setRemainigPayment(Double remainigPayment) {
+        this.remainigPayment = remainigPayment;
+    }
+
+    public Long getSize() {
+        return this.size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+   
+
+    public String getSuperorderId() {
+		return superorderId;
+	}
+
+
+	public void setSuperorderId(String superorderId) {
+		this.superorderId = superorderId;
+	}
+
+
+	public Double getVat() {
+        return this.vat;
+    }
+
+    public void setVat(Double vat) {
+        this.vat = vat;
+    }
+    
+    
+
+    public Long getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public String toString() {
+        return new ToStringBuilder(this)
+            .append("orderId", getOrderId())
+            .toString();
+    }
+
+
+	public String getIsActiveYn() {
+		return isActiveYn;
+	}
+
+
+	public void setIsActiveYn(String isActiveYn) {
+		this.isActiveYn = isActiveYn;
+	}
+
+
+	public Date getIsInsertDate() {
+		return isInsertDate;
+	}
+
+
+	public void setIsInsertDate(Date isInsertDate) {
+		this.isInsertDate = isInsertDate;
+	}
+
+
+	public Date getIsModifiedDate() {
+		return isModifiedDate;
+	}
+
+
+	public void setIsModifiedDate(Date isModifiedDate) {
+		this.isModifiedDate = isModifiedDate;
+	}
+
+
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+
+	public Long getEmpId() {
+		return empId;
+	}
+
+
+	public void setEmpId(Long empId) {
+		this.empId = empId;
+	}
+	
+	
+
+
+	
+	
+
+}

@@ -1,0 +1,149 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.SupplierListBean;
+import com.smt.bean.SupplierWiseSaleReport;
+import com.smt.hibernate.SupplierDetail;
+import com.smt.hibernate.Broker;
+import com.smt.utility.HibernateUtility;
+
+public class SupplierDetailDao {
+	
+	public void valSupplierDetail( SupplierDetail supplierDetail)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(supplierDetail);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+	
+	public List getAllSupplier()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from SupplierDetail");
+		List list = query.list();
+		System.out.println("Supplier List" + list) ;
+	
+	
+		return list;
+	}
+	
+	public List getAllMainSuppliers(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from SupplierDetail");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+		
+		
+		
+	}
+	
+	public List getSupplierWiseSaleReport(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select c.pk_order_id,c.totalAmt,c.quantity,c1.category_name,i.item_name,s.supplier_name,o.sale_price from customer_order c left join offer_details o ON c.fk_offerrr_id=o.pk_itemoffer_id left join item_details i ON o.fk_item_id=i.pk_item_id left join product_details p ON i.fk_product_id=p.pk_product_id left join supplier_details s ON p.fk_vendor_id=s.supplier_id left join categories c1 ON p.fk_cat_id=c1.pk_category_id");
+		List <Object[]> list=query.list();
+		List<SupplierWiseSaleReport> suppBean=new ArrayList<SupplierWiseSaleReport>(0);
+		for (Object[] object : list) {
+			System.out.println(Arrays.toString(object));
+		
+			SupplierWiseSaleReport sBean=new SupplierWiseSaleReport();
+			sBean.setOrderId(Long.parseLong(object[0].toString()));
+			sBean.setTotalAmount(Double.parseDouble(object[1].toString()));
+			sBean.setQuantity(Long.parseLong(object[2].toString()));
+			sBean.setCategoryName(object[3].toString());
+			sBean.setItemName(object[4].toString());
+			sBean.setSupplierName(object[5].toString());
+			sBean.setSalePrice(Double.parseDouble(object[6].toString()));
+			suppBean.add(sBean);
+	}	
+		return suppBean;
+		
+		
+		
+}
+
+
+	public List getEditSupplier1(Long suppilerId) {
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("select  s.address, s.bankName, s.branchName, s.brand, s.city, s.contactPerson, s.creditLimit, s.cstNo, s.ifscCode, s.partyType, s.paymentType, s.pin, s.productType, s.state, s.tinNo, s.email, s.mobileno, s.accountNo, s.panNo from SupplierDetail s where  supplierId ="+suppilerId);
+		//query.setParameter("supplierId", suppilerId);
+		System.out.println("**************"+query);
+		 List list = query.list();
+      	System.out.println(list);
+		return list;
+		
+	
+	}
+
+	/*public void editSupplierDetail(SupplierDetail de) {
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		
+		Transaction transaction = session.beginTransaction();
+		session.update(de);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+		
+		
+	}*/
+	
+	public List getAllSupplierList(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select s.supplier_id, s.supplier_name, s.address, s.bank_name, s.branch_name, s.birthday, s.contact_person, s.product_type, s.email, s.mobileNo, s.pan_no, s.account_no, s.tin_no, s.city, s.credit_limit, s.cst_no, b.FirstName, b.LastName from supplier_details s left join broker b ON b.pk_broker_id=s.Broker_id group by s.supplier_id");
+		List <Object[]> list=query.list();
+		List<SupplierListBean> suppBean=new ArrayList<SupplierListBean>(0);
+		for (Object[] object : list) {
+			System.out.println(Arrays.toString(object));
+		
+			SupplierListBean sBean=new SupplierListBean();
+			sBean.setSupplierId(Long.parseLong(object[0].toString()));
+			sBean.setSupplierName(object[1].toString());
+			sBean.setAddress(object[2].toString());
+			sBean.setBankName(object[3].toString());
+			sBean.setBranchName(object[4].toString());
+			sBean.setBirthday(object[5].toString());
+			sBean.setContactPerson(object[6].toString());
+			sBean.setProductType(object[7].toString());
+			sBean.setEmail(object[8].toString());
+			//sBean.setMobileno(Long.parseLong(object[9].toString()));
+			sBean.setPanNo(Long.parseLong(object[10].toString()));
+			//sBean.setAccountNo(Long.parseLong(object[11].toString()));
+			sBean.setTinNo(Long.parseLong(object[12].toString()));
+			sBean.setCity(object[13].toString());
+			sBean.setCreditLimit(Double.parseDouble(object[14].toString()));
+			//sBean.setCstNo(Long.parseLong(object[15].toString()));
+			sBean.setFirstName(object[16].toString());
+			sBean.setLastName(object[17].toString());
+			
+			suppBean.add(sBean);
+	}	
+		return suppBean;
+		
+		
+		
+}
+
+	
+}

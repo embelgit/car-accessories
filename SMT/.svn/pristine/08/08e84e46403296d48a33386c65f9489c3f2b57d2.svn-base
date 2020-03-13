@@ -1,0 +1,120 @@
+package com.smt.helper;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.dao.CashBankDao;
+import com.smt.dao.SupplierAccountDao;
+import com.smt.hibernate.CashBank;
+import com.smt.hibernate.SupplierAccount;
+import com.smt.utility.HibernateUtility;
+
+public class CashBankHelper {
+
+	public void regsterCashBank(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		Double paidAmt;
+		SupplierAccount sup = new SupplierAccount();
+
+		String supplier = request.getParameter("supplier");
+		String salesman = request.getParameter("salesman");
+		String creditCustomer = request.getParameter("creditCustomer");
+		String others = request.getParameter("others");
+		String mode = request.getParameter("mode");
+		String totalAmount = request.getParameter("totalAmount");
+		String reason = request.getParameter("reason");
+		String paymentType = request.getParameter("paymentType");
+		String personName = request.getParameter("personName");
+		String paid = request.getParameter("paid");
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		String billNo = request.getParameter("billNo");
+		Query query = session
+				.createQuery("select  SUM(paid) , balance ,billNo from SupplierAccount where billNo="
+						+ billNo);
+		List<Object[]> list = query.list();
+
+		if (!"".equals(supplier)) {
+
+			for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+				Object[] objects = (Object[]) iterator.next();
+				System.out.println(objects[0]);
+
+				if (objects[0] == null) {
+					System.out.println("If Block");
+					Double balance = Double.parseDouble(totalAmount);
+					System.out.println(balance + "BAalaa");
+					Double newBal = balance - Double.parseDouble(paid);
+					System.out.println(newBal + "new baL");
+					sup.setSupplier(Long.parseLong(supplier));
+					sup.setBalance(newBal);
+					sup.setPaid(Double.parseDouble(paid));
+
+					sup.setMode(mode);
+					sup.setTotalAmount(Double.parseDouble(totalAmount));
+					sup.setReason(reason);
+					sup.setPaymentType(paymentType);
+					sup.setPersonName(personName);
+					sup.setBillNo(Long.parseLong(billNo));
+
+					Date adate = new Date();
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+					sup.setDate1(adate);
+
+					SupplierAccountDao dao = new SupplierAccountDao();
+					dao.valSupplierAcc(sup);
+					break;
+
+				} else {
+
+					System.out.println("Else Block");
+					Double pai = (Double) objects[0];
+					Double balanceFromDatabse = (Double) objects[1];
+					paidAmt = pai;
+					Double to = paidAmt + Double.parseDouble(paid);
+					if (pai > balanceFromDatabse) {
+						break;
+					}
+
+					System.out.println(paidAmt + "PAID AMOUNT");
+
+					Double balance = Double.parseDouble(totalAmount);
+					System.out.println(balance + "BAalaa");
+					Double newBal = balance - to;
+					System.out.println(newBal + "new baL");
+					sup.setSupplier(Long.parseLong(supplier));
+					sup.setBalance(newBal);
+					sup.setPaid(Double.parseDouble(paid));
+					sup.setMode(mode);
+					sup.setTotalAmount(Double.parseDouble(totalAmount));
+					sup.setReason(reason);
+					sup.setPaymentType(paymentType);
+					sup.setPersonName(personName);
+					sup.setBillNo(Long.parseLong(billNo));
+
+					Date adate = new Date();
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+					sup.setDate1(adate);
+
+					SupplierAccountDao dao = new SupplierAccountDao();
+					dao.valSupplierAcc(sup);
+				}
+
+			}
+
+		}
+
+	}
+}

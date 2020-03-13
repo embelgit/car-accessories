@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="common" default="generate-hbm">
+<target name="prepare"  unless="prepare.done">
+	
+	<property name="generated.files.dir" value="./gen-src" />
+	<property name="hibernate.src.dir" value="${generated.files.dir}/smt/hibernate" />
+		<property name="hibernate.pojo.package" value="com.smt.dao" />
+		<property name="hibernate.dao.package" value="com.smt.dao" />
+		<property name="hibernate.mergedir.location" location="autogen/smt" />
+		<property name="hibernate.proxy" value="true" />
+		<property name="hibernate.genLazyNotProxy" value="true" />
+		<property name="hibernate.dist.jar" value="smt-hibernate-dist.jar" />
+<!-- 		<property name="hibernate.build.dir" value="${build.dir}" /> -->
+</target>		
+
+<target name="generate-hbm" depends="prepare">
+<!-- classpathref="project.classpath" -->
+		<taskdef name="middlegen" classname="middlegen.MiddlegenTask" />
+		<!-- generate *.hbm files -->
+		<property name="mergedir.location" location="autogen" />
+		<!-- ism hbm generation -->
+		<middlegen appname="SMT" prefsdir="${hibernate.src.dir}" xmlprefs="true" databaseurl="jdbc:mysql://127.0.0.1:3306/smt_sc?autoReconnect=true" driver="com.mysql.jdbc.Driver" username="root" password="root" schema="SMT" sortColumns="true">
+			<hibernate destination="${hibernate.src.dir}" mergedir="${mergedir.location}" package="${hibernate.pojo.package}" genXDocletTags="false" javaTypeMapper="middlegen.plugins.hibernate.HibernateJavaTypeMapper" standardCascade="none" standardGeneratorScheme="native" genIntegratedCompositeKeys="false" proxy="true" genLazyNotProxy="true">
+				<hibernateDAO daoSuffix="DAO" getHibernateSession="com.anm.hibernate.HibernateConnection.getSession();" staticMethods="false" exception="com.anm.hibernate.DAOException" />
+			</hibernate>
+			<!--
+				<table name="ismccr"/>
+				-->
+		</middlegen>
+		
+				<delete>
+				             <fileset dir="${hibernate.src.dir}">
+				         	    <include name="**/Rpt*.hbm.xml" />
+				          	    <include name="**/Rpt*.java" />         	
+				             	<include name="**/Mlr*.hbm.xml" />
+				             	<include name="**/Mlr*.java" />         	
+				             	<include name="**/Qrtz*.hbm.xml" />
+				             	<include name="**/Qrtz*.java" />         	
+				              </fileset> 
+				</delete>
+	</target>
+
+
+</project>

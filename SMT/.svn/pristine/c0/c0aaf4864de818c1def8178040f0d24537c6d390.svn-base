@@ -1,0 +1,106 @@
+
+
+<%@page import="com.smt.dao.EmpAccountDao"%>
+<%@page import="com.smt.dao.EmployeeDetailsDao"%>
+<%@page import="com.smt.bean.CashBankBean"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smt.dao.SupplierAccountDao"%>
+<%@page import="com.smt.hibernate.SupplierAccount"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<!-- <script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+ 
+ <script type="text/javascript" src="/SMT/staticContent/grid/grid.locale-en.js"></script>
+ <script type="text/javascript" src="/SMT/staticContent/grid/jquery.jqGrid.min.js"></script>
+ <link rel="stylesheet" type="text/css" media="screen" href="/SMT/staticContent/css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css"> -->
+
+<link href="/SMT/staticContent/css/jquery.dataTables.css"
+	rel="stylesheet" type="text/css" media="all" />
+<!-- Scripts -->
+<script src="/SMT/staticContent/grid/jquery.js" type="text/javascript"></script>
+<script src="/SMT/staticContent/grid/jquery.dataTables.js"
+	type="text/javascript"></script>
+<link href="staticContent/css/adi.css" rel="stylesheet" />
+<style type="text/css">
+table {
+	background-color: white;
+	width: 100%;
+}
+
+tbody td {
+	background-color: white;
+}
+
+tbody td.odd {
+	background-color: #666;
+	color: red;
+}
+</style>
+</head>
+
+<script type="text/javascript"> 
+
+
+ $(document).ready(function () {
+	            $("#list").dataTable({
+	                "sPaginationType": "full_numbers",
+	                "bJQueryUI": true               
+	            });
+	        });
+ </script>
+
+<%
+       EmpAccountDao dao = new EmpAccountDao();
+	   List list = dao.getAllEmployeeAccount();
+	
+	   
+	%>
+<body id="dt_example">
+
+	<div id="container">
+		<h1>Employee Account Payment List</h1>
+		<div id="demo_jui">
+			<table id="list" class="display">
+				             
+				<thead>
+					<tr>
+						<th>Employee Name</th>
+						<th>Person Name</th>
+						<th>Paid</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				              
+				<tbody>
+
+					<%
+				    for(int i=0;i<list.size();i++){
+					CashBankBean id = (CashBankBean)list.get(i);
+			%>
+
+					<tr>
+
+						<td><%=id.getSupplierName()%></td>
+						<th><%=id.getPersonName()%></th>
+						<th><%=id.getPaid()%></th>
+						<th><%=id.getDate()%></th>
+
+					</tr>
+
+					<%
+	}
+	 %>
+
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+package com.smt.hibernate;
+
+import java.util.Date;
+
+public class NewOfferCreation {
+
+	
+	private Long new_offer_id ;
+	
+	private Long fk_offer_id ;
+	
+	private Long available_offer_id ;
+	
+	private Date startDate ;
+	
+	private Date endDate;
+	
+	private Date is_insert_Date;
+	
+	private Double buyPrice ;
+
+	public NewOfferCreation(Long new_offer_id, Long fk_offer_id,
+			Long available_offer_id, Date startDate, Date endDate,
+			Date is_insert_Date ,Double buyPrice) {
+		super();
+		this.new_offer_id = new_offer_id;
+		this.fk_offer_id = fk_offer_id;
+		this.available_offer_id = available_offer_id;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.is_insert_Date = is_insert_Date;
+		this.buyPrice = buyPrice ;
+	}
+
+	public NewOfferCreation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	public Double getBuyPrice() {
+		return buyPrice;
+	}
+
+	public void setBuyPrice(Double buyPrice) {
+		this.buyPrice = buyPrice;
+	}
+
+	public Long getNew_offer_id() {
+		return new_offer_id;
+	}
+
+	public void setNew_offer_id(Long new_offer_id) {
+		this.new_offer_id = new_offer_id;
+	}
+
+	public Long getFk_offer_id() {
+		return fk_offer_id;
+	}
+
+	public void setFk_offer_id(Long fk_offer_id) {
+		this.fk_offer_id = fk_offer_id;
+	}
+
+	public Long getAvailable_offer_id() {
+		return available_offer_id;
+	}
+
+	public void setAvailable_offer_id(Long available_offer_id) {
+		this.available_offer_id = available_offer_id;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getIs_insert_Date() {
+		return is_insert_Date;
+	}
+
+	public void setIs_insert_Date(Date is_insert_Date) {
+		this.is_insert_Date = is_insert_Date;
+	}
+	
+	
+	
+}

@@ -1,0 +1,187 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class CustCredit implements Serializable{
+
+	
+
+	  private Long pk_cust_Id;
+	  
+	  private Date billDate;
+	  
+	  private Long billNo;
+	  
+	  private String name;
+	  
+	  private String middleName;
+	  
+	  private String lastName;
+	  
+	  private String address;
+	  
+	  private String landmark;
+	  
+	  private String state;
+	  
+	  private String district;
+	  
+	  private String city;
+	  
+	  private Long pinCode;
+	  
+	  private Long mobileNo;
+	  
+	  private String emailId;
+	  
+	  private String referedBy;
+	  
+	  public CustCredit(Long pk_cust_Id, Date billDate, Long billNo, String name, String middleName, String lastName, String address, String landmark, String state, String district, String city, Long pinCode, Long mobileNo, String emailId, String referedBy ){
+		  
+		  this.setPk_cust_Id(pk_cust_Id);
+		  this.setBillDate(billDate);
+		  this.setBillNo(billNo);
+		  this.setName(name);
+		  this.setMiddleName(middleName);
+		  this.setLastName(lastName);
+		  this.setAddress(address);
+		  this.setLandmark(landmark);
+		  this.setState(state);
+		  this.setDistrict(district);
+		  this.setCity(city);
+		  this.setPinCode(pinCode);
+		  this.setMobileNo(mobileNo);
+		  this.setEmailId(emailId);
+		  this.setReferedBy(referedBy);
+		 
+	  }
+	  
+	  public CustCredit(){
+		  
+	  }
+
+	public Long getPk_cust_Id() {
+		return pk_cust_Id;
+	}
+
+	public void setPk_cust_Id(Long pk_cust_Id) {
+		this.pk_cust_Id = pk_cust_Id;
+	}
+
+	public Date getBillDate() {
+		return billDate;
+	}
+
+	public void setBillDate(Date billDate) {
+		this.billDate = billDate;
+	}
+
+	public Long getBillNo() {
+		return billNo;
+	}
+
+	public void setBillNo(Long billNo) {
+		this.billNo = billNo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getLandmark() {
+		return landmark;
+	}
+
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Long getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(Long pinCode) {
+		this.pinCode = pinCode;
+	}
+
+	public Long getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(Long mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getReferedBy() {
+		return referedBy;
+	}
+
+	public void setReferedBy(String referedBy) {
+		this.referedBy = referedBy;
+	}
+	  
+		  
+
+	
+}

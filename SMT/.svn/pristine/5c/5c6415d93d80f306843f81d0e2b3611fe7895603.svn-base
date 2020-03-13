@@ -1,0 +1,26 @@
+package com.smt.helper;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.TaxCerationDao;
+import com.smt.hibernate.TaxCreation;
+
+public class TaxCreationHelper {
+
+	public void registerTAx(HttpServletRequest request , HttpServletResponse response)
+	{
+		String taxType = request.getParameter("taxType");
+		String taxPercentage = request.getParameter("taxPercentage");
+		String activeYn = request.getParameter("activeYn");
+		
+		TaxCreation creation = new TaxCreation();
+		
+		creation.setTaxType(taxType);
+		creation.setTaxPercentage(Double.parseDouble(taxPercentage));
+		creation.setIaActive(activeYn);
+		TaxCerationDao dao = new TaxCerationDao();
+		dao.createTax(creation);
+		
+	}
+}

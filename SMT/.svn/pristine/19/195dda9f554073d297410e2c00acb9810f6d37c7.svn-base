@@ -1,0 +1,352 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class SupplierDetail implements Serializable {
+
+    /** identifier field */
+    private Long supplierId;
+
+
+    /** persistent field */
+    private String address;
+
+
+    /** persistent field */
+    private Date anniversary;
+
+    /** persistent field */
+    private String bankName;
+
+    /** persistent field */
+    private Date birthday;
+
+    /** persistent field */
+    private String branchName;
+
+    /** persistent field */
+    private String brand;
+
+    /** persistent field */
+    private String city;
+
+    /** persistent field */
+    private String contactPerson;
+
+    /** persistent field */
+    private Double creditLimit;
+
+    /** persistent field */
+    private Long cstNo;
+
+    /** persistent field */
+    private String email;
+
+    /** persistent field */
+    private String ifscCode;
+
+
+
+   /* *//** persistent field *//*
+    private String offer;*/
+
+    /** persistent field */
+    private String partyType;
+
+    /** persistent field */
+    private String paymentType;
+
+    /** persistent field */
+    private Long pin;
+
+    /** persistent field */
+    private String productType;
+
+    /** persistent field */
+    private String state;
+
+    /** persistent field */
+    private String supplierName;
+
+    /** persistent field */
+    private Long tinNo;
+
+    /** persistent field */
+    private Set productDetails;
+    
+    /** persistent field */
+    private Long brokerId;
+    
+    private Long mobileno;
+    private Long micrNo;
+    private Long panNo;
+    private Long accountNo;
+    
+    private Double discount;
+    /** full constructor */
+    public SupplierDetail(Long micrNo,Long accountNo,Long supplierId,Long panNo,Double discount, String address, Date anniversary, String bankName, Date birthday, String branchName, String brand, String city, String contactPerson, Double creditLimit, Long cstNo, String email,String ifscCode, String partyType, String paymentType, Long pin, String productType, String state, String supplierName, Long tinNo,Long mobileno, Set productDetails) {
+        this.supplierId = supplierId;
+        this.address = address;
+        this.anniversary = anniversary;
+        this.bankName = bankName;
+        this.birthday = birthday;
+        this.branchName = branchName;
+        this.brand = brand;
+        this.city = city;
+        this.contactPerson = contactPerson;
+        this.creditLimit = creditLimit;
+        this.cstNo = cstNo;
+        this.email = email;
+        this.ifscCode = ifscCode;
+/*        this.offer = offer;
+*/        this.partyType = partyType;
+        this.paymentType = paymentType;
+        this.pin = pin;
+        this.productType = productType;
+        this.state = state;
+        this.supplierName = supplierName;
+        this.tinNo = tinNo;
+        this.productDetails = productDetails;
+        this.mobileno = mobileno;
+        this.panNo=panNo;
+        this.discount=discount;
+        this.accountNo=accountNo;
+        this.micrNo=micrNo;
+    }
+
+    /** default constructor */
+    public SupplierDetail() {
+    }
+
+    public Long getSupplierId() {
+        return this.supplierId;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+   
+
+    public Date getAnniversary() {
+        return this.anniversary;
+    }
+
+    public void setAnniversary(Date anniversary) {
+        this.anniversary = anniversary;
+    }
+
+    public String getBankName() {
+        return this.bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public Date getBirthday() {
+        return this.birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getBranchName() {
+        return this.branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public String getBrand() {
+        return this.brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getContactPerson() {
+        return this.contactPerson;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public Double getCreditLimit() {
+        return this.creditLimit;
+    }
+
+    public void setCreditLimit(Double creditLimit) {
+        this.creditLimit = creditLimit;
+    }
+
+    public Long getCstNo() {
+        return this.cstNo;
+    }
+
+    public void setCstNo(Long cstNo) {
+        this.cstNo = cstNo;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+  
+
+   
+    public String getIfscCode() {
+		return ifscCode;
+	}
+
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
+	}
+
+	public String getPartyType() {
+        return this.partyType;
+    }
+
+    public void setPartyType(String partyType) {
+        this.partyType = partyType;
+    }
+
+    public String getPaymentType() {
+        return this.paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public Long getPin() {
+        return this.pin;
+    }
+
+    public void setPin(Long pin) {
+        this.pin = pin;
+    }
+
+    public String getProductType() {
+        return this.productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getState() {
+        return this.state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getSupplierName() {
+        return this.supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    public Long getTinNo() {
+        return this.tinNo;
+    }
+
+    public void setTinNo(Long tinNo) {
+        this.tinNo = tinNo;
+    }
+
+    public Set getProductDetails() {
+        return this.productDetails;
+    }
+
+    public void setProductDetails(Set productDetails) {
+        this.productDetails = productDetails;
+    }
+
+	public Long getMobileno() {
+		return mobileno;
+	}
+
+	public void setMobileno(Long mobileno) {
+		this.mobileno = mobileno;
+	}
+
+	public Long getBrokerId() {
+		return brokerId;
+	}
+
+	public void setBrokerId(Long brokerId) {
+		this.brokerId = brokerId;
+	}
+
+	public Long getPanNo() {
+		return panNo;
+	}
+
+	public void setPanNo(Long panNo) {
+		this.panNo = panNo;
+	}
+
+	public Double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+	public Long getMicrNo() {
+		return micrNo;
+	}
+
+	public void setMicrNo(Long micrNo) {
+		this.micrNo = micrNo;
+	}
+
+	public Long getAccountNo() {
+		return accountNo;
+	}
+
+	public void setAccountNo(Long accountNo) {
+		this.accountNo = accountNo;
+	}
+
+  
+    
+    
+
+}

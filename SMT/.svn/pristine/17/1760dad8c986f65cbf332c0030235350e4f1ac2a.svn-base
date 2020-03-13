@@ -1,0 +1,63 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+
+import com.smt.bean.VisitorBean;
+import com.smt.hibernate.Visitor;
+import com.smt.utility.HibernateUtility;
+
+public class VisitorDao {
+
+	public void valVisitor(Visitor visit) {
+		// TODO Auto-generated method stub
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(visit);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+	
+public List getVisitorDetail(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select pkvisitid, name, contact_no, address, city, occupation, company_name, narration, reminder from visitor");
+		
+		List <Object[]> list=query.list();
+		List<VisitorBean> visitbean=new ArrayList<VisitorBean>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 VisitorBean visitor =new VisitorBean();
+			 visitor.setPk_visit_id(Long.parseLong(object[0].toString()));
+			 visitor.setName(object[1].toString());
+			 visitor.setContact(object[2].toString());
+			 visitor.setAddress(object[3].toString());
+			 visitor.setCity(object[4].toString());
+			 visitor.setOccu(object[5].toString());
+			 visitor.setComname(object[6].toString());
+			 visitor.setNarration(object[7].toString());
+			 visitor.setReminder(object[8].toString());
+			 
+			 
+			
+			 
+			 
+			
+			 visitbean.add(visitor);
+			 	 
+		}
+		return visitbean;
+		
+	}
+
+
+}

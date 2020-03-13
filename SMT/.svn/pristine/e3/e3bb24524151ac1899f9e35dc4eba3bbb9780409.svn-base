@@ -1,0 +1,283 @@
+							package com.smt.hibernate;
+							
+							import java.util.Date;
+							
+							public class EmployeeDetails {
+								
+							public long getId() {
+									return id;
+								}
+								public void setId(long id) {
+									this.id = id;
+								}
+								public Date getDob() {
+									return dob;
+								}
+								public void setDob(Date dob) {
+									this.dob = dob;
+								}
+								
+								public long getEmergancyContactNumber() {
+									return emergancyContactNumber;
+								}
+								public void setEmergancyContactNumber(long emergancyContactNumber) {
+									this.emergancyContactNumber = emergancyContactNumber;
+								}
+								public long getAccountNumber() {
+									return accountNumber;
+								}
+								public void setAccountNumber(long accountNumber) {
+									this.accountNumber = accountNumber;
+								}
+								public String getAddress() {
+									return address;
+								}
+								public void setAddress(String address) {
+									this.address = address;
+								}
+								public long getAdharNumber() {
+									return adharNumber;
+								}
+								public void setAdharNumber(long adharNumber) {
+									this.adharNumber = adharNumber;
+								}
+								public String getBankName() {
+									return bankName;
+								}
+								public void setBankName(String bankName) {
+									this.bankName = bankName;
+								}
+								public String getBranch() {
+									return branch;
+								}
+								public void setBranch(String branch) {
+									this.branch = branch;
+								}
+								public String getCity() {
+									return city;
+								}
+								public void setCity(String city) {
+									this.city = city;
+								}
+								public long getContactNumber() {
+									return contactNumber;
+								}
+								public void setContactNumber(long contactNumber) {
+									this.contactNumber = contactNumber;
+								}
+								public String getEducation() {
+									return education;
+								}
+								public void setEducation(String education) {
+									this.education = education;
+								}
+								public String getEmailId() {
+									return emailId;
+								}
+								public void setEmailId(String emailId) {
+									this.emailId = emailId;
+								}
+								public String getFamilyMember() {
+									return familyMember;
+								}
+								public void setFamilyMember(String familyMember) {
+									this.familyMember = familyMember;
+								}
+								public String getFirstName() {
+									return firstName;
+								}
+								public void setFirstName(String firstName) {
+									this.firstName = firstName;
+								}
+								public String getGender() {
+									return gender;
+								}
+								public void setGender(String gender) {
+									this.gender = gender;
+								}
+								public long getIfsc() {
+									return ifsc;
+								}
+								public void setIfsc(long ifsc) {
+									this.ifsc = ifsc;
+								}
+								public Date getJoiningDate() {
+									return joiningDate;
+								}
+								public void setJoiningDate(Date joiningDate) {
+									this.joiningDate = joiningDate;
+								}
+								public String getKnownLanguage() {
+									return knownLanguage;
+								}
+								public void setKnownLanguage(String knownLanguage) {
+									this.knownLanguage = knownLanguage;
+								}
+								public String getLastName() {
+									return lastName;
+								}
+								public void setLastName(String lastName) {
+									this.lastName = lastName;
+								}
+								public String getMaritalStatus() {
+									return maritalStatus;
+								}
+								public void setMaritalStatus(String maritalStatus) {
+									this.maritalStatus = maritalStatus;
+								}
+								public String getMiddleName() {
+									return middleName;
+								}
+								public void setMiddleName(String middleName) {
+									this.middleName = middleName;
+								}
+								public String getPreviousFirmAddress() {
+									return previousFirmAddress;
+								}
+								public void setPreviousFirmAddress(String previousFirmAddress) {
+									this.previousFirmAddress = previousFirmAddress;
+								}
+								public long getPreviousFirmContactNo() {
+									return previousFirmContactNo;
+								}
+								public void setPreviousFirmContactNo(long previousFirmContactNo) {
+									this.previousFirmContactNo = previousFirmContactNo;
+								}
+								public String getPreviousFirmName() {
+									return previousFirmName;
+								}
+								public void setPreviousFirmName(String previousFirmName) {
+									this.previousFirmName = previousFirmName;
+								}
+								public String getPreviousJob() {
+									return previousJob;
+								}
+								public void setPreviousJob(String previousJob) {
+									this.previousJob = previousJob;
+								}
+								
+								public long getPreviousJobExeperiance() {
+									return previousJobExeperiance;
+								}
+								public void setPreviousJobExeperiance(long previousJobExeperiance) {
+									this.previousJobExeperiance = previousJobExeperiance;
+								}
+								public String getReference() {
+									return reference;
+								}
+								public void setReference(String reference) {
+									this.reference = reference;
+								}
+								public Date getResignDate() {
+									return resignDate;
+								}
+								public void setResignDate(Date resignDate) {
+									this.resignDate = resignDate;
+								}
+								public String getResignReason() {
+									return resignReason;
+								}
+								public void setResignReason(String resignReason) {
+									this.resignReason = resignReason;
+								}
+								public long getSalary() {
+									return salary;
+								}
+								public void setSalary(long salary) {
+									this.salary = salary;
+								}
+								public String getDepartment() {
+									return department;
+								}
+								public void setDepartment(String department) {
+									this.department = department;
+								}
+								
+								
+								
+								private long id;
+								private Date dob;
+								private long emergancyContactNumber;
+								private long accountNumber;
+								private String address;
+								private long adharNumber;
+								private String bankName;
+								private String branch;
+								private String city;
+								private long contactNumber;
+								private String education;
+								private String emailId;
+								private String familyMember;
+								private String firstName;
+								private String gender;
+								private long ifsc;
+								private Date joiningDate;
+								private String knownLanguage;
+								private String lastName;
+								private String maritalStatus;
+								private String middleName;
+								private String previousFirmAddress;
+								private long previousFirmContactNo;
+								private String previousFirmName;
+								private String previousJob;
+								private long previousJobExeperiance;
+								private String reference;
+								private Date resignDate;
+								private String resignReason;
+								private long salary;
+								private String department;
+								private String designation;
+								
+								
+								
+								
+								public EmployeeDetails(long id, Date dob, long emergancyContactNumber, long accountNumber, String address, long adharNumber, String bankName,
+														String branch, String city, long contactNumber, String education, String emailId, String familyMember, String firstName,
+														String gender, long ifsc, Date joiningDate, String knownLanguage, String lastName, String maritalStatus, String middleName, 
+														String previousFirmAddress, long previousFirmContactNo, String previousFirmName, String previousJob,
+														long previousJobExeperiance, String reference, Date resignDate, String resignReason, long salary, String department,String designation){
+									
+												this.id =  id;
+												this.dob = dob;
+												this.emergancyContactNumber = emergancyContactNumber;
+												this.accountNumber = accountNumber;
+												this.address = address;
+												this.adharNumber = adharNumber;
+												this.bankName = bankName;
+												this.branch = branch;
+												this.city = city;
+												this.contactNumber = contactNumber;
+												this.education = education;
+												this.emailId = emailId;
+												this.familyMember = familyMember;
+												this.firstName = firstName;
+												this.gender = gender;
+												this.ifsc = ifsc;
+												this.joiningDate = joiningDate;
+												this.knownLanguage = knownLanguage;
+												this.lastName = lastName;
+												this.maritalStatus = maritalStatus;
+												this.middleName = middleName;
+												this.previousFirmAddress = previousFirmAddress;
+												this.previousJob = previousJob;
+												this.previousJobExeperiance = previousJobExeperiance;
+												this.reference = reference;
+												this.resignDate = resignDate;
+												this.resignReason = resignReason;
+												this.salary = salary;
+												this.department = department;
+												this.designation = designation;
+												
+											}
+								
+								public EmployeeDetails(){
+								}
+								public String getDesignation() {
+									return designation;
+								}
+								public void setDesignation(String designation) {
+									this.designation = designation;
+								}
+								
+							
+							}

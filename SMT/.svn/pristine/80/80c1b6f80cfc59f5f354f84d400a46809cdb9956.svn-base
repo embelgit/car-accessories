@@ -1,0 +1,89 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.LoyalityProgramDao;
+import com.smt.hibernate.LoyalityProgram;
+
+public class LoyalityProgramHelper {
+
+	public void regsterLoyProgram(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		
+		String firstName = request.getParameter("firstName");
+		String middleName = request.getParameter("middleName");
+		String lastName = request.getParameter("lastName");
+		String gender = request.getParameter("gender");
+		String maritalStatus = request.getParameter("maritalStatus");
+		String dob = request.getParameter("dob");
+		String anniversary = request.getParameter("anniversary");
+		String address = request.getParameter("address");
+		String landmark = request.getParameter("landmark");
+		String state = request.getParameter("state");
+		String district = request.getParameter("district");
+		String city = request.getParameter("city");
+		String pinCode = request.getParameter("pinCode");
+		String mobileNo = request.getParameter("mobileNo");
+		
+		String emailID = request.getParameter("emailID");
+		String cardType = request.getParameter("cardType");
+		String cardNumber = request.getParameter("cardNumber");
+		String cardPoints = request.getParameter("cardPoints");
+		String voucher = request.getParameter("voucher");
+		
+		LoyalityProgram loyality = new LoyalityProgram();
+		
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date adate = null;
+		try {
+		 adate=	format.parse(dob);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		loyality.setDob(adate);
+		
+		
+		Date adate1 = null;
+		try {
+			adate1=	format.parse(anniversary);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		loyality.setAnniversary(adate1);
+		
+		loyality.setAddress(address);
+		loyality.setCardNumber(Long.parseLong(cardNumber));
+		loyality.setCardPoints(Long.parseLong(cardPoints));
+		loyality.setCardType(cardType);
+		loyality.setCity(city);
+		loyality.setDistrict(district);
+		loyality.setEmailID(emailID);
+		loyality.setFirstName(firstName);
+		loyality.setGender(gender);
+		loyality.setLandmark(landmark);
+		loyality.setLastName(lastName);
+		loyality.setMaritalStatus(maritalStatus);
+		loyality.setMiddleName(middleName);
+		loyality.setMobileNo(Long.parseLong(mobileNo));
+		loyality.setPinCode(Long.parseLong(pinCode));
+		loyality.setState(state);
+		loyality.setVoucher(voucher);
+		
+		
+		LoyalityProgramDao dao = new LoyalityProgramDao();
+		dao.valLoyalityProgram(loyality);
+		
+		
+		
+	}
+
+}

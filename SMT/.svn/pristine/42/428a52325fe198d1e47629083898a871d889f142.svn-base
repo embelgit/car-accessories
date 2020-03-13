@@ -1,0 +1,86 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class LeafCategory implements Serializable {
+
+    /** identifier field */
+    private Long pkLeafcatId;
+
+    /** nullable persistent field */
+    private String leafcatName;
+
+    /** nullable persistent field */
+    private Long fkRootcatId;
+
+    /** nullable persistent field */
+    private Long fkSubcatId;
+
+   
+    
+ 
+    
+
+    /** full constructor */
+    public LeafCategory(Long pkLeafcatId,  String leafcatName, Long fkRootcatId, Long fkSubcatId) {
+        this.pkLeafcatId = pkLeafcatId;
+        this.setLeafcatName(leafcatName);
+        this.fkRootcatId = fkRootcatId;
+        this.fkSubcatId = fkSubcatId;       
+    }
+
+    /** default constructor */
+    public LeafCategory() {
+    }
+
+    /** minimal constructor */
+    public LeafCategory(Long pkLeafcatId) {
+        this.pkLeafcatId = pkLeafcatId;
+    }
+
+    public Long getPkLeafcatId() {
+        return this.pkLeafcatId;
+    }
+
+    public void setPkLeafcatId(Long pkLeafcatId) {
+        this.pkLeafcatId = pkLeafcatId;
+    }
+
+   
+
+    public Long getFkRootcatId() {
+        return this.fkRootcatId;
+    }
+
+    public void setFkRootcatId(Long fkRootcatId) {
+        this.fkRootcatId = fkRootcatId;
+    }
+
+    public Long getFkSubcatId() {
+        return this.fkSubcatId;
+    }
+
+    public void setFkSubcatId(Long fkSubcatId) {
+        this.fkSubcatId = fkSubcatId;
+    }
+   
+  
+
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkLeafcatId", getPkLeafcatId())
+            .toString();
+    }
+
+	public String getLeafcatName() {
+		return leafcatName;
+	}
+
+	public void setLeafcatName(String leafcatName) {
+		this.leafcatName = leafcatName;
+	}
+
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.EmpAttendance" 
+    table="Employee_Attendance"
+>
+
+    <id
+        name="pk_attendance_id"
+        type="java.lang.Long"
+        column="pk_attendance_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+    
+    <property
+        name="sdate"
+        type="java.sql.Date"
+        column="attendance_date"
+        not-null="true"
+        
+    />
+    
+    <property
+        name="id"
+        type="java.lang.Long"
+        column="fk_empattend_id"
+        not-null="true"
+        length="45"
+    />
+    
+   
+     <property
+        name="totalWorkingDays"
+        type="java.lang.Long"
+        column="total_working_day"
+        not-null="true"
+        length="45"
+    />
+    
+     <property
+        name="attended"
+        type="java.lang.Long"
+        column="attended_day"
+        not-null="true"
+        length="45"
+    />
+    
+     <property
+        name="leave"
+        type="java.lang.Long"
+        column="leave_day"
+        not-null="true"
+        length="45"
+    />
+    
+    <property
+        name="paidLeave"
+        type="java.lang.Long"
+        column="paid_leave_day"
+        not-null="true"
+        length="45"
+    />
+    
+     <property
+        name="unpaidLeave"
+        type="java.lang.Long"
+        column="unpaid_leave_day"
+        not-null="true"
+        length="45"
+    />
+    
+    <property
+        name="halfDay"
+        type="java.lang.Long"
+        column="half_day"
+        not-null="true"
+        length="45"
+    />
+    
+    
+    
+    
+</class>
+</hibernate-mapping>    

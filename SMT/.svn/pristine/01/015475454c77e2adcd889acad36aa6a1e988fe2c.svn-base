@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+	<div class="container">
+		<h2 class="form-name">Customer Bill </h2>
+	</div>
+
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+    <script src="/SMT/staticContent/css/adi.css"></script>
+    <link href="/SMT/jsp/customer_bill.jsp" rel="stylesheet" />
+	
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+
+<form action="customerBill" method="post" class="form-horizontal">	
+	<div class="col-lg-12 form-group-1">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label>Customer Name:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 second">
+			<input class="form-control" type="text" name="customerName" placeholder="Customer Name" />
+		</div>
+		
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label>Contact Number:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 second">
+			<input class="form-control" type="text" name="cNumber" placeholder="contact Number" />
+		</div>
+	</div>	
+	
+	<div class="col-lg-12 form-group-1">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label>Bill No:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 second">
+			<input class="form-control" type="text" name="billNo" placeholder="Bill No" />
+		</div>
+		
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+			<label>Loyalty Card No:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 second">
+			<input class="form-control" type="text" name="loyaltyCardNo" placeholder="Loyalty Card No" />
+		</div>
+	</div>
+	
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHead col-md-1"><strong>Sr No</strong></div>
+			<div class="rTableHead col-md-2"><strong>Barcode No</strong></div>
+			<div class="rTableHead col-md-2"><strong>Item Name</strong></div>
+			<div class="rTableHead col-md-1"><strong>Unit Price</strong></div>
+			<div class="rTableHead col-md-2"><strong>Quantity</strong></div>
+			<div class="rTableHead col-md-2"><strong>VAT Amount</strong></div>
+			<div class="rTableHead col-md-2"><strong>Total Amount</strong></div>
+		</div>
+	
+		<div class="rTableRow">
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-1"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"></div>
+		</div>
+			
+		<div class="rTableRow">
+			<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12"></div>
+			<div class="rTableLabel col-md-2"><strong>Sub Total</strong></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"/></div>
+		</div>
+	
+		<div class="rTableRow">
+			<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12"></div>
+			<div class="rTableLabel col-md-2"><strong>Tax</strong></div>
+			<div class="rTableCell col-md-2"><select name="Payment Type" class="form-control">
+												<option value="selected">--Tax Type--</option>
+											</select></div>
+		</div>
+		
+		<div class="rTableRow">
+			<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12"></div>
+			<div class="rTableLabel col-md-2"><strong>Round Off</strong></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"/></div>
+		</div>
+		
+		<div class="rTableRow">
+			<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12"></div>
+			<div class="rTableLabel col-md-2"><strong>Total</strong></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"/></div>
+		</div>
+		
+		<div class="rTableRow">
+			<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12"></div>
+			<div class="rTableLabel col-md-2"><strong>Amount Given</strong></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"/></div>
+		</div>
+		
+		<div class="rTableRow">
+			<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12"></div>
+			<div class="rTableLabel col-md-2"><strong>Change Return</strong></div>
+			<div class="rTableCell col-md-2"><input type="text" class="form-control"/></div>
+		</div>
+		
+			<div class="rTableLabel col-md-2"><strong>Payment Type:</strong></div>
+			<div class="rTableCell col-md-2"><select name="Payment Type" class="form-control">
+												<option value="selected">--Payment Mode--</option>
+												<option value="cheque">Cheque</option>
+												<option value="debitCard">Debit Card</option>
+												<option value="creditCard">Credit Card</option>
+												<option value="cash">Cash</option>
+												<option value="cd">Credit + Debit</option>
+												<option value="dc">Debit + Cash</option>
+											</select></div>
+			</div>
+		
+	<div class="wrapper">
+		<input type="button" value="Print Bill" class="btn btn-lg btn-success btn-md" /> 
+		<input type="button" value="Edit Bill" class="btn btn-lg btn-primary btn-md" />  
+		<input type="button" value="Cancel Bill" class="btn btn-lg btn-danger btn-md" /> 
+		<a href="http://localhost:8080/SMT/jsp/customer_details(Credit).jsp"> <h4 style="margin-top: -27px; margin-left: 370px;"> HOME </h4></a> 
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

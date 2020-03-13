@@ -1,0 +1,113 @@
+package com.smt.hibernate;
+
+import java.util.Date;
+import java.util.Set;
+
+public class LeaveDetail {
+
+	
+	private Long pkleaveid;
+	
+	private Long emp_id;
+
+    /** persistent field */
+    private String empName;
+
+    /** persistent field */
+    private String typeofleave;
+
+    /** persistent field */
+    private Date fdate;
+
+    /** persistent field */
+    private Date tdate;
+
+    /** persistent field */
+    private String reason;
+    
+    private String approvedBy;
+
+    /** full constructor */
+    public LeaveDetail(Long pkleaveid, Long emp_id, String empName, String typeofleave, Date fdate, Date tdate, String reason, String approvedBy ) {
+        this.setPkleaveid(pkleaveid);
+    	this.setEmp_id(emp_id);
+        this.setEmpName(empName);
+        this.setTypeofleave(typeofleave);
+        this.setFdate(fdate);
+        this.setTdate(tdate);
+        this.setReason(reason);
+        this.setApprovedBy(approvedBy);
+    }
+
+    /** default constructor */
+    public LeaveDetail() {
+    }
+
+	public Long getEmp_id() {
+		return emp_id;
+	}
+
+	public void setEmp_id(Long emp_id) {
+		this.emp_id = emp_id;
+	}
+
+	
+
+	public String getTypeofleave() {
+		return typeofleave;
+	}
+
+	public void setTypeofleave(String typeofleave) {
+		this.typeofleave = typeofleave;
+	}
+
+	public Date getFdate() {
+		return fdate;
+	}
+
+	public void setFdate(Date fdate) {
+		this.fdate = fdate;
+	}
+
+	public Date getTdate() {
+		return tdate;
+	}
+
+	public void setTdate(Date tdate) {
+		this.tdate = tdate;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+
+	public Long getPkleaveid() {
+		return pkleaveid;
+	}
+
+	public void setPkleaveid(Long pkleaveid) {
+		this.pkleaveid = pkleaveid;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	
+	
+}

@@ -1,0 +1,414 @@
+function cashbook(){
+	
+	/*
+	var don = (document.cashboook.supplier.value) || (document.cashboook.salesman.value) || (document.cashboook.creditCustomer.value) || (document.cashboook.others.value);
+	if(don == "selected")
+	{
+		alert("Please Select One  Out Of Supplier Name, Salesman Name, Cread Customer Or Other field");
+		return false;
+	}*/
+	
+	
+	
+	if ( document.cashboook.mode.value == "selected" )
+	{
+	
+		alert("Please Select Mode Type.");
+		return false;
+	}
+	
+	
+	
+	  
+   
+    	
+    	
+    	
+    	var letterNumber = /^[a-zA-Z]+$/;  
+        if(document.cashboook.reason.value.match(letterNumber))
+        {
+        	
+        	if ( document.cashboook.paymentType.value == "selected" )
+        	{
+        	
+        		alert("Please Select Payment Type.");
+        		return false;
+        	}
+        	
+        	if ( document.cashboook.personName.value == "" )
+        	{
+        	
+        		alert("Please Enter Person Name.");
+        		return false;
+        	}
+        	
+        	var letterNumber = /^[a-zA-Z]+$/;  
+            if(document.cashboook.personName.value.match(letterNumber))
+            {
+            	
+            	
+            	cash();
+            	
+            	
+            }
+            else
+            {
+            	alert("Please Enter Aphabets Only in Person Name Column. ");
+            	return false;
+            	
+            }	
+        	
+        	
+        }	
+       
+    }	
+   
+	
+
+
+    function cash(){
+	
+	
+	var supplier= $('#supplier').val();
+	var paid= $('#paid').val();
+	var billNo= $('#billNo').val();
+	var salesman= $('#salesman').val();
+	var creditCustomer= $('#creditCustomer').val();
+	var others= $('#others').val();
+	
+	var mode= $('#mode').val();
+	var totalAmount= $('#totalAmount').val();
+	var reason= $('#reason').val();
+	var paymentType= $('#paymentType').val();
+	var personName= $('#personName').val();
+	
+	 /*var input = document.getElementById('supplier'),
+	     list = document.getElementById('supplier_drop'),
+	     	i,fkRootcatId;
+		 		for (i = 0; i < list.options.length; ++i) {
+				     if (list.options[i].value === input.value) {
+				     	fkRootcatId = list.options[i].getAttribute('data-value');
+				     }
+		 		}
+ 
+ alert(supplier+"hgh");
+*/
+	
+	
+	
+	
+	
+var params= {};
+	
+	
+	params ["supplier"] = supplier;
+	params ["paid"] = paid;
+	params ["billNo"] = billNo;
+	params ["salesman"] = salesman;
+	params ["creditCustomer"] = creditCustomer;
+	params ["others"] = others;
+	
+	params ["mode"] = mode;
+	params ["totalAmount"] = totalAmount;
+	params ["reason"] = reason;
+	params ["paymentType"] = paymentType;
+	params ["personName"] = personName;
+	
+	
+	
+	params["methodName"] = "regcashbook";
+	
+	
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	{
+				alert(data);
+				if(document.cashboook)
+				{
+					document.cashboook.reset();
+				}	
+				document.cashboook.btn.disabled = false;
+			}
+	    	).error(function(jqXHR, textStatus, errorThrown){
+	    		if(textStatus==="timeout") {
+	    			$(loaderObj).hide();
+	    			$(loaderObj).find('#errorDiv').show();
+	    		}
+	    	});
+
+}
+ 
+    
+
+
+function BillHelper()
+
+{
+	
+	
+	this.getAllBills =getAllBills;
+	this.getTotalAmtByBills=getTotalAmtByBills;
+	this.fillItemList = fillItemList;
+	function getAllBills()
+	{
+		var supplier = $("#supplier").val();
+		$("#billNo").empty();
+		$("#billNo").append($("<option></option>").attr("value","").text("Select bill"));
+		var params= {};
+		params["methodName"] = "getSAllBillBYSuppliers";
+		params["supplier"]= supplier;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData = $.parseJSON(data);
+			//var jsonData = jsonData.list;
+			$.each(jsonData,function(i,v)
+					{
+				$("#billNo").append($("<option></option>").attr("value",i).text(v.billNo)); 
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+				});
+
+	}
+	
+	
+	function getTotalAmtByBills()
+	{
+		//$("#jqGrid").jqGrid("clearGridData");
+		var billNo = $("#billNo").val();
+		$("#totalAmount").empty();
+		$("#totalAmount").append($("<input/>").attr("value","").text());
+		var params= {};
+		params["methodName"] = "getTotalAmtByBillNO";
+		params["billNo"]= billNo;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData = $.parseJSON(data);
+			//var jsonData = jsonData.list;
+			$.each(jsonData,function(i,v)
+					{
+				document.getElementById("totalAmount").value = v.totalAmount;
+				/*$("#jqGrid").jqGrid(
+						{
+
+							datatype : "local",
+
+							colNames : [ "Total", "PAID",
+									"Balance", ],
+
+							colModel : [ {
+								name : "totalAmount",
+								width : 100,
+							}, {
+								name : "paid",
+								width : 100,
+							//resizable: true,
+
+							},
+
+							{
+								name : "balance",
+								width : 100,
+								editable : true
+							},
+
+							
+							],
+
+							sortorder : 'desc',
+
+							loadonce : true,
+							viewrecords : true,
+							width : 500,
+							height :180,
+							rowNum : 10,
+
+							pager : "#jqGridPager"
+						});
+				
+				$("#jqGrid").addRowData(i, jsonData[i]);*/
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+				});
+
+	}
+	
+	function fillItemList()
+	{
+		var supplierId = $("#supplierId").val();
+		//var subcat = $("#subCat").val();
+
+
+	}
+}
+
+var bill = new BillHelper();
+
+
+
+
+function employeecashbook(){
+	
+	/*
+	var don = (document.cashboook.supplier.value) || (document.cashboook.salesman.value) || (document.cashboook.creditCustomer.value) || (document.cashboook.others.value);
+	if(don == "selected")
+	{
+		alert("Please Select One  Out Of Supplier Name, Salesman Name, Cread Customer Or Other field");
+		return false;
+	}*/
+	
+	
+	
+	if ( document.cashboook.mode.value == "selected" )
+	{
+	
+		alert("Please Select Mode Type.");
+		return false;
+	}
+	
+	
+	
+	  
+   
+    	
+    	
+    	
+    	var letterNumber = /^[a-zA-Z]+$/;  
+        if(document.cashboook.reason.value.match(letterNumber))
+        {
+        	
+        	if ( document.cashboook.paymentType.value == "selected" )
+        	{
+        	
+        		alert("Please Select Payment Type.");
+        		return false;
+        	}
+        	
+        	if ( document.cashboook.personName.value == "" )
+        	{
+        	
+        		alert("Please Enter Person Name.");
+        		return false;
+        	}
+        	
+        	var letterNumber = /^[a-zA-Z]+$/;  
+            if(document.cashboook.personName.value.match(letterNumber))
+            {
+            	
+            	
+            	cash();
+            	
+            	
+            }
+            else
+            {
+            	alert("Please Enter Aphabets Only in Person Name Column. ");
+            	return false;
+            	
+            }	
+        	
+        	
+        }	
+       
+    }	
+   
+	
+
+
+    function employeecash(){
+	
+	
+	var paid1= $('#paid1').val();
+	var salesman11= $('#salesman11').val();
+	var mode1= $('#mode1').val();
+	var reason1= $('#reason1').val();
+	var paymentType1= $('#paymentType1').val();
+	var personName1= $('#personName1').val();
+	
+	
+	
+	
+	
+var params= {};
+	
+	
+	params ["paid1"] = paid1;
+	params ["salesman11"] = salesman11;
+
+	params ["mode1"] = mode1;
+	params ["reason1"] = reason1;
+	params ["paymentType1"] = paymentType1;
+	params ["personName1"] = personName1;
+	
+	
+	
+	params["methodName"] = "regemployeecashbook";
+	
+	
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	{
+				alert(data);
+				
+			}
+	    	).error(function(jqXHR, textStatus, errorThrown){
+	    		if(textStatus==="timeout") {
+	    			$(loaderObj).hide();
+	    			$(loaderObj).find('#errorDiv').show();
+	    		}
+	    	});
+
+}
+ 
+    
+
+    function CreditCustcash(){
+    	
+    	
+    	var paid2= $('#paid2').val();
+    	var creditCustomer12= $('#creditCustomer12').val();
+    	var mode2= $('#mode2').val();
+    	var reason2= $('#reason2').val();
+    	var paymentType2= $('#paymentType2').val();
+    	var personName2= $('#personName2').val();
+    	
+    	
+    	
+    	
+    	
+    var params= {};
+    	
+    	
+    	params ["paid2"] = paid2;
+    	params ["creditCustomer12"] = creditCustomer12;
+
+    	params ["mode2"] = mode2;
+    	params ["reason2"] = reason2;
+    	params ["paymentType2"] = paymentType2;
+    	params ["personName2"] = personName2;
+    	
+    	
+    	
+    	params["methodName"] = "regcreditcustcashbook";
+    	
+    	
+    	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+    	    	{
+    				alert(data);
+    				
+    			}
+    	    	).error(function(jqXHR, textStatus, errorThrown){
+    	    		if(textStatus==="timeout") {
+    	    			$(loaderObj).hide();
+    	    			$(loaderObj).find('#errorDiv').show();
+    	    		}
+    	    	});
+
+    }
+     
+

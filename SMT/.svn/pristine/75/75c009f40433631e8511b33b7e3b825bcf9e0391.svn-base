@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.OfferDetail" 
+    table="offer_details"
+>
+
+    <id
+        name="pkItemofferId"
+        type="java.lang.Long"
+        column="pk_itemoffer_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="buyPrice"
+        type="java.math.BigDecimal"
+        column="buy_price"
+        not-null="true"
+        length="10"
+    />
+    
+    <property
+        name="item_id"
+        type="java.lang.Long"
+        column="fk_item_id"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="commision"
+        type="java.math.BigDecimal"
+        column="commision"
+        not-null="true"
+        length="10"
+    />
+   
+   
+   <property
+        name="discount"
+        type="java.math.BigDecimal"
+        column="discount"
+        not-null="true"
+        length="10"
+    />
+   
+    <property
+        name="salePrice"
+        type="java.math.BigDecimal"
+        column="sale_price"
+        not-null="true"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to ItemDetail -->
+   <!--  <many-to-one
+        name="itemDetail"
+        class="com.smt.hibernate.ItemDetail"
+        not-null="true"
+    >
+        <column name="fk_item_id" />
+    </many-to-one> -->
+
+</class>
+</hibernate-mapping>

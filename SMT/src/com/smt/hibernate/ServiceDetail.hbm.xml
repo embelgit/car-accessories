@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="com.smt.hibernate.ServiceDetail" 
+    table="service_detail"
+>
+
+    <id
+        name="pkProductId"
+        type="java.lang.Long"
+        column="pkProductNameId"
+    >
+    
+        <generator class="increment" />
+    </id>
+  
+		<property 
+		name="itemName" 
+		type="java.lang.String" 
+		column="ItemName"
+		 length="255" />
+		
+		<property 
+		name="hsnsacno" 
+		type="java.lang.String" 
+		column="hsnsacNo"
+		length="255" />
+		
+		
+		</class>
+    </hibernate-mapping>

@@ -1,0 +1,42 @@
+package com.smt.helper;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.CategoryDao;
+import com.smt.dao.LeafCategoryDao;
+import com.smt.hibernate.LeafCategory;
+
+public class LeafCategoryHelper {
+
+	
+	public void registerLeafCat(HttpServletRequest request , HttpServletResponse response)
+	{
+		String leafcatName = request.getParameter("leafcatName");
+		System.out.println("leafcatName" + leafcatName);
+		String fkRootcatId = request.getParameter("fkRootcatId");
+		System.out.println("rootid" +fkRootcatId);
+		String fkSubcatId = request.getParameter("fkSubcatId");
+		System.out.println("sbcat"+fkSubcatId);
+		
+		LeafCategory leafCategory = new LeafCategory();
+		leafCategory.setLeafcatName(leafcatName);
+		leafCategory.setFkRootcatId(Long.parseLong(fkRootcatId));
+		leafCategory.setFkSubcatId(Long.parseLong(fkSubcatId));
+	
+		
+		
+		LeafCategoryDao categoryDao = new LeafCategoryDao();
+		categoryDao.valCategory(leafCategory);
+		
+	}
+	
+	/*public List getAllMainLeafCategories()
+	{
+		LeafCategoryDao dao = new LeafCategoryDao();
+		return dao.getAllLeafCategories();
+	}*/
+	
+}

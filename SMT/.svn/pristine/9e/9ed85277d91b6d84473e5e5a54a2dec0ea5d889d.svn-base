@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.StockDetail" 
+    table="stock_details"
+>
+
+    <id
+        name="pkStockDetailsId"
+        type="java.lang.Long"
+        column="pk_stock_details_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="isActiveYn"
+        type="java.lang.String"
+        column="is_active_YN"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="isInsertDate"
+        type="java.sql.Timestamp"
+        column="is_insert_date"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="isModifiedDate"
+        type="java.sql.Timestamp"
+        column="is_modified_date"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="isSold"
+        type="java.lang.String"
+        column="is_sold"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="poNo"
+        type="java.lang.Integer"
+        column="po_no"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="status"
+        not-null="true"
+        length="1"
+    />
+
+    <property
+        name="fk_item_details_id"
+        type="java.lang.Long"
+        column="fk_item_details_id"
+        length="19"
+         insert="false" 
+         update="false"
+    />
+    
+     <property
+        name="fk_product_id"
+        type="java.lang.Long"
+        column="fk_product_id"
+        length="19"
+         insert="false" 
+         update="false"
+    />
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to ItemStock -->
+    <many-to-one
+        name="itemStock"
+        class="com.smt.hibernate.ItemStock"
+        not-null="true"
+    >
+        <column name="fk_item_stock_id" />
+    </many-to-one>
+    <many-to-one
+        name="itemDetail"
+        class="com.smt.hibernate.ItemDetail"
+        not-null="true"
+        
+    >
+        <column name="fk_item_details_id" />
+    </many-to-one>
+    <many-to-one
+        name="productDetail"
+        class="com.smt.hibernate.ProductDetail"
+        not-null="true"
+    >
+        <column name="fk_product_id" />
+    </many-to-one> 
+
+</class>
+</hibernate-mapping>

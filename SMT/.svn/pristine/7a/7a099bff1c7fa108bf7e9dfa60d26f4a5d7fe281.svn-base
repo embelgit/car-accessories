@@ -1,0 +1,33 @@
+package com.smt.bean;
+
+public class SalesmanDetailBean {
+
+	
+	private String empName;
+	private Long empId;
+	private Long fkEmpId;
+	
+	
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public Long getEmpId() {
+		return empId;
+	}
+	public void setEmpId(Long empId) {
+		this.empId = empId;
+	}
+	public Long getFkEmpId() {
+		return fkEmpId;
+	}
+	public void setFkEmpId(Long fkEmpId) {
+		this.fkEmpId = fkEmpId;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,42 @@
+package com.smt.helper;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.RootCategoryDao;
+import com.smt.hibernate.RootCategory;
+
+public class RootCategoryHelper {
+	
+	
+	public void regRootCategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		
+		String cat = request.getParameter("cat");
+		System.out.println("asdfg"+cat);
+		String subCat = request.getParameter("subCat");
+		System.out.println("SubCat" +subCat);
+		String leafCat = request.getParameter("leafCat");
+		System.out.println("leafCat" +leafCat);
+        String createRootCategory = request.getParameter("createRootCategory");
+        System.out.println("RootCategory"+createRootCategory);
+		
+        
+        RootCategory rootCategory = new RootCategory();
+        rootCategory.setcat(Long.parseLong(cat));
+        rootCategory.setsubCat(Long.parseLong(subCat));
+        rootCategory.setleafCat(Long.parseLong(leafCat));
+        rootCategory.setcreateRootCategory(createRootCategory);
+       
+        
+
+        
+        RootCategoryDao dao = new RootCategoryDao();
+        dao.valRootCategory(rootCategory);
+	}
+
+	
+	
+	
+
+}

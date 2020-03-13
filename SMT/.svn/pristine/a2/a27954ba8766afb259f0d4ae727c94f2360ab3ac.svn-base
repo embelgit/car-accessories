@@ -1,0 +1,190 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class StockDetail implements Serializable {
+
+    /** identifier field */
+    private Long pkStockDetailsId;
+
+    /** persistent field */
+    private String isActiveYn;
+
+    /** persistent field */
+    private Date isInsertDate;
+
+    /** persistent field */
+    private Date isModifiedDate;
+
+    /** persistent field */
+    private String isSold;
+
+    /** persistent field */
+    private Integer poNo;
+
+    /** persistent field */
+    private String status;
+    
+    /** persistent field */
+    private Long fk_item_stock_id;
+    
+    /** persistent field */
+    private Long fk_item_details_id;
+
+    /** persistent field */
+    private Long fk_product_id;
+    
+    /** persistent field */
+    private com.smt.hibernate.ItemStock itemStock;
+
+    /** persistent field */
+    private com.smt.hibernate.ItemDetail itemDetail;
+
+    /** persistent field */
+    private com.smt.hibernate.ProductDetail productDetail;
+
+    /** full constructor */
+    public StockDetail(Long pkStockDetailsId, Long fk_item_details_id, Long fk_item_stock_id, Long fk_product_id, String isActiveYn, Date isInsertDate, Date isModifiedDate, String isSold, Integer poNo, String status, com.smt.hibernate.ItemStock itemStock, com.smt.hibernate.ItemDetail itemDetail, com.smt.hibernate.ProductDetail productDetail) {
+        this.pkStockDetailsId = pkStockDetailsId;
+        this.isActiveYn = isActiveYn;
+        this.isInsertDate = isInsertDate;
+        this.isModifiedDate = isModifiedDate;
+        this.isSold = isSold;
+        this.poNo = poNo;
+        this.status = status;
+        this.itemStock = itemStock;
+        this.itemDetail = itemDetail;
+        this.productDetail = productDetail;
+        this.fk_item_details_id = fk_item_details_id;
+        this.fk_item_stock_id = fk_item_stock_id;
+        this.fk_product_id = fk_product_id  ; 
+    }
+
+    /** default constructor */
+    public StockDetail() {
+    }
+
+    public Long getPkStockDetailsId() {
+        return this.pkStockDetailsId;
+    }
+
+    public void setPkStockDetailsId(Long pkStockDetailsId) {
+        this.pkStockDetailsId = pkStockDetailsId;
+    }
+
+    public String getIsActiveYn() {
+        return this.isActiveYn;
+    }
+
+    public void setIsActiveYn(String isActiveYn) {
+        this.isActiveYn = isActiveYn;
+    }
+
+    public Date getIsInsertDate() {
+        return this.isInsertDate;
+    }
+
+    public void setIsInsertDate(Date isInsertDate) {
+        this.isInsertDate = isInsertDate;
+    }
+
+    public Date getIsModifiedDate() {
+        return this.isModifiedDate;
+    }
+
+    public void setIsModifiedDate(Date isModifiedDate) {
+        this.isModifiedDate = isModifiedDate;
+    }
+
+    public String getIsSold() {
+        return this.isSold;
+    }
+
+    public void setIsSold(String isSold) {
+        this.isSold = isSold;
+    }
+
+    public Integer getPoNo() {
+        return this.poNo;
+    }
+
+    public void setPoNo(Integer poNo) {
+        this.poNo = poNo;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public com.smt.hibernate.ItemStock getItemStock() {
+        return this.itemStock;
+    }
+
+    public void setItemStock(com.smt.hibernate.ItemStock itemStock) {
+        this.itemStock = itemStock;
+    }
+
+    public com.smt.hibernate.ItemDetail getItemDetail() {
+        return this.itemDetail;
+    }
+
+    public void setItemDetail(com.smt.hibernate.ItemDetail itemDetail) {
+        this.itemDetail = itemDetail;
+    }
+
+    public com.smt.hibernate.ProductDetail getProductDetail() {
+        return this.productDetail;
+    }
+
+    public void setProductDetail(com.smt.hibernate.ProductDetail productDetail) {
+        this.productDetail = productDetail;
+    }
+
+    @Override
+	public String toString() {
+		return "StockDetail [pkStockDetailsId=" + pkStockDetailsId
+				+ ", isActiveYn=" + isActiveYn + ", isInsertDate="
+				+ isInsertDate + ", isModifiedDate=" + isModifiedDate
+				+ ", isSold=" + isSold + ", poNo=" + poNo + ", status="
+				+ status + ", fk_item_stock_id=" + fk_item_stock_id
+				+ ", fk_item_details_id=" + fk_item_details_id
+				+ ", fk_product_id=" + fk_product_id + ", itemStock="
+				+ itemStock + ", itemDetail=" + itemDetail + ", productDetail="
+				+ productDetail + "]";
+	}
+
+	public Long getFk_item_stock_id() {
+		return fk_item_stock_id;
+	}
+
+	public void setFk_item_stock_id(Long fk_item_stock_id) {
+		this.fk_item_stock_id = fk_item_stock_id;
+	}
+
+	public Long getFk_item_details_id() {
+		return fk_item_details_id;
+	}
+
+	public void setFk_item_details_id(Long fk_item_details_id) {
+		this.fk_item_details_id = fk_item_details_id;
+	}
+
+	public Long getFk_product_id() {
+		return fk_product_id;
+	}
+
+	public void setFk_product_id(Long fk_product_id) {
+		this.fk_product_id = fk_product_id;
+	}
+	
+	
+
+}

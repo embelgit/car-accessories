@@ -1,0 +1,515 @@
+package com.smt.helper;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.EmployeeEditBean;
+import com.smt.bean.SalesmanDetailBean;
+import com.smt.dao.EmpAccountDao;
+import com.smt.dao.EmployeeDetailsDao;
+import com.smt.hibernate.EmployeeAccount;
+import com.smt.hibernate.EmployeeDetails;
+import com.smt.hibernate.SupplierDetail;
+import com.smt.utility.HibernateUtility;
+
+public class EmployeeDetailsHelper {
+	
+	public void employeeDetails(HttpServletRequest request, HttpServletResponse response ){
+		
+		//String id = request.getParameter("id");
+		String dob = request.getParameter("dob");
+		System.out.println("dob-------"+dob);
+		
+		String emergencyContactNumber = request.getParameter("emergencyContactNumber");
+		System.out.println("emergencyContactNumber---"+emergencyContactNumber);
+		
+		String accountNumber = request.getParameter("accountNumber");
+		System.out.println("accountNumber---------"+accountNumber);
+		
+		String address = request.getParameter("address");
+		System.out.println("address-------"+address);
+		
+		String adharNumber = request.getParameter("adharNumber");
+		System.out.println("adharNumber-----------"+adharNumber);
+		
+		String bankName = request.getParameter("bankName");
+		System.out.println("bankName-----------"+bankName);
+		
+		String branch = request.getParameter("branch");
+		System.out.println("branch-----------------"+branch);
+		
+		String city = request.getParameter("city");
+		System.out.println("city---------------"+city);
+		
+		String contactNumber = request.getParameter("contactNumber");
+		System.out.println("contactNumber----------"+contactNumber);
+		
+		String education = request.getParameter("education");
+		System.out.println("education-----------"+education);
+		
+		String emailId = request.getParameter("emailId");
+		System.out.println("emailId-------------"+emailId);
+		
+		String familyMember = request.getParameter("familyMember");
+		System.out.println("familyMember----------"+familyMember);
+		
+		String firstName = request.getParameter("firstName");
+		System.out.println("firstName-------------"+firstName);
+		
+		String gender = request.getParameter("gender");
+		System.out.println("gender----------"+gender);
+		
+		String ifsc = request.getParameter("ifsc");
+		System.out.println("ifsc---------"+ifsc);
+		
+		String joiningDate = request.getParameter("joiningDate");
+		System.out.println("joiningDate------------"+joiningDate);
+		
+		String knownLanguage = request.getParameter("knownLanguage");
+		System.out.println("knownLanguage------------"+knownLanguage);
+		
+		String lastName = request.getParameter("lastName");
+		System.out.println("lastName--------------"+lastName);
+		
+		String maritalStatus = request.getParameter("maritalStatus");
+		System.out.println("maritalStatus---------"+maritalStatus);
+		
+		String middleName = request.getParameter("middleName");
+		System.out.println("middleName-------------"+middleName);
+		
+		String previousFirmAddress = request.getParameter("previousFirmAddress");
+		System.out.println("previousFirmAddress----------"+previousFirmAddress);
+		
+		String previousFirmContactNo = request.getParameter("previousFirmContactNo");
+		System.out.println("previousFirmContactNo------------"+previousFirmContactNo);
+		
+		String previousFirmName = request.getParameter("previousFirmName");
+		System.out.println("previousFirmName-----------"+previousFirmName);
+		
+		String previousJob = request.getParameter("previousJob");
+		System.out.println("previousJob---------------"+previousJob);
+		
+		String previousJobExeperiance = request.getParameter("previousJobExeperiance");
+		System.out.println("previousJobExperience----------"+previousJobExeperiance);
+		
+		String reference = request.getParameter("reference");
+		System.out.println("reference-----------------"+reference);
+		
+		String resignDate = request.getParameter("resignDate");
+		System.out.println("resignDate-----------"+resignDate);
+		
+		String resignReason = request.getParameter("resignReason");
+		System.out.println("resignReason-------------"+resignReason);
+		
+		String salary = request.getParameter("salary");
+		System.out.println("salary------------"+salary);
+		
+		String department = request.getParameter("department");
+		System.out.println("department------------------"+department);
+		
+		String designation = request.getParameter("designation");
+		
+		
+		EmployeeDetails ed = new EmployeeDetails();
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Date adate = null;
+				try {
+				 adate=	format.parse(dob);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ed.setDob(adate);
+				
+				Date adate1 = null;
+				try {
+				 adate1=	format.parse(joiningDate);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ed.setJoiningDate(adate1);
+				
+				Date adate2 = null;
+				try {
+				 adate2=	format.parse(resignDate);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ed.setResignDate(adate2);
+				
+				
+				
+				
+		
+				ed.setEmergancyContactNumber(Long.parseLong(emergencyContactNumber));
+				ed.setAccountNumber(Long.parseLong(accountNumber));
+				ed.setAddress(address);
+				ed.setAdharNumber(Long.parseLong(adharNumber));
+				ed.setBankName(bankName);
+				ed.setBranch(branch);
+				ed.setCity(city);
+				ed.setContactNumber(Long.parseLong(contactNumber));
+				ed.setEducation(education);
+				ed.setEmailId(emailId);
+				ed.setFamilyMember(familyMember);
+				ed.setFirstName(firstName);
+				ed.setGender(gender);
+				ed.setIfsc(Long.parseLong(ifsc));
+				ed.setKnownLanguage(knownLanguage);
+				ed.setLastName(lastName);
+				ed.setMaritalStatus(maritalStatus);
+				ed.setMiddleName(middleName);
+				ed.setPreviousFirmAddress(previousFirmAddress);
+				ed.setPreviousFirmContactNo(Long.parseLong(previousFirmContactNo));
+				ed.setPreviousFirmName(previousFirmName);
+				ed.setPreviousJob(previousJob);
+				ed.setPreviousJobExeperiance(Long.parseLong(previousJobExeperiance));
+				ed.setReference(reference);
+				ed.setResignReason(resignReason);
+				ed.setSalary(Long.parseLong(salary));
+				ed.setDepartment(department);
+				ed.setDesignation(designation);
+				
+				
+				EmployeeDetailsDao edo = new EmployeeDetailsDao();
+				edo.valEmployeeDetails(ed);
+	}
+	
+	
+	public SalesmanDetailBean getSalesmanDetail(HttpServletRequest request,HttpServletResponse response) {
+
+		String key=request.getParameter("key");
+		
+		Map<Long,SalesmanDetailBean> map = new HashMap<Long,SalesmanDetailBean>();
+		
+		EmployeeDetailsDao dao = new EmployeeDetailsDao();
+		List<SalesmanDetailBean> catList = dao.getAllSalesmanDetail(key);
+		
+		SalesmanDetailBean sb = null;
+		if(catList!= null && catList.size() > 0 )
+		{	
+			sb = (SalesmanDetailBean)catList.get(0); 
+		}
+		return sb;
+	
+	}
+
+
+	public Map getEditEmployee(Long empId) {
+		
+		EmployeeDetailsDao dao1 = new EmployeeDetailsDao();
+		List catList = dao1.getEditEmployee1(empId);
+		
+		Map  map =  new HashMap();
+		for(int i=0;i<catList.size();i++)
+		{
+			Object[] o = (Object[])catList.get(i);
+			EmployeeEditBean bean = new EmployeeEditBean();
+		
+			
+			bean.setDob((java.sql.Date)o[0]);
+			bean.setEmergancyContactNumber((Long)o[1]);
+			bean.setAccountNumber((Long)o[2]);
+			bean.setAddress((String)o[3]);
+			bean.setAdharNumber((Long)o[4]);
+			bean.setBankName((String)o[5]);
+			bean.setBranch((String)o[6]);
+			bean.setCity((String)o[7]);
+			bean.setContactNumber((Long)o[8]);
+			bean.setEducation((String)o[9]);
+			bean.setEmailId((String)o[10]);
+			bean.setFamilyMember((String)o[11]);
+			bean.setGender((String)o[12]);
+			bean.setIfsc((Long)o[13]);
+			bean.setJoiningDate((Date)o[14]);
+			bean.setKnownLanguage((String)o[15]);
+			bean.setMaritalStatus((String)o[16]);
+			bean.setPreviousFirmAddress((String)o[17]);
+			bean.setPreviousFirmContactNo((Long)o[18]);
+			bean.setPreviousFirmName((String)o[19]);
+			bean.setPreviousJob((String)o[20]);
+			bean.setPreviousJobExeperiance((Long)o[21]);
+			bean.setReference((String)o[22]);
+			bean.setResignReason((String)o[23]);
+			bean.setSalary((Long)o[24]);
+			bean.setDepartment((String)o[25]);
+			bean.setDesignation((String)o[26]);
+			
+			
+			
+			
+			map.put(bean.getAddress(),bean);
+		}
+		return map;
+		
+
+		
+	}
+
+	public void employeeEdit(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		
+		/*String dob = request.getParameter("dob");
+		System.out.println("dob-------"+dob);*/
+		
+		String emergencyContactNumber = request.getParameter("emergancyContactNumber");
+		System.out.println("emergencyContactNumber---"+emergencyContactNumber);
+		
+		String accountNumber = request.getParameter("accountNumber");
+		System.out.println("accountNumber---------"+accountNumber);
+		
+		String address = request.getParameter("address");
+		System.out.println("address-------"+address);
+		
+		String adharNumber = request.getParameter("adharNumber");
+		System.out.println("adharNumber-----------"+adharNumber);
+		
+		String bankName = request.getParameter("bankName");
+		System.out.println("bankName-----------"+bankName);
+		
+		String branch = request.getParameter("branch");
+		System.out.println("branch-----------------"+branch);
+		
+		String city = request.getParameter("city");
+		System.out.println("city---------------"+city);
+		
+		String contactNumber = request.getParameter("contactNumber");
+		System.out.println("contactNumber----------"+contactNumber);
+		
+		String education = request.getParameter("education");
+		System.out.println("education-----------"+education);
+		
+		String emailId = request.getParameter("emailId");
+		System.out.println("emailId-------------"+emailId);
+		
+		String familyMember = request.getParameter("familyMember");
+		System.out.println("familyMember----------"+familyMember);
+		
+		String firstName = request.getParameter("firstName");
+		System.out.println("firstName-------------"+firstName);
+		
+		String gender = request.getParameter("gender");
+		System.out.println("gender----------"+gender);
+		
+		String ifsc = request.getParameter("ifsc");
+		System.out.println("ifsc---------"+ifsc);
+		
+		/*String joiningDate = request.getParameter("joiningDate");
+		System.out.println("joiningDate------------"+joiningDate);*/
+		
+		String knownLanguage = request.getParameter("knownLanguage");
+		System.out.println("knownLanguage------------"+knownLanguage);
+		
+		
+		
+		String maritalStatus = request.getParameter("maritalStatus");
+		System.out.println("maritalStatus---------"+maritalStatus);
+	
+		
+		String previousFirmAddress = request.getParameter("previousFirmAddress");
+		System.out.println("previousFirmAddress----------"+previousFirmAddress);
+		
+		String previousFirmContactNo = request.getParameter("previousFirmContactNo");
+		System.out.println("previousFirmContactNo------------"+previousFirmContactNo);
+		
+		String previousFirmName = request.getParameter("previousFirmName");
+		System.out.println("previousFirmName-----------"+previousFirmName);
+		
+		String previousJob = request.getParameter("previousJob");
+		System.out.println("previousJob---------------"+previousJob);
+		
+		String previousJobExeperiance = request.getParameter("previousJobExeperiance");
+		System.out.println("previousJobExperience----------"+previousJobExeperiance);
+		
+		String reference = request.getParameter("reference");
+		System.out.println("reference-----------------"+reference);
+		
+	
+		String resignReason = request.getParameter("resignReason");
+		System.out.println("resignReason-------------"+resignReason);
+		
+		String salary = request.getParameter("salary");
+		System.out.println("salary------------"+salary);
+		
+		String department = request.getParameter("department");
+		System.out.println("department------------------"+department);
+		
+		String designation = request.getParameter("designation");
+		
+		EmployeeDetails empd = new EmployeeDetails();
+		/*
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date adate = null;
+		try {
+		 adate=	format1.parse(dob);
+		} catch (ParseException e1) {
+			// TODO Auto-generatempd catch block
+			e1.printStackTrace();
+		}
+		empd.setDob(adate);
+		
+		Date adate1 = null;
+		try {
+		 adate1=	format1.parse(joiningDate);
+		} catch (ParseException e1) {
+			// TODO Auto-generatempd catch block
+			e1.printStackTrace();
+		}
+		empd.setJoiningDate(adate1);*/
+		
+		
+		
+		
+		
+		
+
+		empd.setEmergancyContactNumber(Long.parseLong(emergencyContactNumber));
+		empd.setAccountNumber(Long.parseLong(accountNumber));
+		empd.setAddress(address);
+		empd.setAdharNumber(Long.parseLong(adharNumber));
+		empd.setBankName(bankName);
+		empd.setBranch(branch);
+		empd.setCity(city);
+		empd.setContactNumber(Long.parseLong(contactNumber));
+		empd.setEducation(education);
+		empd.setEmailId(emailId);
+		empd.setFamilyMember(familyMember);
+		empd.setFirstName(firstName);
+		empd.setGender(gender);
+		empd.setIfsc(Long.parseLong(ifsc));
+		empd.setKnownLanguage(knownLanguage);
+	
+		empd.setMaritalStatus(maritalStatus);
+	
+		empd.setPreviousFirmAddress(previousFirmAddress);
+		empd.setPreviousFirmContactNo(Long.parseLong(previousFirmContactNo));
+		empd.setPreviousFirmName(previousFirmName);
+		empd.setPreviousJob(previousJob);
+		empd.setPreviousJobExeperiance(Long.parseLong(previousJobExeperiance));
+		empd.setReference(reference);
+		empd.setResignReason(resignReason);
+		empd.setSalary(Long.parseLong(salary));
+		empd.setDepartment(department);
+		empd.setDesignation(designation);
+		
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		
+		
+		EmployeeDetails det = (EmployeeDetails) session.get(EmployeeDetails.class, new Long(firstName));
+		
+//SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+		
+		/*Date adat = null;
+		try {
+		 adate=	format2.parse(dob);
+		} catch (ParseException e1) {
+			// TODO Auto-generatdet catch block
+			e1.printStackTrace();
+		}
+		det.setDob(adat);
+		
+		Date adat1 = null;
+		try {
+		 adat1=	format2.parse(joiningDate);
+		} catch (ParseException e1) {
+			// TODO Auto-generatdet catch block
+			e1.printStackTrace();
+		}
+		det.setJoiningDate(adate1);*/
+		
+		
+		
+		
+		
+		
+
+		det.setEmergancyContactNumber(Long.parseLong(emergencyContactNumber));
+		det.setAccountNumber(Long.parseLong(accountNumber));
+		det.setAddress(address);
+		det.setAdharNumber(Long.parseLong(adharNumber));
+		det.setBankName(bankName);
+		det.setBranch(branch);
+		det.setCity(city);
+		det.setContactNumber(Long.parseLong(contactNumber));
+		det.setEducation(education);
+		det.setEmailId(emailId);
+		det.setFamilyMember(familyMember);
+		det.setFirstName(firstName);
+		det.setGender(gender);
+		det.setIfsc(Long.parseLong(ifsc));
+		det.setKnownLanguage(knownLanguage);
+	
+		det.setMaritalStatus(maritalStatus);
+	
+		det.setPreviousFirmAddress(previousFirmAddress);
+		det.setPreviousFirmContactNo(Long.parseLong(previousFirmContactNo));
+		det.setPreviousFirmName(previousFirmName);
+		det.setPreviousJob(previousJob);
+		det.setPreviousJobExeperiance(Long.parseLong(previousJobExeperiance));
+		det.setReference(reference);
+		det.setResignReason(resignReason);
+		det.setSalary(Long.parseLong(salary));
+		det.setDepartment(department);
+		det.setDesignation(designation);
+		
+		 session.saveOrUpdate(det);
+		 transaction.commit();
+		
+		
+		
+	}
+	
+	public void regemployeecashbook(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		
+		
+		EmployeeAccount emp = new EmployeeAccount();
+		
+		String salesman = request.getParameter("salesman11");
+		String mode = request.getParameter("mode1");
+		String reason = request.getParameter("reason1");
+		String paymentType = request.getParameter("paymentType1");
+		System.out.println(paymentType+"$$$$$$$$$$$$$$$$$$$$");
+		String personName = request.getParameter("personName1");
+		String paid = request.getParameter("paid1");
+		System.out.println(paid+"***************************");
+		Date adate = new Date();
+		emp.setDate1(adate);
+		emp.setPaid(Double.parseDouble(paid));
+		emp.setMode(mode);
+		emp.setReason(reason);
+		emp.setPaymentType(paymentType);
+		emp.setPersonName(personName);
+		emp.setSalesman(Long.parseLong(salesman));
+
+		EmpAccountDao dao = new EmpAccountDao();
+		dao.valEmpAccountDao(emp);
+	}
+
+}

@@ -1,0 +1,96 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class UserAccessAssociation implements Serializable {
+
+    /** identifier field */
+    private Long pkAssociationId;
+
+    /** persistent field */
+    private String activeYn;
+
+    /** persistent field */
+    private Long fkMainLevelId;
+
+    /** persistent field */
+    private com.smt.hibernate.LeafLevelMaster leafLevelMaster;
+
+    /** persistent field */
+    private com.smt.hibernate.SubLevelMaster subLevelMaster;
+
+    /** persistent field */
+    private com.smt.hibernate.UserInfo userInfo;
+
+    /** full constructor */
+    public UserAccessAssociation(Long pkAssociationId, String activeYn, Long fkMainLevelId, com.smt.hibernate.LeafLevelMaster leafLevelMaster, com.smt.hibernate.SubLevelMaster subLevelMaster, com.smt.hibernate.UserInfo userInfo) {
+        this.pkAssociationId = pkAssociationId;
+        this.activeYn = activeYn;
+        this.fkMainLevelId = fkMainLevelId;
+        this.leafLevelMaster = leafLevelMaster;
+        this.subLevelMaster = subLevelMaster;
+        this.userInfo = userInfo;
+    }
+
+    /** default constructor */
+    public UserAccessAssociation() {
+    }
+
+    public Long getPkAssociationId() {
+        return this.pkAssociationId;
+    }
+
+    public void setPkAssociationId(Long pkAssociationId) {
+        this.pkAssociationId = pkAssociationId;
+    }
+
+    public String getActiveYn() {
+        return this.activeYn;
+    }
+
+    public void setActiveYn(String activeYn) {
+        this.activeYn = activeYn;
+    }
+
+    public Long getFkMainLevelId() {
+        return this.fkMainLevelId;
+    }
+
+    public void setFkMainLevelId(Long fkMainLevelId) {
+        this.fkMainLevelId = fkMainLevelId;
+    }
+
+    public com.smt.hibernate.LeafLevelMaster getLeafLevelMaster() {
+        return this.leafLevelMaster;
+    }
+
+    public void setLeafLevelMaster(com.smt.hibernate.LeafLevelMaster leafLevelMaster) {
+        this.leafLevelMaster = leafLevelMaster;
+    }
+
+    public com.smt.hibernate.SubLevelMaster getSubLevelMaster() {
+        return this.subLevelMaster;
+    }
+
+    public void setSubLevelMaster(com.smt.hibernate.SubLevelMaster subLevelMaster) {
+        this.subLevelMaster = subLevelMaster;
+    }
+
+    public com.smt.hibernate.UserInfo getUserInfo() {
+        return this.userInfo;
+    }
+
+    public void setUserInfo(com.smt.hibernate.UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkAssociationId", getPkAssociationId())
+            .toString();
+    }
+
+}

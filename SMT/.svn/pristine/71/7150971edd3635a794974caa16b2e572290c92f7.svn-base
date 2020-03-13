@@ -1,0 +1,178 @@
+package com.smt.helper;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.bean.CustomerBean;
+import com.smt.bean.PurchaseOrderReportBean;
+import com.smt.bean.SaleReports;
+import com.smt.dao.CategoryDao;
+import com.smt.dao.CustomerOrderDao;
+import com.smt.dao.PODetailDao;
+import com.smt.hibernate.CustomerOrder;
+import com.smt.hibernate.OfferDetail;
+import com.smt.utility.HibernateUtility;
+
+public class CustomerOrderHelper {
+
+	
+	public void doCustomer(HttpServletRequest request, HttpServletResponse response){
+		
+		
+		CustomerOrder cOrder=new CustomerOrder();
+	
+		
+		
+		
+		
+		Integer count = Integer.parseInt(request.getParameter("count"));
+		System.out.println("COUNTTT"+count);
+		
+		Long superOrderId=0L;
+		CustomerOrderDao dao=new CustomerOrderDao();
+		Double totalAmount=0d;
+		for(int i=0;i<=count;i++){
+			
+			
+			//String offerId=request.getParameter("offerId");
+			String customerFirstName=request.getParameter("customerFirstName");
+			System.out.println("custName"+customerFirstName);
+			String PaymentType = request.getParameter("PaymentType");
+		
+			String customerMobileNo=request.getParameter("customerMobileNo");
+			System.out.println("customerMobileNo"+customerMobileNo);
+			
+			//cOrder.setOfferId(Long.parseLong(offerId));
+			cOrder.setCustomerFirstName(customerFirstName);
+			cOrder.setCustomerMobileNo(Long.parseLong(customerMobileNo));
+			cOrder.setPaymentType(PaymentType);
+			
+				
+			
+			String offerId = request.getParameter("offerId"+i);
+			if(offerId == null){
+				
+				break;
+				
+			}
+			else{
+				
+				cOrder.setOfferId(Long.parseLong(offerId));
+			}
+			
+			System.out.println("III@@@@@@@@@IIIII"+offerId);
+
+			String color = request.getParameter("color"+i);
+			if (color == null) {
+				
+				break;
+			}
+			else {
+				cOrder.setColor(color);
+				
+			}System.out.println("CCccccccccc"+color);
+			
+			
+		
+			
+			
+			String vat = request.getParameter("vatPercentage"+i);
+			cOrder.setVat(Double.parseDouble(vat));
+			System.out.println("vat999"+vat);
+			
+			String price = request.getParameter("salePrice"+i);
+			cOrder.setPrice(Double.parseDouble(price));
+			System.out.println("price888"+price);
+			
+			
+			
+			String quantity = request.getParameter("quantity"+i);
+			cOrder.setQuantity(Long.parseLong(quantity));
+			System.out.println("quan6655"+quantity);
+			
+			
+			Double  total = (double) (Double.parseDouble(quantity) * Double.parseDouble(price));
+			cOrder.setTotalAmount(total);
+		
+			System.out.println("totallllll"+total);
+			totalAmount=totalAmount+total;
+			System.out.println(totalAmount+"********************");
+			
+			
+			if (i > 0) {
+				cOrder.setSuperorderId("SMT" + superOrderId);
+			}	
+			Long tempid = dao.valCustomerOrder(cOrder);
+
+			if (i == 0)
+				superOrderId = tempid;
+
+		}  
+			CustomerOrder SuperOrder=getOrderItemId(superOrderId);
+			SuperOrder.setSuperorderId("SMT"+superOrderId);
+			dao.updateCustomer(SuperOrder);
+			
+		}
+		
+		//CustomerOrderDao cod=new CustomerOrderDao();
+		//scod.valCustomerOrder(cOrder);
+		
+		public CustomerOrder getOrderItemId(Long orderId){
+			HibernateUtility hbu = HibernateUtility.getInstance();
+			Session session = hbu.getHibernateSession();
+			Query query = session.createQuery("from CustomerOrder c where c.orderId=:orderId");
+			query.setParameter("orderId", orderId);
+			CustomerOrder uniqueResult=(CustomerOrder) query.uniqueResult();
+			return uniqueResult;
+			
+			
+		}
+		
+
+	
+		public CustomerBean getDetailsById(HttpServletRequest request,
+				HttpServletResponse response) {
+			
+			String key=request.getParameter("key");
+			
+			Map<Long,CustomerBean> map = new HashMap<Long,CustomerBean>();
+			
+			CustomerOrderDao dao = new CustomerOrderDao();
+			List<CustomerBean> catList = dao.getAllItemDetails(key);
+			
+			CustomerBean cs = null;
+			if(catList!= null && catList.size() > 0 )
+			{	
+				cs = (CustomerBean)catList.get(0); 
+			}
+			return cs;
+		}
+	
+	
+		
+		
+	public List getSaleDetailsBYDate(HttpServletRequest request, HttpServletResponse response)
+	{
+		 String fDate = request.getParameter("fisDate");
+         String tDate = request.getParameter("endDate");
+		
+         Map<Long,SaleReports> map = new HashMap<Long,SaleReports>();
+ 		
+ 		CustomerOrderDao dao = new CustomerOrderDao();
+ 		List<SaleReports> saleList = dao.getSaleDetailsDateWise(fDate,tDate);
+ 		
+ 		
+ 		return saleList;
+	}
+	
+}

@@ -1,0 +1,54 @@
+package com.smt.helper;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.dao.CategoryDao;
+import com.smt.hibernate.Category;
+import com.smt.hibernate.ProductDetail;
+import com.smt.utility.HibernateUtility;
+
+public class modiCategoryHelper {
+	
+	
+	public void modifyCategory(HttpServletRequest request , HttpServletResponse response)
+	{
+		String pk_category_id = request.getParameter("pk_category_id");
+		String categoryName = request.getParameter("categoryName");
+		String activeYn = request.getParameter("activeYn");
+		String isleafCat = request.getParameter("isleafCat");
+		String isrootCat = request.getParameter("isrootCat");
+		
+		Category category = new Category();
+		category.setPkCategoryId(Long.parseLong(pk_category_id));
+		category.setCategoryName(categoryName);
+		category.setActiveYn(activeYn);
+		category.setIsleafCat(isleafCat);
+		category.setIsrootCat(isrootCat);
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		Category category2 = (Category) session.get(Category.class, new Long(pk_category_id));
+		category2.setCategoryName(categoryName);
+		category2.setActiveYn(activeYn);
+		category2.setIsleafCat(isleafCat);
+		category2.setIsrootCat(isrootCat);
+		System.out.println(category2);
+		session.saveOrUpdate(category2);
+		transaction.commit();
+	
+		/*CategoryDao categoryDao = new CategoryDao();
+		categoryDao.updateDetails(category);*/
+	}
+	
+
+
+}

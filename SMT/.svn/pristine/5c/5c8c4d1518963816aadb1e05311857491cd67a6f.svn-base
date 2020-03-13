@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.LoyalityProgram" 
+    table="loyaltyprog"
+>
+
+    <id
+        name="pk_loyality_id"
+        type="java.lang.Long"
+        column="pk_loyalty_prog_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+    
+    <property
+        name="firstName"
+        type="java.lang.String"
+        column="firstName"
+        not-null="true"
+        length="20"
+    />
+    
+     <property
+        name="middleName"
+        type="java.lang.String"
+        column="middleName"
+        not-null="true"
+        length="20"
+    />
+    
+     <property
+        name="lastName"
+        type="java.lang.String"
+        column="lastName"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="gender"
+        type="java.lang.String"
+        column="gender"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="maritalStatus"
+        type="java.lang.String"
+        column="maritalStatus"
+        not-null="true"
+        length="20"
+    />
+    
+     <property
+        name="dob"
+        type="java.sql.Date"
+        column="dob"
+        not-null="true"
+        
+    />
+    
+    <property
+        name="anniversary"
+        type="java.sql.Date"
+        column="anniversary"
+        not-null="false"
+        
+    />
+    
+    <property
+        name="address"
+        type="java.lang.String"
+        column="address"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="landmark"
+        type="java.lang.String"
+        column="landmark"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="state"
+        type="java.lang.String"
+        column="state"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="district"
+        type="java.lang.String"
+        column="district"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="city"
+        type="java.lang.String"
+        column="city"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="pinCode"
+        type="java.lang.Long"
+        column="pinCode"
+        not-null="true"
+        length="15"
+    />
+    
+    <property
+        name="mobileNo"
+        type="java.lang.Long"
+        column="mobileNo"
+        not-null="true"
+        length="15"
+    />
+    
+     <property
+        name="emailID"
+        type="java.lang.String"
+        column="emailID"
+        not-null="true"
+        length="20"
+    />
+    
+     <property
+        name="cardType"
+        type="java.lang.String"
+        column="cardType"
+        not-null="true"
+        length="20"
+    />
+    
+    <property
+        name="cardNumber"
+        type="java.lang.Long"
+        column="cardNumber"
+        not-null="true"
+        length="15"
+    />
+    
+    <property
+        name="cardPoints"
+        type="java.lang.Long"
+        column="cardPoints"
+        not-null="true"
+        length="15"
+    />
+    
+    <property
+        name="voucher"
+        type="java.lang.String"
+        column="voucher"
+        not-null="true"
+        length="20"
+    />
+
+</class>
+</hibernate-mapping>    
+    

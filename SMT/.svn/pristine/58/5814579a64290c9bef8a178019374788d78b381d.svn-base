@@ -1,0 +1,177 @@
+<%@page import="com.smt.hibernate.Podetail"%>
+<%@page import="java.util.List"%>
+
+<%@page import="com.smt.dao.PODetailDao"%>
+<%@page import="com.smt.helper.POAccountHelper"%>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+
+ 	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<script src="/SMT/staticContent/js/account.js"></script>
+	<script src="/SMT/staticContent/js/floatnumber.js"></script>
+	
+	
+<script type="text/javascript">
+function don(data){
+	
+      var totalamount	= document.getElementById('totalAmount').value;
+      var discount =  document.getElementById('discount').value;
+      
+      var netamount = totalamount * (100 - discount)/100;
+      document.getElementById('netAmount').value = netamount;
+ 
+}
+</script>
+	
+	<div class="container">
+		<h2 align="center">POrder Account</h2>
+	</div>
+	
+	
+	<div align="left">
+		<label id="demo"></label>
+		<script>
+			var d = new Date();
+			document.getElementById("demo").innerHTML = d.toDateString();;
+		</script>
+	</div>
+	
+	
+<form action="accun" method="post" name="acc" class="form-horizontal">	
+        <% 
+        
+        
+           PODetailDao dao = new PODetailDao();
+
+           List pList= dao.getAllSuperID();
+        
+
+        %>
+         
+         <div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Super PO ID:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+						<select class="form-control" id="fk_superpo_id1" name="fk_superpo_id1" onchange="to.getTotalAmmount();changeToFloat();">
+			            <option value="selected" >Select Super ID</option>
+			            
+			            
+			            <%
+			                 for(int i=0;i<pList.size();i++){
+			                 Podetail spod=(Podetail)pList.get(i);
+				
+				
+		
+                        %>
+            
+		     
+                        <option value="<%=spod.getSuperPoId()%>"><%=spod.getSuperPoId()%> </option>
+			           
+		    
+		                <%
+		                 }
+		                 %>
+			            
+			            
+			             </select>
+						
+						</div>
+					</div>
+		</div>
+         
+         
+         
+         
+         <div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Total Amount:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id='totalAmount' name="totalAmount" placeholder="Total Amount" />
+						</div>
+					</div>
+		</div>
+			    			
+		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Discount:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id='discount' name="discount"  autofocus onkeyup="don(this)" placeholder="Discount" />
+						</div>
+					</div>
+		</div>
+			    			
+		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Net Amount:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id='netAmount' name="netAmount" placeholder="Net Amount" />
+						</div>
+					</div>
+		</div>
+							
+		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Payment Type:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id='paymentType' name="paymentType" placeholder="Payment Type" />
+						</div>
+					</div>
+		</div>
+					
+		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Amount Paid:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id='amountPaid' name="amountPaid"  autofocus onkeyup="changeAmount(this)" placeholder="Amount Paid" />
+						</div>
+					</div>
+		</div>
+			    			
+		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Amount Due:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input class="form-control" type="text" id='amountDue' name="amountDue" placeholder="Amount Due" />
+						</div>
+					</div>
+	    </div>
+			    			
+		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Due Date:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="date" id='due' name="due" class="form-control"  placeholder="DD-MM-YYYY" />
+						</div>
+					</div>
+		</div>
+
+
+
+     <div class="wrapper">
+		<input type="button" value="Save" class="btn btn-md btn-lg btn-success" name="btn" onclick="accountt()"/>
+		<input type="button" value="Cancel" class="btn btn-md btn-lg btn-danger" onclick="reset()"/>
+		
+	  </div>
+
+</form>
+
+<%@include file="commons/footer.jsp"%>

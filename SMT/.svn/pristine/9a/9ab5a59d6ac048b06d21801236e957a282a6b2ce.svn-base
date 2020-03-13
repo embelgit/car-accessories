@@ -1,0 +1,85 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Set;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class SubLevelMaster implements Serializable {
+
+    /** identifier field */
+    private Long pkSublevelId;
+
+    /** persistent field */
+    private String subLevelName;
+
+    /** persistent field */
+    private com.smt.hibernate.MainLevelMaster mainLevelMaster;
+
+    /** persistent field */
+    private Set leafLevelMasters;
+
+    /** persistent field */
+    private Set userAccessAssociations;
+
+    /** full constructor */
+    public SubLevelMaster(Long pkSublevelId, String subLevelName, com.smt.hibernate.MainLevelMaster mainLevelMaster, Set leafLevelMasters, Set userAccessAssociations) {
+        this.pkSublevelId = pkSublevelId;
+        this.subLevelName = subLevelName;
+        this.mainLevelMaster = mainLevelMaster;
+        this.leafLevelMasters = leafLevelMasters;
+        this.userAccessAssociations = userAccessAssociations;
+    }
+
+    /** default constructor */
+    public SubLevelMaster() {
+    }
+
+    public Long getPkSublevelId() {
+        return this.pkSublevelId;
+    }
+
+    public void setPkSublevelId(Long pkSublevelId) {
+        this.pkSublevelId = pkSublevelId;
+    }
+
+    public String getSubLevelName() {
+        return this.subLevelName;
+    }
+
+    public void setSubLevelName(String subLevelName) {
+        this.subLevelName = subLevelName;
+    }
+
+    public com.smt.hibernate.MainLevelMaster getMainLevelMaster() {
+        return this.mainLevelMaster;
+    }
+
+    public void setMainLevelMaster(com.smt.hibernate.MainLevelMaster mainLevelMaster) {
+        this.mainLevelMaster = mainLevelMaster;
+    }
+
+    public Set getLeafLevelMasters() {
+        return this.leafLevelMasters;
+    }
+
+    public void setLeafLevelMasters(Set leafLevelMasters) {
+        this.leafLevelMasters = leafLevelMasters;
+    }
+
+    public Set getUserAccessAssociations() {
+        return this.userAccessAssociations;
+    }
+
+    public void setUserAccessAssociations(Set userAccessAssociations) {
+        this.userAccessAssociations = userAccessAssociations;
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("pkSublevelId", getPkSublevelId())
+            .toString();
+    }
+
+}

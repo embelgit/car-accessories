@@ -1,0 +1,79 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+public class RootCategory implements Serializable{
+	
+	
+	private Long pkrootId;
+	
+	private Long cat;
+	
+	private Long subCat;
+	
+	private Long leafCat;
+	
+	private String createRootCategory;
+
+	
+	
+	
+	
+	public RootCategory(Long pkrootId, Long cat, Long subCat, Long leafCat, String createRootCategory) {
+		this.pkrootId=pkrootId;
+		this.cat = cat;
+		this.subCat = subCat;
+		this.leafCat = leafCat;
+		this.createRootCategory = createRootCategory;
+		
+		
+	}
+
+	public RootCategory(){
+		
+	}
+	
+	public Long getcat() {
+        return this.cat;
+    }
+
+    public void setcat(Long cat) {
+        this.cat = cat;
+    }
+    
+    public Long getsubCat() {
+        return this.subCat;
+    }
+
+    public void setsubCat(Long subCat) {
+        this.subCat = subCat;
+    }
+    
+    public Long getleafCat() {
+        return this.leafCat;
+    }
+
+    public void setleafCat(Long leafCat) {
+        this.leafCat = leafCat;
+    }
+    
+    public String getcreateRootCategory() {
+        return this.createRootCategory;
+    }
+
+    public void setcreateRootCategory(String createRootCategory) {
+        this.createRootCategory = createRootCategory;
+    }
+
+	public Long getPkrootId() {
+		return pkrootId;
+	}
+
+	public void setPkrootId(Long pkrootId) {
+		this.pkrootId = pkrootId;
+	}
+	
+	
+}

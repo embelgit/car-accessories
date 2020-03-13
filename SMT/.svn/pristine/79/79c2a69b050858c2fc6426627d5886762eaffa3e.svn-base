@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.CustomerOrder" 
+    table="customer_order"
+>
+
+    <id
+        name="orderId"
+        type="java.lang.Long"
+        column=" pk_order_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+   <!--  <property
+        name="advancePayment"
+        type="java.lang.Double"
+        column="advance_payment"
+        not-null="true"
+        length="20"
+    /> -->
+    <property
+        name="color"
+        type="java.lang.String"
+        column="color"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="customerFirstName"
+        type="java.lang.String"
+        column="customer_first_name"
+        not-null="true"
+        length="255"
+    />
+  <!--   <property
+        name="customerLastName"
+        type="java.lang.String"
+        column="customer_last_name"
+        not-null="true"
+        length="255"
+    /> -->
+  <!--   <property
+        name="customerList"
+        type="java.lang.String"
+        column="customer_list"
+        not-null="true"
+        length="255"
+    /> -->
+    <property
+        name="customerMobileNo"
+        type="java.lang.Long"
+        column="customer_mobile_no"
+        not-null="true"
+        length="19"
+    />
+    <!-- <property
+        name="itemName"
+        type="java.lang.String"
+        column="item_name"
+        not-null="true"
+        length="255"
+    /> -->
+    
+    <property
+        name="PaymentType"
+        type="java.lang.String"
+        column="Payment_Type"
+        not-null="true"
+        length="255"
+    />
+     <property
+        name="offerId"
+        type="java.lang.Long"
+        column="fk_offerrr_id"
+        not-null="true"
+        length="19"
+    />  
+    <!--  <property
+        name="empId"
+        type="java.lang.Long"
+        column="fkEmpID"
+        not-null="true"
+        length="19"
+    />  -->
+    <property
+        name="price"
+        type="java.lang.Double"
+        column="price"
+        not-null="true"
+        length="20"
+    />
+  <!--   <property
+        name="remainigPayment"
+        type="java.lang.Double"
+        column="remainig_payment"
+        not-null="true"
+        length="20"
+    /> -->
+   <!--  <property
+        name="size"
+        type="java.lang.Long"
+        column="size"
+        not-null="true"
+        length="19"
+    />
+     -->
+     <property
+        name="quantity"
+        type="java.lang.Long"
+        column="quantity"
+        not-null="true"
+        length="19"
+    />
+     <property
+        name="superorderId"
+        type="java.lang.String"
+        column="superorder_id"
+       
+        length="19"
+        
+        
+    /> 
+    <property
+        name="vat"
+        type="java.lang.Double"
+        column="vat"
+        not-null="true"
+        length="20"
+    />
+    
+      <property
+        name="totalAmount"
+        type="java.lang.Double"
+        column="totalAmt"
+        not-null="true"
+        length="20"
+    />
+    
+     <property
+        name="isActiveYn"
+        type="java.lang.String"
+        column="is_active_YN"
+        not-null="true"
+        length="1"
+    />
+    
+    <property
+        name="isInsertDate"
+        type="java.sql.Date"
+        column="is_insert_date"
+        not-null="true"
+        length="19"
+    />
+    
+    <property
+        name="isModifiedDate"
+        type="java.sql.Date"
+        column="is_modified_date"
+        not-null="true"
+        length="19"
+    /> 
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

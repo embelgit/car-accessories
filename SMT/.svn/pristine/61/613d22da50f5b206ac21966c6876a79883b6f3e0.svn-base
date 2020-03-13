@@ -1,0 +1,191 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class CashBank implements Serializable{
+	
+	
+	  private Long pk_cash_id; 
+	  
+	  private Long supplier;
+	  
+	  private Long salesman;
+	  
+	  private Long creditCustomer;
+	  
+	  private Long others;
+	  
+	  private String voucherType;
+	  
+	  private String mode;
+	  
+	  private Long totalAmount;
+	  
+	  private String reason;
+	
+	  private String paymentType;
+	  
+      private String personName;
+	  
+	
+	  private Date date1;
+	  
+	 
+	  
+	  
+	  public CashBank (Long pk_cash_id, Long supplier, Long salesman, Long creditCustomer, Long others, String voucherType, String mode, Long totalAmount, String reason, String paymentType, String personName, Date date1){
+		  
+		  this.setPk_cash_id(pk_cash_id);
+		  this.setSupplier(supplier);
+		  this.setSalesman(salesman);
+		  this.setCreditCustomer(creditCustomer);
+		  this.setOthers(others);
+		  this.setVoucherType(voucherType);
+		  this.setMode(mode);
+		  this.setTotalAmount(totalAmount);
+		  this.setReason(reason);
+		  this.setPaymentType(paymentType);
+		  
+		  this.setDate1(date1);
+		 
+		  
+	  }  
+		  
+	  
+	  
+	  public CashBank(){
+		  
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
+
+	public Long getPk_cash_id() {
+		return pk_cash_id;
+	}
+
+	public void setPk_cash_id(Long pk_cash_id) {
+		this.pk_cash_id = pk_cash_id;
+	}
+
+	public Long getSupplier() {
+		return supplier;
+	}
+
+
+
+	public void setSupplier(Long supplier) {
+		this.supplier = supplier;
+	}
+
+
+
+	public Long getSalesman() {
+		return salesman;
+	}
+
+
+
+	public void setSalesman(Long salesman) {
+		this.salesman = salesman;
+	}
+
+
+
+	public Long getCreditCustomer() {
+		return creditCustomer;
+	}
+
+
+
+	public void setCreditCustomer(Long creditCustomer) {
+		this.creditCustomer = creditCustomer;
+	}
+
+
+	public String getVoucherType() {
+		return voucherType;
+	}
+
+	public void setVoucherType(String voucherType) {
+		this.voucherType = voucherType;
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
+	public Long getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Long totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+
+
+	public Date getDate1() {
+		return date1;
+	}
+
+
+
+	public void setDate1(Date date1) {
+		this.date1 = date1;
+	}
+
+
+
+	public Long getOthers() {
+		return others;
+	}
+
+
+
+	public void setOthers(Long others) {
+		this.others = others;
+	}
+
+	
+
+
+
+	
+	
+	
+	
+
+}

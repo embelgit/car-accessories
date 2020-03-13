@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.LeafCategory" 
+    table="leaf_categories"
+>
+
+    <id
+        name="pkLeafcatId"
+        type="java.lang.Long"
+        column="pk_leafcat_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    
+    <property
+        name="leafcatName"
+        type="java.lang.String"
+        column="cat_name"
+        length="128"
+    />
+    <property
+        name="fkRootcatId"
+        type="java.lang.Long"
+        column="fk_rootcate_id"
+        length="19"
+    />
+    <property
+        name="fkSubcatId"
+        type="java.lang.Long"
+        column="fk_subcat_id"
+        length="19"
+    />
+   
+   
+  
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

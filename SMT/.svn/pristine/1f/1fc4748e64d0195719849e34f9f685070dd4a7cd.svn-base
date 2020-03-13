@@ -1,0 +1,80 @@
+package com.smt.bean;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+public class PoItemDisplayBean 
+{
+	private BigInteger itemID;
+	private String itemName;
+	private String color;
+	private BigInteger size;
+	private Double buyPrice;
+	private String model;
+	private Long quantity;
+	private BigDecimal buyPriceForItemNAme;
+	private Double vatPec ;
+	
+	
+	
+	
+	
+	
+	
+	public BigInteger getSize() {
+		return size;
+	}
+	public void setSize(BigInteger size) {
+		this.size = size;
+	}
+	public BigDecimal getBuyPriceForItemNAme() {
+		return buyPriceForItemNAme;
+	}
+	public void setBuyPriceForItemNAme(BigDecimal buyPriceForItemNAme) {
+		this.buyPriceForItemNAme = buyPriceForItemNAme;
+	}
+	public BigInteger getItemID() {
+		return itemID;
+	}
+	public void setItemID(BigInteger itemID) {
+		this.itemID = itemID;
+	}
+	public Double getVatPec() {
+		return vatPec;
+	}
+	public void setVatPec(Double vatPec) {
+		this.vatPec = vatPec;
+	}
+	public Long getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	public Double getBuyPrice() {
+		return buyPrice;
+	}
+	public void setBuyPrice(Double buyPrice) {
+		this.buyPrice = buyPrice;
+	}
+}

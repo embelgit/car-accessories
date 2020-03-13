@@ -1,0 +1,58 @@
+package com.smt.helper;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.dao.ProductDetailDao;
+import com.smt.hibernate.Category;
+import com.smt.hibernate.ProductDetail;
+import com.smt.utility.HibernateUtility;
+
+public class ModifyProductDetailHelper {
+	
+	public void modifyProductReg(HttpServletRequest request, HttpServletResponse response) {
+		
+		String pkProductId = request.getParameter("pkProductId");
+		System.out.println(pkProductId);
+		String itemName=request.getParameter("itemName");
+		String isVat=request.getParameter("isVat");
+		String vatPercentage=request.getParameter("vatPercentage");
+		System.out.println("vatpercentage\t"+vatPercentage);
+		String isalternateprod=request.getParameter("isalternateprod");
+		System.out.println("isalternateprod"+isalternateprod);
+		String isItem=request.getParameter("isItem");
+		String commision =request.getParameter("commision");		
+	
+		ProductDetail iEntry=new ProductDetail();
+		
+		System.out.println("/*******************in controller***************/");
+		
+		iEntry.setPkProductId(Long.parseLong(pkProductId));
+		iEntry.setItemName(itemName);
+		iEntry.setIsVat(isVat);
+		iEntry.setVatPercentage(Double.parseDouble(vatPercentage));
+		iEntry.setIsAlternateProduct(isalternateprod);
+		iEntry.setIsItem(isItem);
+		iEntry.setCommision(Double.parseDouble(commision));
+	
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		ProductDetail product = (ProductDetail) session.get(ProductDetail.class, new Long(pkProductId));
+		
+		product.setItemName(itemName);
+		product.setIsVat(isVat);
+		product.setVatPercentage(Double.parseDouble(vatPercentage));
+		product.setIsAlternateProduct(isalternateprod);
+		product.setIsItem(isItem);
+		product.setCommision(Double.parseDouble(commision));
+		session.saveOrUpdate(product);
+		transaction.commit();
+	
+}
+
+}

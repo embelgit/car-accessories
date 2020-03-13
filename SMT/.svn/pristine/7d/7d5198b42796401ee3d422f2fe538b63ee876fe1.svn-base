@@ -1,0 +1,63 @@
+package com.smt.dao;
+
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+
+import com.smt.hibernate.CustomerOrder;
+import com.smt.hibernate.ItemDetail;
+import com.smt.hibernate.OfferDetail;
+import com.smt.utility.HibernateUtility;
+
+public class CustomerOrderDao {
+
+	public void valCustomerOrder(CustomerOrder customerOrder){
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		org.hibernate.Transaction transaction=session.beginTransaction();
+		session.save(customerOrder);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+		
+	}
+	
+	public List fetchData(){
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		
+		Query query=session.createQuery("SELECT p.itemName,i.color,o.salePrice,o.discount,o.pkItemofferId from ProductDetail p LEFT JOIN p.itemDetails i LEFT JOIN i.offerDetails o");
+			
+		
+			
+			List list = query.list();
+			/*Iterator it=list.iterator();
+			while(it.hasNext()){
+				Object o=it.next();
+				CustomerBean cb=(CustomerBean)o;
+				
+			}*/
+			
+			System.out.println("List Size : "+list.size());
+		
+			 for (int i = 0; i < list.size(); i++) {
+				 System.out.println(((Object[]) list.get(i))[0]);     
+		            System.out.println(((Object[]) list.get(i))[1]);
+		            System.out.println(((Object[]) list.get(i))[2]);
+		            System.out.println(((Object[]) list.get(i))[3]);
+		            System.out.println(((Object[]) list.get(i))[4]);
+			} 
+			return list;
+	
+	}
+	
+}
+
+

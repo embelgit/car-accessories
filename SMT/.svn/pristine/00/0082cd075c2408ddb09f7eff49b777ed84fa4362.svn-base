@@ -1,0 +1,62 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.CategoryList;
+import com.smt.hibernate.LeafCategory;
+import com.smt.utility.HibernateUtility;
+
+public class LeafCategoryDao {
+
+	public void valCategory( LeafCategory category)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(category);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+	public List getAllLeafCategories(){
+		
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from LeafCategory");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;	
+	}
+	
+	
+	public List getCategoryList(){
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select c.category_name, s.subcat_name, l.cat_name from leaf_categories l left join sub_categories s ON l.fk_subcat_id=s.pk_subcat_id left join categories c ON s.fk_rootcat_id = c.pk_category_id");
+		
+		List <Object[]> list=query.list();
+		List<CategoryList> cBean = new ArrayList<CategoryList>(0);
+		
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 	CategoryList catBean = new CategoryList();
+			 	catBean.setCategory_name(object[0].toString());
+			 	catBean.setSubcat_name(object[1].toString());
+			 	catBean.setCat_name(object[2].toString());
+			 	
+			 	cBean.add(catBean);
+		}
+			return cBean;
+	}
+	
+
+}

@@ -1,0 +1,324 @@
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<% String  contextPath=request.getContextPath(); %>
+<% String path=""; if(isHome)path="jsp\\"; %>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous">
+<title>SmartTech Software Solution (Point Of Sale)</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+	crossorigin="anonymous">
+<%if(isHome){%>
+<link rel="stylesheet" href="staticContent/css/style.css" />
+<%}else{ %>
+<link rel="stylesheet" href="../staticContent/css/style.css" />
+<% } %>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+	crossorigin="anonymous"></script>
+<script src="assets/js/script.js"></script>
+
+<%if(isHome){%>
+<link rel="stylesheet" href="staticContent/css/style.css" />
+<%}else{ %>
+<link rel="stylesheet" href="../staticContent/css/style.css" />
+<% } %>
+
+</head>
+<body>
+	<div class="row" id="navbar">
+		<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			<a class="navbar-brand" href="/SMT/jsp/index.jsp">Home</a>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Master <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Category</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%=path%>category.jsp">Add Main Category</a></li>
+								<li><a href="<%=path%>subcategory.jsp">Add Sub Category</a></li>
+								<li><a href="<%=path%>leaf_category.jsp">Add Leaf Category</a></li>
+								<li><a href="<%=path%>category_list.jsp" target="_blank">Category List</a></li>
+								<li><a href="<%=path%>coupon_detail.jsp">Coupon Details</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Add Products</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%=path%>product_detail.jsp">Product Details</a></li>
+								<li><a href="<%=path%>item_details.jsp">Item Details </a></li>
+								<li><a href="<%=path%>item_list.jsp" target="_blank">Item List</a></li>
+								<li><a href="<%=path%>item_stock.jsp">Item Stock </a></li>
+								<li><a href="<%=path%>NewFile.jsp">Age </a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Stock</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%=path%>goods_entry.jsp">Goods Entry</a></li>
+								<li><a href="<%=path%>current_stock.jsp">Current Stock </a></li>
+								<li><a href="<%=path%>current_stockgraph.jsp">Current Stock Graph </a></li>
+								<li><a href="<%=path%>current_stock_detail.jsp">Current Stock Detail</a></li>
+								<li><a href="<%=path%>current_stock_barcodewise.jsp">Current Stock Barcode Wise</a></li>
+								<li><a href="<%=path%>current_stock_categorywise.jsp">Current Stock Category Wise</a></li>
+								<li><a href="<%=path%>current_stock_subcategorywise.jsp">Current Stock Sub Category Wise</a></li>
+								<li><a href="<%=path%>current_stock_leafcategorywise.jsp">Current Stock Leaf Category Wise</a></li>
+								<li><a href="<%=path%>current_stock_itemwise.jsp">Current Stock Item Wise</a></li>
+								<li><a href="<%=path%>current_stock_locationwise.jsp">Current Stock Location Wise</a></li>
+								<li><a href="<%=path%>current_stock_colorwise.jsp">Current Stock Color Wise</a></li>
+								<li><a href="<%=path%>current_stock_sizewise.jsp">Current Stock Size Wise</a></li>
+								<li><a href="<%=path%>current_stock_supplierwise.jsp">Current Stock Supplier Wise</a></li>
+								<li><a href="<%=path%>dead_stock.jsp">Dead Stock</a></li>
+								<li><a href="<%=path%>dashboard.jsp">Dashboard</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Stock Movement</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%=path%>authority_slip.jsp">Authority Slip</a></li>
+								<li><a href="<%=path%>authority_slip_register.jsp">Authority Slip Register</a></li>
+								<li><a href="<%=path%>godownwise_stock_movement.jsp">Godown Wise Stock Movement</a></li>
+								<li><a href="<%=path%>brandnamewise_stock_movement.jsp">Brand Name Wise Stock Movement</a></li>
+								<li><a href="<%=path%>itemnamewise_stock_movement.jsp">Item Name Wise Stock Movement</a></li>
+								<%-- <li><a href="<%=path%>non_moving_item.jsp">Non Moving Item</a></li> --%>
+								<li><a href="<%=path%>fast_moving_item.jsp">Fast Moving Item</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li> 
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sale <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=path%>customer_bill.jsp">Customer Bill</a></li>
+						<li><a href="<%=path%>sale_register.jsp">Sale Bill Register</a></li>
+						<li><a href="<%=path%>sale_bill_register.jsp">Sale Bill Detail</a></li>
+						<li><a href="<%=path%>sale_detail.jsp">Sale Details</a></li>
+						<li><a href="<%=path%>sale_return.jsp">Sale Return</a></li>
+						<li><a href="<%=path%>close_register.jsp">Close Register </a></li>
+						<li><a href="<%=path%>online_payment.jsp">Online Payment</a></li> 
+						<li><a href="<%=path%>temporary_stock.jsp">Temporary Stock</a></li> 		
+						<li><a href="<%=path%>productwise_performance.jsp">Product Wise Performance</a></li>
+						<li><a href="<%=path%>sale_register(Daywise).jsp">Sale Register (Day Wise)</a></li>
+						<li><a href="<%=path%>ItemDays.jsp">Item DAys</a></li>
+						<li><a href="<%=path%>itemINSHOP.jsp">Item IN SHOP</a></li>
+						<li><a href="<%=path%>itemInGodown.jsp">Item IN GODOWN</a></li>
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer Credit</a>
+							<ul class="dropdown-menu">
+                            	 <li class="kopie"><a href="#">Credit</a></li>
+								 <li><a href="<%=path%>credit_sale_bill_register.jsp">Credit Sale Bill Register</a></li>
+								 <li><a href="<%=path%>customer_details(Credit).jsp">Customer Details (Credit)</a></li>
+								 <li><a href="<%=path%>customer_credit_list.jsp">Customer Credit List</a></li>
+								 <li><a href="<%=path%>payment_due_customer.jsp">Payment Due Customer </a></li>
+						         <li><a href="<%=path%>payment_due_detail(customer).jsp">Payment Due Details(Customer)</a></li>
+								 <li><a href="<%=path%>purchase_bill_register_detail(customer).jsp">Purchase Bill Register Details (Customer)</a></li>
+								 <li><a href="<%=path%>wholesale_customer_list.jsp">Whole Sale Customer List</a></li>
+							</ul>
+						</li> 
+						
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Offer</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%=path%>discount_module.jsp">Discount Module</a></li>
+								<li><a href="<%=path%>offer_creation.jsp">Offer Creation</a></li>
+								<li><a href="<%=path%>NewOfferCreation.jsp">New Offer Creation</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+					
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Purchase <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=path%>PODetails .jsp">Purchase Order</a></li>
+						<li><a href="<%=path%>po_received.jsp">PO Goods Received</a></li>
+						<li><a href="<%=path%>purchase_order_register.jsp">Purchase Order Register</a></li>
+						<li><a href="<%=path%>purchase_order_receipt.jsp">Purchase Order Receipt</a></li>
+						<li><a href="<%=path%>purchase_return.jsp">Purchase Return</a></li>
+						<li><a href="<%=path%>purchase_return_register.jsp">Purchase Return Register</a></li>
+						<li><a href="<%=path%>customer_order.jsp">Customer Order </a></li>
+						<li><a href="<%=path%>SupplierList.jsp">Supplier List</a></li>
+						<li><a href="<%=path%>supplier_detail.jsp">Supplier Details</a></li>
+						<li><a href="<%=path%>broker.jsp">Broker</a></li>
+						<li><a href="<%=path%>broker_list.jsp">Broker List</a></li>
+						<li><a href="<%=path%>ParcelEntry.jsp">Parcel Entry</a></li>
+						<li><a href="<%=path%>ParcelEntryList.jsp">Parcel Entry List</a></li>
+						<li><a href="<%=path%>Account.jsp">Purchase Account</a></li>
+						
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Purchase Bill</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%=path%>purchase_bill_register(supplier).jsp">Purchase Bill Register(supplier)</a></li>
+								<li><a href="<%=path%>purchase_bill_register_detail(supplier).jsp">Purchase Bill Register Details (Supplier)</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Supplier Payment</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%=path%>payment_due_supplier.jsp">Payment Due Supplier list </a></li>
+								<li><a href="<%=path%>payment_due_detail(supplier).jsp">Payment Due Details(Supplier)</a></li>
+						        <li><a href="<%=path%>supplier_balance.jsp">Supplier Balance </a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">HR <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee</a>
+							<ul class="dropdown-menu">
+                            	<li class="kopie"><a href="#">Employee</a></li>
+								<li><a href="<%=path%>employee_details.jsp">Employee Details</a></li>
+								<li><a href="<%=path%>employee_list.jsp" target="_blank">Employee List</a></li>
+								<li><a href="<%=path%>employee_attendance.jsp">Employee Attendance</a></li>	
+								<li><a href="<%=path%>insurance.jsp">Employee Insurance</a></li>									
+							</ul>
+						</li> 
+						
+						<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Salary</a>
+							<ul class="dropdown-menu">
+                            	 <li class="kopie"><a href="#">Salary</a></li>
+								 <li><a href="<%=path%>salary_generation.jsp">Generation</a></li>
+								 <li><a href="<%=path%>salary_adjustment.jsp">Adjustment</a></li>											
+							</ul>
+						</li> 
+									
+						<li><a href="<%=path%>leave.jsp">Leave </a></li>
+						<li><a href="<%=path%>employee_report.jsp">Report </a></li>
+						<li><a href="<%=path%>commission.jsp">Target Base Commission</a></li>
+						<li><a href="<%=path%>salesman_performance.jsp">Salesman Performance</a></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Account <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=path%>tax_creation.jsp">Tax Creation</a></li>
+						<li><a href="<%=path%>tax.jsp">Tax</a></li>
+						<li><a href="<%=path%>day_book.jsp">Day Book</a></li>
+						<li><a href="<%=path%>day_book_register.jsp">Day Book Register</a></li>
+						<li><a href="<%=path%>new_cash_bank_book.jsp">Cash Book</a></li>
+						<li><a href="<%=path%>bank_book.jsp">Bank Book</a></li>
+						<li><a href="<%=path%>balance_sheet.jsp">Balance Sheet</a></li>
+						<li><a href="<%=path%>debit_note.jsp">Debit Note</a></li>
+						<li><a href="<%=path%>credit_note.jsp">Credit Note</a></li>
+						<li><a href="<%=path%>trading_account.jsp">Trading Account</a></li>
+						<li><a href="<%=path%>profit_loss.jsp">Profit & Loss </a></li>
+						<li><a href="<%=path%>itemwise_commision.jsp">Itemwise Commision </a></li>
+						<li><a href="<%=path%>petty_cash.jsp">Petty Cash </a></li>
+						<li><a href="<%=path%>supplier_ledger.jsp">Supplier Ledger </a></li>
+						<li><a href="<%=path%>sale_detail.jsp">Sale Details </a></li>
+						<li><a href="<%=path%>bank_reconcilation.jsp">Bank Reconcilation </a></li>
+						<li><a href="<%=path%>input_vat.jsp">Input Vat</a></li>
+						<li><a href="<%=path%>output_vat.jsp">Output Vat</a></li>
+						<li><a href="<%=path%>opening_stock.jsp">Opening Stock</a></li>
+						<li><a href="<%=path%>closing_stock.jsp">Closing Stock</a></li>
+						<li><a href="<%=path%>simplereport.jsp">po_jasper</a></li>
+						<li><a href="<%=path%>barcodePO.jsp">po_barcodes</a></li>
+						<li><a href="<%=path%>EmployeeAccountDetails.jsp" target="_blank">Employee Account Details</a></li>
+						<li><a href="<%=path%>customerCreditAccountDetails.jsp" target="_blank">Customer Credit Account Details</a></li>
+						<li><a href="<%=path%>SupplierAccountList.jsp" target="_blank">Supplier Account List</a></li>
+						<li><a href="<%=path%>SupplierwiseReport.jsp" target="_blank">Bill Wise Account Details</a></li>
+						<li><a href="<%=path%>productwise_profit.jsp" target="_blank">Product Wise Profit</a></li>
+						
+				<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">VAT Ledger</a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=path%>purchase_detail_ledger.jsp">Purchase Details </a></li>
+						<li><a href="<%=path%>sale_detail_ledger.jsp">Sale Details</a></li>
+					</ul>
+				</li>	
+			</ul>
+		</li>
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Reports <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=path%>categorywise_sale_report.jsp" target="_blank">Category Wise Sale Report</a></li>
+						<li><a href="<%=path%>subcategorywise_sale_report.jsp" target="_blank">Sub-Category Wise Sale Report</a></li>
+						<li><a href="<%=path%>itemwise_sale_report.jsp" target="_blank">Item Wise Sale Report</a></li>
+						<li><a href="<%=path%>itemwise_purchase_report.jsp" target="_blank">Item Wise Purchase Report</a></li>
+						<li><a href="<%=path%>supplierwise_sale_report.jsp" target="_blank">Supplier Wise Sale Report</a></li>
+						<li><a href="<%=path%>supplierwise_purchase_report.jsp" target="_blank">Supplier Wise Purchase Report</a></li>
+						
+						<li><a href="<%=path%>chart.jsp">pie Chart Demo</a></li>
+						<li><a href="<%=path%>sale_report.jsp">Sale Report</a></li>
+						<li><a href="<%=path%>purchase_report.jsp">Purchase Report</a></li>
+						<li><a href="<%=path%>stock_inward_register.jsp">Stock Inward Register</a></li>
+						<li><a href="<%=path%>stok_outward_register.jsp">Stock Outward Register </a></li>
+						<li><a href="<%=path%>yearly_sale&purchase_report.jsp">Yearly Sale & Purchase Report </a></li>
+						<li><a href="<%=path%>itemwise_performance.jsp">Item Wise Performance </a></li>
+						<li><a href="<%=path%>monthly_purchase_and_sale_report.jsp">Monthly Purchase & Sale Report </a></li>
+						<li><a href="<%=path%>expense_report.jsp">Expense Report</a></li>
+						<li><a href="<%=path%>categorywise_purchase_report.jsp">Category Wise Purchase Report</a></li>
+						<li><a href="<%=path%>subcategorywise_purchase_report.jsp">Sub-Category Wise Purchase Report</a></li>
+						<li><a href="<%=path%>stock_ledger.jsp">Stock Ledger</a></li>
+						<%-- <li><a href="<%=path%>sales/saleOrder.jsp">Sale Order</a></li> --%>
+					</ul>
+				</li>
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Customer Service Desk <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=path%>customer_feedback.jsp">Customer Feedback</a></li>
+						<li><a href="<%=path%>customer_feedback_list.jsp">Customer Feedback List</a></li>
+						<li><a href="<%=path%>loyalty_program.jsp">Loyalty Program</a></li>
+						<li><a href="<%=path%>shop.jsp">Add Shop</a></li>
+						<li><a href="<%=path%>customer_list.jsp">Customer List</a></li>
+						<li><a href="<%=path%>xyz.html">XYZ</a></li>
+						<li><a href="<%=path%>Visitor.jsp">Visitor</a></li>
+						<li><a href="<%=path%>visitor_list.jsp">Visitor List</a></li>
+						<li><a href="<%=path%>ccc.jsp">datalist demo</a></li>
+						<li><a href="<%=path%>LoyaltyProgramList.jsp" target="_blank">Loyalty Progarm List</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Notification <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=path%>Birthday.jsp" target="_blank">Birthday</a></li>
+						<li><a href="<%=path%>Anniversary.jsp" target="_blank">Anniversary</a></li>
+						<li><a href="">Remaining Balance</a></li>
+						<li><a href="">Employee Salary Hike</a></li>
+						<li><a href="">Employee Meeting</a></li>
+						<li><a href="">Insurence</a></li>
+						<li><a href="">Party Payment</a></li>
+						<li><a href="">Daily Activity</a></li>
+						<li><a href="">Policy Renewal</a></li>
+						<li><a href="">Employee Notification</a></li>
+						<li><a href="">Pending Work</a></li>
+						<li><a href="">Bank Notification</a></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Payment <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="">Supplier</a></li>
+						<li><a href="">Salesman</a></li>
+						<li><a href="">Credit Customer</a></li>
+						<li><a href="">Other</a></li>
+						<li><a href="<%=path%>cash_bank_book.jsp">Cash/Bank Book</a></li>
+						<li><a href="<%=path%>day_close.jsp">Day Close</a></li>
+						<li><a href="<%=path%>agewise_stock.jsp">Age Wise Stock</a></li>
+						<li><a href="<%=path%>credit_note_customer.jsp">Credit Note Customer</a></li>
+						<li><a href="<%=path%>supplierwise_bill.jsp">Supplier Wise Bill</a></li>
+						<li><a href="<%=path%>partition_payment.jsp">Partition Payment</a></li>
+						<li><a href="<%=path%>reminder.jsp">Reminder</a></li>
+						<li><a href="<%=path%>new_po.jsp">pooo</a></li>
+					</ul>
+				</li>
+				
+				<a class="navbar-brand" href="/SMT/jsp/login.jsp">Logout</a>
+				
+			</ul>
+		</div>
+	</div>

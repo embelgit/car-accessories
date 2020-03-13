@@ -1,0 +1,722 @@
+
+function employeedetails(){
+	
+	
+	if(document.empd.firstName.value == "")
+	{
+		alert("Enter Employee First Name.");
+		return false;
+	}	
+	var letterNumber = /^[a-zA-Z]+$/;
+	if(document.empd.firstName.value.match(letterNumber))
+	{
+		if(document.empd.middleName.value == "")
+		{
+			alert("Enter Employee Middle Name.");
+			return false;
+		}	
+		var letterNumber = /^[a-zA-Z]+$/;
+		if(document.empd.middleName.value.match(letterNumber))
+		{
+			if(document.empd.lastName.value == "")
+			{
+				alert("Enter Employee Last Name.");
+				return false;
+			}	
+			var letterNumber = /^[a-zA-Z]+$/;
+			if(document.empd.lastName.value.match(letterNumber))
+			{
+				if(document.empd.gender.value == "selected")
+				{
+					alert("Select Gender..!!!");
+					return false;
+				}
+				
+				if(document.empd.maritalStatus.value == "selected")
+				{
+					alert("Select Marital Status...!!!");
+					return false;
+				}
+				
+
+			    if ( document.empd.address.value == "" )
+			    {
+			         
+			  	       alert("Please Enter Address.");
+			          return false;
+			    }
+
+
+			    if ( document.empd.city.value == "" )
+			    {
+			         
+			  	       alert("Please Enter City name.");
+			          return false;
+			    }
+			    var letterNumber = /^[a-zA-Z]+$/;
+				if(document.empd.city.value.match(letterNumber))
+				{
+					
+					if ( document.empd.dob.value == "" )
+				    {
+				         
+				  	       alert("Please Enter Date Of Birth...!!!");
+				          return false;
+				    }
+					
+					if ( document.empd.contactNumber.value == "" )
+				    {
+				         
+				  	       alert("Please Enter Contact Person name.");
+				          return false;
+				    }
+				    var letterNumber = /^[0-9]+$/;
+					if(document.empd.contactNumber.value.match(letterNumber))
+					{
+						 
+		   	        	  if(document.empd.emailId.value == "" )
+		 		          {
+		 			            
+		 	    	    	     alert("Please Enter Email .");
+		 			             return false;
+		 		          }
+		   	        	 var letterNumber = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		   	        	 if(document.empd.emailId.value.match(letterNumber))
+		   	        	 {
+		   	        		 
+		   	        		if ( document.empd.education.value == "" )
+						    {
+						         
+						  	      alert("Please Enter Education.");
+						          return false;
+						    } 
+		   	        		var letterNumber = /^[a-zA-Z]+$/;
+							if(document.empd.education.value.match(letterNumber)) 
+		   	        		{
+								if(document.empd.knownLanguage.value == "selected")
+								{
+									alert("Select Know Language..!!!");
+									return false;
+								}
+								
+								if ( document.empd.adharNumber.value == "" )
+							    {
+							         
+							  	      alert("Please Enter Aadhar card No...!!!");
+							          return false;
+							    }
+								var letterNumber = /^[0-9]+$/;
+								if(document.empd.adharNumber.value.match(letterNumber))
+								{
+									if ( document.empd.joiningDate.value == "" )
+								    {
+								         
+								  	       alert("Please Enter Date Of Birth...!!!");
+								          return false;
+								    }
+									
+									if(document.empd.department.value == "selected")
+									{
+										alert("Select Department..!!!");
+										return false;
+									}
+									
+									if ( document.empd.emergencyContactNumber.value == "" )
+								    {
+								         
+								  	      alert("Please Enter Emergency No...!!!");
+								          return false;
+								    }
+									var letterNumber = /^[0-9]+$/;
+									if(document.empd.emergencyContactNumber.value.match(letterNumber))
+									{
+										if ( document.empd.familyMember.value == "" )
+									    {
+									         
+									  	       alert("Please Enter Family Member Relation...!!!");
+									          return false;
+									    }
+										var letterNumber = /^[a-zA-Z]+$/;
+										if(document.empd.familyMember.value.match(letterNumber))
+										{
+											if ( document.empd.bankName.value == "" )
+										    {
+										         
+										  	      alert("Please Enter Bank Name...!!!");
+										          return false;
+										    }
+											var letterNumber = /^[a-zA-Z]+$/;
+											if(document.empd.bankName.value.match(letterNumber))
+											{
+												if ( document.empd.ifsc.value == "" )
+											    {
+											         
+											  	      alert("Please Enter IFSC Code...!!!");
+											          return false;
+											    }
+												var letterNumber = /^[a-zA-Z0-9]+$/;
+												if(document.empd.ifsc.value.match(letterNumber))
+												{
+													
+													if ( document.empd.branch.value == "" )
+												    {
+												         
+												  	      alert("Please Enter Branch Name...!!!");
+												          return false;
+												    }
+													var letterNumber = /^[a-zA-Z]+$/;
+													if(document.empd.branch.value.match(letterNumber))
+													{
+														
+														if ( document.empd.accountNumber.value == "" )
+													    {
+													         
+													  	      alert("Please Enter Account No...!!!");
+													          return false;
+													    }
+														var letterNumber = /^[0-9]+$/;
+														if(document.empd.accountNumber.value.match(letterNumber))
+														{
+															if ( document.empd.salary.value == "" )
+														    {
+														         
+														  	      alert("Please Enter Salary...!!!");
+														          return false;
+														    }
+															var letterNumber = /^[0-9]+$/;
+															if(document.empd.salary.value.match(letterNumber))
+															{
+																if ( document.empd.reference.value == "" )
+															    {
+															         
+															  	      alert("Please Enter Refernace Name...!!!");
+															          return false;
+															    }
+																var letterNumber = /^[a-zA-Z]+$/;
+																if(document.empd.reference.value.match(letterNumber))
+																{
+																	if ( document.empd.previousJob.value == "" )
+																    {
+																         
+																  	      alert("Please Enter Previos Job Name...!!!");
+																          return false;
+																    }
+																	var letterNumber = /^[a-zA-Z]+$/;
+																	if(document.empd.previousJob.value.match(letterNumber))
+																	{
+																		if ( document.empd.previousFirmName.value == "" )
+																	    {
+																	         
+																	  	      alert("Please Enter Previos Firm Name...!!!");
+																	          return false;
+																	    }
+																		var letterNumber = /^[a-zA-Z]+$/;
+																		if(document.empd.previousFirmName.value.match(letterNumber))
+																		{
+																			
+																			if ( document.empd.previousFirmAddress.value == "" )
+																		    {
+																		         
+																		  	      alert("Please Enter Previos Firm Address...!!!");
+																		          return false;
+																		    }
+																			
+																			if ( document.empd.previousFirmContactNo.value == "" )
+																		    {
+																		         
+																		  	      alert("Please Enter Previos Firm Contact No...!!!");
+																		          return false;
+																		    }
+																			var letterNumber = /^[0-9]+$/;
+																			if(document.empd.previousFirmContactNo.value.match(letterNumber))
+																			{
+																				
+																				if ( document.empd.previousJobExeperiance.value == "" )
+																			    {
+																			         
+																			  	      alert("Please Enter Previos Job Experiance...!!!");
+																			          return false;
+																			    }
+																				var letterNumber = /^[0-9]+$/;
+																				if(document.empd.previousJobExeperiance.value.match(letterNumber))
+																				{
+
+																					if ( document.empd.resignDate.value == "" )
+																				    {
+																				         
+																				  	      alert("Please Enter Resign Date...!!!");
+																				          return false;
+																				    }
+																					
+																					if ( document.empd.resignReason.value == "" )
+																				    {
+																				         
+																				  	      alert("Please Enter Resign Reason...!!!");
+																				          return false;
+																				    }
+																					var letterNumber = /^[a-zA-Z]+$/;
+																					if(document.empd.resignReason.value.match(letterNumber))
+																					{
+																						
+																						empDetails();
+																						
+																					}
+																					else
+																					{
+																						alert("Enter Alphabets Only..!!");
+																						return false;
+																					}
+																				}
+																				else
+																				{
+																					alert("Enter Numbers Only..!!");
+																					return false;
+																				}	
+																			}
+																			else
+																			{
+																				alert("Enter Numbers Only..!!");
+																			}	
+																			
+																			
+																		}
+																		else
+																		{
+																			alert("Enter Alphabets Only..!!");
+																			return false;
+																		}
+																		
+																	}
+																	else
+																	{
+																		alert("Enter Alphabets Only..!!");
+																		return false;
+																	}
+																	
+																}
+																else
+																{
+																	alert("Enter Alphabets Only..!!");
+																	return false;
+																}
+															}
+															else
+															{
+																alert("Enter Numbers Only..!!");
+																return false;
+															}
+															
+															
+														}	
+														else
+														{
+															alert("Enter Numbers Only..!!");
+															return false;
+														}
+														
+														
+													}
+													else
+													{
+														alert("Enter Alphabets Only..!!");
+														return false;
+													}
+												}
+												else
+												{
+													alert("Enter Alphabets and Numbers Only..!!");
+													return false;
+												}
+												
+											}	
+											else
+											{
+												alert("Enter Alphabets Only..!!");
+												return false;
+											}
+										}
+										else
+										{
+											alert("Enter Alphabets Only..!!");
+											return false;
+										}
+									}
+									else
+									{
+										alert("Enter Numbers Only..!!");
+										return false;
+									}
+								}
+								else
+								{
+									alert("Enter Numbers Only..!!");
+									return false;
+								}
+								
+		   	        		}
+							else
+							{
+								alert("Enter Alphabets Only..!!");
+								return false;
+							}
+							
+		   	        	 }	 
+		   	        	 else
+		   	        	 {
+		   	        		alert("Enter a Valid emial adress..!!");
+		   	        		return false;
+		   	        	 }	 
+			             
+						
+						
+						
+					}
+					else
+					{
+						alert("Enter Numbers Only..!!");
+						return false;
+					}
+				}
+				else
+				{
+					alert("Enter Alphabets Only..!!");
+					return false;
+				}
+			}
+			else
+			{
+				alert("Enter Alphabets Only..!!");
+				return false;
+			}
+		}
+		else
+		{
+			alert("Enter Alphabets Only..!!");
+			return false;
+		}
+	}
+	else
+	{
+		alert("Enter Alphabets Only..!!");
+		return false;
+	}	
+	
+	
+	
+	
+}
+
+			function empDetails(){
+				
+				
+				document.empd.btn.disabled = true;
+				
+				
+				var dob = $('#dob').val();
+			
+				
+				var emergencyContactNumber = $('#emergencyContactNumber').val();
+				
+				
+				var accountNumber = $('#accountNumber').val();
+				
+				
+				var address = $('#address').val();
+				var adharNumber  = $('#adharNumber').val();
+				var bankName = $('#bankName').val();
+				
+				var branch = $('#branch').val();
+				var city = $('#city').val();
+				var contactNumber  = $('#contactNumber').val();
+				var education  = $('#education').val();
+				var emailId = $('#emailId').val();
+				var familyMember = $('#familyMember').val();
+				var firstName = $('#firstName').val();
+				var gender = $('#gender').val();
+				var ifsc = $('#ifsc').val();
+				var joiningDate = $('#joiningDate').val();
+				var knownLanguage = $('#knownLanguage').val();
+				var lastName = $('#lastName').val();
+				var maritalStatus = $('#maritalStatus').val();
+				var middleName = $('#middleName').val();
+				var previousFirmAddress = $('#previousFirmAddress').val();
+				var previousFirmContactNo = $('#previousFirmContactNo').val();
+				var previousFirmName = $('#previousFirmName').val();
+				var previousJob = $('#previousJob').val();
+				var previousJobExeperiance = $('#previousJobExeperiance').val();
+				
+				var reference = $('#reference').val();
+				var resignDate = $('#resignDate').val();
+				var resignReason = $('#resignReason').val();
+				var salary = $('#salary').val();
+				var department = $('#department').val();
+				
+				var designation = $('#designation').val();
+			
+			
+				
+				
+				var params = {};
+				
+				
+				params["dob"] = dob;
+				params["emergencyContactNumber"] = emergencyContactNumber;
+				params["accountNumber"] = accountNumber;
+				params["address"] = address;
+				params["adharNumber"] = adharNumber;
+				params["bankName"] =bankName;
+				params["branch"] =branch;
+				params["city"] =city;
+				params["contactNumber"] =contactNumber;
+				params["education"] =education;
+				params["emailId"] = emailId;
+				params["familyMember"] = familyMember;
+				params["firstName"] = firstName;
+				params["gender"] = gender;
+				params["ifsc"] = ifsc;
+				params["joiningDate"] =joiningDate;
+				params["knownLanguage"] =knownLanguage;
+				params["lastName"] =lastName;
+				params["maritalStatus"] =maritalStatus;
+				params["middleName"] =middleName;
+				params["previousFirmAddress"] = previousFirmAddress;
+				params["previousFirmContactNo"] = previousFirmContactNo;
+				params["previousFirmName"] = previousFirmName;
+				params["previousJob"] = previousJob;
+				params["previousJobExeperiance"] = previousJobExeperiance;
+				params["reference"] =reference;
+				params["resignDate"] =resignDate;
+				params["resignReason"] =resignReason;
+				params["salary"] =salary;
+				params["department"] =department;
+				params["designation"] =designation;
+				
+				
+				
+				
+				params["methodName"] = "regDetails";
+			 	
+			 	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+			 	    	{
+			 				alert(data);
+			 				if(document.empd)
+			 				{
+			 					document.empd.reset();
+			 				}	
+			 				document.empd.btn.disabled =false;
+			 			}
+			 	    	).error(function(jqXHR, textStatus, errorThrown){
+			 	    		if(textStatus==="timeout") {
+			 	    			$(loaderObj).hide();
+			 	    			$(loaderObj).find('#errorDiv').show();
+			 	    		}
+			 	    	});
+			 			
+			}
+	
+			
+			
+function reset()
+{
+   document.empd.reset();	
+
+}
+
+
+
+function editemployee()
+{
+this.getemployee = getemployee;	
+
+function getemployee(){
+	
+	var mainCat = $("#firstName").val();
+	$("#dob").append($("<input/>").attr("value","").text());
+	$("#address").append($("<input/>").attr("value","").text());
+	$("#emergencyContactNumber").append($("<input/>").attr("value","").text());
+	$("#accountNumber").append($("<input/>").attr("value","").text());
+	$("#adharNumber").append($("<input/>").attr("value","").text());
+	$("#bankName").append($("<input/>").attr("value","").text());
+	$("#branch").append($("<input/>").attr("value","").text());
+	$("#city").append($("<input/>").attr("value","").text());
+	$("#contactNumber").append($("<input/>").attr("value","").text());
+	$("#education").append($("<input/>").attr("value","").text());
+	$("#emailId").append($("<input/>").attr("value","").text());
+	$("#familyMember").append($("<input/>").attr("value","").text());
+	$("#gender").append($("<input/>").attr("value","").text());
+	$("#ifsc").append($("<input/>").attr("value","").text());
+	$("#joiningDate").append($("<input/>").attr("value","").text());
+	$("#knownLanguage").append($("<input/>").attr("value","").text());
+	$("#maritalStatus").append($("<input/>").attr("value","").text());
+	
+	$("#previousFirmAddress").append($("<input/>").attr("value","").text());
+	$("#previousFirmContactNo").append($("<input/>").attr("value","").text());
+	$("#previousFirmName").append($("<input/>").attr("value","").text());
+	$("#previousJob").append($("<input/>").attr("value","").text());
+	$("#previousJobExeperiance").append($("<input/>").attr("value","").text());
+	$("#reference").append($("<input/>").attr("value","").text());
+	$("#resignReason").append($("<input/>").attr("value","").text());
+	$("#salary").append($("<input/>").attr("value","").text());
+	$("#department").append($("<input/>").attr("value","").text());
+	$("#designation").append($("<input/>").attr("value","").text());
+	
+	var params= {};
+	params["methodName"] = "getEmployee";
+	params["firstName"]= mainCat;
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+			{
+		     var jsonData = $.parseJSON(data);
+		     var catmap = jsonData.list;
+		     $.each(jsonData,function(i,v)
+		     {
+		    	 document.getElementById("dob").value = v.dob; 
+		    	 document.getElementById("address").value = v.address; 
+		    	 document.getElementById("emergancyContactNumber").value = v.emergancyContactNumber; 
+		    	 document.getElementById("accountNumber").value = v.accountNumber; 
+		    	 document.getElementById("adharNumber").value = v.adharNumber; 
+		    	 document.getElementById("bankName").value = v.bankName; 
+		    	 document.getElementById("branch").value = v.branch; 
+		    	 document.getElementById("city").value = v.city; 
+		    	 document.getElementById("contactNumber").value = v.contactNumber; 
+		    	 document.getElementById("education").value = v.education; 
+		    	 document.getElementById("emailId").value = v.emailId; 
+		    	 document.getElementById("familyMember").value = v.familyMember; 
+		    	 document.getElementById("gender").value = v.gender; 
+		    	 document.getElementById("ifsc").value = v.ifsc; 
+		    	 document.getElementById("joiningDate").value = v.joiningDate; 
+		    	 document.getElementById("knownLanguage").value = v.knownLanguage; 
+		    	 document.getElementById("maritalStatus").value = v.maritalStatus; 
+		    	 document.getElementById("previousFirmAddress").value = v.previousFirmAddress; 
+		    	 document.getElementById("previousFirmContactNo").value = v.previousFirmContactNo; 
+		    	 document.getElementById("previousFirmName").value = v.previousFirmName; 
+		    	 document.getElementById("previousJob").value = v.previousJob; 
+		    	 document.getElementById("previousJobExeperiance").value = v.previousJobExeperiance; 
+		    	 document.getElementById("reference").value = v.reference; 
+		    	 document.getElementById("resignReason").value = v.resignReason; 
+		    	 document.getElementById("salary").value = v.salary; 
+		    	 document.getElementById("department").value = v.department; 
+		    	 document.getElementById("designation").value = v.designation; 
+		    	 
+		    	 
+		    	 
+		     });	 
+			}).error(function(jqXHR, textStatus, errorThrown){
+				if(textStatus==="timeout") {
+
+				}
+			});
+	
+	
+}
+}
+
+var es = new editemployee();
+
+function empEdit(){
+	
+	document.empd.btn.disabled = true;
+	
+	/*var dob = $('#dob').val();*/
+	
+	
+	var emergancyContactNumber = $('#emergancyContactNumber').val();
+	
+	
+	var accountNumber = $('#accountNumber').val();
+	
+	
+	var address = $('#address').val();
+	var adharNumber  = $('#adharNumber').val();
+	var bankName = $('#bankName').val();
+	
+	var branch = $('#branch').val();
+	var city = $('#city').val();
+	var contactNumber  = $('#contactNumber').val();
+	var education  = $('#education').val();
+	var emailId = $('#emailId').val();
+	var familyMember = $('#familyMember').val();
+	var firstName = $('#firstName').val();
+	var gender = $('#gender').val();
+	var ifsc = $('#ifsc').val();
+	/*var joiningDate = $('#joiningDate').val();*/
+	var knownLanguage = $('#knownLanguage').val();
+	
+	var maritalStatus = $('#maritalStatus').val();
+	
+	var previousFirmAddress = $('#previousFirmAddress').val();
+	var previousFirmContactNo = $('#previousFirmContactNo').val();
+	var previousFirmName = $('#previousFirmName').val();
+	var previousJob = $('#previousJob').val();
+	var previousJobExeperiance = $('#previousJobExeperiance').val();
+	
+	var reference = $('#reference').val();
+
+	var resignReason = $('#resignReason').val();
+	var salary = $('#salary').val();
+	var department = $('#department').val();
+	
+	var designation = $('#designation').val();
+
+
+	
+	
+	var params = {};
+	
+	
+	/*params["dob"] = dob;*/
+	params["emergancyContactNumber"] = emergancyContactNumber;
+	params["accountNumber"] = accountNumber;
+	params["address"] = address;
+	params["adharNumber"] = adharNumber;
+	params["bankName"] =bankName;
+	params["branch"] =branch;
+	params["city"] =city;
+	params["contactNumber"] =contactNumber;
+	params["education"] =education;
+	params["emailId"] = emailId;
+	params["familyMember"] = familyMember;
+	params["firstName"] = firstName;
+	params["gender"] = gender;
+	params["ifsc"] = ifsc;
+	/*params["joiningDate"] =joiningDate;*/
+	params["knownLanguage"] =knownLanguage;
+	
+	params["maritalStatus"] =maritalStatus;
+	
+	params["previousFirmAddress"] = previousFirmAddress;
+	params["previousFirmContactNo"] = previousFirmContactNo;
+	params["previousFirmName"] = previousFirmName;
+	params["previousJob"] = previousJob;
+	params["previousJobExeperiance"] = previousJobExeperiance;
+	params["reference"] =reference;
+	
+	params["resignReason"] =resignReason;
+	params["salary"] =salary;
+	params["department"] =department;
+	params["designation"] =designation;
+	
+	
+	
+	
+	params["methodName"] = "regEmpEdit";
+ 	
+ 	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+ 	    	{
+ 				alert(data);
+ 				if(document.empd)
+ 				{
+ 					document.empd.reset();
+ 				}	
+ 				document.empd.btn.disabled =false;
+ 			}
+ 	    	).error(function(jqXHR, textStatus, errorThrown){
+ 	    		if(textStatus==="timeout") {
+ 	    			$(loaderObj).hide();
+ 	    			$(loaderObj).find('#errorDiv').show();
+ 	    		}
+ 	    	});
+	
+	
+}
+			
+			

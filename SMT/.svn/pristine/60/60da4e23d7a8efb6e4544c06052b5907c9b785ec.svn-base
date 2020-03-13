@@ -1,0 +1,114 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class CustFeedback implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long cust_id;
+
+	private String customer_name;
+	 
+	private String email; 
+	
+	private Long mobile_no;
+	
+	private String occupation;
+	
+	private Long rating;
+	
+	private String feedback;
+	
+	private Date dob;
+	
+	
+	
+
+	public CustFeedback(Long cust_id, String customer_name, String email, Long mobile_no, String occupation, Long rating, String feedback, Date dob){
+		
+		this.setcust_id(cust_id);
+		this.setcustomer_name(customer_name);
+		this.setemail(email);
+		this.setmobile_no(mobile_no);
+		this.setOccupation(occupation);
+		this.setRating(rating);
+		this.setFeedback(feedback);
+		this.setDob(dob);
+		
+	}
+	
+	public CustFeedback(){
+		
+	}
+
+	public Long getcust_id() {
+		return cust_id;
+	}
+
+	public void setcust_id(Long cust_id) {
+		this.cust_id = cust_id;
+	}
+
+	public String getcustomer_name() {
+		return customer_name;
+	}
+
+	public void setcustomer_name(String customer_name) {
+		this.customer_name = customer_name;
+	}
+
+	public String getemail() {
+		return email;
+	}
+
+	public void setemail(String email) {
+		this.email = email;
+	}
+
+	public Long getmobile_no() {
+		return mobile_no;
+	}
+
+	public void setmobile_no(Long mobile_no) {
+		this.mobile_no = mobile_no;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	public Long getRating() {
+		return rating;
+	}
+
+	public void setRating(Long rating) {
+		this.rating = rating;
+	}
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+	
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+	
+	
+}

@@ -1,0 +1,239 @@
+<%@page import="com.smt.bean.ProductDetailBean"%>
+<%@page import="com.smt.dao.ProductDetailDao"%>
+<%@page import="com.smt.hibernate.ShopDetail"%>
+<%@page import="com.smt.helper.ShopDetailHelper"%>
+<%@page import="com.smt.helper.SubCategoryHelper"%>
+<%@page import="com.smt.hibernate.SupplierDetail"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smt.hibernate.Category"%>
+<%@page import="com.smt.hibernate.SubCategory"%>
+<%@page import="com.smt.helper.CategoryHelper"%>
+<%@page import="com.smt.helper.SupplierDetailHelper"%>
+<%@page import="com.smt.helper.ProductDetailHelper"%>
+<%@page import="com.smt.dao.TaxCerationDao"%>
+<%@page import="com.smt.hibernate.TaxCreation"%>	
+<% boolean isHome = false;%>
+<%@include file="commons/header.jsp"%>
+	
+	<div class="container">
+		<h2 class="form-name">Product Detail</h2>
+	</div>
+	
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%-- <% String  contextPath=request.getContextPath(); %> --%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<script src="/SMT/staticContent/js/productDetail.js"></script>
+	
+	<div id="date">
+		<label id="demo"></label>
+		<script>
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+	
+	<script type="text/javascript">
+function ChooseContact(data){
+	//document.getElementById("buyPrice")(data.options[data.selectedIndex].getAttribute("myid"));
+	document.getElementById("vatPercentage").value=(data.options[data.selectedIndex].getAttribute("myid"));
+	
+	
+}
+</script>
+	
+	
+<form action="pro" method="post" name="prod" class="form-horizontal">
+	<div class="col-lg-12">
+		<div class="form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Shop Name:</label>
+				</div>
+
+				<%
+					ShopDetailHelper shopHelper=new ShopDetailHelper();
+					List shopList = shopHelper.getAllShopDetail();				
+				%>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input list="fkShopId1_drop" id="fkShopId1" class="form-control">
+					<datalist id="fkShopId1_drop">
+					<%
+						for(int i=0;i<shopList.size();i++){
+						ShopDetail shop=(ShopDetail)shopList.get(i);
+					%>	
+						<option data-value="<%=shop.getShopId()%>" value="<%=shop.getShopName() %>">
+					<%
+						}
+					%>				
+					</datalist>
+				</div>
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Supplier Name:</label>
+				</div>
+				<%
+					SupplierDetailHelper suppHelper=new SupplierDetailHelper();
+					List suppList = suppHelper.getAllSuppliers();				
+				%>
+	
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input list="fkSupplierId_drop" id="fkSupplierId" class="form-control">
+					<datalist id="fkSupplierId_drop">
+						<%
+								for(int i=0;i<suppList.size();i++){
+								SupplierDetail supplier=(SupplierDetail)suppList.get(i);
+						%>	
+								<option data-value="<%=supplier.getSupplierId()%>" value="<%=supplier.getSupplierName() %>">
+						<%
+							}
+						%>						
+					</datalist>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Category:</label>
+				</div>
+					<%
+						CategoryHelper helper = new CategoryHelper();
+						List mainCategoryList = helper.getAllMainCategories();
+					%>	
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input list="catId_drop" id="catId" class="form-control" onchange="pohelper.getSubCategories()">
+					<datalist id="catId_drop">
+					
+					<%
+						for(int i=0;i<mainCategoryList.size();i++){
+						Category category = (Category)mainCategoryList.get(i);
+					%>
+						<option data-value="<%=category.getPkCategoryId()%>" value="<%=category.getCategoryName() %>">
+					<%
+						}
+					%>
+					</datalist>
+				</div>
+						
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Sub Category:</label>
+				</div>
+					<%
+						SubCategoryHelper categoryHelper = new SubCategoryHelper();
+						List subCatList  =	categoryHelper.getAllMainSubCategories();
+					%> 
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id="fkSubCatId" name="fkSubCatId" onchange='pohelper.getLeafCatName()' >
+					</select>
+				</div>
+				
+				<!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Leaf Category:</label>
+				</div>
+					
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id="leafCatId" name="leafCatId" >
+					</select>
+				</div> -->
+			</div>
+		</div>
+
+		<div class="form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Product Name</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" class="form-control  input-sm" id='itemName' name="itemName" placeholder="Product Name">
+				</div>
+				
+				<%
+					TaxCerationDao dao2=new TaxCerationDao();
+					List tList = dao2.getAllMainTax();				
+				%>
+				
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>IsVat</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id="isVat" name="isVat"  onChange="ChooseContact(this)" >
+						<option value="">--Select VAT--</option>
+						<%
+		           for(int i=0;i<tList.size();i++){
+			
+			       TaxCreation tax=(TaxCreation)tList.get(i);
+		
+		
+		          %>
+		
+		
+			
+			<option value="<%=tax.getTaxId()%>" myid="<%=tax.getTaxPercentage()%>"><%=tax.getTaxType() %> </option>
+			
+	
+		   <%
+		      }
+		     %>
+					</select>
+				</div>
+
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>vat %</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" class="form-control  input-sm" id='vatPercentage' name="vatPercentage" placeholder="VAT %">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group-2">
+			<div class="col-lg-12">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>IsAlternate Product</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id="isalternateprod" name="isalternateprod" placeholder="IsAlternate Product" >
+						<option value="">--IsAlternate--</option>
+						<option value="Y">YES</option>
+						<option value="N">NO</option>
+					</select>
+				</div>
+
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>IsItem</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<select class="form-control" id="isItem" name="isItem" placeholder="Is Item" >
+						<option value="">--Select Is Item--</option>
+						<option value="Y">YES</option>
+						<option value="N">NO</option>
+					</select>
+				</div>
+
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<label>Comission</label>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+					<input type="text" class="form-control  input-sm" id='commision' name="commision" placeholder="Comission">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="wrapper">
+		<input type="button" onclick=" productdel()" value="Submit" class="btn btn-lg btn-success btn-md" />
+		<input type="button" value="Cancel" class="btn btn-lg btn-danger btn-md" />
+	</div>
+	
+</form>
+
+	<%@include file="commons/footer.jsp"%>

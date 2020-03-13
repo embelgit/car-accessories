@@ -1,0 +1,82 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.CategoryList;
+import com.smt.hibernate.GoodsReturn;
+import com.smt.utility.HibernateUtility;
+
+public class GoodsReturnDao {
+
+	public Long valPOReturnDetail(GoodsReturn return1) {
+		String superPo = "";
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		
+		
+		
+		Long pk = (Long) session.save(return1);
+		superPo = "SMT"+pk.toString();
+		
+	/* for (int i = 0; i < podetail.hashCode(); i++) {
+		 if ("".equals(superPo)) {
+				
+				Long pk = (Long) session.save(podetail);
+				superPo = "SMT"+pk.toString();
+				
+		     }
+			else {
+				podetail.setSuperPoId(superPo);
+				session.save(podetail);
+				
+			   }
+			
+			}*/
+	  transaction.commit();
+	  hbu.closeSession(session);
+	  return pk;
+	}
+
+	
+
+	public void updatePOReturnDetail(GoodsReturn superpoItemById) {
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(superpoItemById);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+	}
+	
+	
+	/*public List getCreditList(){
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select g.billNo, s.supplier_name, gr.insertDate, l.cat_name from leaf_categories l left join sub_categories s ON l.fk_subcat_id=s.pk_subcat_id left join categories c ON s.fk_rootcat_id = c.pk_category_id");
+		
+		List <Object[]> list=query.list();
+		List<CategoryList> cBean = new ArrayList<CategoryList>(0);
+		
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 	CategoryList catBean = new CategoryList();
+			 	catBean.setCategory_name(object[0].toString());
+			 	catBean.setSubcat_name(object[1].toString());
+			 	catBean.setCat_name(object[2].toString());
+			 	
+			 	cBean.add(catBean);
+		}
+			return cBean;
+	}
+*/
+	
+}

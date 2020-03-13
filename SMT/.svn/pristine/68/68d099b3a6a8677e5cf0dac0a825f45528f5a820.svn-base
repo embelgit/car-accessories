@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.Podetail" 
+    table="purchaseorderdetails"
+>
+
+    <id
+        name="poid"
+        type="java.lang.Long"
+        column="po_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="activeYn"
+        type="java.lang.String"
+        column="active_YN"
+         not-null="true"
+        length="1"
+    />
+  
+    <property
+        name="color"
+        type="java.lang.String"
+        column="color"
+         not-null="true"
+        length="255"
+    />
+    
+   
+    <property
+        name="contactPerson"
+        type="java.lang.String"
+        column="contact_Person"
+         not-null="true"
+        length="255"
+    />
+    <property
+        name="discount"
+        type="java.lang.Double"
+        column="discount"
+        length="12"
+    />
+    
+     <property
+        name="itemDiscount"
+        type="java.lang.Double"
+        column="itemDiscount"
+        length="12"
+    />
+     <property
+        name="expectedDate"
+        type="java.sql.Date"
+        column="expectedDate"
+         not-null="true"
+        length="10"
+    />
+    <property
+        name="insertDate"
+        type="java.sql.Date"
+        column="insertDate"
+         not-null="true"
+        length="10"
+    />
+   
+    <property
+        name="itemId"
+        type="java.lang.Long"
+        column="fk_item_id"
+      
+        length="10"
+    />
+   
+    <property
+        name="model"
+        type="java.lang.String"
+        column="model"
+         not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="eMail"
+        type="java.lang.String"
+        column="email"
+         not-null="true"
+        length="255"
+    />
+    
+    <property
+        name="approvedBy"
+        type="java.lang.String"
+        column="approvedBy"
+         not-null="true"
+        length="255"
+    />
+    <property
+        name="modifyDate"
+        type="java.sql.Date"
+        column="modifyDate"
+        length="10"
+    />
+   
+   
+    <property
+        name="paymentType"
+        type="java.lang.String"
+        column="paymentType"
+         not-null="true"
+        length="255"
+    />
+    <property
+        name="quantity"
+        type="java.lang.Long"
+        column="quantity"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="size"
+        type="java.lang.Long"
+        column="size"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="superPoId"
+        type="java.lang.String"
+        column="fk_super_po_id"
+        length="255"
+    />
+    <property
+        name="supplierId"
+        type="java.lang.Long"
+        column="fk_supplier_id"
+        not-null="true"
+        length="10"
+    />
+    
+    <property
+        name="catId"
+        type="java.lang.Long"
+        column="fk_category_id"
+        not-null="true"
+        length="10"
+    />
+   
+   
+    <property
+        name="totalAmount"
+        type="java.lang.Double"
+        column="total_Amount"
+        not-null="true"
+        length="12"
+    />
+    <property
+        name="typeOfPo"
+        type="java.lang.String"
+        column="typeOfPo"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="unitPrice"
+        type="java.lang.Double"
+        column="unit_price"
+        not-null="true"
+        length="12"
+    />
+    
+     <property
+        name="billType"
+        type="java.lang.String"
+        column="billType"
+        not-null="true"
+        length="255"
+    />
+    
+     <property
+        name="mobNumber"
+        type="java.lang.Long"
+        column="mobNumber"
+        not-null="true"
+        length="13"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

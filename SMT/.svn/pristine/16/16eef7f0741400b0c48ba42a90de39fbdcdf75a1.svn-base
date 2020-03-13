@@ -1,0 +1,311 @@
+
+/*function productRegister(){
+	
+	if(document.prod.fkShopId1.value == "selected")
+	{
+		alert("Please Select Name!!!");
+		return false;
+	}
+	
+
+	if(document.prod.fkSupplierId.value == "selected")
+	{
+		alert("Please Select Supplier Name!!!");
+		return false;
+	}
+	
+	if(document.prod.fkCategoryId.value == "selected")
+	{
+		alert("Please Select Category Name!!!");
+		return false;
+	}
+	
+	if(document.prod.fkSubCatId.value == "")
+	{
+		alert("Plese Select Sub Cateory!!");
+		return false;
+	}	
+	
+	if(document.prod.itemName.value == "")
+	{
+		alert("Please Enter Product Name!!!");
+		return false;
+	}
+	
+	var letterNumber = /^[a-zA-Z]+$/;  
+	if(document.prod.itemName.value.match(letterNumber)) 
+	{
+		
+		if(document.prod.isVat.value == "selected")
+		{
+			alert("Please Select IS VAt!!!");
+			return false;
+		}
+		
+		if(document.prod.isVat.value == "YES")
+		{
+			
+			if(document.prod.vatPercentage.value == "")
+			{
+				alert("Please Enter VAt Ammount!!!");
+				return false;
+			}
+			var letterNumber = /^[0-9]+$/;  
+			if(document.prod.vatPercentage.value.match(letterNumber)) 
+			{
+				return true;
+			}
+			else
+			{
+				alert("Enter Numbers only in VAT Column");
+				return false;
+			}
+			
+		}
+		else
+		{
+			document.prod.vatPercentage.value.disabled= true;
+			return false;
+		}
+		
+		if(document.prod.isalternateprod.value == "selected")
+		{
+			alert("Please Select ISAlternative!!!");
+			return false;
+		}
+		
+		if(document.prod.isItem.value == "selected")
+		{
+			alert("Please Select ISITEM!!!");
+			return false;
+		}
+		
+		if(document.prod.commision.value == "")
+		{
+			alert("Please Enter Commision Ammount!!!");
+			return false;
+		}
+		var letterNumber = /^[0-9]+$/;  
+		if(document.prod.commision.value.match(letterNumber)) 
+		{
+		
+			productdel();
+		}
+		
+		else
+		{
+			alert("Please Enetr Numbers Only In Commision Column!!!");
+			return false;
+		}	
+	}
+	
+	else
+	{
+		alert("Please Enter Alphabets Only In item Name Column!!!");
+		return false;
+	}
+}
+
+*/
+function productdel(){
+	
+	var itemName= $('#itemName').val();
+	var commision=$('#commision').val();
+	
+	var isVat=$('#isVat').val();
+	var vatPercentage=$('#vatPercentage').val();
+	var isalternateprod=$('#isalternateprod').val();
+	var isItem=$('#isItem').val();
+	var fkSupplierId=$('#fkSupplierId').val();
+	
+
+	var fkSubCatId=$('#fkSubCatId').val();
+	var fkShopId1=$('#fkShopId1').val();
+	
+	var input = document.getElementById('fkShopId1'),
+    list = document.getElementById('fkShopId1_drop'),
+    i,fkShopId1;
+for (i = 0; i < list.options.length; ++i) {
+    if (list.options[i].value === input.value) {
+    	fkShopId1 = list.options[i].getAttribute('data-value');
+    }
+}
+
+	var input = document.getElementById('fkSupplierId'),
+	list = document.getElementById('fkSupplierId_drop'),
+	i,fkSupplierId;
+for (i = 0; i < list.options.length; ++i) {
+	if (list.options[i].value === input.value) {
+		fkSupplierId = list.options[i].getAttribute('data-value');
+	}
+}
+	
+	var input = document.getElementById('catId'),
+    list = document.getElementById('catId_drop'),
+    i,catId;
+for (i = 0; i < list.options.length; ++i) {
+    if (list.options[i].value === input.value) {
+    	catId = list.options[i].getAttribute('data-value');
+    	alert(catId)
+    }
+    
+    var catId=catId;
+}
+	var params= {};
+	params["itemName"] = itemName;
+	params["isVat"] = isVat;
+	params["vatPercentage"] = vatPercentage;
+	params["isalternateprod"] = isalternateprod;
+	params["commision"] = commision;
+	params["isItem"] = isItem;
+	
+	
+	params["fkSupplierId"] =fkSupplierId;
+	params["catId"] =catId;
+	
+	params["fkSubCatId"] =fkSubCatId;
+	params["fkShopId1"] =fkShopId1;
+	
+	params["methodName"] = "doProductDetail";
+	
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	{
+				alert(data);
+			}
+	    	).error(function(jqXHR, textStatus, errorThrown){
+	    		if(textStatus==="timeout") {
+	    			$(loaderObj).hide();
+	    			$(loaderObj).find('#errorDiv').show();
+	    		}
+	    	});
+}
+
+
+function modifypRODUCT(){
+	
+	
+	var pkProductId= $('#pkProductId').val();
+	alert(pkProductId)
+	var itemName= $('#itemName').val();
+	var commision=$('#commision').val();
+	
+	var isVat=$('#isVat').val();
+	var vatPercentage=$('#vatPercentage').val();
+	var isalternateprod=$('#isalternateprod').val();
+	var isItem=$('#isItem').val();
+
+	
+	
+	var params= {};
+	params["pkProductId"] = pkProductId;
+    params["itemName"] = itemName;
+	params["isVat"] = isVat;
+	params["vatPercentage"] = vatPercentage;
+	params["isalternateprod"] = isalternateprod;
+	params["commision"] = commision;
+	params["isItem"] = isItem;
+
+	
+	params["methodName"] = "modifyProductDetail";
+	
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	{
+				alert(data);
+			}
+	    	).error(function(jqXHR, textStatus, errorThrown){
+	    		if(textStatus==="timeout") {
+	    			$(loaderObj).hide();
+	    			$(loaderObj).find('#errorDiv').show();
+	    		}
+	    	});
+}
+
+function POHelper()
+
+{
+
+	this.getSubCategories = getSubCategories;
+	this.fillItemList = fillItemList;
+	this.getLeafCatName=getLeafCatName;
+	//var items="";
+
+	function fillItemList()
+	{
+		var mainCat = $("#catId").val();
+		var subcat = $("#fkSubCatId").val();
+
+
+	}
+	function getSubCategories()
+	{
+		
+		var input = document.getElementById('catId'),
+	    list = document.getElementById('catId_drop'),
+	    i,catId;
+	for (i = 0; i < list.options.length; ++i) {
+	    if (list.options[i].value === input.value) {
+	    	catId = list.options[i].getAttribute('data-value');
+	    }
+	
+		var mainCat = catId;
+	}
+		$("#fkSubCatId").empty();
+		$("#fkSubCatId").append($("<option></option>").attr("value","").text("Select subcategory"));
+		var params= {};
+		params["methodName"] = "getSubCategoriesByRootcategory";
+		params["catId"]= mainCat;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData = $.parseJSON(data);
+			var catmap = jsonData.list;
+			$.each(catmap,function(i,v)
+					{
+				$("#fkSubCatId").append($("<option></option>").attr("value",i).text(v.subcatName)); 
+
+					});
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+				});
+	
+	}
+
+	function getLeafCatName()
+	{
+		var mainCat = $("#catId").val();
+		var subCat = $("#subCat").val();
+		//$("#subCat").empty();
+		$("#leafCatId").empty();
+		$("#leafCatId").append($("<option></option>").attr("value","").text("Select leaf Category"));
+		var params= {};
+		params["methodName"] = "getLeafcatBYCatandSubCategory";
+		params["catId"]= mainCat;
+		params["subCatId"]= subCat;
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+				{
+			var jsonData1 = $.parseJSON(data);
+		   
+			//var itemMap = jsonData1.list;
+			$.each(jsonData1,function(i,v)
+					{
+				$("#leafCatId").append($("<option></option>").attr("value",i).text(v.leafCatId)); 
+
+				//tableVals[v.itemName] = v.itemName;
+				//tableVals[v.itemID] = v.itemID;
+			
+					});
+			
+
+				}).error(function(jqXHR, textStatus, errorThrown){
+					if(textStatus==="timeout") {
+
+					}
+
+
+				});
+	}
+
+}
+
+var pohelper = new POHelper();

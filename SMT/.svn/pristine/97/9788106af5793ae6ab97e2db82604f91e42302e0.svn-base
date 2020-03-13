@@ -1,0 +1,257 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import org.hibernate.Transaction;
+
+import com.smt.bean.PurchaseOrderReportBean;
+import com.smt.bean.SupplierEditBean;
+import com.smt.dao.SupplierDetailDao;
+import com.smt.hibernate.ProductDetail;
+import com.smt.hibernate.SupplierDetail;
+import com.smt.utility.HibernateUtility;
+
+public class SupplierDetailHelper {
+
+	
+	public  void doSupplier(HttpServletRequest request , HttpServletResponse response )
+	{
+		String micrNo = request.getParameter("micrNo");
+		String accountNo=request.getParameter("accountNo");
+		String panNo=request.getParameter("panNo");
+		String brokerId=request.getParameter("brokerId");
+		String address = request.getParameter("address");
+		String anniversary = request.getParameter("anniversary");
+		String bankName = request.getParameter("bankName");
+		String birthday = request.getParameter("birthday");
+		String branchName = request.getParameter("branchName");
+		String brand = request.getParameter("brand");
+		String city = request.getParameter("city");
+		String contactPerson = request.getParameter("contactPerson");
+		String creditLimit = request.getParameter("creditLimit");
+		String cstNo = request.getParameter("cstNo");
+		String email = request.getParameter("email");
+		String ifscCode = request.getParameter("ifscCode");
+		//String offer = request.getParameter("offer");
+		String partyType = request.getParameter("partyType");
+		String paymentType = request.getParameter("paymentType");
+		String pin = request.getParameter("pin");
+		String productType = request.getParameter("productType");
+		String state = request.getParameter("state");
+		String supplierName = request.getParameter("supplierName");
+		String tinNo = request.getParameter("tinNo");
+		String mobileno = request.getParameter("mobileno");
+		String discount=request.getParameter("discount");
+		
+		SupplierDetail detail = new SupplierDetail();
+		
+		detail.setAddress(address);
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date adate = null;
+		try {
+		 adate=	format.parse(anniversary);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		detail.setAnniversary(adate);
+		
+		detail.setBankName(bankName);
+		
+		Date bdate = null;
+		
+		try {
+			bdate = format.parse(birthday);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//detail.setAnniversary(adate);
+		detail.setBirthday(bdate);
+	    detail.setBranchName(branchName);
+	    detail.setBrand(brand);
+	    detail.setCity(city);
+	    detail.setContactPerson(contactPerson);
+	    detail.setCreditLimit(Double.parseDouble(creditLimit));
+	    detail.setBrokerId(Long.parseLong(brokerId));
+	    detail.setEmail(email);
+	    detail.setIfscCode(Long.parseLong(ifscCode));
+	  //  detail.setOffer(offer);
+	    detail.setPartyType(partyType);
+	    detail.setPaymentType(paymentType);
+	    detail.setPin(Long.parseLong(pin));
+	    detail.setProductType(productType);
+	    detail.setState(state);
+	    detail.setSupplierName(supplierName);
+	    detail.setPanNo(Long.parseLong(panNo));
+	    detail.setMobileno(Long.parseLong(mobileno));
+	    detail.setDiscount(Double.parseDouble(discount));
+	    detail.setAccountNo(Long.parseLong(accountNo));
+	    detail.setMicrNo(Long.parseLong(micrNo));
+	    
+	    if(!"".equals(tinNo))
+	    {
+	    	detail.setTinNo(Long.parseLong(tinNo));
+	    }
+	    else
+	    {
+	    	detail.setCstNo(Long.parseLong(cstNo));
+	    }
+	    
+	    SupplierDetailDao dao = new SupplierDetailDao();
+	    dao.valSupplierDetail(detail);
+	
+	}
+	
+	
+	
+	
+	public  void editSupplier(HttpServletRequest request , HttpServletResponse response )
+	{
+		
+		String address = request.getParameter("address");
+		String bankName = request.getParameter("bankName");
+		
+		String branchName = request.getParameter("branchName");
+		String brand = request.getParameter("brand");
+		String city = request.getParameter("city");
+		String contactPerson = request.getParameter("contactPerson");
+		String creditLimit = request.getParameter("creditLimit");
+		String cstNo = request.getParameter("cstNo");
+		String email = request.getParameter("email");
+		String ifscCode = request.getParameter("ifscCode");
+		String partyType = request.getParameter("partyType");
+		String paymentType = request.getParameter("paymentType");
+		String pin = request.getParameter("pin");
+		String productType = request.getParameter("productType");
+		String state = request.getParameter("state");
+	    String tinNo = request.getParameter("tinNo");
+		String mobileno = request.getParameter("mobileno");
+		String accountNo=request.getParameter("accountNo");
+		String panNo=request.getParameter("panNo");
+		
+		
+		String supplierName = request.getParameter("supplierName");
+		
+		SupplierDetail de = new SupplierDetail();
+	
+		de.setAddress(address);
+	    de.setBankName(bankName);
+	    de.setBranchName(branchName);
+	    de.setBrand(brand);
+	    de.setCity(city);
+	    de.setContactPerson(contactPerson);
+	    de.setCreditLimit(Double.parseDouble(creditLimit));
+	    de.setEmail(email);
+	    de.setIfscCode(Long.parseLong(ifscCode));
+	    de.setPartyType(partyType);
+	    de.setPaymentType(paymentType);
+	    de.setPin(Long.parseLong(pin));
+	    de.setProductType(productType);
+	    de.setState(state);
+	    de.setMobileno(Long.parseLong(mobileno));
+	    de.setTinNo(Long.parseLong(tinNo));
+	    de.setCstNo(Long.parseLong(cstNo));
+	    de.setSupplierName(supplierName);
+	    de.setPanNo(Long.parseLong(panNo));
+	    de.setAccountNo(Long.parseLong(accountNo));
+		
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+	
+		
+		SupplierDetail det = (SupplierDetail) session.get(SupplierDetail.class, new Long(supplierName));
+		
+		det.setAddress(address);
+		det.setBankName(bankName);
+	    det.setBranchName(branchName);
+	    det.setBrand(brand);
+	    det.setCity(city);
+	    det.setContactPerson(contactPerson);
+	    det.setCreditLimit(Double.parseDouble(creditLimit));
+	    det.setEmail(email);
+	    det.setIfscCode(Long.parseLong(ifscCode));
+	    det.setPartyType(partyType);
+	    det.setPaymentType(paymentType);
+	    det.setPin(Long.parseLong(pin));
+	    det.setProductType(productType);
+	    det.setState(state);
+	    det.setMobileno(Long.parseLong(mobileno));
+	    det.setTinNo(Long.parseLong(tinNo));
+	    det.setCstNo(Long.parseLong(cstNo));
+	    det.setPanNo(Long.parseLong(panNo));
+	    det.setAccountNo(Long.parseLong(accountNo));
+	    	
+	    session.saveOrUpdate(det);
+		transaction.commit();
+	
+	}
+	
+	
+	
+	
+	
+	
+	public List getAllSuppliers()
+	{
+		SupplierDetailDao dao = new SupplierDetailDao();
+		return dao.getAllMainSuppliers();
+	}
+
+	
+
+	public Map getEditSupplier(Long suppilerId) {
+		
+		SupplierDetailDao dao1 = new SupplierDetailDao();
+		List catList = dao1.getEditSupplier1(suppilerId);
+		
+		Map  map =  new HashMap();
+		for(int i=0;i<catList.size();i++)
+		{
+			Object[] o = (Object[])catList.get(i);
+			SupplierEditBean bean = new SupplierEditBean();
+			bean.setAddress((String)o[0]);
+			bean.setBankName((String)o[1]);
+			bean.setBranchName((String)o[2]);
+			bean.setBrand((String)o[3]);
+			bean.setCity((String)o[4]);
+			bean.setContactPerson((String)o[5]);
+			bean.setCreditLimit((Double)o[6]);
+			bean.setCstNo((Long)o[7]);
+			bean.setIfscCode((Long)o[8]);
+			bean.setPartyType((String)o[9]);
+			bean.setPaymentType((String)o[10]);
+			bean.setPin((Long)o[11]);
+			bean.setProductType((String)o[12]);
+			bean.setState((String)o[13]);
+			bean.setTinNo((Long)o[14]);
+			bean.setEmail((String)o[15]);
+			bean.setMobileno((Long)o[16]);
+			bean.setAccountNo((Long)o[17]);
+			bean.setPanNo((Long)o[18]);
+			
+			map.put(bean.getSupplierName(),bean);
+		}
+		return map;
+	}
+	
+	
+}

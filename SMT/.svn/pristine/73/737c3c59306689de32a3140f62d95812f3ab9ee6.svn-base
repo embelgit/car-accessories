@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.LeafLevelMaster" 
+    table="leaf_level_master"
+>
+
+    <id
+        name="pkLeafLevelId"
+        type="java.lang.Long"
+        column="pk_leaf_level_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="activeYn"
+        type="java.lang.String"
+        column="active_YN"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="leafLevelName"
+        type="java.lang.String"
+        column="leaf_level_name"
+        not-null="true"
+        length="128"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to MainLevelMaster -->
+    <many-to-one
+        name="mainLevelMaster"
+        class="com.smt.hibernate.MainLevelMaster"
+        not-null="true"
+    >
+        <column name="fk_main_level_id" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to UserAccessAssociation -->
+    <set
+        name="userAccessAssociations"
+        lazy="true"
+        inverse="true"
+		cascade="save-update"
+    >
+        <key>
+            <column name="fk_leaf_level_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.UserAccessAssociation"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to SubLevelMaster -->
+    <many-to-one
+        name="subLevelMaster"
+        class="com.smt.hibernate.SubLevelMaster"
+        not-null="true"
+    >
+        <column name="fk_sub_level_id" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

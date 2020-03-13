@@ -1,0 +1,38 @@
+package com.smt.helper;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.LeafLevelMasterDao;
+import com.smt.hibernate.LeafLevelMaster;
+
+public class LeafLevelMAsterHelper {
+	
+	public void registerLeafLevelMaster(HttpServletRequest request , HttpServletResponse response)
+	{
+		String leafLevelName = request.getParameter("leafLevelName");
+		String activeYn = request.getParameter("activeYn");
+		
+		LeafLevelMaster leafLevelMaster = new LeafLevelMaster();
+		
+		leafLevelMaster.setActiveYn(activeYn);
+		leafLevelMaster.setLeafLevelName(leafLevelName);
+
+		
+/*
+		MainLevelMaster levelMaster = new MainLevelMaster();
+	    levelMaster.setPkMainlevelId((long) 1);
+	    
+	    leafLevelMaster.setMainLevelMaster(levelMaster);
+
+        SubLevelMaster subLevelMaster = new SubLevelMaster();
+        subLevelMaster.setPkSublevelId((long) 1);
+        
+        leafLevelMaster.setSubLevelMaster(subLevelMaster);*/
+	    
+		LeafLevelMasterDao dao = new LeafLevelMasterDao();
+		dao.valLeafLevel(leafLevelMaster);
+		
+	}
+
+}

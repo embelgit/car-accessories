@@ -1,0 +1,117 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class OfferDetail implements Serializable {
+
+    /** identifier field */
+    private Long pkItemofferId;
+
+    /** persistent field */
+    private BigDecimal buyPrice;
+
+    /** persistent field */
+    private BigDecimal commision;
+
+   
+    /** persistent field */
+    private Long item_id;
+
+    /** persistent field */
+    private BigDecimal salePrice;
+    
+    
+    /** persistent field */
+    private BigDecimal discount;
+
+    /** persistent field */
+    private com.smt.hibernate.ItemDetail itemDetail;
+
+    /** full constructor */
+    public OfferDetail(Long pkItemofferId, Long item_id,BigDecimal discount, BigDecimal buyPrice, BigDecimal commision,  BigDecimal salePrice, com.smt.hibernate.ItemDetail itemDetail) {
+        this.pkItemofferId = pkItemofferId;
+        this.buyPrice = buyPrice;
+        this.commision = commision;
+        this.salePrice = salePrice;
+        this.discount=discount;
+        this.itemDetail = itemDetail;
+        this.item_id=item_id;
+    }
+
+    /** default constructor */
+    public OfferDetail() {
+    }
+
+    public Long getPkItemofferId() {
+        return this.pkItemofferId;
+    }
+
+    public void setPkItemofferId(Long pkItemofferId) {
+        this.pkItemofferId = pkItemofferId;
+    }
+
+    public BigDecimal getBuyPrice() {
+        return this.buyPrice;
+    }
+
+    public void setBuyPrice(BigDecimal buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    public BigDecimal getCommision() {
+        return this.commision;
+    }
+
+    public void setCommision(BigDecimal commision) {
+        this.commision = commision;
+    }
+    public BigDecimal getSalePrice() {
+        return this.salePrice;
+    }
+
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public com.smt.hibernate.ItemDetail getItemDetail() {
+        return this.itemDetail;
+    }
+
+    public void setItemDetail(com.smt.hibernate.ItemDetail itemDetail) {
+        this.itemDetail = itemDetail;
+    }
+    
+    
+
+    public Long getItem_id() {
+		return item_id;
+	}
+
+	public void setItem_id(Long item_id) {
+		this.item_id = item_id;
+	}
+	
+	
+
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
+	}
+
+	@Override
+	public String toString() {
+		return "OfferDetail [pkItemofferId=" + pkItemofferId + ", buyPrice="
+				+ buyPrice + ", commision=" + commision + ", item_id="
+				+ item_id + ", salePrice=" + salePrice + ", itemDetail="
+				+ itemDetail + "]";
+	}
+
+	
+}

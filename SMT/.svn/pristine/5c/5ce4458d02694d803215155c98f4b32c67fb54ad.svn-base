@@ -1,0 +1,105 @@
+package com.smt.dao;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.EmpBirthday;
+import com.smt.bean.LoyaltyBirthday;
+import com.smt.hibernate.LoyalityProgram;
+import com.smt.utility.HibernateUtility;
+
+public class LoyalityProgramDao {
+
+	public void valLoyalityProgram(LoyalityProgram loyality) {
+		// TODO Auto-generated method stub
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(loyality);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+	}
+	
+	public List getAllLoyalityProgram()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from LoyalityProgram");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+	}
+	
+	
+	public List getAllLoyaltyBirthday(){
+	    Date date = new Date();
+	    
+	    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+	 
+	    String data = (dateFormat.format(date)); //2014/08/06 15:59:4
+	    
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select firstName ,lastName ,mobileNo ,dob from loyaltyprog where dob="+data);
+		
+		List <Object[]> list=query.list();
+		List<LoyaltyBirthday> lytb=new ArrayList<LoyaltyBirthday>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 LoyaltyBirthday lytbir =new LoyaltyBirthday();
+			 lytbir.setFirstname(object[0].toString());
+			 lytbir.setLastname(object[1].toString());
+			 lytbir.setContactno(Long.parseLong(object[2].toString()));
+			 lytbir.setDob(object[3].toString());
+		
+			
+			 lytb.add(lytbir);
+			 	 
+		}
+		return lytb;
+		
+	}
+	
+	public List getAllLoyaltyAnniversary(){
+	    Date date = new Date();
+	    
+	    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+	 
+	    String data = (dateFormat.format(date)); //2014/08/06 15:59:4
+	    
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select firstName ,lastName ,mobileNo ,anniversary from loyaltyprog where anniversary="+data);
+		
+		List <Object[]> list=query.list();
+		List<LoyaltyBirthday> lytA=new ArrayList<LoyaltyBirthday>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 LoyaltyBirthday lytans =new LoyaltyBirthday();
+			 lytans.setFirstname(object[0].toString());
+			 lytans.setLastname(object[1].toString());
+			 lytans.setContactno(Long.parseLong(object[2].toString()));
+			 lytans.setAnniversary(object[3].toString());
+		
+			
+			 lytA.add(lytans);
+			 	 
+		}
+		return lytA;
+		
+	}
+
+}

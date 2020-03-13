@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+
+<class 
+    name="com.smt.hibernate.AuthoritySlip" 
+    table="authorityslip"
+>
+
+    <id
+        name="authorityId"
+        type="java.lang.Long"
+        column="authorityId"
+    >
+    
+        <generator class="increment" />
+    </id>
+
+    <property
+        name="mmcc"
+        type="java.lang.String"
+        column="mmcc"
+        length="20"
+    />
+    <property
+        name="sentBy"
+        type="java.lang.String"
+        column="sentBy"
+        length="255"
+    />
+    
+     <property
+        name="location"
+        type="java.lang.String"
+        column="location"
+        length="255"
+    />
+    
+     <property
+        name="goodsRequired"
+        type="java.lang.String"
+        column="goodsRequired"
+        length="255"
+    />
+    
+     <property
+        name="color"
+        type="java.lang.String"
+        column="color"
+        length="255"
+    />
+    
+    
+     <property
+        name="model"
+        type="java.lang.String"
+        column="model"
+        length="255"
+    />
+    
+     <property
+        name="size"
+        type="java.lang.Double"
+        column="size"
+        length="255"
+    />
+   
+    <property
+        name="quantity"
+        type="java.lang.Long"
+        column="quantity"
+        length="255"
+    />
+<property
+        name="isinsertDate"
+        type="java.sql.Date"
+        column="isinsertDate"
+        not-null="true"
+        length="19"
+    />
+    
+    <property
+        name="isModifiedDate"
+        type="java.sql.Date"
+        column="isModifiedDate"
+        length="19"
+    />
+    <!-- Associations -->
+    <many-to-one
+        name="itemDetail"
+        class="com.smt.hibernate.ItemDetail"
+        not-null="true"
+      cascade="all"
+    >
+        <column name="fk_item_id"  />
+    </many-to-one> 
+
+</class>
+</hibernate-mapping>

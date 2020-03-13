@@ -1,0 +1,429 @@
+<%@page import="java.util.List"%>
+<%@page import="com.smt.hibernate.CashBank"%>
+<%@page import="com.smt.dao.CashBankDao"%>
+<%@page import="com.smt.hibernate.SupplierDetail"%>
+<%@page import="com.smt.dao.SupplierDetailDao"%>
+<%@page import="com.smt.hibernate.EmployeeDetails"%>
+<%@page import="com.smt.dao.EmployeeDetailsDao"%>
+<%@page import="com.smt.hibernate.CustCredit"%>
+<%@page import="com.smt.dao.CustCreditDao"%>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<% boolean isHome=false;%>
+<%@include file="commons/header.jsp"%>
+	
+	<div class="container">
+		<h2 class="form-name">New Cash/Bank Book</h2>
+	</div>
+	<script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
+	<script src="/SMT/staticContent/js/cashbankbook.js"></script>
+    <script src="/SMT/staticContent/css/style.css"></script>
+    <link href="/SMT/jsp/new_cash_bank_book.jsp" rel="stylesheet"/>
+    <script src="/SMT/staticContent/css/bootstrap.min.css"></script>
+    <script src="/SMT/staticContent/js/bootstrap.min.js"></script>
+    <div id="date">
+		<label id="demo"></label>
+		<script>
+		
+		   var date = new Date();
+		   document.getElementById("demo").innerHTML = date.toDateString();;
+		</script>
+	</div>
+<form action="cashBankBook" name="cashboook" method="post" class="form-horizontal">
+	<div id="exTab2" class="container">	
+		<ul class="nav nav-tabs">
+			<li class="active"><a  href="#supplier1" data-toggle="tab">Supplier</a></li>
+        	<li><a href="#salesman1" data-toggle="tab">Salesman</a></li>
+			<li><a href="#creditCustomer1" data-toggle="tab">Credit Customer</a></li>
+			<li><a href="#others1" data-toggle="tab">Others</a></li>
+		</ul>
+		<div class="tab-content ">
+			 <div class="tab-pane active" id="supplier1" >
+		<%
+			SupplierDetailDao dao = new SupplierDetailDao();
+	     	List supList = dao.getAllSupplier();
+		%>
+		
+		
+			 	<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Supplier:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
+							<select  id="supplier" onchange="bill.getAllBills();">
+								<option>select supplier </option>
+									<%
+				               			for(int i=0;i<supList.size();i++){
+										SupplierDetail supD=(SupplierDetail)supList.get(i);
+									%>
+								<option value="<%=supD.getSupplierId()%>"><%=supD.getSupplierName() %></option>
+									<%
+					               		}
+					           		%>
+							</select>
+						</div>
+					</div>	
+			 	</div>
+			 	<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label> Bill No:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
+							<select class="form-control" id='billNo'  name="billNo" onchange="bill.getTotalAmtByBills()">
+								<option value="">Select Bill</option>	
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Mode:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="mode" id="mode">
+								<option value="selected">Select Mode</option>
+								<option value="cr">Credit</option>
+								<option value="dr">Debit</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Total Amount:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input readonly="readonly" id="totalAmount" name="totalAmount" class="form-control" placeholder="Total Amount">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Paid:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="paid" name="paid" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Reason:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="reason" name="reason" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Payment Type:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="paymentType" id="paymentType">
+								<option value="selected">Select Payment</option>
+								<option value="cr">online</option>
+								<option value="dr">cash</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Person Name:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="personName" name="personName" class="form-control"  placeholder="Person Name">
+						</div>
+					</div>
+				</div>
+	<iframe src="http://localhost:8080/SMT/jsp/SupplierwiseReport.jsp" style='position:absolute; top:100px; left:500px; height:300px; width: 500px;'> View Supplier Account</iframe>
+				
+				<div class="wrapper" style="">
+					<input type="button" class="btn btn-md btn-lg btn-success"   name="btn" value="Save" onclick="cash()"/>
+					<input type="button" class="btn btn-md btn-lg btn-danger"  onclick="reset()" value="Cancel" />
+				
+				</div>
+				
+<!-- 	<iframe src="http://localhost:8080/SMT/jsp/SupplierAccountList.jsp" style='position:absolute; top:300px; left:500px; height:200px; width: 500px;'> View Total Paid</iframe>
+ -->			</div>
+			 <div class="tab-pane" id="salesman1">
+				<%
+					EmployeeDetailsDao dao1=new EmployeeDetailsDao();
+					List empList= dao1.getAllMainEmployee(); 
+				%>
+          		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Salesman:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
+							<select class="form-control" name="salesman" id="salesman11" >
+								<option value="">Select Salesman</option>
+									<%
+		             					for(int i=0;i<empList.size();i++){
+										EmployeeDetails empD=(EmployeeDetails)empList.get(i);
+									 %>
+								<option value="<%=empD.getId()%>"><%=empD.getFirstName() %> </option>
+									<%
+										}
+									%>
+							</select>
+						</div>
+					</div>	
+			 	</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Mode:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="mode" id="mode1">
+								<option value="selected">Select Mode</option>
+								<option value="cr">Credit</option>
+								<option value="dr">Debit</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Paid:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="paid1" name="paid1" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Reason:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="reason1" name="reason" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Payment Type:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="paymentType1" id="paymentType1">
+								<option value="selected">Select Payment</option>
+								<option value="cr">online</option>
+								<option value="dr">cash</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Person Name:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="personName1" name="personName" class="form-control"  placeholder="Person Name">
+						</div>
+					</div>
+				</div>
+		<iframe src="http://localhost:8080/SMT/jsp/EmployeeAccountDetails.jsp" style='position:absolute; top:100px; left:500px; height:300px; width: 500px;'> View Employee Account</iframe>
+	
+				<div class="wrapper">
+					<input type="button" class="btn btn-md btn-lg btn-success" name="btn" value="Save" onclick="return employeecash()"/>
+					<input type="button" class="btn btn-md btn-lg btn-danger" onclick="reset()" value="Cancel" />
+				</div>	
+			</div>
+			 <div class="tab-pane" id="creditCustomer1">
+				<%
+					CustCreditDao dao2 = new CustCreditDao();
+					List custList= dao2.getAllCredCust();
+				%>
+          		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Credit Customer:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
+							<select class="form-control" name="creditCustomer" id="creditCustomer12" >
+								<option value="">Select Credit Customer</option>
+									<%
+		             					for(int i=0;i<custList.size();i++){
+										CustCredit custD=(CustCredit)custList.get(i);
+									%>
+								<option value="<%=custD.getPk_cust_Id()%>"><%=custD.getName() %> </option>
+									<%
+										}
+									%>
+							</select>
+						</div>
+					</div>	
+			 	</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Mode:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="mode" id="mode2">
+								<option value="selected">Select Mode</option>
+								<option value="cr">Credit</option>
+								<option value="dr">Debit</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Paid:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="paid2" name="paid2" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Reason:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="reason2" name="reason" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Payment Type:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="paymentType" id="paymentType2">
+								<option value="selected">Select Payment</option>
+								<option value="cr">online</option>
+								<option value="dr">cash</option>
+							</select>
+						</div>
+					</div>
+				</div>
+	
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Person Name:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="personName2" name="personName" class="form-control"  placeholder="Person Name">
+						</div>
+					</div>
+				</div>
+	<iframe src="http://localhost:8080/SMT/jsp/customerCreditAccountDetails.jsp" style='position:absolute; top:100px; left:500px; height:300px; width: 500px;'> View Employee Account</iframe>
+				
+				<div class="wrapper">
+					<input type="button" class="btn btn-md btn-lg btn-success" name="btn" value="Save" onclick=" CreditCustcash()"/>
+					<input type="button" class="btn btn-md btn-lg btn-danger" onclick="reset()" value="Cancel" />
+				</div>
+			</div> 
+		</div>
+	</div>
+	
+			
+			<!-- <div class="tab-pane" id="others1">
+          		<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Others:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
+							<select class="form-control" name="others" id="others" onclick="other1()">
+								<option value="">Select Others</option>
+							</select>
+						</div>
+					</div>	
+			 	</div>
+	
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Mode:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="mode" id="mode">
+								<option value="selected">Select Mode</option>
+								<option value="cr">Credit</option>
+								<option value="dr">Debit</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Paid:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="paid" name="paid" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+	
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Reason:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="reason" name="reason" class="form-control" placeholder="Reason">
+						</div>
+					</div>
+				</div>
+	
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Payment Type:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<select class="form-control" name="paymentType" id="paymentType">
+								<option value="selected">Select Payment</option>
+								<option value="cr">online</option>
+								<option value="dr">cash</option>
+							</select>
+						</div>
+					</div>
+				</div>
+	
+				<div class="col-lg-12">
+					<div class="form-group-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<label>Person Name:</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+							<input type="text" id="personName" name="personName" class="form-control"  placeholder="Person Name">
+						</div>
+					</div>
+				</div>
+
+				<div class="wrapper">
+					<input type="button" class="btn btn-md btn-lg btn-success" name="btn" value="Save" onclick=""/>
+					<input type="button" class="btn btn-md btn-lg btn-danger" onclick="reset()" value="Cancel" />
+				</div>
+			</div>
+		</div>
+  	</div>
+	  -->
+
+</form>

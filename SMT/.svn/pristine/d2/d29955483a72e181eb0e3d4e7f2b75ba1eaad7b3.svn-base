@@ -1,0 +1,117 @@
+package com.smt.helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+
+
+
+
+import com.smt.dao.CreditAccountDao;
+import com.smt.dao.CustCreditDao;
+import com.smt.hibernate.CreditAccount;
+import com.smt.hibernate.CustCredit;
+
+
+public class CustCreditHelper {
+
+	
+	public void regsterCustCredit(HttpServletRequest request , HttpServletResponse response)
+	{
+		
+		String billDate = request.getParameter("billDate");
+		String billNo = request.getParameter("billNo");
+		String name = request.getParameter("name");
+		String middleName = request.getParameter("middleName");
+		String lastName = request.getParameter("lastName");
+		String address = request.getParameter("address");
+		String landmark = request.getParameter("landmark");
+		String state = request.getParameter("state");
+		String district = request.getParameter("district");
+		String city = request.getParameter("city");
+		String pinCode = request.getParameter("pinCode");
+		String mobileNo = request.getParameter("mobileNo");
+		String emailId = request.getParameter("emailId");
+		String referedBy = request.getParameter("referedBy");
+		
+		
+		
+		
+		
+		CustCredit custcredit = new CustCredit();
+		
+		SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+		
+		Date adate = null;
+		try {
+		
+		adate=	format.parse(billDate);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		custcredit.setBillDate(adate);
+		
+		
+		
+		
+		custcredit.setBillNo(Long.parseLong(billNo));
+		custcredit.setLastName(billNo);
+		custcredit.setName(name);
+		custcredit.setMiddleName(middleName);
+		custcredit.setLastName(lastName);
+		custcredit.setAddress(address);
+		custcredit.setLandmark(landmark);
+		custcredit.setState(state);
+		custcredit.setDistrict(district);
+		custcredit.setCity(city);
+		custcredit.setPinCode(Long.parseLong(pinCode));
+		custcredit.setMobileNo(Long.parseLong(mobileNo));
+		custcredit.setEmailId(emailId);
+		custcredit.setReferedBy(referedBy);
+		
+		
+		CustCreditDao dao = new CustCreditDao();
+		dao.valCustCredit(custcredit);
+		
+		
+	}
+
+	public void regcustloyeecashbook(HttpServletRequest request,
+			HttpServletResponse response) {
+		CreditAccount cust = new CreditAccount();
+		
+		String creditCustomer12 = request.getParameter("creditCustomer12");
+		String mode = request.getParameter("mode2");
+		String reason = request.getParameter("reason2");
+		String paymentType = request.getParameter("paymentType2");
+		System.out.println(paymentType+"$$$$$$$$$$$$$$$$$$$$");
+		String personName = request.getParameter("personName2");
+		String paid = request.getParameter("paid2");
+		System.out.println(paid+"***************************");
+		Date adate = new Date();
+		cust.setDate1(adate);
+		cust.setPaid(Double.parseDouble(paid));
+		cust.setMode(mode);
+		cust.setReason(reason);
+		cust.setPaymentType(paymentType);
+		cust.setPersonName(personName);
+		cust.setCreditCustomer(Long.parseLong(creditCustomer12));
+
+		CreditAccountDao dao = new CreditAccountDao();
+		dao.registerCreditAccount(cust);
+		
+	}
+
+	
+}
+	
+	
+	
+

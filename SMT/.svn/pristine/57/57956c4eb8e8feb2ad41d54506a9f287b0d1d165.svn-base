@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.ProductDetail" 
+    table="product_details"
+>
+
+    <id
+        name="pkProductId"
+        type="java.lang.Long"
+        column="pk_product_id"
+    >
+    
+        <generator class="increment" />
+    </id>
+  
+ <property
+        name="fkSupplierId"
+        type="java.lang.Long"
+        column="fk_vendor_id"
+        not-null="true"
+        length="19"
+        insert="false"
+        update="false"
+    />
+    
+   <!--  <property
+        name="fkCategoryId"
+        type="java.lang.Long"
+        column="fk_cat_id"
+        not-null="true"
+        length="19"
+    /> -->
+    
+    <property
+        name="fkSubCatId"
+        type="java.lang.Long"
+        column="subCategory_id"
+        not-null="true"
+        length="19"
+        insert="false"
+        update="false"
+    />
+   
+   <!--  <property
+        name="fkBrandId"
+        type="java.lang.Long"
+        column="fk_brand_id"
+        not-null="true"
+        length="19"
+    /> -->
+   
+   
+    <property
+        name="commision"
+        type="java.lang.Double"
+        column="commision"
+        not-null="true"
+        length="22"
+    />
+    <property
+        name="isAlternateProduct"
+        type="java.lang.String"
+        column="is_alternate_product"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="isItem"
+        type="java.lang.String"
+        column="is_item"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="isVat"
+        type="java.lang.String"
+        column="is_vat"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="itemName"
+        type="java.lang.String"
+        column="item_name"
+        not-null="true"
+        length="128"
+    />
+    
+     <property
+        name="isActiveYn"
+        type="java.lang.String"
+        column="is_active_YN"
+        not-null="true"
+        length="1"
+    />
+     <property
+        name="fkShopId1"
+        type="java.lang.Long"
+        column="fk_shop_id"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="isInsertDate"
+        type="java.sql.Date"
+        column="is_insert_date"
+        not-null="true"
+        length="19"
+    />
+    
+    <property
+        name="isModifiedDate"
+        type="java.sql.Date"
+        column="is_modified_date"
+        length="19"
+    />
+    <property
+        name="vatPercentage"
+        type="java.lang.Double"
+        column="vat_percentage"
+        not-null="true"
+        length="22"
+    />
+
+      
+    
+  
+     <many-to-one
+        name="supplierDetail"
+        class="com.smt.hibernate.SupplierDetail"
+        not-null="true"
+       
+       
+    >
+        <column name="fk_vendor_id" /> 
+    </many-to-one>
+    <many-to-one
+        name="brandDetail"
+        class="com.smt.hibernate.BrandDetail"
+        not-null="true"
+    >
+        <column name="fk_brand_id" />
+    </many-to-one>
+    <many-to-one
+        name="category"
+        class="com.smt.hibernate.Category"
+        not-null="true"
+    >
+     
+        <column name="fk_cat_id" />
+        
+    </many-to-one>
+ 
+    <set
+        name="stockDetails"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="fk_product_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.StockDetail"
+        />
+    </set> 
+    <set
+        name="itemStocks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="fk_product_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.ItemStock"
+        />
+    </set> 
+    
+     <set
+        name="itemDetails"
+        lazy="true"
+        inverse="true"
+		cascade="save-update"
+    >
+        <key>
+            <column name="fk_product_id" />
+        </key>
+        <one-to-many 
+            class="com.smt.hibernate.ItemDetail"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

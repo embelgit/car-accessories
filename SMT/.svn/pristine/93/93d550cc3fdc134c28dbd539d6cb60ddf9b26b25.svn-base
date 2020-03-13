@@ -1,0 +1,149 @@
+package com.smt.hibernate;
+
+import java.io.Serializable;
+import java.util.Set;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/** @author Hibernate CodeGenerator */
+public class ItemStock implements Serializable {
+
+    /** identifier field */
+    private Long pkItemStockId;
+
+    /** persistent field */
+    private String branch;
+
+    /** persistent field */
+    private Long defectiveQty;
+
+    /** persistent field */
+    private Long normalQty;
+
+    /** persistent field */
+    private Long stock;
+    
+    /** persistent field */
+    private Long product_id;
+
+    /** persistent field */
+    private Long item_details_id;
+    
+    /** persistent field */
+    private com.smt.hibernate.ItemDetail itemDetail;
+
+    /** persistent field */
+    private com.smt.hibernate.ProductDetail productDetail;
+    
+    /** persistent field */
+    private Set stockDetails;
+
+    /** full constructor */
+    public ItemStock(Long pkItemStockId,Long product_id,Long item_details_id,  String branch, Long defectiveQty, Long normalQty, Long stock, com.smt.hibernate.ItemDetail itemDetail, com.smt.hibernate.ProductDetail productDetail, Set stockDetails) {
+        this.pkItemStockId = pkItemStockId;
+        this.branch = branch;
+        this.defectiveQty = defectiveQty;
+        this.normalQty = normalQty;
+        this.stock = stock;
+        this.itemDetail = itemDetail;
+        this.productDetail = productDetail;
+        this.stockDetails = stockDetails;
+        this.product_id=product_id;
+        this.item_details_id = item_details_id;
+    }
+
+    /** default constructor */
+    public ItemStock() {
+    }
+
+    public Long getPkItemStockId() {
+        return this.pkItemStockId;
+    }
+
+    public void setPkItemStockId(Long pkItemStockId) {
+        this.pkItemStockId = pkItemStockId;
+    }
+
+    public String getBranch() {
+        return this.branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public Long getDefectiveQty() {
+        return this.defectiveQty;
+    }
+
+    public void setDefectiveQty(Long defectiveQty) {
+        this.defectiveQty = defectiveQty;
+    }
+
+    public Long getNormalQty() {
+        return this.normalQty;
+    }
+
+    public void setNormalQty(Long normalQty) {
+        this.normalQty = normalQty;
+    }
+
+    public Long getStock() {
+        return this.stock;
+    }
+
+    public void setStock(Long stock) {
+        this.stock = stock;
+    }
+
+    public com.smt.hibernate.ItemDetail getItemDetail() {
+        return this.itemDetail;
+    }
+
+    public void setItemDetail(com.smt.hibernate.ItemDetail itemDetail) {
+        this.itemDetail = itemDetail;
+    }
+
+    public com.smt.hibernate.ProductDetail getProductDetail() {
+        return this.productDetail;
+    }
+
+    public void setProductDetail(com.smt.hibernate.ProductDetail productDetail) {
+        this.productDetail = productDetail;
+    }
+
+    public Set getStockDetails() {
+        return this.stockDetails;
+    }
+
+    public void setStockDetails(Set stockDetails) {
+        this.stockDetails = stockDetails;
+    }
+
+    @Override
+	public String toString() {
+		return "ItemStock [pkItemStockId=" + pkItemStockId + ", branch="
+				+ branch + ", defectiveQty=" + defectiveQty + ", normalQty="
+				+ normalQty + ", stock=" + stock + ", product_id=" + product_id
+				+ ", item_details_id=" + item_details_id + ", itemDetail="
+				+ itemDetail + ", productDetail=" + productDetail
+				+ ", stockDetails=" + stockDetails + "]";
+	}
+
+	public Long getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
+	}
+
+	public Long getItem_details_id() {
+		return item_details_id;
+	}
+
+	public void setItem_details_id(Long item_details_id) {
+		this.item_details_id = item_details_id;
+	}
+
+}

@@ -1,0 +1,180 @@
+package com.smt.hibernate;
+
+import java.util.Date;
+
+public class GoodsReturn {
+
+	/** identifier field */
+	private Long Return_Goods_Id;
+
+	/** persistent field */
+	private String activeYn;
+
+	/** persistent field */
+	private String color;
+
+	/** persistent field */
+	private Date insertDate;
+
+	/** persistent field */
+	private Long itemId;
+
+	
+	/** persistent field */
+	private Date modifyDate;
+
+	/** persistent field */
+	private Long quantity;
+
+	/** persistent field */
+	private Long size;
+
+	/** persistent field */
+	private String superReturnId;
+
+	private Long billNo;
+
+	/** persistent field */
+	private Double totalAmount;
+
+	/** persistent field */
+	private Double unitPrice;
+
+	/** persistent field */
+	private Long supplierId;
+	
+	
+
+	public GoodsReturn() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public GoodsReturn(Long return_Goods_Id, String activeYn, String color,
+			Date insertDate, Long itemId,  Date modifyDate,
+			Long quantity, Long size, String superReturnId, Long billNo,
+			Double totalAmount, Double unitPrice, Long supplierId) {
+		super();
+		Return_Goods_Id = return_Goods_Id;
+		this.activeYn = activeYn;
+		this.color = color;
+		this.insertDate = insertDate;
+		this.itemId = itemId;
+	
+		this.modifyDate = modifyDate;
+		this.quantity = quantity;
+		this.size = size;
+		this.superReturnId = superReturnId;
+		this.billNo = billNo;
+		this.totalAmount = totalAmount;
+		this.unitPrice = unitPrice;
+		this.supplierId = supplierId;
+	}
+
+	public Long getReturn_Goods_Id() {
+		return Return_Goods_Id;
+	}
+
+	public void setReturn_Goods_Id(Long return_Goods_Id) {
+		Return_Goods_Id = return_Goods_Id;
+	}
+
+	public String getActiveYn() {
+		return activeYn;
+	}
+
+	public void setActiveYn(String activeYn) {
+		this.activeYn = activeYn;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Date getInsertDate() {
+		return insertDate;
+	}
+
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
+	}
+
+	public Long getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
+	
+
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+	public Long getSize() {
+		return size;
+	}
+
+	public void setSize(Long size) {
+		this.size = size;
+	}
+
+	public String getSuperReturnId() {
+		return superReturnId;
+	}
+
+	public void setSuperReturnId(String superReturnId) {
+		this.superReturnId = superReturnId;
+	}
+
+	public Long getBillNo() {
+		return billNo;
+	}
+
+	public void setBillNo(Long billNo) {
+		this.billNo = billNo;
+	}
+
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public Long getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(Long supplierId) {
+		this.supplierId = supplierId;
+	}
+
+}

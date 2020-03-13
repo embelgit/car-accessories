@@ -1,0 +1,35 @@
+package com.smt.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.smt.hibernate.ShopDetail;
+import com.smt.utility.HibernateUtility;
+
+public class ShopDetailDao {
+
+	
+	public void valShopDetail(ShopDetail shopDetail){
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		org.hibernate.Transaction transaction=session.beginTransaction();
+		session.save(shopDetail);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+	}
+	
+	public List getAllShopDetail(){
+		
+		HibernateUtility hbu=HibernateUtility.getInstance();
+		Session session=hbu.getHibernateSession();
+		Query query=session.createQuery("from ShopDetail");
+		List list=query.list();
+		hbu.closeSession(session);
+		return list;
+	}
+	
+}

@@ -1,0 +1,67 @@
+package com.smt.bean;
+
+public class SaleReports {
+
+	private Long orderId;
+	private Long quantity ;
+	private  String soldDate;
+	private Double discount;
+	private Double totalAmount;
+	private Double tax;
+	private Double netAmount;
+	private Double SalePrice;
+	
+	
+	
+	public Double getSalePrice() {
+		return SalePrice;
+	}
+	public void setSalePrice(Double salePrice) {
+		SalePrice = salePrice;
+	}
+	public Long getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+	public Long getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+	public String getSoldDate() {
+		return soldDate;
+	}
+	public void setSoldDate(String soldDate) {
+		this.soldDate = soldDate;
+	}
+	public Double getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	public Double getTax() {
+		return tax;
+	}
+	public void setTax(Double tax) {
+		this.tax = tax;
+	}
+	public Double getNetAmount() {
+		return netAmount;
+	}
+	public void setNetAmount(Double netAmount) {
+		this.netAmount = netAmount;
+	}
+	
+	
+	
+}

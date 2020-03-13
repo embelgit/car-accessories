@@ -1,0 +1,37 @@
+package com.smt.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.hibernate.CustCredit;
+import com.smt.utility.HibernateUtility;
+
+public class CustCreditDao {
+
+	public void valCustCredit(CustCredit custcredit) {
+		// TODO Auto-generated method stub
+		
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(custcredit);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+	
+	public List getAllCredCust()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from CustCredit");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+	}
+
+}

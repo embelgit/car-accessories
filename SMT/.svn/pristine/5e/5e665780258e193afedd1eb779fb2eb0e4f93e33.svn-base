@@ -1,0 +1,205 @@
+package com.smt.helper;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.bean.ItemList;
+import com.smt.bean.PoItemDisplayBean;
+import com.smt.dao.GoodsReceiveDAo;
+import com.smt.dao.ItemDetailsDao;
+import com.smt.hibernate.ItemDetail;
+
+public class ItemDetailHelper {
+	
+	public void validateUser(HttpServletRequest request, HttpServletResponse res)
+	{
+		
+		ItemDetail iDetail=new ItemDetail();
+		Integer count = Integer.parseInt(request.getParameter("count"));
+		
+
+		String itemName = request.getParameter("itemName");
+		System.out.println("itemName"+itemName);
+		
+		String fk_product_id=request.getParameter("fk_product_id");
+		System.out.println("product"+fk_product_id);
+		
+		String model = request.getParameter("model");
+		
+		String MMCC = request.getParameter("MMCC");
+		System.out.println("MMCC"+MMCC);
+	    String status = request.getParameter("status");
+	    iDetail.setModel(model);
+	    iDetail.setFk_product_id(Long.parseLong(fk_product_id));
+		iDetail.setMMCC(MMCC);
+		iDetail.setStatus(status);
+		
+		iDetail.setItemName(itemName);
+		
+		System.out.println("ass"+iDetail);
+		for(int i =0 ; i<=count;i++)
+		{
+		
+			String color = request.getParameter("color"+i);
+			
+			if (color == null) {
+				
+				break;
+			}
+			else {
+				iDetail.setColor(color);
+				
+			}
+              String size = request.getParameter("size"+i);
+			
+			    if (size == null) {
+				
+				break;
+			  }
+			  else {
+				iDetail.setSize(Long.parseLong(size));
+				
+			}
+              String buyPrice = request.getParameter("buyPrice"+i);
+			
+			if (buyPrice == null) {
+				
+				break;
+			}
+			else {
+				iDetail.setBuy_Price(Double.parseDouble(buyPrice));
+				
+			}
+            String salePrice = request.getParameter("salePrice"+i);
+			
+			if (salePrice == null) {
+				
+				break;
+			}
+			else {
+				iDetail.setSalePrice(Double.parseDouble(salePrice));
+				
+			}
+			ItemDetailsDao dao = new ItemDetailsDao();
+			dao.valItemDetail(iDetail);
+			
+		}
+	
+	
+		
+		
+		
+	}
+	
+	public List getAllItemsBygroup()
+	{
+		ItemDetailsDao dao = new ItemDetailsDao();
+		return dao.getAllItemsBygroup();
+	}
+	
+	public List getAllItems()
+	{
+		ItemDetailsDao dao = new ItemDetailsDao();
+		return dao.getAllItems();
+	}
+	
+	public List getColorAndSize()
+	{
+		ItemDetailsDao dao = new ItemDetailsDao();
+	return	dao.getColorAndSize();
+	}
+	
+	public Map getItemsBYCatandSubCategory(String catID, String subCatID)
+	{
+		ItemDetailsDao dao = new ItemDetailsDao();
+		List list= dao.getItemsBYCatandSubCategory(catID, subCatID);
+		Map  map =  new HashMap();
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			PoItemDisplayBean bean = new PoItemDisplayBean();
+			bean.setItemID((BigInteger.valueOf((Long) o[0])));
+			bean.setColor((String)o[1]);
+			bean.setItemName((String)o[2]);
+			bean.setBuyPrice((Double)o[3]);
+			bean.setSize((BigInteger.valueOf((Long) o[4])));
+			System.out.println("***************"+o[0]+"\t"+o[1]);
+			map.put(bean.getItemID(),bean);
+		}
+		return map;
+	}
+	
+
+	public Map getItemDetails(String itemName) {
+
+		ItemDetailsDao dao = new ItemDetailsDao();
+		List list = dao.getAllItemDetails(itemName);
+		Map  map1 =  new HashMap();
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			PoItemDisplayBean bean = new PoItemDisplayBean();
+			bean.setItemID((BigInteger)o[0]);
+			bean.setColor((String)o[1]);
+			bean.setItemName((String)o[2]);
+			bean.setBuyPriceForItemNAme((BigDecimal)o[3]);
+			bean.setSize((BigInteger)o[4]);
+			bean.setQuantity(1l);
+			bean.setModel((String)o[5]);
+			bean.setVatPec((Double)o[6]);
+			//System.out.println("***************"+o[0]+"\t"+o[5]);
+			map1.put(bean.getItemID(),bean);
+		}
+		return map1;
+
+	}
+	
+	
+	public List getItemINSHOP() {
+
+		ItemDetailsDao dao = new ItemDetailsDao();
+		List list = dao.getitemnInShop();
+		List<ItemList> itBean = new ArrayList<ItemList>(0);
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			ItemList bean = new ItemList();
+		
+			bean.setItem_name((String)o[0]);
+			itBean.add(bean);
+			//System.out.println("***************"+o[0]+"\t"+o[5]);
+			
+		}
+		return itBean;
+
+	}
+	
+	public List getItemINGODOWN() {
+
+		ItemDetailsDao dao = new ItemDetailsDao();
+		List list = dao.getitemnInGodown();
+		List<ItemList> itBean = new ArrayList<ItemList>(0);
+		for(int i=0;i<list.size();i++)
+		{
+			Object[] o = (Object[])list.get(i);
+			ItemList bean = new ItemList();
+		
+			bean.setItem_name((String)o[0]);
+			itBean.add(bean);
+			//System.out.println("***************"+o[0]+"\t"+o[5]);
+			
+		}
+		return itBean;
+
+	}
+	
+	
+	
+}

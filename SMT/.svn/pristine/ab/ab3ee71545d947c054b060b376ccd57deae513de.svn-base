@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.smt.hibernate.GoodsReturn" 
+    table="goodsreturn"
+>
+
+    <id
+        name="Return_Goods_Id"
+        type="java.lang.Long"
+        column="Return_Goods_Id"
+    >
+    
+        <generator class="increment" />
+    </id>
+ <property
+        name="billNo"
+        type="java.lang.Long"
+        column="billNo"
+         not-null="true"
+        length="1"
+    />
+    <property
+        name="activeYn"
+        type="java.lang.String"
+        column="active_YN"
+         not-null="true"
+        length="1"
+    />
+  
+  
+    <property
+        name="color"
+        type="java.lang.String"
+        column="color"
+         not-null="true"
+        length="255"
+    />
+    
+   
+  
+    
+    <property
+        name="insertDate"
+        type="java.sql.Date"
+        column="insertDate"
+         not-null="true"
+        length="10"
+    />
+   
+    <property
+        name="itemId"
+        type="java.lang.Long"
+        column="fk_item_id"
+      
+        length="10"
+    />
+   
+   
+    
+  
+    <property
+        name="modifyDate"
+        type="java.sql.Date"
+        column="modifyDate"
+        length="10"
+    />
+   
+   
+   
+    <property
+        name="quantity"
+        type="java.lang.Long"
+        column="quantity"
+        not-null="true"
+        length="10"
+    />
+   
+    <property
+        name="superReturnId"
+        type="java.lang.String"
+        column="superReturnId"
+        length="255"
+    />
+    <property
+        name="supplierId"
+        type="java.lang.Long"
+        column="fk_supplier_id"
+        not-null="true"
+        length="10"
+    />
+    
+    
+   
+   
+    <property
+        name="totalAmount"
+        type="java.lang.Double"
+        column="total_Amount"
+        not-null="true"
+        length="12"
+    />
+ 
+    <property
+        name="unitPrice"
+        type="java.lang.Double"
+        column="unit_price"
+        not-null="true"
+        length="12"
+    />
+    
+    
+    
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.CashBankBean;
+import com.smt.hibernate.EmployeeAccount;
+import com.smt.utility.HibernateUtility;
+
+public class EmpAccountDao {
+
+	public void valEmpAccountDao(EmployeeAccount emp) {
+		// TODO Auto-generated method stub
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+	   
+	   session.save(emp);
+	 
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+	
+	public List getAllEmployeeAccount()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createSQLQuery("select s.firstName , c.personName,  c.paid ,c.date   from employeeaccountdetails c  left join employeedetails s ON  c.fk_empd_id =s.id ");
+		
+		List<Object[]> list = query.list();
+		 List<CashBankBean> polist = new ArrayList<CashBankBean>(0);
+		for (Object[] objects : list) {
+			CashBankBean bean = new CashBankBean();
+			bean.setSupplierName(objects[0].toString());
+			bean.setPersonName(objects[1].toString());
+			bean.setPaid(Double.parseDouble(objects[2].toString()));
+			bean.setDate(objects[3].toString());
+			/*bean.setSupplierId(Long.parseLong(objects[0].toString()));*/
+			polist.add(bean);
+		}
+		return polist ;
+	}
+}

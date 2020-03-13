@@ -1,0 +1,61 @@
+package com.smt.helper;
+
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.smt.dao.CustFeedbackDao;
+import com.smt.hibernate.CustFeedback;
+
+
+
+
+
+public class CustomerfeedHelper {
+	
+	
+	public void regCustfeed(HttpServletRequest request , HttpServletResponse response)
+	{
+		
+		String customer_name = request.getParameter("customer_name");
+		String email = request.getParameter("email");
+		String mobile_no = request.getParameter("mobile_no");
+		String occupation = request.getParameter("occupation");
+		String rating = request.getParameter("rating");
+		String feedback = request.getParameter("feedback");
+		String dob = request.getParameter("dob");
+		
+		CustFeedback custfeedback = new CustFeedback();
+		custfeedback.setcustomer_name(customer_name);
+		custfeedback.setemail(email);;
+		custfeedback.setmobile_no(Long.parseLong(mobile_no));
+		custfeedback.setOccupation(occupation);
+		custfeedback.setRating(Long.parseLong(rating));
+		custfeedback.setFeedback(feedback);
+		
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date adate = null;
+		try {
+		
+		adate=	format.parse(dob);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		custfeedback.setDob(adate);
+		
+		
+		CustFeedbackDao dao = new CustFeedbackDao();
+		dao.valCustFeedback(custfeedback);
+	}
+	
+	
+	
+
+}

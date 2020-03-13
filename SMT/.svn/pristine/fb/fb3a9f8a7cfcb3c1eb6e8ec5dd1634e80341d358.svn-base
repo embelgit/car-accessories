@@ -1,0 +1,71 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.BrokerList;
+import com.smt.bean.VisitorBean;
+import com.smt.hibernate.Broker;
+import com.smt.utility.HibernateUtility;
+
+public class BrokerDao {
+
+	public void valBroker(Broker bro) {
+		// TODO Auto-generated method stub
+		
+
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(bro);
+		transaction.commit();
+		hbu.closeSession(session);
+		
+	}
+	
+	public List getAllBrokerName()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createQuery("from Broker");
+		List list = query.list();
+		hbu.closeSession(session);
+		
+		return list;
+	}
+	
+	
+public List getBrokerDetail(){
+		
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query=session.createSQLQuery("select pk_broker_id, FirstName, LastName, AccountType, ContactNo, Address, AccountNo from broker");
+		
+		List <Object[]> list=query.list();
+		List<BrokerList> brokerLists=new ArrayList<BrokerList>(0);
+		for (Object[] object : list) {
+			 System.out.println(Arrays.toString(object));
+			 
+			 BrokerList bList =new BrokerList();
+			 bList.setPk_broker_id(Long.parseLong(object[0].toString()));
+			 bList.setFirstName(object[1].toString());
+			 bList.setLastName(object[2].toString());
+			// bList.setAccountType(object[3].toString());
+			 bList.setContactNo(Long.parseLong(object[4].toString()));
+			 bList.setAddress(object[5].toString());
+			 bList.setAccountNo(Long.parseLong(object[6].toString()));
+			
+			
+			 brokerLists.add(bList);
+			 	 
+		}
+		return brokerLists;
+		
+	}
+
+}

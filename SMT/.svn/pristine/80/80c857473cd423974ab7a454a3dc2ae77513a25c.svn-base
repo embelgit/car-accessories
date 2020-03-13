@@ -1,0 +1,56 @@
+package com.smt.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.smt.bean.CategoryWisePurchase;
+import com.smt.bean.ItemList;
+import com.smt.hibernate.NewOfferCreation;
+import com.smt.utility.HibernateUtility;
+
+public class NewOfferCreationDao {
+	
+	public void RegisterNewOffer( NewOfferCreation newOfferCreation)
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		
+		Transaction transaction = session.beginTransaction();
+		Date dateobj = new Date();
+		newOfferCreation.setIs_insert_Date(dateobj);
+		session.save(newOfferCreation);
+		transaction.commit();
+		hbu.closeSession(session);
+	}
+
+	
+	public List getAllOfferByOfferId()
+	{
+		HibernateUtility hbu = HibernateUtility.getInstance();
+		Session session = hbu.getHibernateSession();
+		Query query = session.createSQLQuery("select i.item_name , i.color from extendedoffer e left join item_details i ON e.available_offer_id = i.pk_item_id where fk_offer_id="+3);
+		List<Object[]> list = query.list();
+		List<ItemList> categoryBean=new ArrayList<ItemList>(0);
+		
+		for (Object[] object : list) {
+			 //System.out.println(Arrays.toString(object));
+		
+			 ItemList cBean=new ItemList();
+			 
+			 System.out.println(Arrays.toString(object));
+			 cBean.setItem_name(object[0].toString());
+			
+			 System.out.println(cBean);
+			 categoryBean.add(cBean);	 
+		}
+		return categoryBean;
+	}
+		
+	
+}

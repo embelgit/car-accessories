@@ -1,0 +1,151 @@
+function don()
+{
+	
+	if(document.custfeed.customer_name.value == "")
+	{
+		alert("Please enter name...!!");
+		return false;
+	}	
+	
+	 var letterNumber = /^[a-zA-Z\ \a-zA-Z]+$/;  
+	 if(document.custfeed.customer_name.value.match(letterNumber))
+	 {
+		 if(document.custfeed.email.value == "")
+		 {
+			alert("Please enter email id..!!");
+			return false;
+		 }	
+		 var letterNumber = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+       	 if(document.custfeed.email.value.match(letterNumber))
+       	 {
+       		 if(document.custfeed.mobile_no.value == "")
+    		 {
+    			alert("Please Mobile No..!!");
+    			return false;
+    		 }	
+       		 var letterNumber = /^[0-9]+$/;  
+       		 if(document.custfeed.mobile_no.value.match(letterNumber)) 
+       		 {
+       			if(document.custfeed.occupation.value == "")
+       		    {
+       			    alert("What is your Occupation..!!");
+       			    return false;
+       		    }	 
+       			var letterNumber = /^[a-zA-Z]+$/;  
+       		    if(document.custfeed.occupation.value.match(letterNumber)) 
+       		    {
+       		    	if(document.custfeed.rating.value == "")
+           		    {
+           			    alert("How much you rate us..!!");
+           			    return false;
+           		    }	 
+       		    	var letterNumber = /^[0-9\.]+$/;  
+           		    if(document.custfeed.rating.value.match(letterNumber)) 
+           		    {
+           		    	if(document.custfeed.feedback.value == "")
+               		    {
+               			    alert("Please give your Feedback..!!");
+               			    return false;
+               		    }	
+           		    	var letterNumber = /^[a-zA-Z]+$/;  
+               		    if(document.custfeed.feedback.value.match(letterNumber))
+               		    {
+               		    	
+               		    	custfidback();
+               		    	
+               		    }	
+               		    else
+               		    {
+               		    	alert("Enter Alphabets Only Feedback Column");
+               		    	return false;
+               		    }	
+           		    	
+           		    	
+           		    }
+           		    else
+           		    {
+           		    	alert("Enter Numbers Only In Rating Column..!!");
+           		    	return false;
+           		    }	
+           		    	
+       		    }
+       		    else
+       		    {
+       		    	alert("Enter Alphabets Only In Occupation Column..!!");
+       		    	return false;
+       		    }	
+       			
+       			
+       			
+       		 }
+       		 else
+       	     {
+       			 alert("Enter Numbers Only Mobile Column..!!");
+       			 return false;
+       	     }		 
+       	 }
+       	 else
+       	 {
+       		alert("Not a valid email addresss ..!!");
+       		return false;
+       	 }
+	 }	 
+	 else
+	 {
+		 alert("Enter Alphabets Only In Name Column..!!");
+		 return false;
+	 }	 
+}	
+	
+	function custfidback(){
+
+	document.custfeed.btn.disabled = true;	
+
+	var customer_name= $('#customer_name').val();
+	var email = $('#email').val();
+	var mobile_no=$('#mobile_no').val();
+    var occupation=$('#occupation').val();
+    var rating=$('#rating').val();
+    var feedback=$('#feedback').val();
+    var dob=$('#dob').val();
+
+ 
+	
+	var params= {};
+	
+	params ["customer_name"] = customer_name;
+	params ["email"] = email;
+	params ["mobile_no"] = mobile_no;
+	params ["occupation"] = occupation;
+	params ["rating"] = rating;
+	params ["feedback"] = feedback;
+	params ["dob"] = dob;
+	
+	
+	
+	params["methodName"] = "regCustfeed";
+	
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+	    	{   
+		        
+				alert(data);
+				if(document.custfeed)
+				{
+					document.custfeed.reset();
+				}
+				document.custfeed.btn.disabled = false;
+			 }
+	    	).error(function(jqXHR, textStatus, errorThrown){
+	    		if(textStatus==="timeout") {
+	    			$(loaderObj).hide();
+	    			$(loaderObj).find('#errorDiv').show();
+	    		}
+	    	});
+
+}
+	
+function reset()
+{
+   document.custfeed.reset();	
+}
+	
