@@ -242,7 +242,7 @@ public void doProductRegister(ProductRegister pdreg) {
 	try {
 		hbu = HibernateUtility.getInstance();
 		session = hbu.getHibernateSession();
-		query = session.createSQLQuery("select p.ProductName, c.category_name, p.HsnSacNo from product_reg p left join categories c ON p.FkCatId = c.pk_category_id");
+		query = session.createSQLQuery("select p.ProductName, c.category_name, p.HsnSacNo,p.modelName from product_reg p left join categories c ON p.FkCatId = c.pk_category_id");
 		list = query.list();
 		
 		itemList = new ArrayList<ProductNameBean>(0);
@@ -253,6 +253,7 @@ public void doProductRegister(ProductRegister pdreg) {
 			     item.setItemName(objects[0].toString());
 			     item.setCaregoryName(objects[1].toString());
 			     item.setHsnsacno(objects[2].toString());
+			     item.setModelName(objects[3].toString());
 			     
 			     itemList.add(item);
 			    	

@@ -522,7 +522,7 @@ function getproductgrid(){
 		$("#list4").jqGrid({
 			datatype: "local",
 			
-			colNames:['pk_temp_id','item_id','BarcodeNO','CatName','ItemName','HSN/SAC','Quantity','SalePrice','Discount','DiscountAmt','GST%','IGST%','Tax Amt','Total Amt'],
+			colNames:['pk_temp_id','item_id','BarcodeNO','CatName','ItemName','HSN/SAC','Quantity','SalePrice','SalePriceExTax','Discount','DiscountAmt','GST%','IGST%','Tax Amt','Total Amt'],
 			colModel:[ 
 			          
 			          
@@ -561,6 +561,11 @@ function getproductgrid(){
 				},
 				
 				{	name:'salePrice',
+					width:100,
+					editable: true
+					
+				},
+				{	name:'SalePriceExTax',
 					width:100,
 					editable: true
 					
@@ -621,6 +626,7 @@ function getproductgrid(){
              	var discountAmt = rowData['discountAmt'];
              	var gst = rowData['vat'];
             	var igst = rowData['igst'];
+            	var SalePriceExTax = rowData['SalePriceExTax'];
             	var tota = 0;
             	var vatAmt = 0;
             	var totAmt = 0;

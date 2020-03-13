@@ -210,13 +210,36 @@
 						<label class="control-label">Contact Person:<sup style="color: red;">*</sup></label>
 					</div>
 					<div class="col-sm-3">
+					
+					<%
+							SupplierDetailHelper poHelper1 = new SupplierDetailHelper();
+							List supplierList1 = poHelper1.getAllSuppliers();
+						%>
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-phone"></i>
-							</span> <input type="text" id='contactPerson' name="contactPerson"
-								 class="form-control" placeholder="Contact Person" />
+							</span> 
+							
+							<!-- <input type="text" id='contactPerson' name="contactPerson"
+								 class="form-control" placeholder="Contact Person" /> -->
+								 	<input list="contactId_drop" id="contactPerson" class="form-control"  placeholder="Contact Person">
+								 
+								 
+								 <datalist id="contactId_drop">
+						<%
+							for(int i =0 ;i<supplierList1.size();i++)
+								{
+								SupplierDetail supplier1 = (SupplierDetail)supplierList1.get(i);
+						%>
+							<option data-value="<%=supplier1.getSupplierId()%>" value="<%=supplier1.getContactPerson()%>"> 
+						<%   	
+								}	
+						%>
+						</datalist>
 						</div>
 					</div>
+
+
 
 					<div class="col-sm-2" align="center">
 						<label class="control-label">Purchase Date:<sup style="color: red;">*</sup></label>
@@ -268,8 +291,13 @@
 								{
 							    	  ProductNameBean itm = (ProductNameBean)itemList.get(j);
 						       %>
-							       <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%> :::>>> <%=itm.getItemName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>"> 
+							      
+							    <%-- <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%> :::>>> <%=itm.getItemName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>"> --%> 
+							    <%--  <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%>  =>  <%=itm.getItemName()%>"> --%>
+							     <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%>  =>  <%=itm.getItemName()%>">
+							    
 						      <%   	
+						      
 								}	
 						       %>
 						</datalist>
