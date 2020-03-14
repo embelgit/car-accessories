@@ -103,7 +103,7 @@ a:active {
 			 
     </div> -->
     
-         <div class="row" style="margin-top: 90px; margin-bottom: 45px;" align="right">
+         <div class="row" style="margin-top: 10px; margin-bottom: 45px;" align="right">
 			<div class="form-group" >
 			    <div class="col-sm-offset-6 col-md-5 control-label">
 						<div id="date">
@@ -160,9 +160,9 @@ a:active {
 													  		</div>
 													  		    <p style="font-size:15;color:#ff8000;">*Enter Alphabets only.</p>
 												</div>
-												<div class="col-md-3">
+												<!-- <div class="col-md-3">
 													<button type="button" style="width:190;" name="btn" onclick="goEditCatagoryFrom();" value=""  class="btn btn-primary btn-md button_hw"/><a href="EditCategory.jsp"><h4 style="color:white;">Edit Category Name</h4></a></button>
-												</div>
+												</div> -->
 									        </div>
 									        
 									         
@@ -172,6 +172,7 @@ a:active {
 										 	<div align="center">
 											    <input type="button" name="btn" onclick="valAddMainCat();" value="Save"  class="btn btn-success btn-md button_hw"/> 
 												<input type="reset" value="Cancel" class="btn btn-danger btn-md button_hw"/>
+												<button type="button" " name="btn" onclick="goEditCatagoryFrom();" value=""  class="btn btn-primary btn-md button_hw"/><a href="EditCategory.jsp"><h4 style="color:white;">Edit</h4></a></button>
 										  </div>
 									</div>		
 						</form>

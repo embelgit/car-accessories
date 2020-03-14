@@ -19,7 +19,7 @@
 /* heading style */
 .style_heading{
 				color: #bdb7b7;
-			    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+			   /*  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; */
 			    font-weight: bold;
 			  }	
 	 		   
@@ -44,11 +44,11 @@ input[type="text"] {
 
 /* button shadow */
 input[type=button]:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  /*   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
 }
 
 input[type=reset]:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
 }
 .dropdown1 {
 width:290px;
@@ -63,18 +63,18 @@ height: 20px;
 	 
 h2 {
     color: white;
-    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+   /*  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; */
 }	 
 	
-	a:hover { 
+/* 	a:hover { 
     background-color: yellow;
 }
-
+ */
 
 /* shortcut_style */
 .shortcut_style
 {
- text-shadow: 0 0 3px #237892;
+/*  text-shadow: 0 0 3px #237892; */
   font-family:'Lobster',cursive;
 }
 
@@ -95,7 +95,7 @@ h2 {
   input[type=text]:hover {
  -moz-box-shadow:    3px 3px 5px 6px #ccc;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  box-shadow:         3px 3px 5px 6px #ccc;
+ /*  box-shadow:         3px 3px 5px 6px #ccc; */
   }
    
    
