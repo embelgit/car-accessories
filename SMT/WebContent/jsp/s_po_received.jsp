@@ -292,9 +292,9 @@
 							    	  ProductNameBean itm = (ProductNameBean)itemList.get(j);
 						       %>
 							      
-							    <%-- <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%> :::>>> <%=itm.getItemName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>"> --%> 
-							    <%--  <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%>  =>  <%=itm.getItemName()%>"> --%>
-							     <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%>  =>  <%=itm.getItemName()%>">
+			             <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>"> 
+							    
+							    
 							    
 						      <%   	
 						      

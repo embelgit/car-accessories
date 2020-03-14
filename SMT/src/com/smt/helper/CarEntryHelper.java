@@ -74,4 +74,15 @@ public class CarEntryHelper {
 		System.out.println("----------------Bill No After session create::"+session3.getAttribute("CustomerBillNo"));
 	
 	}
+	
+	//Delete of vehicle Entry
+public void deleteVehicle(HttpServletRequest request, HttpServletResponse response ) {
+	
+	String vehicleNo = request.getParameter("vehicleNo");
+	   
+	CarEntryDao dao2 = new CarEntryDao();
+	dao2.deleteVehicle(vehicleNo);
+		
+	}
+
 }

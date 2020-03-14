@@ -195,6 +195,82 @@ public class CarEntryDao {
 		}
 		return saleList;
 	}
+	
+	
+	//get vehicle Number for delete vehicle entry
+	
+		public List getVehicleNumber()
+		{
+			HibernateUtility hbu=null;
+			Session session=null;
+			
+			List<CarEntryBean> vehicleList=null;
+			 List<Object[]> list = null;
+			
+			try
+			{
+					hbu = HibernateUtility.getInstance();
+					session = hbu.getHibernateSession();
+					Query query=session.createSQLQuery("select pkCarEntryId,Car_No,Owner_Name from carentry");
+					list = query.list();
+					vehicleList = new ArrayList<CarEntryBean>(0);
+					
+			 for (Object[] objects : list) {
+				 CarEntryBean bean = new CarEntryBean();
+				 
+				 bean.setPkCarEntryId(Long.parseLong(objects[0].toString()));
+				bean.setCarNo(objects[1].toString());
+				bean.setOwnerName(objects[2].toString());
+				 
+				vehicleList.add(bean);
+				}
+			 }
+			catch(RuntimeException  e)
+			{
+					
+			}finally
+			{if(session!=null){
+				hbu.closeSession(session);	
+			}
+			}
+			return vehicleList;
+		}
+	
+		//Delete of vehicle Entry
+		public void deleteVehicle(String vehicleNo) {
+			
+			HibernateUtility hbu = null ;
+			 Session session = null;
+			 Transaction tx = null;
+			 List list  = null;
+			 try {
+				 hbu = HibernateUtility.getInstance();
+				 session = hbu.getHibernateSession();
+				  tx = session.beginTransaction();
+					Query query = session.createSQLQuery("delete from carentry where pkCarEntryId="+vehicleNo);
+					int seletedRecords = query.executeUpdate();
+					tx.commit();
+					System.out.println("Number of credit Cusr deleted == + ="+seletedRecords);
+					
+					
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+				
+			 finally
+			 {
+				 if (session!=null) {
+					hbu.closeSession(session);
+				}
+			 }
+			
+		}
+
+	
+	
+	
+	
 
 	private Date Date(Object object) {
 		// TODO Auto-generated method stub

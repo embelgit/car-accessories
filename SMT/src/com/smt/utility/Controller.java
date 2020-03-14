@@ -1481,6 +1481,14 @@ public class Controller {
 							return toJson("Data Added Successfully");
 
 						}
+						//Delete of vehicle Entry
+						public String deleteVehicle(HttpServletRequest request, HttpServletResponse response) {
+							
+							CarEntryHelper helper = new CarEntryHelper();
+							helper.deleteVehicle(request, response);
+							String data = "Vehicle Deleted Sucessfully";
+							return data;
+						}
 						
 						
 }
