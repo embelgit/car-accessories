@@ -103,16 +103,16 @@
     		productdel();
     		
 	    }
-	    
-	    function editProduct()
-	    {
-	    	window.location = "Edit_y_product_detail.jsp";
-	    }
+	   
 </script>
  <script type="text/javascript">
  function editProduct()
  {
  	window.location = "Edit_y_product_detail.jsp";
+ }
+ function listProduct()
+ {
+ 	window.location = "s_item_list.jsp";
  }
  </script>
 
@@ -228,9 +228,10 @@
 			
 			<div class="row buttons_margin_top">
 					<div align="center">
-					  <input type="button" onclick="return validateProductDetail()" name="btn" id="btn" value="Save Product" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/>
+					  <input type="button" onclick="return validateProductDetail()" name="btn" id="btn" value="Save " class="btn btn-lg btn-success btn-md button_hw button_margin_right"/>
 					  <input type="reset" value="Cancel" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
-					  <input type="button" onclick="editProduct()" id="btn" value="Edit Product" class="btn btn-lg btn-primary btn-md button_hw button_margin_right"/>
+					  <input type="button" onclick="editProduct()" id="btn" value="Edit" class="btn btn-lg btn-primary btn-md button_hw button_margin_right"/>
+						 <input type="button" onclick="listProduct()" id="btn" value="List" class="btn btn-lg btn-primary btn-md button_hw button_margin_right"/>
 					</div>
 			</div>
 			

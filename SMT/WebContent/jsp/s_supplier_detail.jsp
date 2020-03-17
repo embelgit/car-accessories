@@ -173,7 +173,8 @@
 			<div align="center">
     			<input type="button" value="save"  id="btn" onclick="validateSupplierDetails()" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/> 
 				<input type="reset" value="Cancel" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
-				<input type="button" value="Edit Supplier" onclick="window.location.href='http://localhost:8080/SMT/jsp/s_SupplierEdit.jsp'" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" /> 
+				<input type="button" value="Edit" onclick="window.location.href='http://localhost:8080/SMT/jsp/s_SupplierEdit.jsp'" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" />
+				<input type="button" value="List" onclick="window.location.href='http://localhost:8080/SMT/jsp/s_supplier_list.jsp'" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" />  
 			</div>
 		</div>	
 				

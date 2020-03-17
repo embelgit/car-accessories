@@ -61,20 +61,21 @@
 
 <body id="dt_example" style="min-height:300px;">
 		
+		<div class="row header_margin_top">
+			    <div align="center">
+			  		<h2 class="form-name style_heading">Employee List</h2>
+			  	</div>
+			 
+    </div>
 		
 		
-		<div class="row">
-				    <div align="center">
-				  		<h2 class="form-name style_heading">Employee List</h2>
-				  	</div>
 				 	
 			     <div class="row">
 					     <div class="col-sm-offset-1 col-md-10">
 							  		<hr style="border-top-color:#c1b1b1;">
 					     </div>	
 			   		 </div>
-		</div>
-			    
+		
 	<%
 	EmployeeDetailsDao dao=new EmployeeDetailsDao();
 	List list12=dao.getEmployeeList();
@@ -133,7 +134,7 @@
 	</div>
 	
 	<div class="wrapper" align="center">
-		<input type="button" value="Back" id="listBtn" class="btn btn-primary" onclick="Back()" style="width: 125px; height: 45px; font-size: 20px"/> 
+		<input type="button" value="Back" id="listBtn" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" onclick="Back()" style="width: 125px; height: 45px; font-size: 20px"/> 
 	</div>
 	
 </body>

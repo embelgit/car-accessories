@@ -25,6 +25,10 @@
 	    	 getAllMAinCaregory();
 		
 	}); 
+	    function Catagory()
+	    {
+	    	window.location = "y_category_subcategory.jsp";
+	    }
 	 
 	</script>
 	
@@ -55,11 +59,11 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-12">
 				<hr style="border-top-color: #c1b1b1;">
 			</div>
-		</div>
+		</div> -->
 
 		
 			<!-- <div id="demo_jui"> -->
@@ -79,6 +83,11 @@
 				</table>
 				</div>
 			</div>
+			<div class="row buttons_margin_top">
+			<div align="center">
+				<input type="button" name="btn" onclick="Catagory();" value="Back"  class="btn btn-lg btn-primary btn-md button_hw"/> 
+				</div>
+				</div>
 				<!-- </div> -->
 			
 					

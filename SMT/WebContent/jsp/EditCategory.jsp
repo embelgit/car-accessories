@@ -91,7 +91,7 @@
 			 
     </div> -->
     
-         <div class="row" style="margin-top: 90px; margin-bottom: 45px;" align="right">
+         <div class="row" style="margin-top: 10px; margin-bottom: 45px;" align="right">
 			<div class="form-group" >
 			    <div class="col-sm-offset-6 col-md-5 control-label">
 						<div id="date">
@@ -113,7 +113,7 @@
 				    	<form action="cate" method="post" name="cat" class="form-horizontal">
 						      	<div class="row">
 											<div class="form-group">
-											    <div class="col-sm-2 col-sm-offset-3" align="center">
+											    <div class="col-sm-2 col-sm-offset-3" align="left" >
 											    	  <label class="control-label">Category:</label>
 												</div>
 												<div class="col-sm-3">
@@ -146,7 +146,7 @@
 									       </div>
 									       
 									       <div class="form-group">
-											    <div class="col-sm-2 col-sm-offset-3" align="center">
+											    <div class="col-sm-2 col-sm-offset-3" >
 											    	  <label class="control-label">ReName Category:</label>
 												</div>
 												<div class="col-sm-3">
@@ -177,8 +177,8 @@
 						
 									<div class="row buttons_margin_top">
 											<div align="center">
-											    <input type="button" name="btn" id="btn" onclick="isEmplty();" value="Save"  class="btn btn-success btn-md button_hw"/> 
-												<input type="reset" value="Cancel" class="btn btn-danger btn-md button_hw"/>
+											    <input type="button" name="btn" id="btn" onclick="isEmplty();" value="Save"  class="btn btn-lg btn-success btn-md button_hw"/> 
+												<input type="reset" value="Cancel" class="btn btn-lg btn-danger btn-md button_hw"/>
 										  </div>
 									</div>		
 						</form>
@@ -189,13 +189,13 @@
 				 </div>	
 			
 
-
+<%-- 
  <div class="row margin_shortcut">
 					 <div class="col-sm-12" >
 					  <%@include file="y_commons/shortcut.jsp"%>  
 				    </div>
 		</div>
-	 
+	  --%>
 		 <div class="row footer_margin_top" align="center">
 			<%@include file="y_commons/footer.jsp"%>
 		</div>  

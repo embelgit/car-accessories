@@ -57,8 +57,8 @@
            		 </div>
            		 <div class="form-group row">
 		            <div class="col-md-10 text-center">
-		             <input type="button"  id="save" name="btn" style="font-size: 25" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="addExpenseDetails()" value="Submit">
-		            <input   id="save" name="btn" style="font-size: 25" class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width"  type="reset"  onclick="reset()" value="Cancel">
+		             <input type="button"  id="save" name="btn" class="btn btn-lg btn-success btn-md button_hw button_margin_right"  onclick="addExpenseDetails()" value="Save">
+		            <input   id="save" name="btn"  class="btn btn-lg btn-danger btn-md button_hw button_margin_right"  type="reset"  onclick="reset()" value="Cancel">
 	           		 	
 	           		 	<!-- <button id="save" name="btn" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="addExpense()"><h4> Submit</h4></button>
               			<button class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width" type="reset"  onclick="reset()"><h4> Cancel</h4> </button> -->

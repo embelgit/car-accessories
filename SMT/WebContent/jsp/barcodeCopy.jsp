@@ -103,7 +103,7 @@
 				
 			<div class="row buttons_margin_top">
 					<div align="center">
-					  <input type="button" onclick="return printbarcode();" name="btn" id="btn" value="Print Barcode" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/>
+					  <input type="button" onclick="return printbarcode();" name="btn" id="btn" value="Print " class="btn btn-lg btn-success btn-md button_hw button_margin_right"/>
 					  <input type="reset" value="Cancel" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
 					  
 					</div>

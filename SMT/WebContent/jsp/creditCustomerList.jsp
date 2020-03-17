@@ -60,21 +60,25 @@
 	</script>
 
 <body id="dt_example" style="min-height:300px;">
+			<div class="row header_margin_top">
+			    <div align="center">
+			  		<h2 class="form-name style_heading">Credit Customer List</h2>
+			  	</div>
+			 
+    </div>
 		
 		
-		
-		<div class="row">
+		<!-- <div class="row">
 				    <div align="center">
 				  		<h2 class="form-name style_heading">Credit Customer List</h2>
-				  	</div>
+				  	</div> -->
 				 	
 			     <div class="row">
 					     <div class="col-sm-offset-1 col-md-10">
 							  		<hr style="border-top-color:#c1b1b1;">
 					     </div>	
 			   		 </div>
-		</div>
-			    
+	
 	<%
 	CustomerDetailsDao dao=new CustomerDetailsDao();
 	List list12=dao.getCreditCustomerList();
@@ -131,7 +135,7 @@
 	</div>
 	
 	<div class="wrapper" align="center">
-		<input type="button" value="Back" id="listBtn" class="btn btn-primary" onclick="Back()" /> 
+		<input type="button" value="Back" id="listBtn" class="btn btn-primary btn-lg btn-md button_hw button-height-width" onclick="Back()" /> 
 	</div>
 	
 	

@@ -188,11 +188,11 @@
               	<button class="btn btn-large btn-danger  button-height-width" type="reset"  onclick="reset()"><h4><%if(abc.equals("marathi")){%><%=PropertiesHelper.marathiProperties.getProperty("cancel") %> <%}%> <%if(abc.equals("english")){%>Cancel<%}%> </h4> </button> --%>
               	
               	
-              	<input type="button" id="save" name="btn" style="font-size: 25" class="btn btn-large btn-success button-height-width" onclick="customerDetails()" value="Submit">
-              	<input type="button" id="save" name="btn" style="font-size: 25" class="btn btn-large btn-danger  button-height-width" type="reset"  onclick="reset()" value="Cancel">
-              	<input style="font-size: 25" type="button" value="List" id="listBtn" class="btn btn-primary" onclick="Customerlist()" /> 
-              	<input style="font-size: 25" type="button" value="Edit" id="listBtn" class="btn btn-primary" onclick="editCustomer()" /> 
-              	
+              	<input type="button" id="save" name="btn"  class="btn btn-lg btn-success button-height-width button_hw button_margin_right" onclick="customerDetails()" value="Submit">
+              	<input type="button" id="save" name="btn"  class="btn btn-lg btn-danger button_hw button_margin_right  button-height-width" type="reset"  onclick="reset()" value="Cancel">
+              	 
+              	<input  type="button" value="Edit" id="listBtn" class="btn btn-lg btn-primary button_hw button_margin_right" onclick="editCustomer()" /> 
+              	<input  type="button" value="List" id="listBtn" class="btn btn-lg btn-primary button_hw button_margin_right" onclick="Customerlist()" />
              
             
             </div>

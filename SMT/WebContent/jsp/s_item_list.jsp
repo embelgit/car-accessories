@@ -28,7 +28,10 @@
 	    	 getAllMAinItem();
 		
 	}); 
-	 
+	     function backProduct()
+		    {
+		    	window.location = "y_product_detail.jsp";
+		    }
 	</script>
 	
 	
@@ -77,6 +80,11 @@
 					</thead>
 
 				</table>
+				</div>
+			</div>
+			<div class="row buttons_margin_top">
+				<div align="center">
+				  <input type="button" onclick="backProduct()" id="btn" value="Back" class="btn btn-lg btn-primary btn-md button_hw button_margin_right"/>
 				</div>
 			</div>
 	<!-- </div> -->

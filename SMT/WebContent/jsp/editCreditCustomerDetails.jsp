@@ -150,12 +150,14 @@
             	</div>
 			</div>
 			
-			<div class="form-group row">
-            	<div class="col-md-10 col-md-offset-2 text-center">	
-				<button id="update" name="btn" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="updateCustomerDetails()"><h4>Update </h4></button>
-              	<button class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width" type="reset"  onclick="reset()"><h4>Cancel </h4> </button>
+			<div class="row buttons_margin_top">
+			<div align="center">
+            	<input type="button" value="Save" onclick="updateCustomerDetails()" class="btn btn-lg btn-success btn-md button_hw button_margin_right" />  
+				<!-- <button id="update" name="btn" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="updateCustomerDetails()"><h4>Update </h4></button> -->
+              	<input type="button" value="cancel" onclick="reset()" class="btn btn-lg btn-danger btn-md button_hw button_margin_right" />  
+              	<!-- <button class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width" type="reset"  onclick="reset()"><h4>Cancel </h4> </button> -->
 				<!-- <button id="listBtn" class="btn btn-large btn-primary button-height-width" onclick="Back()"><h4>Back </h4> </button> -->
-				<input type="button" style="font-size: 25"  value="Back" id="listBtn" class="btn btn-large btn-primary button-height-width" onclick="Back()" /> 
+				<input type="button"   value="Back" id="listBtn" class="btn btn-lg btn-primary  btn-md button_hw button-height-width" onclick="Back()" /> 
 				</div>
 			</div>
 			

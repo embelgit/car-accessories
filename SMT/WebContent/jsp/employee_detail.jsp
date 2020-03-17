@@ -193,14 +193,15 @@
             	<div class="col-md-11 text-center">
             	<!--  "employeedetails()" function is implemented in employeeDetails.js  -->
     	          	
-    	          	 <input type="button" id="save" name="btn" style="font-size: 25" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="employeedetails()" value="Submit">
-	           		 <input id="save" name="btn" style="font-size: 25" class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width"  type="reset"  onclick="reset()" value="Cancel">
+    	          	 <input type="button" id="save" name="btn" class="btn btn-lg btn-success glyphicon glyphicon-save  button-height-width btn-md button_hw button_margin_right"  onclick="employeedetails()" value="Submit">
+	           		 <input id="save" name="btn" class="btn btn-lg btn-danger glyphicon glyphicon-remove-circle  button-height-width btn-md button_hw button_margin_right"  type="reset"  onclick="reset()" value="Cancel">
     	          	
     	          	
     	          	<!-- <button id="save" name="btn" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="employeedetails()"><h4> Submit</h4></button>
               		<button class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width" type="reset"  onclick="reset()"><h4> Cancel</h4> </button> -->
-        	    	<input style="font-size: 25" type="button" value="Employee List" id="listBtn" class="btn btn-primary" onclick="employeelist()" /> 
-              	<input style="font-size: 25" type="button" value="Edit" id="listBtn" class="btn btn-primary" onclick="editEmployee()" /> 
+        	    	
+              	<input  type="button" value="Edit" id="listBtn" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" onclick="editEmployee()" /> 
+              	<input  type="button" value=" List" id="listBtn" class="btn btn-lg btn-md button_hw button_margin_right btn-primary" onclick="employeelist()" /> 
         	    </div>
           	</div>
 

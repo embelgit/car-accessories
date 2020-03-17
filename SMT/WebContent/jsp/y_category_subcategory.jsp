@@ -87,6 +87,16 @@ a:active {
     		} */
     		//categoryd();
 		}
+	    
+	    
+	    function goEditCatagoryFrom()
+	    {
+	    	window.location = "EditCategory.jsp";
+	    }
+	    function goListCatagory()
+	    {
+	    	window.location = "s_category_list.jsp";
+	    }
 	</script>
 	
 	
@@ -115,8 +125,15 @@ a:active {
 						</div>
 					</div>
 				</div>
-	      </div>	
-          <h2 align="center" class="form-heading" style="margin-top: 10px; margin-bottom: 40px;">Add Category</h2>
+	      </div>
+	      <div class="row header_margin_top">
+			    <div align="center">
+			  		<h2 class="form-name style_heading">Add Category</h2>
+			  	</div>
+			 
+    </div>
+    	
+          <!-- <h2 align="center" class="form-heading" style="margin-top: 10px; margin-bottom: 40px;">Add Category</h2> -->
 		<!-- <div class="row"  style="margin-top: 100px; margin-bottom: 45px;">
 			<div class="col-sm-10 col-sm-offset-1">	
 				<div class="row margin-t-13">
@@ -129,6 +146,11 @@ a:active {
 				</div>
 			</div>
 		</div> -->
+		 <div class="row">
+		     <div class="col-sm-offset-1 col-md-10">
+				  		<hr style="border-top-color:#c1b1b1;">
+		     </div>	
+    </div>
 				<div class="tab-content margin-t-13">
 				
 				    <div id="home" class="tab-pane fade in active">
@@ -136,8 +158,8 @@ a:active {
 				    	<form action="cate" method="post" name="cat" class="form-horizontal">
 						      	<div class="row">
 											<div class="form-group">
-											    <div class="col-sm-2 col-sm-offset-3" align="center">
-											    	  <label class="control-label">Category:</label>
+											    <div class="col-sm-2 col-sm-offset-3" align="left">
+											    	  <label >Category:</label>
 												</div>
 												<div class="col-sm-3">
 												 			<div class="input-group">
@@ -170,9 +192,11 @@ a:active {
 						
 									<div class="row buttons_margin_top">
 										 	<div align="center">
-											    <input type="button" name="btn" onclick="valAddMainCat();" value="Save"  class="btn btn-success btn-md button_hw"/> 
-												<input type="reset" value="Cancel" class="btn btn-danger btn-md button_hw"/>
-												<button type="button" " name="btn" onclick="goEditCatagoryFrom();" value=""  class="btn btn-primary btn-md button_hw"/><a href="EditCategory.jsp"><h4 style="color:white;">Edit</h4></a></button>
+											    <input type="button" name="btn" onclick="valAddMainCat();" value="Save"  class="btn btn-lg btn-success btn-md button_hw"/> 
+												<input type="reset" value="Cancel" class="btn btn-danger btn-md button_hw btn-lg"/>
+												<input type="button" name="btn" onclick="goEditCatagoryFrom();" value="Edit"  class="btn btn-lg btn-primary btn-md button_hw"/> 
+												<input type="button" name="btn" onclick="goListCatagory();" value="List"  class="btn btn-lg btn-primary btn-md button_hw"/> 
+												<!-- <button type="button" " name="btn" onclick="goEditCatagoryFrom();" value=""  class="btn btn-primary btn-md button_hw"/><a href="EditCategory.jsp" style="color:white">Edit</a></button> -->
 										  </div>
 									</div>		
 						</form>

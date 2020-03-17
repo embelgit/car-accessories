@@ -80,7 +80,11 @@
 				</table>
 				</div>
 			</div>
-
+			<div class="row buttons_margin_top">
+			<div align="center">
+    			<input type="button" value="Back"  id="btn" onclick="window.location.href='http://localhost:8080/SMT/jsp/s_supplier_detail.jsp'" class="btn btn-lg btn-primary btn-md button_hw button_margin_right"/> 
+			</div>
+			</div>
 		<div class="row footer_margin_top" align="center">
 			<%@include file="y_commons/footer.jsp"%>
 		</div>

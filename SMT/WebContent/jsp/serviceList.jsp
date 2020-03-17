@@ -45,16 +45,23 @@
 </head>
 <body id="dt_example">
 <div class="container">
-<div class="col-md-6 col-sm-12 col-xs-12 col-xl-4 col-lg-4"></div>
-<div class="col-md-6 col-sm-12 col-xs-12 col-xl-4 col-lg-4">
-		<h2 class="form-name text-center">Product List</h2>
-	</div>
+<div class="row header_margin_top">
+			    <div align="center">
+			  		<h2 class="form-name style_heading">Product List</h2>
+			  	</div>
+			 
+    </div>
+
 	</div>
 	<%
 	ServiceDao dao=new ServiceDao();
 	List list12=dao.getAllServiceList();
 	%>
-	
+	 <div class="row">
+		     <div class="col-sm-offset-1 col-md-10">
+				  		<hr style="border-top-color:#c1b1b1;">
+		     </div>	
+    </div>
 	<div id="date">
 		<label id="demo"></label>
 		<script>
@@ -95,7 +102,7 @@
 	
 		<div class="ibutton">
 	<div class="row" align="center">
-		<input type="button"  value="Back"  class="btn btn-primary" onclick="Back()" /> 
+		<input type="button"  value="Back"  class="btn btn-lg btn-primary btn-md button_hw button_margin_right" onclick="Back()" /> 
 	</div>
 	</div>
 </body>

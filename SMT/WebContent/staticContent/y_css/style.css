@@ -1,3 +1,6 @@
+body{
+ font-size:15;	
+}
 .margin-t-13{margin-top: 13px;}
 
 .row_margin{margin-top: 15px;}
@@ -31,14 +34,14 @@
 		 	   }
 
 
-
+/* 
 .control-label:hover{ font-family:'Lobster',cursive; 
 						font-shadow: 0 0 3px;
 						font-size:19px;
-					}
+					} */
 /* Input box style */
 input[type="text"] { 
-	    font-size: 13px;
+	    font-size: 15px;
 	    font-weight: bold;
 }
 
