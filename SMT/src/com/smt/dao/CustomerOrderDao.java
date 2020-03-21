@@ -214,7 +214,7 @@ public void registerBill1(com.smt.hibernate.CustomerBill cust1) {
 				    System.out.println("shreemant");
 					hbu = HibernateUtility.getInstance();
 			 session = hbu.getHibernateSession();
-			 String sqlQuery = "SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,BuyPrice FROM GoodReceive WHERE  quantity > 0 AND BarcodeNo ="+key;
+			 String sqlQuery = "SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,salePrice FROM GoodReceive WHERE  quantity > 0 AND BarcodeNo ="+key;
 
 			 
 			 Query query = session.createSQLQuery(sqlQuery);
@@ -1046,7 +1046,7 @@ public List<CustomerBean> getAllItemDetails1(String key) {
 		    System.out.println("shreemant");
 			hbu = HibernateUtility.getInstance();
 	 session = hbu.getHibernateSession();
-	 String sqlQuery = "SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,BuyPrice FROM GoodReceive WHERE quantity > 0 AND BarcodeNo ="+key;
+	 String sqlQuery = "SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,salePrice FROM GoodReceive WHERE quantity > 0 AND BarcodeNo ="+key;
 
 	 Query query=session.createSQLQuery(sqlQuery);
 		List<Object[]> list = query.list();
@@ -2086,7 +2086,7 @@ public List<SaleReport> barcodewiseVehicleSale(String barcodeVehicle) {
 			 session = hbu.getHibernateSession();
 			 //String sqlQuery = "SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst FROM GoodReceive WHERE quantity > 0 AND ItemName ="+productId;
 
-			 Query query=session.createSQLQuery("SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,BuyPrice FROM GoodReceive WHERE ItemName ='"+productId+"' AND quantity > 0");
+			 Query query=session.createSQLQuery("SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,salePrice FROM GoodReceive WHERE ItemName ='"+productId+"' AND quantity > 0");
 				List<Object[]> list = query.list();
 
 				 itemlist = new ArrayList<CustomerBean>(0);
@@ -2141,7 +2141,7 @@ public List<SaleReport> barcodewiseVehicleSale(String barcodeVehicle) {
 				 //String sqlQuery = "SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst FROM GoodReceive WHERE  quantity > 0 AND BarcodeNo ="+key;
 
 				 
-				 Query query = session.createSQLQuery("SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,BuyPrice FROM GoodReceive WHERE ItemName ='"+productId+"' AND quantity > 0");
+				 Query query = session.createSQLQuery("SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,salePrice FROM GoodReceive WHERE ItemName ='"+productId+"' AND quantity > 0");
 				 
 					List<Object[]> list = query.list();
 			
