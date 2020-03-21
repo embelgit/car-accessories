@@ -155,5 +155,14 @@
 		column="BarcodeNo"
 		 />	
 		 
+		 
+		 <property
+		name="salePrice" 
+		type="java.lang.Double" 
+		column="salePrice"
+		length="255" />
+		
+		
+		 
  </class>
    </hibernate-mapping> 		 

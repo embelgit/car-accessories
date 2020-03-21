@@ -107,8 +107,8 @@ function regGoodReceive(){
 		params["buyPrice"+i] = buyPrice;
 		
 		
-/*		var salePrice = allRowsInGrid1[i].salePrice;
-		params["salePrice"+i] = salePrice; */
+		var salePrice = allRowsInGrid1[i].SalePrice;
+		params["salePrice"+i] = salePrice; 
 		
 		var discount = allRowsInGrid1[i].discount;
 		params["discount"+i] = discount;
@@ -276,7 +276,7 @@ function getProductList()
 				$("#jqGrid").jqGrid({
 					datatype:"local",
 					editurl: 'clientArray',
-					colNames: ["ItemName","Category Name","HSN/SAC","Quantity","BuyPrice","GST %","IGST %","TAX AMT","Discount %","Total","--S--"],
+					colNames: ["ItemName","Category Name","HSN/SAC","Quantity","BuyPrice","SalePrice","GST %","IGST %","TAX AMT","Discount %","Total","--S--"],
 
 					colModel: [
 					           { 	
@@ -309,6 +309,14 @@ function getProductList()
 					        	   editable: true,
 					        	 
 					           },
+					           
+					           {
+					        	   name: "SalePrice",
+					        	   width: 150,
+					        	   editable: true,
+					        	 
+					           },
+
 					           { 	
 			        	           name: "vat",//PARTICULARS cgst
 			        	           width: 100,

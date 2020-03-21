@@ -97,8 +97,8 @@ public class GoodReceiveHelper {
 			String buyPrice = request.getParameter("buyPrice" + i);
 			gd.setBuyPrice(Double.parseDouble(buyPrice));
 
-/*			String salePrice = request.getParameter("salePrice" + i);
-			gd.setSalePrice(Double.parseDouble(salePrice));*/
+			String salePrice = request.getParameter("salePrice" + i);
+			gd.setSalePrice(Double.parseDouble(salePrice));
 			
 			String discount = request.getParameter("discount" + i);
 			gd.setDiscount(Double.parseDouble(discount));
