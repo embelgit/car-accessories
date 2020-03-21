@@ -406,7 +406,7 @@
 
 			<div class="row buttons_margin_top">
 			<div align="center">
-    			<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btnSubmit" id="btnSubmit" onclick="validateRegGoodReceive()" value="Register" /> 
+    			<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btnSubmit" id="btnSubmit" onclick="validateRegGoodReceive()" value="Save" /> 
 				<input type="reset" value="Cancel" onclick="reset()" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
 				<!-- <input type="button" onclick="window.location.href='http://localhost:8080/SMT/jsp/supplierAccountDetails.jsp'" 
 				value="Fill Supplier Payement" class="btn btn-lg btn-primary btn-md" />  -->

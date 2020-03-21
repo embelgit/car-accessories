@@ -38,7 +38,7 @@
 	
 	<div class="row header_margin_top">
 			    <div align="center">
-			  		<h2 class="form-name style_heading">Service Entry</h2>
+			  		<h2 class="form-name style_heading">Service Name</h2>
 			  	</div>
 			 
     </div>

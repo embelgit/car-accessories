@@ -69,7 +69,7 @@
 			<!-- <div id="demo_jui"> -->
 			
 			<div class="row"  align="center">
-			  <div class="table-responsive" style="width: 300" >
+			  <div class="table-responsive" style="width: 747" >
 				<table class= "table table-bordered table-striped table-condensed cf" id="catName" class="display" style=" border: 2px solid black;border-collapse: collapse;">
 					<thead>
 						<tr>

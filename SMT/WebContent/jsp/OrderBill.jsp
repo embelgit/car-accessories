@@ -205,7 +205,7 @@ function grasstotal11(){
 			      <div class="row">
 						<div class="col-md-2" align="right">
 
-							<label class="control-label" style="font-size:22px;">Barcode No:</label>
+							<label class="control-label" >Barcode No:</label>
 						</div>
 						
 						<div class="col-md-2">
@@ -213,7 +213,7 @@ function grasstotal11(){
 					     </div>	
 					
 					    <div class="col-md-2" align="right">
-							<label class="control-label" style="font-size:22px;">Contact No:</label>
+							<label class="control-label" >Contact No:</label>
 						</div>
 						<div class="col-md-2">
 							<input type="number" class="form-control" id="contactNo" placeholder="Contact Number" required onchange="return getItemDetailByTable1(); return Activechange(); return false;" readonly="readonly" />
@@ -222,7 +222,7 @@ function grasstotal11(){
 					
 					
 						<div class="col-md-2" align="right">
-							<label class="control-label" style="font-size:22px;">Owner Name:</label>
+							<label class="control-label" >Owner Name:</label>
 						</div>
 						
 						<div class="col-md-2">
@@ -233,7 +233,7 @@ function grasstotal11(){
 				   <div class="row" style="margin-top: 10px;">
 				
 					    <div class="col-md-2" align="right">
-							<label class="control-label" style="font-size:22px;">Vehicle No:</label>
+							<label class="control-label" >Vehicle No:</label>
 						</div>
 						
 						<div class="col-md-2">
@@ -242,7 +242,7 @@ function grasstotal11(){
 						
 						
 						 <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
-          					  <div class="col-md-3">
+          					  <div class="col-md-2">
 								<div class="input-group">
 									 <span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -325,14 +325,14 @@ function grasstotal11(){
 						
 	                    <script src="/SMT/staticContent/js/calculator.js"></script>
 	                    
-	                    <div class="col-md-6">
+	                    <div class="col-md-4">
 	                      <div class="row" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" >Spare Total Amount: </label>
+								<label class="control-label"  >Spare Total Amount: </label>
 							</div>
 							<div class="col-md-6">
 							
-								<input type="text" class="form-control" id="totalAmount" style="font-size:22px;height:35px;" placeholder="Total Amout" style="font-size: 22px;" readonly="readonly"/>
+								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amout"  readonly="readonly"/>
 							</div> 
 						  </div> 
 						  </div>
@@ -356,7 +356,7 @@ function grasstotal11(){
 								<input type="text" class="form-control" id="laberCharges" style="font-size:22px;height:35px;" placeholder="Charges In Rs" autofocus onkeyup="return grasstotal11(); return false;" style="font-size: 22px;"/>
 							</div> 
 						</div> -->
-						 <div class="col-md-6">
+						 <div class="col-md-4">
 						 <div class="row" style="margin-top:10px;">
 						<label class="col-md-6 control-label" for="customerName">Service Name<sup>*</sup></label>  
           					  <div class="col-md-6" >
@@ -414,7 +414,7 @@ function grasstotal11(){
 				  <div class="col-md-6">
 	                      <div class="row" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" >ServiceTotal Amount: </label>
+								<label class="control-label" >ServiceTotal Amount: </label>
 							</div>
 							<div class="col-md-6">
 							
@@ -426,7 +426,7 @@ function grasstotal11(){
 						  
 						  <div class="row" style="margin-top:10px;">
 							<div class="col-md-2" align="right">
-								<label class="control-label" style="font-size: 22px;" > Gross Total: </label>
+								<label class="control-label"  > Gross Total: </label>
 							</div>
 							<div class="col-md-3">
 							<input type="text" class="form-control" id="grossTotal" style="font-size:25px;height:55px; margin-top:2%" placeholder="Gross Total"  readonly="readonly"/>
@@ -443,7 +443,7 @@ function grasstotal11(){
 				
 				<div class="row" style="margin-top:20px;">
 					<div align="center" class="margin-top-10">
-						<button type='button' class="btn btn-success btn-lg bottomButtons" id="btnSubmit" autofocus onclick="resBill();" style="width:150px;">Print Bill</button>
+						<button type='button' class="btn btn-success btn-lg bottomButtons" id="btnSubmit" autofocus onclick="resBill();" style="width:150px;">Print</button>
 						<button type='button' onclick="loadd()" class="btn btn-danger btn-lg bottomButtons">Cancel</button>
 					</div>
 				</div> 
