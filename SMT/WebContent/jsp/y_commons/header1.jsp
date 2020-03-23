@@ -461,23 +461,23 @@ nav {
     </li>
     <li><a  href="/SMT/jsp/OrderBill.jsp"><i class="fa fa-sitemap"></i> Master</a>
       <ul class="sub-menu">
-        <li><a href="#">Category</a>
+        <li><a href="<%=path%>y_category_subcategory.jsp">Category</a>
            <%
     			  if(type1.equals("salesman")|| type1.equals("admin")){
     	  
             %>	
         
-          <ul>
+          <%-- <ul>
             <li><a href="<%=path%>y_category_subcategory.jsp">Add Category</a></li>
 			<li><a href="<%=path%>s_category_list.jsp" >Category List</a></li>
 			
-          </ul>
+          </ul> --%>
         </li>
-        <li><a href="#">Add Products</a>
-          <ul>
+        <li><a href="<%=path%>y_product_detail.jsp">Add Products</a>
+          <%-- <ul>
            <li><a href="<%=path%>y_product_detail.jsp">Product Details</a></li>
 		   <li><a href="<%=path%>s_item_list.jsp" >Product List</a></li>
-          </ul>
+          </ul> --%>
         </li>
         
         <%--  <li><a href="<%=path%>vat_Entry.jsp">GST Tax</a></li> --%>
@@ -485,32 +485,32 @@ nav {
         <%}%>	
 		  <% if(type1.equals("salesman")|| type1.equals("admin") || type1.equals("account") ){ %>	        
         
-        <li><a href="#">Supplier Entry</a>
-          <ul>
+        <li><a href="<%=path%>s_supplier_detail.jsp">Supplier Entry</a>
+         <%--  <ul>
             <li><a href="<%=path%>s_supplier_detail.jsp">Supplier Details</a></li>
 			<li><a href="<%=path%>s_supplier_list.jsp">Supplier List</a></li>
 			<li><a href="<%=path%>s_SupplierEdit.jsp">Edit Supplier</a></li>
 			
-          </ul>
+          </ul> --%>
         </li>
         
         <%}%>	
         
-        <li><a href="#">Credit Customer</a>
-          <ul>
+        <li><a href="<%=path%>customer_detail.jsp">Credit Customer</a>
+         <%--  <ul>
             <li><a href="<%=path%>customer_detail.jsp" >Credit Customer</a></li>
 			<li><a href="<%=path%>creditCustomerList.jsp" >Credit Customer List</a></li>
 			<li><a href="<%=path%>editCreditCustomerDetails.jsp" >Edit Credit Customer</a></li>
-          </ul>
+          </ul> --%>
         </li>
         
-        <li><a href="#">Employee</a>
-          <ul>
+        <li><a href="<%=path%>employee_detail.jsp">Employee</a>
+          <%-- <ul>
             <li><a href="<%=path%>employee_detail.jsp">Employee Entry</a></li>
 			<li><a href="<%=path%>employeeList.jsp" >Employee List</a></li>
 			<li><a href="<%=path%>editEmployeeDetails.jsp" >Edit Employee</a></li>
 			
-          </ul>
+          </ul> --%>
         </li>
         
         <li><a href="<%=path%>expenditureDetails.jsp">Expenditure Detail</a></li>

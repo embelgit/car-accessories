@@ -130,8 +130,8 @@
                                     <input type="password" class="form-control" id="repassword" placeholder="Re-Password" autofocus="autofocus" >
                                 </div>
                               <div class="wrapper" style="margin-top: 20px;">
-                                <input type="button" name="btn" value="Submit" class="btn btn-md btn-lg btn-success"  onclick="validataionUserLogin()"/>
-                                <input type="reset" value="Reset" class="btn btn-md btn-lg btn-danger" />
+                                <input type="button" name="btn" value="Submit" class="btn btn-md btn-lg btn-success btn-md button_hw button_margin_right"  onclick="validataionUserLogin()"/>
+                                <input type="reset" value="Reset" class="btn btn-md btn-lg btn-danger btn-md button_hw button_margin_right" />
                            	</div>
                            </form>   
                             </div>

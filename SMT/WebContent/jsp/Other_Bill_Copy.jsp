@@ -16,7 +16,7 @@
 
 
 
- <div class="container" style="float: left"> 
+ <div class="container" > 
  		
  		<div class="row">
 			<div align="center" style="margin-top: 75px">
@@ -25,7 +25,11 @@
 				 	
 		</div>
 		
-		
+		 <div class="row">
+		     <div class="col-sm-offset-1 col-md-10">
+				  		<hr style="border-top-color:#c1b1b1;">
+		     </div>	
+    </div>
  	 		
  					<form action="" method="post" name="genIn">
  						<%
@@ -33,11 +37,11 @@
 							List list = fd.getBillNo();
 						%>
 						<div class="row" style="margin-top: 25px;">
-							<div class="col-md-offset-2">
-								<div class="col-md-4">
+							<div class="col-md-offset-3">
+								<div class="col-md-2">
 									<label class="control-label"> Bill Number:</label> 
 								</div>	
-								<div class="col-md-2">
+								<div class="col-md-3">
 									<input list="seedBillNo" id="BillNo" class="form-control">
 									<datalist id="seedBillNo">
 									<%
@@ -50,12 +54,12 @@
 									%>
 									</datalist>
 								 </div>
-							
-								<div class="col-md-4 col-md-offset-3" style="margin-top: 25px;" align="center">
-									<button type="button" onclick="validateGenerateBillCOPYForOtherBill()" name="btn" class="btn btn-success" style="width:125px;height:45px;">Print </button>
+							</div>
+								<div class="col-md-12 col-md-offset-" style="margin-top: 25px;" align="center">
+									<button type="button" onclick="validateGenerateBillCOPYForOtherBill()" name="btn" class="btn btn-success btn-lg btn-md button_hw button_margin_right" >Print </button>
 								</div>
 							</div>
-						</div>
+						
  					</form>
  				
  				

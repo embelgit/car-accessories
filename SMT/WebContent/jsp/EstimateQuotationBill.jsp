@@ -89,7 +89,11 @@ function grasstotal(){
 		<h2 align="center" class="form-heading style_heading" style="margin-top: 50px;">Estimate Quotation Bill</h2>
 		<%--   <h3 align="right" style="color: red; margin-right: 50px;">Bill No :: <%out.println(BillNo); %></h3> --%>
 		<h4 align="right" style="color: red; margin-right: 50px;">A/ <%out.println(todayDate); %>/E00<%out.println(BillNo); %></h4>
-		
+					 <div class="row">
+		     <div class="col-sm-offset-1 col-md-10">
+				  		<hr style="border-top-color:#c1b1b1;">
+		     </div>	
+    </div>	
 			      <div class="row  form-group">
 						<div class="col-md-2" align="center">
 
@@ -174,7 +178,7 @@ function grasstotal(){
 				</div>		
 						<div class="row" style="margin-top:10px;"></div>
 						<div class="row form-group" style="margin-top:10px;">
-						    <div class="col-md-5" id="calculator" style="margin-left: 146px;">
+						    <div class="col-md-5" id="calculator" style="margin-left: 20px;">
 								<!-- Screen and clear key -->
 								<div class="top">
 									<span class="clear">C</span>
@@ -210,7 +214,7 @@ function grasstotal(){
 						<div class="col-md-5">
 						<div class="row" style="margin-top:15px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" >Total Amount: </label>
+								<label class="control-label"  >Total Amount: </label>
 							</div>
 							<div class="col-md-6">
 							
@@ -284,7 +288,7 @@ function grasstotal(){
 						 <div class="col-md-6">
 	                      <div class="row" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" >ServiceTotal Amount: </label>
+								<label class="control-label"  >ServiceTotal Amount: </label>
 							</div>
 							<div class="col-md-6">
 							
@@ -300,11 +304,11 @@ function grasstotal(){
 						<div class="col-md-5">
 						<div class="row" style="margin-top:15px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" > Gross Total: </label>
+								<label class="control-label"  > Gross Total: </label>
 							</div>
 							<div class="col-md-6">
 							
-								<input type="text" class="form-control" id="grossTotal" style="font-size:25px;height:55px;" placeholder="Gross Total" readonly="readonly"/>
+								<input type="text" class="form-control" id="grossTotal"  placeholder="Gross Total" readonly="readonly"/>
 							</div> 
 						</div>
 						</div>
@@ -321,15 +325,15 @@ function grasstotal(){
 						</div> -->
 					</div>
 					
-				
+				</div>
 	
 		      
 					
 				
 				<div class="row" style="margin-top:20px;">
 					<div align="center" class="margin-top-50">
-						<button type='button' class="btn btn-success btn-lg bottomButtons"  id="btnSubmit" onclick=" return regEstimateCustbill1();" style="width:150px;">Print Bill</button>
-						<button type='button' class="btn btn-danger btn-lg bottomButtons">Cancel</button>
+						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right"  id="btnSubmit" onclick=" return regEstimateCustbill1();" style="width:150px;">Print</button>
+						<button type='button' class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
 					</div>
 				</div> 
 		</div>

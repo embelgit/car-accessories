@@ -198,9 +198,16 @@ function grasstotal11(){
 	<div class="container-fluid">
 		<h2 align="center" class="form-heading style_heading" style="margin-top: 50px;">Customer Bill</h2>
 		
+		
 			  		<%-- <h3 align="right" style="color: red; margin-right: 20px;">Bill No :: <%out.println(BillNo); %></h3> --%> 
 			  		<h4 align="right" style="color: red; margin-right: 50px;">A/ <%out.println(todayDate); %>/00<%out.println(BillNo); %></h4>
                  
+		
+		<div class="row">
+			<div class="col-sm-offset-1 col-md-10">
+				<hr style="border-top-color: #c1b1b1;">
+			</div>
+		</div>
 		
 			      <div class="row">
 						<div class="col-md-2" align="right">
@@ -400,7 +407,7 @@ function grasstotal11(){
 			           	<div class="row" style="margin-top: 15px;">
 				
 					<div class="col-md-8">
-						<div class="row">
+						<div class="row" style="margin-top: 15px;">
 							<div class="table-responsive">
 								<table id="list5"></table>
 								<div id="jqGridPager5"></div>
@@ -411,14 +418,14 @@ function grasstotal11(){
 				</div>	
 				
 				
-				  <div class="col-md-6">
+				  <div class="col-md-4">
 	                      <div class="row" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
 								<label class="control-label" >ServiceTotal Amount: </label>
 							</div>
 							<div class="col-md-6">
 							
-								<input type="text" class="form-control" id="ServicetotalAmount" style="font-size:22px;height:35px;" placeholder="Total Amout" style="font-size: 22px;" readonly="readonly"/>
+								<input type="text" class="form-control" id="ServicetotalAmount"  placeholder="Total Amout" style="font-size: 22px;" readonly="readonly"/>
 							</div> 
 						  </div> 
 						  </div>
@@ -428,8 +435,8 @@ function grasstotal11(){
 							<div class="col-md-2" align="right">
 								<label class="control-label"  > Gross Total: </label>
 							</div>
-							<div class="col-md-3">
-							<input type="text" class="form-control" id="grossTotal" style="font-size:25px;height:55px; margin-top:2%" placeholder="Gross Total"  readonly="readonly"/>
+							<div class="col-md-2">
+							<input type="text" class="form-control" id="grossTotal" placeholder="Gross Total"  readonly="readonly"/>
 							</div> 
 						</div>
 					
@@ -443,8 +450,8 @@ function grasstotal11(){
 				
 				<div class="row" style="margin-top:20px;">
 					<div align="center" class="margin-top-10">
-						<button type='button' class="btn btn-success btn-lg bottomButtons" id="btnSubmit" autofocus onclick="resBill();" style="width:150px;">Print</button>
-						<button type='button' onclick="loadd()" class="btn btn-danger btn-lg bottomButtons">Cancel</button>
+						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right" id="btnSubmit" autofocus onclick="resBill();" style="width:150px;">Print</button>
+						<button type='button' onclick="loadd()" class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
 					</div>
 				</div> 
 		

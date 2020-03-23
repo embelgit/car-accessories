@@ -163,7 +163,11 @@
 		</script>
 	</div>
 	</div>
-
+		 <div class="row">
+		     <div class="col-sm-offset-1 col-md-10">
+				  		<hr style="border-top-color:#c1b1b1;">
+		     </div>	
+    </div>
 	<div id="demo_jui">
 		<table id="list" class="display" border="1">
 			<thead>
@@ -223,4 +227,6 @@
 
 </html>
 
-<%@include file="commons/footer.jsp" %>
+	<div class="row footer_margin_top" align="center">
+			<%@include file="y_commons/footer.jsp"%>
+     </div> 

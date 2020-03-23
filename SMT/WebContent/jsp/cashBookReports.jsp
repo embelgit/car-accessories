@@ -210,7 +210,7 @@
 							</div>
 				</div>
 				<div class="row form-group">
-							<div class="col-md-3 col-md-offset-4">
+							<div class="col-md-3 col-md-offset-5">
 								<div class="input-group">
 									<input type="button" id="btn" name="save"
 										class="btn btn-lg btn-success btn-md button_hw button_margin_right"

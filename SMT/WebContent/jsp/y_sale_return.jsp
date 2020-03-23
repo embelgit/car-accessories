@@ -56,7 +56,7 @@
 
 			<div class="row">
 				<div class="form-group">
-					<div class="col-sm-2 col-sm-offset-1" align="center">
+					<div class="col-sm-2 col-sm-offset-3" align="center">
 					   <label class="control-label"> Bill No:</label>
 					</div>
 					

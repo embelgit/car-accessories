@@ -68,7 +68,11 @@
     		productdel();
 	    }
 	     --%>
-	   
+	  
+	     function backProduct()
+	     {
+	    	 window.location = "y_product_detail.jsp";
+	     }
 </script>
 
 
@@ -197,6 +201,7 @@
 					<div align="center">
 					  <input type="button" onclick="updateProduct()" id="btn" value="Save" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/>
 					  <input type="reset" value="Reset" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
+					   <input type="button" onclick="backProduct()" id="btn" value="Back" class="btn btn-lg btn-primary btn-md button_hw button_margin_right"/>
 					</div>
 			</div>
 			

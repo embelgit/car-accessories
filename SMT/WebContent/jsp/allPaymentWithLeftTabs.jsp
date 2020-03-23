@@ -261,9 +261,9 @@
 				</div>
 			          
 			<div class="form-group row">
-			  <div class="col-md-10 text-center">
-			  		<input type="button" id="btn1" name="btn1" style="font-size: 25" class="btn btn-large btn-success button-height-width"  onclick="supplierPayment(); return false;" value="Submit">
-		            <input type="reset" id="btn1" style="font-size: 25" class="btn btn-large btn-danger   button-height-width" name="btn1" value="Cancel">
+			  <div class="col-md-12 text-center">
+			  		<input type="button" id="btn1" name="btn1"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="supplierPayment(); return false;" value="Submit">
+		            <input type="reset" id="btn1"  class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn1" value="Cancel">
 			  
 			   </div>
 	 		</div>       	    
@@ -490,10 +490,10 @@
 			          
 			          
 			     <div class="form-group row">
-			            <div class="col-md-10 text-center">
+			            <div class="col-md-12 text-center">
 			           	 	
-			            <input type="button" id="btn2" name="btn2" style="font-size: 25" class="btn btn-large btn-success button-height-width"  onclick="customerPaymentValidation(); return false;" value="Submit">
-		            	<input type="reset" id="btn2" style="font-size: 25" class="btn btn-large btn-danger   button-height-width" name="btn2" value="Cancel">
+			            <input type="button" id="btn2" name="btn2"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="customerPaymentValidation(); return false;" value="Submit">
+		            	<input type="reset" id="btn2"  class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn2" value="Cancel">
 			            </div>
 			      </div>       	    
 			 </form>
@@ -708,10 +708,10 @@
         
          
          <div class="row form-group ">
-            <div class="col-md-10 text-center">
+            <div class="col-md-12 text-center">
               	
-            <input type="button" id="btn3" name="btn3" style="font-size: 25" class="btn btn-large btn-success button-height-width"  onclick="EmployeeValidation(); return false;" value="Submit">
-		    <input type="reset" id="btn2" style="font-size: 25" class="btn btn-large btn-danger   button-height-width" name="btn2" value="Cancel">
+            <input type="button" id="btn3" name="btn3"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="EmployeeValidation(); return false;" value="Submit">
+		    <input type="reset" id="btn2"  class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn2" value="Cancel">
             </div>
           </div>       	    
  	 </form> 
@@ -824,10 +824,10 @@
 			</div>	
 				
 		<div class="form-group row">
-            <div class="col-md-10 text-center">
+            <div class="col-md-12 text-center">
              	
-            <input type="button" id="save" name="btn4" style="font-size: 25" class="btn btn-large btn-success button-height-width"  onclick="expensePaymentValidation(); return false;" value="Submit">
-		    <input type="reset" id="btn2" style="font-size: 25" class="btn btn-large btn-danger   button-height-width" name="btn4" value="Cancel">
+            <input type="button" id="save" name="btn4"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="expensePaymentValidation(); return false;" value="Submit">
+		    <input type="reset" id="btn2" s class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn4" value="Cancel">
             </div>
         </div> 
 			

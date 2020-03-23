@@ -67,9 +67,9 @@
                                 </div>
                                
                                 <!-- Change this to a button or input when using this as a form -->
-                                <div class="wrapper">
-	                                <button type="button" onclick="login()" class="btn btn-md btn-lg btn-success"> <span class="glyphicon glyphicon-ok-circle"></span> Login </button>
-	                                <button type="reset"  class="btn btn-md btn-lg btn-danger"> <span class="glyphicon glyphicon-remove-circle"></span> Reset </button>
+                                <div class="">
+	                                <button type="button" onclick="login()" class="btn btn-md btn-lg btn-success btn-md button_hw button_margin_right">  Login </button>
+	                                <button type="reset"  class="btn btn-md btn-lg btn-danger btn-md button_hw button_margin_right">  Reset </button>
 	                            </div>
                             </div>
                         </form>

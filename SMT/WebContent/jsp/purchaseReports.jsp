@@ -120,7 +120,7 @@
 					<fieldset>
 				         <div class="row form-group" style="margin-top: 20px">
 							<label class="col-md-2 control-label" for=""> Start Purchase Date:<sup>*</sup></label>  
-				           			 <div class="col-md-3">
+				           			 <div class="col-md-2">
 										<div class="input-group">
 											<span class="input-group-addon">
 												<i class="glyphicon glyphicon-user"></i>
@@ -130,7 +130,7 @@
 									</div>
 				
 				           	 <label class="col-md-2 control-label" for="">End Purchase Date:<sup>*</sup></label>
-				           	 	<div class="col-md-3">
+				           	 	<div class="col-md-2">
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="glyphicon glyphicon-map-marker"></i>
@@ -141,7 +141,7 @@
 				          </div>
 					  
 				      		 <div class="row form-group buttons_margin_top ">
-									<div align="center">
+									<div  align="center">
 												  
 										<input type="button"  id="btn" name="save" class="btn btn-lg btn-success btn-md button_hw button_margin_right"onclick="purchaseReportBetweenTwoDates()" value="Search"/>
 												     									

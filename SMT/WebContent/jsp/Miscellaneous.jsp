@@ -102,16 +102,16 @@ function grasstotal(){
 				<hr style="border-top-color: #c1b1b1;">
 			</div>
 		</div>
-
-<form class="form-horizontal" action="" method="post" name  ="custord">
+</div>
+<form class="form-horizontal" action="" method="post"  name ="custord">
 	
 		<%-- <h2 align="center" class="form-heading style_heading" style="margin-top: 75px;">Miscellaneous Bill</h2>
 		  <h3 align="right" style="color: red; margin-right: 20px;">Bill No :: <%out.println(BillNo); %></h3> --%>
-		
+				<div class="container">
 			      <div class="row">
 			        <div class="form-group">
 						<div class="col-sm-2 col-sm-offset-1" align="center">
-							<label class="control-label" style="font-size:22px;">Barcode no:</label>
+							<label class="control-label" >Barcode no:</label>
 						</div>
 						
 						<div class="col-md-3">
@@ -159,10 +159,10 @@ function grasstotal(){
 				</div>	
 					   
 		
-				<div class="row" style="margin-top: 10px; margin-left: 20px;">
+				<div class="row" style="margin-top: 10px; ">
 				    <div class="form-group">
 					<div class="col-md-12">
-						<div class="row">
+						<!-- <div class="row"> -->
 							<div class="table-responsive">
 								<table id="list4"></table>
 								<div id="jqGridPager"></div>
@@ -170,10 +170,10 @@ function grasstotal(){
 						</div>
 					</div>
 					</div>
-				</div>	
+		
 				
 						<div class="row form-group" style="margin-top:10px;">
-						    <div class="col-md-5" id="calculator" style="margin-left: 146px;">
+						    <div class="col-md-5" id="calculator" style="margin-left: 20px;">
 								<!-- Screen and clear key -->
 								<div class="top">
 									<span class="clear">C</span>
@@ -208,53 +208,53 @@ function grasstotal(){
 						  <div class="col-md-5">
 						  	<div class="row form-group" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" >Total Amount: </label>
+								<label class="control-label"  >Total Amount: </label>
 							</div>
 							<div class="col-md-6">
 							  <div class="input-group">
 							     <span class="input-group-addon">
 							       Rs
 						         </span>
-								<input type="text" class="form-control" id="totalAmount" style="font-size:22px;height:35px;" placeholder="Total Amout"  style="font-size: 22px;" readonly="readonly"/>
+								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amout"   readonly="readonly"/>
 							  </div> 
 							</div>
 						</div>
 							<div class="row form-group" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" > Discount: </label>
+								<label class="control-label"  > Discount: </label>
 							</div>
 							<div class="col-md-6">
 							 <div class="input-group">
 							   <span class="input-group-addon">
 							     Rs
 						       </span>
-								<input type="text" class="form-control" id="discount" style="font-size:22px;height:35px;" placeholder="Discount In Rs" autofocus onkeyup="grasstotal(); return false;" style="font-size: 22px;"/>
+								<input type="text" class="form-control" id="discount"  placeholder="Discount In Rs" autofocus onkeyup="grasstotal(); return false;" />
 							 </div> 
 							</div> 
 						</div>
 							
 							<div class="row form-group" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
-								<label class="control-label" style="font-size: 22px;" > Gross Total: </label>
+								<label class="control-label"  > Gross Total: </label>
 							</div>
 							<div class="col-md-6">
 							 <div class="input-group">
 							    <span class="input-group-addon">
 							      Rs
 						        </span>
-								<input type="text" class="form-control" id="grossTotal" style="font-size:25px;height:55px;" placeholder="Gross Total" readonly="readonly"/>
+								<input type="text" class="form-control" id="grossTotal" placeholder="Gross Total" readonly="readonly"/>
 							 </div> 
 							</div> 
 						</div>
 							
 						</div>
 				</div>	
-					
+			</div>	
 				<div class="row" style="margin-top:20px;">
 				  <div class="form-group">
 					<div align="center" class="margin-top-10">
-						<button type='button' class="btn btn-success btn-lg bottomButtons" id="btnSubmit"  onclick=" return resotherbill();" style="width:150px;">Print Bill</button>
-						<button type='button' class="btn btn-danger btn-lg bottomButtons">Cancel</button>
+						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right" id="btnSubmit"  onclick=" return resotherbill();" style="width:150px;">Print</button>
+						<button type='button' class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
 					</div>
 				  </div>	
 				</div> 

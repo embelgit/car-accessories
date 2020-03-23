@@ -78,6 +78,12 @@
     		%>
     		reNamecategory();
 		}
+	    
+	    
+	    function isBack()
+	    {
+	    	window.location = "y_category_subcategory.jsp";
+	    }
 	</script>		
 	
 
@@ -179,6 +185,7 @@
 											<div align="center">
 											    <input type="button" name="btn" id="btn" onclick="isEmplty();" value="Save"  class="btn btn-lg btn-success btn-md button_hw"/> 
 												<input type="reset" value="Cancel" class="btn btn-lg btn-danger btn-md button_hw"/>
+												 <input type="button" name="btn" id="btn" onclick="isBack();" value="Back"  class="btn btn-lg btn-primary btn-md button_hw"/> 
 										  </div>
 									</div>		
 						</form>
