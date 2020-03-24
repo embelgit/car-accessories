@@ -193,8 +193,8 @@
             	<div class="col-md-11 text-center">
             	<!--  "employeedetails()" function is implemented in employeeDetails.js  -->
     	          	
-    	          	 <input type="button" id="save" name="btn" class="btn btn-lg btn-success glyphicon glyphicon-save  button-height-width btn-md button_hw button_margin_right"  onclick="employeedetails()" value="Submit">
-	           		 <input id="save" name="btn" class="btn btn-lg btn-danger glyphicon glyphicon-remove-circle  button-height-width btn-md button_hw button_margin_right"  type="reset"  onclick="reset()" value="Cancel">
+    	          	 <input type="button" id="save" name="btn" class="btn btn-lg btn-success   button-height-width btn-md button_hw button_margin_right"  onclick="employeedetails()" value="Submit">
+	           		 <input id="save" name="btn" class="btn btn-lg btn-danger button-height-width btn-md button_hw button_margin_right"  type="reset"  onclick="reset()" value="Cancel">
     	          	
     	          	
     	          	<!-- <button id="save" name="btn" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="employeedetails()"><h4> Submit</h4></button>
