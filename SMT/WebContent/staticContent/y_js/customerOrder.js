@@ -582,14 +582,54 @@ params["methodName"] ="getItemDetailByCarNo";
 
 
 var count=0;
+var newrow;
+var rowId;
+
 $.post('/SMT/jsp/utility/controller.jsp',params,function(data)
   {
 	var jsonData = $.parseJSON(data);
 	
-    $("#list4").jqGrid("clearGridData", true).trigger("reloadGrid");
+   $("#list4").jqGrid("clearGridData", true).trigger("reloadGrid");
+   //$("#list4").jqGrid("clearGridData", false);
     
     $.each(jsonData,function(i,v)
 	  {
+    	
+    	 /*count = jQuery("#list4").jqGrid('getGridParam', 'records'); 
+		     var rowdata =$("#list4").jqGrid('getGridParam','data');
+		     var ids = jQuery("#list4").jqGrid('getDataIDs');
+		   
+			
+			  var prodName,com,packing,unit;
+			  for (var j = 0; j < count; j++) 
+			  {
+				  prodName = rowdata[j].ItemName;
+				  
+				
+				 var rowId = ids[j];
+				 var rowData = jQuery('#list4').jqGrid ('getRowData', rowId);
+				 newrow = true;
+				if (prodName == jsonData.offer.ItemName ) {
+			    	
+			    	newrow=false;
+					alert("Product Name Already Inserted !!!");
+					var grid = jQuery("#jqGrid");
+				    grid.trigger("reloadGrid");
+			    	break;
+				}
+				else
+				{
+					newrow = true;
+				}
+			 }
+			  
+			  if(newrow == true)
+				 {
+					
+				  //$("#list4").addRowData(i,jsonData[i]);
+				  $("#list4").addRowData(count,jsonData.offer);
+					
+				 }*/
     
 	  $("#list4").jqGrid({
 		datatype: "local",
@@ -815,8 +855,17 @@ $.post('/SMT/jsp/utility/controller.jsp',params,function(data)
 		pager: "#jqGridPager",
 		
 	});
+	  
+	 /* if(count==0 || count==null)
+		{
+			  $("#list4").addRowData(i,jsonData[i]);
+			  //$("#jqGrid").addRowData(0,jsonData.offer);
+		}*/
+		
 	
 	$("#list4").addRowData(i+1,jsonData[i]);
+	  //$("#list4").addRowData(i,jsonData[i]);
+	 
  
 	 $('#list4').navGrid('#jqGridPager',
                 

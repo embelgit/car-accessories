@@ -2141,7 +2141,7 @@ public List<SaleReport> barcodewiseVehicleSale(String barcodeVehicle) {
 				 //String sqlQuery = "SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst FROM GoodReceive WHERE  quantity > 0 AND BarcodeNo ="+key;
 
 				 
-				 Query query = session.createSQLQuery("SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,salePrice FROM GoodReceive WHERE ItemName ='"+productId+"' AND quantity > 0");
+				 Query query = session.createSQLQuery("SELECT ItemName , PkGoodRecId, CategoryName , BarcodeNo, hsnsacno, vat, igst,salePrice FROM GoodReceive WHERE ItemName ='"+productId+"' AND quantity > 0 GROUP BY ItemName");
 				 
 					List<Object[]> list = query.list();
 			
