@@ -21,9 +21,15 @@ public class PurchaseReturnGetItems {
 	private Long supplierName;
 	private String ondate;
 	private Long availquantity;
+	private Double igst;
 	
 	
-	
+	public Double getIgst() {
+		return igst;
+	}
+	public void setIgst(Double igst) {
+		this.igst = igst;
+	}
 	public Long getPkGoodRecId() {
 		return PkGoodRecId;
 	}
