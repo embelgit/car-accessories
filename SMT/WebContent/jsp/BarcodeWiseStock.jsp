@@ -64,14 +64,14 @@
 
 			<div class="row">
 				<div class="row form-group" style="margin-top: 20px">
-						<label class="col-md-3 control-label" for="">
+						<label class="col-md-3 col-md-offset-2 control-label" for="">
 							Barcode No:<sup>*</sup>
 						</label>
 						<%
 					    GoodReceiveHelper helper = new GoodReceiveHelper();
 						List mainCategoryList = helper.getBarcode();
 					%>
-						<div class="col-md-3">
+						<div class="col-md-3 ">
 							<div class="input-group">
 								<span class="input-group-addon"> <i
 									class="glyphicon glyphicon-user"></i>
@@ -91,9 +91,10 @@
 					</datalist>
 							</div>
 						</div>
-			
-			
-						<div class="col-md-3">
+					</div>
+				</div>
+				<div class="row form-group">
+						<div class="col-md-12 col-md-offset-5">
 							<div class="input-group">
 								<input type="button" id="btn" name="save"
 									class="btn btn-lg btn-success btn-md button_hw button_margin_right"
@@ -101,7 +102,7 @@
 							</div>
 						</div>
 					</div>
-			</div>
+			
 		
 		
 			

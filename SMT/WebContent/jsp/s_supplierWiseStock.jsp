@@ -118,8 +118,9 @@
 							</span> <input type="Date" id="eDate" class="form-control">
 						</div>
 					</div>
-					
-					<div class="col-sm-2" align="center">
+					</div>
+					<div class="row">
+					<div class="col-sm-12" align="center">
 						<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btn" value="Search" onclick="valSupplierWiseStockBetweenTwoDate();" />
 					</div>
 					

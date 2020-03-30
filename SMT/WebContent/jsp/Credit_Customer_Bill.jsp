@@ -271,7 +271,7 @@ function grasstotal(){
 				
 				<div class="row" style="margin-top:20px;">
 					<div align="center" class="margin-top-50">
-						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right"  id="btnSubmit" onclick=" return regcreditcustomerbill();" >Print</button>
+						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right"  id="btnSubmit" onclick=" return regcreditcustomerbill();" >Save</button>
 						<button type='button' class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
 					</div>
 				</div> 

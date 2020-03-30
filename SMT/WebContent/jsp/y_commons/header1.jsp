@@ -268,7 +268,7 @@ nav {
 .menu li a {
   font-weight: 600;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 10px 15px;
   display: block;
   color: #fff;
   transition: all 0.2s ease-in-out 0s;
@@ -653,6 +653,7 @@ nav {
 		</script>
 	
 	</li>
+
 	<!--  <li><a  href="#"><i class="fa fa-file-zip-o"></i> Motoride</a>
 	 </li> -->
     
@@ -661,8 +662,9 @@ nav {
     
                   }
     %>
+     <img class="img-responsive2 logo-img" src="/SMT/staticContent/images/final-logo3(1).png" alt="logo" style="height:50px; width:90px">
   </ul>
-  
+ 
 </nav>
 
 
