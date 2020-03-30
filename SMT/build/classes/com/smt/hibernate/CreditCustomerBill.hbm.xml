@@ -1,0 +1,132 @@
+<?xml version="1.0"?> 
+ <!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" > 
+    <hibernate-mapping>
+    <class name="com.smt.hibernate.CreditCustomerBill"
+    table="creditcustomerbill"
+    >
+    
+    <id name="pkCreditBillId" type="java.lang.Long" column="pkCrediBillId">
+			<generator class="increment" />
+		</id>
+ 
+		
+		<property
+		name="itemName" 
+		type="java.lang.String" 
+		column="ItemName"
+		 />
+		 
+		 <property
+		name="fkRootCustId" 
+		type="java.lang.Long" 
+		column="fkCrediCustId"
+		 />
+		
+		<property
+		name="categoryName" 
+		type="java.lang.String" 
+		column="CategoryName"
+		 />
+		
+		 <property
+		name="quantity" 
+		type="java.lang.Long" 
+		column="Quantity"
+		 />
+		
+		 <property
+		name="paymentDone" 
+		type="java.lang.String" 
+		column="PaymentDone"
+		 />
+		
+		 <property
+		name="salePrice" 
+		type="java.lang.Double" 
+		column="SalePrice"
+		 />
+		
+		 <property
+		name="discount" 
+		type="java.lang.Double" 
+		column="Discount"
+		/>
+		
+		 <property
+		name="totalAmt" 
+		type="java.lang.Double" 
+		column="TotalAmount"
+		/>
+		
+		 <property
+		name="vat" 
+		type="java.lang.Double" 
+		column="Gst"
+		 />
+		 
+		  <property
+		name="igst" 
+		type="java.lang.Double" 
+		column="Igst"
+		 />
+		 
+		  <property
+		name="taxAmount" 
+		type="java.lang.Double" 
+		column="TaxAmount"
+		 />
+		 <property
+		name="hsnSacNo" 
+		type="java.lang.String" 
+		column="HsnSacNo"
+	     />
+		
+		<property
+		name="totalperItem" 
+		type="java.lang.Double" 
+		column="totalperitem"
+		 />
+		
+		 <property
+		name="grossamt" 
+		type="java.lang.Double" 
+		column="GrossTotal"
+		/>
+		
+		<property
+		name="billNo" 
+		type="java.lang.Long" 
+		column="BillNo"
+		/>
+	
+		 
+		  <property
+		name="barcodeNo" 
+		type="java.lang.Long" 
+		column="BarcodeNo"
+		 />
+		 
+		
+		 <property
+		name="current_date" 
+		type="java.sql.Date" 
+		column="Date"
+		 />
+		
+		 <property
+		name="discountGrid" 
+		type="java.lang.Double" 
+		column="discountGrid"
+		/>
+		
+		 <property
+		name="discountAmt" 
+		type="java.lang.Double" 
+		column="discountAmt"
+		/>
+		
+		
+    </class>
+   </hibernate-mapping> 
