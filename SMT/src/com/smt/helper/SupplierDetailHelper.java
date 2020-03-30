@@ -325,6 +325,7 @@ public class SupplierDetailHelper {
 			bean.setAvailquantity(Long.parseLong(o[10].toString()));
 			/*bean.setTotalAmt(Double.parseDouble(o[0].toString()));*/
 			System.out.println("***************"+o[0]);
+			bean.setIgst(Double.parseDouble(o[11].toString()));
 			map.put(bean.getPkGoodRecId(),bean);
 		}
 		return map;

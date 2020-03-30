@@ -391,7 +391,7 @@ public List getTotalItemByBillNo(String billNo, String supplierId) {
 		 session = hbu.getHibernateSession();
 		 System.out.println("BillNo :: "+billNo);
 		 System.out.println("supplierId :: "+supplierId);
-		Query query = session.createSQLQuery("select s.PkGoodRecId,s.CategoryName, s.ItemName, s.OrignalQuantity, s.BuyPrice, s.Vat, s.Total, s.ContactPerson, s.BarcodeNo, s.Date, s.Quantity  from goodreceive s where s.BillNo=:billNo And s.FksuppId=:supplierId");
+		Query query = session.createSQLQuery("select s.PkGoodRecId,s.CategoryName, s.ItemName, s.OrignalQuantity, s.BuyPrice, s.Vat, s.Total, s.ContactPerson, s.BarcodeNo, s.Date, s.Quantity, s.igst  from goodreceive s where s.BillNo=:billNo And s.FksuppId=:supplierId");
 		query.setParameter("billNo",billNo);
 		query.setParameter("supplierId",supplierId);
 		list = query.list();

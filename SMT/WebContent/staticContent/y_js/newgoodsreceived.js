@@ -276,7 +276,7 @@ function getProductList()
 				$("#jqGrid").jqGrid({
 					datatype:"local",
 					editurl: 'clientArray',
-					colNames: ["ItemName","Category Name","HSN/SAC","Quantity","BuyPrice","SalePrice","GST %","IGST %","TAX AMT","Discount %","Total","--S--"],
+					colNames: ["ItemName","Category Name","HSN/SAC","Quantity","BuyPrice","SalePrice","GST %","IGST %","TAX AMT","Discount %","DisAmt","Total","--S--"],
 
 					colModel: [
 					           { 	
@@ -341,6 +341,13 @@ function getProductList()
 					        	   name: "discount",
 					        	   width: 150,
 					        	   editable: true,
+					        	 
+					           },
+					           
+					           {
+					        	   name: "discountAmt",
+					        	   width: 150,
+					        	   //editable: true,
 					        	 
 					           },
 
@@ -413,7 +420,7 @@ function getProductList()
 				                    	$("#jqGrid").jqGrid("setCell", rowId, "igst", abc);
 				                    	return false;
 			                    	}
-			                    	 
+			                    	$("#jqGrid").jqGrid("setCell", rowId, "discountAmt", discount1);
 			                    	$("#jqGrid").jqGrid("setCell", rowId, "gstamt", vatAmt);
 			                    	$("#jqGrid").jqGrid("setCell", rowId, "Total", totAmt);
 			                    	var Total = 0;

@@ -152,7 +152,7 @@
 			
 			<div class="row buttons_margin_top">
 			<div align="center">
-            	<input type="button" value="Save" onclick="updateCustomerDetails()" class="btn btn-lg btn-success btn-md button_hw button_margin_right" />  
+            	<input type="button" id="update" name="btn" value="Save" onclick="updateCustomerDetails()" class="btn btn-lg btn-success btn-md button_hw button_margin_right" />  
 				<!-- <button id="update" name="btn" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="updateCustomerDetails()"><h4>Update </h4></button> -->
               	<input type="button" value="cancel" onclick="reset()" class="btn btn-lg btn-danger btn-md button_hw button_margin_right" />  
               	<!-- <button class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width" type="reset"  onclick="reset()"><h4>Cancel </h4> </button> -->

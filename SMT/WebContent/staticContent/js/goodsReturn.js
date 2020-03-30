@@ -415,8 +415,8 @@ function getitems() {
 								datatype : "local",
 
 								colNames : [ "itemID","CategoryName", "Item Name",
-										 "Quantity", "Avail Quant", "BuyPrice",
-										"Vat", "Total","ContactPerson",
+										 "Avail Quant", "Return Quant", "BuyPrice",
+										"GST", "IGST","Total","ContactPerson",
 										"BarcodeNo", "Date" ],
 
 								colModel : [ {
@@ -459,7 +459,11 @@ function getitems() {
 									width : 70,
 									
 								},
+								{
+									name : 'igst',
+									width : 70,
 									
+								},	
 							
 								{
 									name : "total",
