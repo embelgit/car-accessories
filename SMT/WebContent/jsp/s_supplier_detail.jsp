@@ -99,7 +99,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
-							</span> <input type="text" id="pin" name="pin" class="form-control" placeholder="Pin Code" />
+							</span> <input type="pin" id="pin" maxlength="6" name="pin" class="form-control" placeholder="Pin Code" />
 						</div>
 					</div>
 
@@ -150,7 +150,7 @@
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-phone"></i>
 							</span> 
-							<input type="text" id="mobileno" name="mobileno" class="form-control" placeholder="Mobile No" />
+							<input type="mobileno" id="mobileno" maxlength="10" name="mobileno" class="form-control" placeholder="Mobile No" />
 						</div>
 					</div>
 					

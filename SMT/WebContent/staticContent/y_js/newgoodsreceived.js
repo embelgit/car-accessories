@@ -514,8 +514,90 @@ function getProductList()
 						 {
 							closeAfterdel:true,
 							recreateForm: true,
-							afterSubmit: function() {
+							afterComplete: function() {
 		                		$('#list4').trigger( 'reloadGrid' );
+		                		
+		                		
+		                		var rowId =$("#jqGrid").jqGrid('getGridParam','selrow');  
+				        	   	var rowData = jQuery("#jqGrid").getRowData(rowId);
+		                    	var quantity = rowData['quantity'];
+		                    	var buyPrice = rowData['buyPrice'];
+		                    	var discount = rowData['discount'];
+		                    	var gst = rowData['vat'];
+		                    	var igst = rowData['igst'];
+		                    	var vatAmt = 0;
+		                    	var discount1 = 0;
+		                    	var tota = 0;
+		                    	var totAmt = 0;
+		                    	var ctot = 0;
+		                    	tota = quantity * buyPrice;
+		                    	totAmt = quantity * buyPrice;
+		                    	if(discount != "0"){
+		                    		discount1 = ((tota*discount)/100);
+		                    		tota = +tota - +discount1;
+		                    		totAmt = +tota;
+		                    	}
+		                    	
+		                    	if(gst != "0" && igst ==0){
+		                    		vatAmt =  ((tota*(gst))/100);
+		                    		totAmt = +tota + +vatAmt;
+		                    	}
+		                    	if(igst != "0" && gst == 0){
+		                    		vatAmt =  ((tota*igst)/100);
+		                    		totAmt = +tota + +vatAmt;
+		                    	}
+		                    	if(gst !=0 && igst !=0){
+		                    		//alert("please enter either gst or igst");
+		                    		var abc = 0;
+			                    	$("#jqGrid").jqGrid("setCell", rowId, "vat", abc);
+			                    	$("#jqGrid").jqGrid("setCell", rowId, "igst", abc);
+			                    	return false;
+		                    	}
+		                    	$("#jqGrid").jqGrid("setCell", rowId, "discountAmt", discount1);
+		                    	$("#jqGrid").jqGrid("setCell", rowId, "gstamt", vatAmt);
+		                    	$("#jqGrid").jqGrid("setCell", rowId, "Total", totAmt);
+		                    	var Total = 0;
+		                    	var count = jQuery("#jqGrid").jqGrid('getGridParam', 'records');
+		        				var allRowsInGrid1 = $('#jqGrid').getGridParam('data');
+		        				var AllRows=JSON.stringify(allRowsInGrid1);
+		                            for (var k = 0; k < count; k++) {
+		                    	var Total1 = allRowsInGrid1[k].Total;
+		                    	if(Total1 != undefined){
+		                    		Total = +Total + +Total1;
+		                    	} 
+		                        }
+		                            document.getElementById("resolution").value = Math.round(Total);
+		                            document.getElementById("resolution1").value = Math.round(Total);
+		                            var totAmount = Math.round(Total);
+		                            
+		                            var extraDiscount = document.getElementById("extraDiscount").value;
+		                            if(extraDiscount != "0"){
+		    	             	    	document.getElementById("resolution").value = totAmount;
+		    	             	    }
+		    	             	    else{
+		    	             	    	var disAmount =  (extraDiscount/100)*totAmount;
+		    	            			var gross = +totAmount - +disAmount;
+		    	            			document.getElementById("resolution").value = Math.round(gross);
+		    	             	    }
+		                            
+		    	             	    var expence = document.getElementById("expence").value;
+		    	             	    if(expence != "0"){
+		    	             	    	document.getElementById("resolution").value = totAmount;
+		    	             	    }
+		    	             	    else{
+		    	             	    	document.getElementById("resolution").value = (+totAmount + +expence);
+		    	             	    }
+		                		
+		                		
+		                		
+		                		
+		                		
+		                		
+		                		
+		                		
+		                		
+		                		
+		                		
 							},
 							errorTextFormat: function (data) {
 								return 'Error: ' + data.responseText

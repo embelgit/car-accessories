@@ -104,6 +104,9 @@ public class ProductDetailHelper {
 		bean.setItemName(itemName);
 		bean.setCatName(categoryName);
 		bean.setHsnsacno(hsnsacno);
+		bean.setQuantity(0);
+		bean.setBuyPrice(0d);
+		bean.setSalePrice(0d);
 		
 		return bean;
 	}

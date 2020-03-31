@@ -10,9 +10,23 @@ public class GoodReceiveItemBean {
 	private double sgst;
 	private double salePrice;
 	private double discount;
+	private long quantity;
+	private double buyPrice;
 	
 	
 	
+	public double getBuyPrice() {
+		return buyPrice;
+	}
+	public void setBuyPrice(double buyPrice) {
+		this.buyPrice = buyPrice;
+	}
+	public long getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(long quantity) {
+		this.quantity = quantity;
+	}
 	public double getDiscount() {
 		return discount;
 	}
