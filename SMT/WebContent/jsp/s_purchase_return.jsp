@@ -126,7 +126,7 @@
 
 	<div class="row buttons_margin_top">
 		<div align="center">
-			<input type="button" value="Submit"  id="btn" onclick="purchasereturn()" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/> 
+			<input type="button" value="Save"  id="btn" onclick="purchasereturn()" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/> 
 			
 		</div>
 	</div>

@@ -8,7 +8,16 @@
 
 			<script src="/SMT/staticContent/y_js/jquery-1.12.3.min.js"></script>
 			<script src="/SMT/staticContent/y_js/supplier.js"></script>
-
+<script type="text/javascript">
+          		 function editSupplier()
+          		 {
+          		 window.location = "s_SupplierEdit.jsp";
+          		 }
+          		 function listSupplier()
+          		 {
+          		window.location="s_supplier_list.jsp";
+          		 }
+  </script>
 <body class="master_form_img">
 	<div class="container-fluid">  
 	
@@ -173,8 +182,8 @@
 			<div align="center">
     			<input type="button" value="save"  id="btn" onclick="validateSupplierDetails()" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/> 
 				<input type="reset" value="Cancel" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
-				<input type="button" value="Edit" onclick="window.location.href='http://localhost:8080/SMT/jsp/s_SupplierEdit.jsp'" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" />
-				<input type="button" value="List" onclick="window.location.href='http://localhost:8080/SMT/jsp/s_supplier_list.jsp'" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" />  
+				<input type="button" value="Edit" onclick="editSupplier()" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" />
+				<input type="button" value="List" onclick="listSupplier()" class="btn btn-lg btn-primary btn-md button_hw button_margin_right" />  
 			</div>
 		</div>	
 				

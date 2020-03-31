@@ -407,7 +407,7 @@ function grasstotal11(){
 			           	<div class="row" style="margin-top: 15px;">
 				
 					<div class="col-md-8">
-						<div class="row" style="margin-top: 15px;">
+						<!-- <div class="row" style="margin-top: 15px;"> -->
 							<div class="table-responsive">
 								<table id="list5"></table>
 								<div id="jqGridPager5"></div>
@@ -450,13 +450,13 @@ function grasstotal11(){
 				
 				<div class="row" style="margin-top:20px;">
 					<div align="center" class="margin-top-10">
-						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right" id="btnSubmit" autofocus onclick="resBill();" style="width:150px;">Print</button>
+						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right" id="btnSubmit" autofocus onclick="resBill();" >Save</button>
 						<button type='button' onclick="loadd()" class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
 					</div>
 				</div> 
 		
 		</div>
-	</div>
+	
 	
 	
 </form>

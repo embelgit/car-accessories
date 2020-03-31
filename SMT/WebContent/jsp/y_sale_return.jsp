@@ -138,7 +138,7 @@
 
 	<div class="row buttons_margin_top">
 		<div align="center">
-			<input type="button" value="Submit"  id="btn" onclick="saleReturn()" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/> 
+			<input type="button" value="Save"  id="btn" onclick="saleReturn()" class="btn btn-lg btn-success btn-md button_hw button_margin_right"/> 
 			<!-- <input type="reset" value="Reset"   class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/> -->
 		</div>
 	</div>

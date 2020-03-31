@@ -95,7 +95,7 @@
 			</div>
 			
 			   <div align="center" class="margin-top-50" style="margin-top: 25px;">
-			   		<button type="button" class="btn btn-lg btn-success unicButton btn-md button_hw button_margin_right" style="text-align: center;" name="createbtn" id="createbtn" onclick="validateCarEntry()">Submit</button>
+			   		<button type="button" class="btn btn-lg btn-success unicButton btn-md button_hw button_margin_right" style="text-align: center;" name="createbtn" id="createbtn" onclick="validateCarEntry()">Save</button>
 			   		 <button type="reset"  class="btn btn-lg btn-danger unicButton btn-md button_hw button_margin_right" style="text-align: center;">Reset</button>
 			   		 <!-- <input type="button" onclick="editProduct()" id="createbtn" value="Edit Product" class="btn btn-lg btn-primary btn-md button_hw button_margin_right"/> -->
 			   		 

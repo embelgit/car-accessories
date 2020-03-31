@@ -1,0 +1,168 @@
+<?xml version="1.0"?> 
+ <!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" > 
+    <hibernate-mapping>
+    <class name="com.smt.hibernate.GoodReceive"
+    table="goodreceive"
+    >
+    
+    <id name="PkGoodRecId" type="java.lang.Long" column="PkGoodRecId">
+			<generator class="increment" />
+		</id>
+     
+     
+     <property
+        name="txId"
+        type="java.lang.Long"
+        column="transaction_id"
+        length="50"
+        />
+     
+     
+    <property
+		name="supplierName" 
+		type="java.lang.Long" 
+		column="FksuppId"
+		/>
+		
+	<property
+		name="itemName" 
+		type="java.lang.String" 
+		column="ItemName"
+		length="255" />	
+		
+		<property
+		name="hsnsacno" 
+		type="java.lang.String" 
+		column="HsnSacNo"
+		 />	
+		
+	<property
+		name="catName" 
+		type="java.lang.String" 
+		column="CategoryName"
+		length="255" />
+		
+		 <property
+		name="quantity" 
+		type="java.lang.Long" 
+		column="Quantity"
+		 />	
+		 <property name="oringnalQuantity" 
+		 type="java.lang.Long"
+		  column="OrignalQuantity" 
+		  /> 
+		 
+		<property
+		name="buyPrice" 
+		type="java.lang.Double" 
+		column="BuyPrice"
+		length="255" />
+		
+		
+		<property
+		name="discount" 
+		type="java.lang.Double" 
+		column="discount"
+		length="255" />
+		
+		
+		 <property
+		name="total" 
+		type="java.lang.Double" 
+		column="Total"
+		length="255" />
+		
+		 <property
+		name="txPerexpence" 
+		type="java.lang.Double" 
+		column="ExpenseTax"
+		 />
+		 
+		  <property
+		name="finalExpenses" 
+		type="java.lang.Double" 
+		column="FinalExpense"
+		 />
+		
+		
+		 <property
+		name="billNo" 
+		type="java.lang.String" 
+		column="BillNo"
+		 />	
+		 
+		<property
+		name="paymentDone" 
+		type="java.lang.String" 
+		column="PaymentDone"
+		 />	
+		
+		
+		<property
+		name="contactPerson" 
+		type="java.lang.String" 
+		column="ContactPerson"
+		length="255" />	
+		
+		<property
+		name="vat" 
+		type="java.lang.Double" 
+		column="Vat"
+		length="255" />	
+		
+		<property
+		name="igst" 
+		type="java.lang.Double" 
+		column="igst"
+		length="255" />	
+		
+		<property
+		name="taxAmount" 
+		type="java.lang.Double" 
+		column="TaxAmount"
+		length="255" />	
+		
+		 <property
+		name="date" 
+		type="java.sql.Date" 
+		column="Date"
+		length="255" />
+		
+		 <property
+		name="expence" 
+		type="java.lang.Double" 
+		column="Expences"
+		length="255" />
+		
+		<property
+		name="extraDiscount" 
+		type="java.lang.Double" 
+		column="ExtraDiscount"
+		/>
+		
+		
+		 <property
+		name="grossTotal" 
+		type="java.lang.Double" 
+		column="GrossTotal"
+		length="255" />
+		
+		 <property
+		name="barcodeNo" 
+		type="java.lang.Long" 
+		column="BarcodeNo"
+		 />	
+		 
+		 
+		 <property
+		name="salePrice" 
+		type="java.lang.Double" 
+		column="salePrice"
+		length="255" />
+		
+		
+		 
+ </class>
+   </hibernate-mapping> 		 
