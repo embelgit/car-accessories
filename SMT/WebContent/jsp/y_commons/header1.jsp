@@ -662,7 +662,7 @@ nav {
     
                   }
     %>
-    <!--  <img class="img-responsive2 logo-img" src="/SMT/staticContent/images/embellogo.png" alt="logo" style="height:50px; width:90px"> -->
+     <img class="img-responsive2 logo-img" src="/SMT/staticContent/images/embellogo.png" alt="logo" style="height:50px; width:90px">
   </ul>
  
 </nav>
