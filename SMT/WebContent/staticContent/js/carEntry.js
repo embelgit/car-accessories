@@ -48,7 +48,7 @@ function validateCarEntry(){
 	}
  	else
  	{
- 		alert("Please Enter car number !");
+ 		alert("Please Enter vehicle number !");
 	}
 	
 }

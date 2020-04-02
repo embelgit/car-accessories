@@ -30,17 +30,17 @@
 			<form class="form-horizontal" action="" method="post">
 				<div class="row margin-top-50">
 					<div class="col-md-offset-2 col-sm-2">
-						<label class="control-label">Vehicle Number :</label>
+						<label class="control-label">Vehicle Number :<sup>*</sup></label>
 					</div>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="carNo" name="carNo" placeholder="Vehicle Number" autofocus />
 					</div>
 					
 					<div class="col-sm-2">
-						<label class="control-label">Contact No : </label>
+						<label class="control-label">Contact No :<sup>*</sup> </label>
 					</div>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="Contact Number" />
+						<input type="contactNo" class="form-control" id="contactNo" name="contactNo" maxlength="10" placeholder="Contact Number" />
 					</div>
 					
 				</div>
@@ -49,7 +49,7 @@
 				
 				<div class="row margin-top-13" style="margin-top: 35px;">
 					<div class="col-md-offset-2 col-sm-2">
-						<label class="control-label">Owner Name : </label>
+						<label class="control-label">Owner Name :<sup>*</sup> </label>
 					</div>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="ownerName" name="ownerName" placeholder="Owner Name here" autofocus />
@@ -74,7 +74,7 @@
 			
 			<div class="row margin-top-13" style="margin-top: 35px;">
 					<div class="col-md-offset-2 col-sm-2">
-						<label class="control-label">vehicle color : </label>
+						<label class="control-label">Vehicle color : </label>
 					</div>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="vehiclecolor" name="vehiclecolor" placeholder="vehicle color" autofocus />
@@ -82,7 +82,7 @@
 					
 						
 					<div class="col-sm-2">
-						<label class="control-label">vehicle Name :  </label>
+						<label class="control-label">Vehicle Name :  </label>
 					</div>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="vehiclename" name="vehiclename" placeholder="vehicle name" />

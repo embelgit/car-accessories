@@ -513,9 +513,11 @@ function getProductList()
 						
 						 {
 							closeAfterdel:true,
+							checkOnUpdate : true,
+							checkOnSubmit : true,
 							recreateForm: true,
-							afterComplete: function() {
-		                		$('#list4').trigger( 'reloadGrid' );
+							afterSubmit: function() {
+		                		//$('#jqGrid').trigger( 'reloadGrid' );
 		                		
 		                		
 		                		var rowId =$("#jqGrid").jqGrid('getGridParam','selrow');  

@@ -35,9 +35,32 @@ public class CarEntryHelper {
 		car.setCarNo(carNo);
 		car.setContactNo(Long.parseLong(contactNo));
 		car.setOwnerName(ownerName);
-		car.setKmReader(Double.parseDouble(KmReader));
-		car.setVehiclecolor(vehiclecolor);
-		car.setVehiclename(vehiclename);
+		if(!"".equals(KmReader)){
+			car.setKmReader(Double.parseDouble(KmReader));
+		}
+		else
+		{
+			car.setKmReader(0d);
+		}
+		
+		//car.setKmReader(Double.parseDouble(KmReader));
+		if(!"".equals(vehiclecolor)){
+			car.setVehiclecolor(vehiclecolor);
+		}
+		else
+		{
+			car.setVehiclecolor("NA");
+		}
+		
+     //car.setVehiclecolor(vehiclecolor);
+		if(!"".equals(vehiclename)){
+			car.setVehiclename(vehiclename);
+		}
+		else
+		{
+			car.setVehiclename("NA");
+		}
+		//car.setVehiclename(vehiclename);
 		car.setActiveYN('Y');
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
