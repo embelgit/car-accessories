@@ -516,7 +516,7 @@ function getProductList()
 							checkOnUpdate : true,
 							checkOnSubmit : true,
 							recreateForm: true,
-							afterSubmit: function() {
+							afterComplete: function() {
 		                		//$('#jqGrid').trigger( 'reloadGrid' );
 		                		
 		                		
