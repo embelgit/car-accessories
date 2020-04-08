@@ -517,7 +517,7 @@ nav {
         
         <li><a href="<%=path%>barcodeCopy.jsp">Barcode Copy</a></li>
          <li><a href="<%=path%>service.jsp">Service Entry</a></li>
-			
+		 <li><a href="<%=path%>BarrelEntry.jsp">Barrel Entry</a></li>	
         
       </ul>
     </li>

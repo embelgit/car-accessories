@@ -322,18 +322,136 @@ function getitemData1(){
 		                },
 		                
 		                {
-		                	afterSubmit: function() {
-		                		$('#list4').trigger( 'reloadGrid' );
-							},
 		                	closeAfterdel:true,
 		                	checkOnUpdate : true,
 							checkOnSubmit : true,
 							recreateForm: true,
-							reloadAftersubmit:true,	
-		                    errorTextFormat: function (data) {
-		                        return 'Error: ' + data.responseText
-		                    }
-		                		
+		                	afterComplete: function () {
+		                		var rowId =$("#list4").jqGrid('getGridParam','selrow');  
+		    	                var rowData = jQuery("#list4").getRowData(rowId);
+		    	             	var quantity = rowData['quantity'];
+		    	             	var salePrice = rowData['salePrice'];
+		    	             	var discount = rowData['discountGrid'];
+		    	             	var discountAmt = rowData['discountAmt'];
+		    	             	var gst = rowData['vat'];
+		                    	var igst = rowData['igst'];
+		                    	var tota = 0;
+		                    	var vatAmt = 0;
+		                    	var totAmt = 0;
+		                    	
+		                    	
+		                    	/*if(gst != "")
+		    					{
+		    						var IDecs = /^[0-9]+$/;
+		    						if(gst.match(IDecs))
+		    						{
+		    							(gst > Number(0))
+		    							{
+		    							
+		    							}
+
+		    						}
+		    					else{
+		    						var abc ="0";
+		    						var pqr ="0"
+		    						alert(" Please Enter GST Number OR IGST Number ");
+		    						$("#list4").jqGrid("setCell",rowId, "igst", abc);
+
+		    						$("#list4").jqGrid("setCell",rowId, "gst", abc);
+		    						$("#list4").jqGrid("setCell",rowId, "taxAmount", pqr);
+		    						return false;
+		    						}
+		    					
+		    					}
+		                    	
+		                    	if(igst != "")
+		    					{
+		    						var IDecs1 = /^[0-9]+$/;
+		    						if(igst.match(IDecs1))
+		    						{
+		    							(igst > Number(0))
+		    							{
+		    							
+		    							}
+
+		    						}
+		    					else{
+		    						var abc ="0";
+		    						var pqr ="0"
+		    						alert(" Please Enter GST Number OR IGST Number ");
+		    						$("#list4").jqGrid("setCell",rowId, "igst", abc);
+
+		    						$("#list4").jqGrid("setCell",rowId, "gst", abc);
+		    						$("#list4").jqGrid("setCell",rowId, "taxAmount", pqr);
+		    						return false;
+		    						}
+		    					
+		    					}
+		                    	
+		                    	if(igst >0 && gst > 0 )
+		    					{
+		    					var abc ="0";
+		    					alert(" Please Enter GST Number OR IGST Number");
+		    					$("#list4").jqGrid("setCell",rowId, "igst", abc);
+
+		    					$("#list4").jqGrid("setCell",rowId, "gst", abc);
+		    					return false;
+		    					}*/
+		                    	tota = quantity * salePrice;
+		                    	totAmt = quantity * salePrice;
+		                    	
+		                    	var totalIncDisc= (tota*(discount/100));
+		                    	var finalTotal= totAmt-totalIncDisc;
+		                    	$("#list4").jqGrid("setCell", rowId, "discountAmt", totalIncDisc);
+		    	             
+		                    	/*if(gst != "0"){
+		                    		//vatAmt =  ((totalIncDisc*gst)/100);
+		                    		vatAmt = (gst / 100)*totalIncDisc;
+		                    		totAmt = +totalIncDisc + +vatAmt;
+		                    	}
+		                    	if(igst != "0"){
+		                    		vatAmt =  ((totalIncDisc*igst)/100);
+		                    		totAmt = +totalIncDisc + +vatAmt;
+		                    	}*/
+		                    	
+		                    	if(igst ==null || igst==0 || igst==""){
+		                    		
+		                        	
+		                        	var calculateVatTotal = (gst / 100)*finalTotal;
+		                        	var totalWithVatAmt = Number(finalTotal)+Number(calculateVatTotal)
+		                        	//var totalWithVatAmtTot= Math.round(totalWithVatAmt * 100.0) / 100.0;
+		                        	}
+		                        	else if(igst !=null || igst!=0|| igst!=""){
+		                        		
+		                        		var calculateVatTotal = (igst / 100)*finalTotal;
+		    	                    	var totalWithVatAmt = Number(finalTotal)+Number(calculateVatTotal)
+		    	                    	//var totalWithVatAmtTot= Math.round(totalWithVatAmt * 100.0) / 100.0;
+		                        	}
+		                    	
+		                    	$("#list4").jqGrid("setCell", rowId, "taxAmount", calculateVatTotal);
+		    	             	$("#list4").jqGrid("setCell", rowId, "total", totalWithVatAmt);
+		    	             	var Total = 0;
+		                    	var count = jQuery("#list4").jqGrid('getGridParam', 'records');
+		        				var allRowsInGrid1 = $('#list4').getGridParam('data');
+		        				var AllRows=JSON.stringify(allRowsInGrid1);
+		                        for (var k = 0; k < count; k++) {
+		                    	var Total1 = allRowsInGrid1[k].total;
+		    	             	
+		                    	if(Total1 != undefined){
+		                    		Total = +Total + +Total1;
+		                    	}
+		                        }
+		                            document.getElementById("totalAmount").value = Math.round(Total);
+		                            var totAmount = Math.round(Total);
+		    	             	    var dis = document.getElementById("discount").value;
+		    	             	    if(dis != "0"){
+		    	             	    	document.getElementById("grossTotal").value = totAmount;
+		    	             	    }
+		    	             	    else{
+		    	             	    	document.getElementById("grossTotal").value = (+totAmount - +dis);
+		    	             	    }
+		    	             	
+		    		        	},
 		                });
 			 
 			 
@@ -790,18 +908,140 @@ function getproductgrid(){
 	                },
 	                
 	                {
-	                	afterSubmit: function() {
-	                		$('#list4').trigger( 'reloadGrid' );
-						},
 	                	closeAfterdel:true,
 	                	checkOnUpdate : true,
 						checkOnSubmit : true,
 						recreateForm: true,
-						reloadAftersubmit:true,	
-	                    errorTextFormat: function (data) {
-	                        return 'Error: ' + data.responseText
-	                    }
+	                	afterComplete: function () {
 	                		
+	                		var rowId =$("#list4").jqGrid('getGridParam','selrow');  
+	                        var rowData = jQuery("#list4").getRowData(rowId);
+	                     	var quantity = rowData['quantity'];
+	                     	var salePrice = rowData['salePrice'];
+	                     	var discount = rowData['discountGrid'];
+	                     	var discountAmt = rowData['discountAmt'];
+	                     	var gst = rowData['vat'];
+	                    	var igst = rowData['igst'];
+	                    	var SalePriceExTax = rowData['SalePriceExTax'];
+	                    	var tota = 0;
+	                    	var vatAmt = 0;
+	                    	var totAmt = 0;
+	                    	
+	                    /*	
+	                    	if(gst != "")
+	        				{
+	        					var IDecs = /^[0-9]+$/;
+	        					if(gst.match(IDecs))
+	        					{
+	        						(gst > Number(0))
+	        						{
+	        						
+	        						}
+
+	        					}
+	        				else{
+	        					var abc ="0";
+	        					var pqr ="0"
+	        					alert(" Please Enter GST Number OR IGST Number ");
+	        					$("#list4").jqGrid("setCell",rowId, "igst", abc);
+
+	        					$("#list4").jqGrid("setCell",rowId, "gst", abc);
+	        					$("#list4").jqGrid("setCell",rowId, "taxAmount", pqr);
+	        					return false;
+	        					}
+	        				
+	        				}
+	                    	
+	                    	if(igst != "")
+	        				{
+	        					var IDecs1 = /^[0-9]+$/;
+	        					if(igst.match(IDecs1))
+	        					{
+	        						(igst > Number(0))
+	        						{
+	        						
+	        						}
+
+	        					}
+	        				else{
+	        					var abc ="0";
+	        					var pqr ="0"
+	        					alert(" Please Enter GST Number OR IGST Number ");
+	        					$("#list4").jqGrid("setCell",rowId, "igst", abc);
+
+	        					$("#list4").jqGrid("setCell",rowId, "gst", abc);
+	        					$("#list4").jqGrid("setCell",rowId, "taxAmount", pqr);
+	        					return false;
+	        					}
+	        				
+	        				}
+	                    	
+	                    	if(igst >0 && gst > 0 )
+	        				{
+	        				var abc ="0";
+	        				alert(" Please Enter GST Number OR IGST Number");
+	        				$("#list4").jqGrid("setCell",rowId, "igst", abc);
+
+	        				$("#list4").jqGrid("setCell",rowId, "gst", abc);
+	        				return false;
+	        				}*/
+	                    	
+	                    	tota = quantity * salePrice;
+	                    	totAmt = quantity * salePrice;
+	                    	
+	                    	var totalIncDisc= (tota*(discount/100));
+	                    	var finalTotal= totAmt-totalIncDisc;
+	                    	$("#list4").jqGrid("setCell", rowId, "discountAmt", totalIncDisc);
+	                     
+	                    	/*if(gst != "0"){
+	                    		//vatAmt =  ((totalIncDisc*gst)/100);
+	                    		vatAmt = (gst / 100)*totalIncDisc;
+	                    		totAmt = +totalIncDisc + +vatAmt;
+	                    	}
+	                    	if(igst != "0"){
+	                    		vatAmt =  ((totalIncDisc*igst)/100);
+	                    		totAmt = +totalIncDisc + +vatAmt;
+	                    	}*/
+	                    	
+	                    	if(igst ==null || igst==0 || igst==""){
+	                    		
+	                        	
+	                        	var calculateVatTotal = (gst / 100)*finalTotal;
+	                        	var totalWithVatAmt = Number(finalTotal)+Number(calculateVatTotal)
+	                        	//var totalWithVatAmtTot= Math.round(totalWithVatAmt * 100.0) / 100.0;
+	                        	}
+	                        	else if(igst !=null || igst!=0|| igst!=""){
+	                        		
+	                        		var calculateVatTotal = (igst / 100)*finalTotal;
+	                            	var totalWithVatAmt = Number(finalTotal)+Number(calculateVatTotal)
+	                            	//var totalWithVatAmtTot= Math.round(totalWithVatAmt * 100.0) / 100.0;
+	                        	}
+	                    	
+	                    	$("#list4").jqGrid("setCell", rowId, "taxAmount", calculateVatTotal);
+	                     	$("#list4").jqGrid("setCell", rowId, "total", totalWithVatAmt);
+	                     	var Total = 0;
+	                    	var count = jQuery("#list4").jqGrid('getGridParam', 'records');
+	        				var allRowsInGrid1 = $('#list4').getGridParam('data');
+	        				var AllRows=JSON.stringify(allRowsInGrid1);
+	                        for (var k = 0; k < count; k++) {
+	                    	var Total1 = allRowsInGrid1[k].total;
+	                     	
+	                    	if(Total1 != undefined){
+	                    		Total = +Total + +Total1;
+	                    	}
+	                        }
+	                            document.getElementById("totalAmount").value = Math.round(Total);
+	                            var totAmount = Math.round(Total);
+	                     	    var dis = document.getElementById("discount").value;
+	                     	    if(dis != "0"){
+	                     	    	document.getElementById("grossTotal").value = totAmount;
+	                     	    }
+	                     	    else{
+	                     	    	document.getElementById("grossTotal").value = (+totAmount - +dis);
+	                     	    }
+	                     	
+		                    	
+							},
 	                });
 		 
 		 

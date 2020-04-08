@@ -178,15 +178,15 @@ function grasstotal(){
 				</div>		
 						<div class="row" style="margin-top:10px;"></div>
 						<div class="row form-group" style="margin-top:10px;">
-						    <div class="col-md-5" id="calculator" style="margin-left: 20px;">
-								<!-- Screen and clear key -->
+						   <!--  <div class="col-md-5" id="calculator" style="margin-left: 20px;">
+								Screen and clear key
 								<div class="top">
 									<span class="clear">C</span>
 									<div class="screen"></div>
 								</div>
 								
 								<div class="keys">
-									<!-- operators and other keys -->
+									operators and other keys
 									<span>7</span>
 									<span>8</span>
 									<span>9</span>
@@ -204,7 +204,7 @@ function grasstotal(){
 									<span class="eval">=</span>
 									<span class="operator">x</span>
 								</div>
-							</div>
+							</div> -->
 
 						<!-- PrefixFree -->
 						<script src="/SMT/staticContent/js/PrefixFree 1.0.7.js" type="text/javascript" type="text/javascript"></script>

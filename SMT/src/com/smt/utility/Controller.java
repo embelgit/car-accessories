@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.smt.bean.CustomerBean;
 import com.smt.bean.GoodReceiveItemBean;
 import com.smt.bean.ServiceBean;
+import com.smt.helper.BarrelEntryHelper;
 import com.smt.helper.CarEntryHelper;
 import com.smt.helper.CashBookHelper;
 import com.smt.helper.CategoryHelper;
@@ -1490,6 +1491,11 @@ public class Controller {
 							return data;
 						}
 						
-						
+						// to add product Name
+						public String doBarrelDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+							BarrelEntryHelper helper = new BarrelEntryHelper();
+							helper.doProductRegister(request, response);
+							return toJson("Data Added Successfully");
+						}
 }
 
