@@ -225,11 +225,11 @@ top: 2%;
    			 <label>
        		    <input type="radio" checked name="customertype" id="customertype" checked="checked"
 					   onclick="openCashCustomerBilling()" > 
-                <div class="btn1 btn-mm text-center"><span>Cash</span></div> </label>
+                <div class="btn1 btn-mm text-center"><span>Regular</span></div> </label>
                 
                  <label><input type="radio" name="customertype" id="customertype"
 					   onclick="openCreditCustomerBilling()"> 
-                <div class="btn1 btn-mm text-center"><span>Credit</span></div></label>
+                <div class="btn1 btn-mm text-center"><span>oil</span></div></label>
             
         		
        </div>		
@@ -495,6 +495,277 @@ top: 2%;
 		</div>	
 				
 </form>
+	   
+	   
+	  <!-------------------  barrel oil purchase  ------------------------------------->
+	  
+	  <form action="goods" method="post" name="good" class="form-horizontal" style="margin-top:1%" >
+
+			<div class="row">
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-1" align="center">
+						<label class="control-label">Bill No:<sup style="color: red;">*</sup></label>
+					</div>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+							</span> <input type="text" id="billNo" id="jander" name="billNo"
+								autofocus="autofocus" class="form-control" placeholder="Bill No" />
+						</div>
+					</div>
+
+					<div class="col-sm-2" align="center">
+						<label class="control-label">Supplier Name:<sup style="color: red;">*</sup> </label>
+					</div>
+					<div class="col-sm-3">
+						<%
+							SupplierDetailHelper poHelp = new SupplierDetailHelper();
+							List supplierL = poHelp.getAllSuppliers();
+						%>
+
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-user"></i>
+							</span> 
+							
+							<input list="supplierId_drop" id="supplierId" class="form-control"  >
+						<datalist id="supplierId_drop">
+						<%
+							for(int i =0 ;i<supplierList.size();i++)
+								{
+								SupplierDetail supplier = (SupplierDetail)supplierL.get(i);
+						%>
+							<option data-value="<%=supplier.getSupplierId()%>" value="<%=supplier.getSupplierName()%>"> 
+						<%   	
+								}	
+						%>
+						</datalist>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-1" align="center">
+						<label class="control-label">Contact Person:<sup style="color: red;">*</sup></label>
+					</div>
+					<div class="col-sm-3">
+					
+					<%
+							SupplierDetailHelper poHelper2 = new SupplierDetailHelper();
+							List supplierList2 = poHelper2.getAllSuppliers();
+						%>
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-phone"></i>
+							</span> 
+							
+							<!-- <input type="text" id='contactPerson' name="contactPerson"
+								 class="form-control" placeholder="Contact Person" /> -->
+								 	<input list="contactId_drop" id="contactPerson" class="form-control"  placeholder="Contact Person">
+								 
+								 
+								 <datalist id="contactId_drop">
+						<%
+							for(int i =0 ;i<supplierList2.size();i++)
+								{
+								SupplierDetail supplier1 = (SupplierDetail)supplierList2.get(i);
+						%>
+							<option data-value="<%=supplier1.getSupplierId()%>" value="<%=supplier1.getContactPerson()%>"> 
+						<%   	
+								}	
+						%>
+						</datalist>
+						</div>
+					</div>
+
+
+
+					<div class="col-sm-2" align="center">
+						<label class="control-label">Purchase Date:<sup style="color: red;">*</sup></label>
+					</div>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-calendar"></i>
+							</span> <input type="date" id='pDate' name="pDate" class="form-control"
+								id="jander" placeholder="Purchase Date" />
+						</div>
+					</div>
+
+                   <!--  <div class="col-sm-2" align="center">
+						<label class="control-label">Vat:</label>
+					</div>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-phone"></i>
+							</span> <input type="text" id='vat' name="vat"
+								 class="form-control" placeholder="Vat" />
+						</div>
+					</div>
+					 -->
+				</div>
+			</div>
+
+			
+			<div class="row">
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-1" align="center">
+						<label class="control-label">Item List:<sup style="color: red;">*</sup></label>
+					</div>
+					<div class="col-sm-5">
+					
+					    <%
+					    ProductDetailHelper item1 = new ProductDetailHelper();
+						List itemList1 = item1.getAllItemName();
+						%>
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+								</span>
+								<input list="itemId_drop" id="itemName" class="form-control" onchange="getProductList()" >
+						        <datalist id="itemId_drop">
+						       <%
+							      for(int j =0 ;j<itemList.size();j++)
+								{
+							    	  ProductNameBean itm = (ProductNameBean)itemList1.get(j);
+						       %>
+							      
+			             <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>"> 
+							    
+							    
+							    
+						      <%   	
+						      
+								}	
+						       %>
+						</datalist>
+							
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+
+			<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="table-responsive">
+							<table id="jqGrid"></table>
+			                <div id="jqGridPager"></div>
+						</div>
+					</div>
+				</div>
+				
+			<div class="row row_margin">
+				<div class="form-group">
+				     <div class="col-sm-1 col-sm-offset-1" align="center">
+						<label class="control-label">Discount:</label>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+							</span> <input type="text" id='extraDiscount' name="extraDiscount"
+								class="text-border form-control" placeholder="In %"
+								autofocus onkeyup="grasstotal1(); return false;"
+								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
+						</div>
+					</div>
+				
+				
+					<div class="col-sm-1" align="center">
+						<label class="control-label">Expenses:</label>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+							</span> <input type="text" id='expence' name="expence"
+								class="text-border form-control" placeholder="Expenses"
+								autofocus onchange="grasstotal(); return false;"
+								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
+						</div>
+					</div>
+
+					<div class="col-sm-2" align="right">
+						<label class="control-label">Tax % On Expenses:</label>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+							</span> <input type="text" id='txPerexpence' name="txPerexpence"
+								class="text-border form-control" placeholder="Tax % On Expenses"
+								autofocus onchange="grasstotalTax(); return false;"
+								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+			
+			<div class="row row_margin">
+				<div class="form-group">
+				     <div class="col-sm-1 col-sm-offset-1" align="center">
+						<label class="control-label">Final Expenses:</label>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+							</span> <input type="text" id='finalExpenses' name="finalExpenses" readonly="readonly"
+								class="text-border form-control" 
+								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
+						</div>
+					</div>
+				
+				
+					
+
+					<div class="col-sm-2" align="right">
+						<label class="control-label" style="font-size: 30px">Total:</label>
+					</div>
+					<div class="col-sm-6" >
+						<div class="input-group">
+							<input type="text" name="resolution" id="resolution" readonly="readonly"
+								class="form-group"
+								style="font-size: 30px; float: right; width: 200px; height: 50px; background-color: rgba(251, 243, 0, 0.27);" />
+								 <input type="hidden" id='resolution1' name="resolution1" class="form-control"  />
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row buttons_margin_top">
+			<div align="center">
+    			<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btnSubmit" id="btnSubmit" onclick="validateRegGoodReceive()" value="Save" /> 
+				<input type="reset" value="Cancel" onclick="reset()" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
+				<!-- <input type="button" onclick="window.location.href='http://localhost:8080/SMT/jsp/supplierAccountDetails.jsp'" 
+				value="Fill Supplier Payement" class="btn btn-lg btn-primary btn-md" />  -->
+			
+			</div>
+		</div>	
+				
+</form>
+	  
+	  <!-- -----------------end of oil barrel------------------ -->
+	   
+	   
+	   
+	   
+	   
+	   
 	   
 		<div class="row footer_margin_top" align="center">
 			<%@include file="y_commons/footer.jsp"%>
