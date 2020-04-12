@@ -84,6 +84,12 @@ public class ProductDetailHelper {
 		ProductDetailDao dow = new ProductDetailDao();
 		return dow.getAllItemName();
 	}
+	//to get all Item Name on oil goods receive form
+	public List getAllItemName1()
+	{
+		ProductDetailDao dow = new ProductDetailDao();
+		return dow.getAllItemNameOil();
+	}
     // to get itemName And Category Name on Product Detail Form
 	public List getAllItemNameAndCatName()
 	{

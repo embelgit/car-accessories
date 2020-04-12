@@ -37,7 +37,7 @@
         type="java.lang.String"
         column="ProductName"
         
-        length="128"
+        
     />
     
       <property
@@ -45,14 +45,14 @@
         type="java.lang.Double"
         column="Vat"
        
-        length="1"
+        
     /> 
     <property
         name="isInsertDate"
         type="java.sql.Date"
         column="InsertDate"
         
-        length="19"
+      
     />
     
     <property

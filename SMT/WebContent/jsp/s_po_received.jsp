@@ -1,4 +1,6 @@
 
+<%@page import="com.smt.helper.BarrelEntryHelper"%>
+<%@page import="com.smt.dao.ProductDetailDao"%>
 <%@page import="com.smt.hibernate.SupplierDetail"%>
 <%@page import="com.smt.helper.SupplierDetailHelper"%>
 <%@page import="com.smt.helper.ProductDetailHelper"%>
@@ -8,7 +10,9 @@
 <%@page import="com.smt.bean.ProductNameBean"%>
 <%@page import="com.smt.dao.GoodReciveDao"%>
 
+<%@page import="com.smt.bean.BarrelEntryBean"%>
 <%@page import="com.smt.hibernate.GoodReceive"%>
+<%@page import="com.smt.helper.BarrelEntryHelper"%>
 
 <% boolean isHome=false;%>
 <%@include file="y_commons/header1.jsp"%>
@@ -140,6 +144,26 @@ top: 2%;
 
 </script>
 
+
+<script type="text/javascript">
+function pageLoad(){	
+	$("#CashCustDetail").show();
+	$("#CreditCustDetail").hide(); 	
+}
+function openCashCustomerBilling() {
+	$("#CashCustDetail").show();
+	$("#CreditCustDetail").hide();
+	location.reload();
+	
+}
+function openCreditCustomerBilling() {
+	$("#CreditCustDetail").show();
+	$("#CashCustDetail").hide();
+	
+}
+</script>
+
+
          <script src="/SMT/staticContent/js/jquery-1.12.3.min.js"></script>
 	     <link rel="stylesheet" href="/SMT/staticContent/y_css/ui.jqgrid.min.css">
 	     <link rel="stylesheet" href="/SMT/staticContent/y_css/jquery-ui.css">
@@ -150,8 +174,10 @@ top: 2%;
 	     <script src="/SMT/staticContent/y_js/jquery.jqgrid.min.js"></script>
    
 	     <script src="/SMT/staticContent/y_js/newgoodsreceived.js"></script>
-	
+	      <script src="/SMT/staticContent/js/BarrelEntry.js"></script>
+	 
 	<body class="purchase_form_img">
+	<body onload="pageLoad();">
 	<div class="container-fluid">
 
 		<div class="row header_margin_top">
@@ -236,6 +262,7 @@ top: 2%;
 	 </div>
 	              	
 <!-- --------------------------------------------------end----------------------------------- -->
+<div id="CashCustDetail">
 		<form action="goods" method="post" name="good" class="form-horizontal" style="margin-top:1%" >
 
 			<div class="row">
@@ -496,9 +523,9 @@ top: 2%;
 				
 </form>
 	   
-	   
+	   </div>
 	  <!-------------------  barrel oil purchase  ------------------------------------->
-	  
+	  <div id="CreditCustDetail">
 	  <form action="goods" method="post" name="good" class="form-horizontal" style="margin-top:1%" >
 
 			<div class="row">
@@ -510,7 +537,7 @@ top: 2%;
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
-							</span> <input type="text" id="billNo" id="jander" name="billNo"
+							</span> <input type="text" id="billNo1" id="jander" name="billNo"
 								autofocus="autofocus" class="form-control" placeholder="Bill No" />
 						</div>
 					</div>
@@ -529,10 +556,10 @@ top: 2%;
 								class="glyphicon glyphicon-user"></i>
 							</span> 
 							
-							<input list="supplierId_drop" id="supplierId" class="form-control"  >
+							<input list="supplierId_drop" id="supplierId1" class="form-control"  >
 						<datalist id="supplierId_drop">
 						<%
-							for(int i =0 ;i<supplierList.size();i++)
+							for(int i =0 ;i<supplierL.size();i++)
 								{
 								SupplierDetail supplier = (SupplierDetail)supplierL.get(i);
 						%>
@@ -565,7 +592,7 @@ top: 2%;
 							
 							<!-- <input type="text" id='contactPerson' name="contactPerson"
 								 class="form-control" placeholder="Contact Person" /> -->
-								 	<input list="contactId_drop" id="contactPerson" class="form-control"  placeholder="Contact Person">
+								 	<input list="contactId_drop" id="contactPerson1" class="form-control"  placeholder="Contact Person">
 								 
 								 
 								 <datalist id="contactId_drop">
@@ -591,7 +618,7 @@ top: 2%;
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-calendar"></i>
-							</span> <input type="date" id='pDate' name="pDate" class="form-control"
+							</span> <input type="date" id='pDate1' name="pDate" class="form-control"
 								id="jander" placeholder="Purchase Date" />
 						</div>
 					</div>
@@ -620,22 +647,22 @@ top: 2%;
 					<div class="col-sm-5">
 					
 					    <%
-					    ProductDetailHelper item1 = new ProductDetailHelper();
-						List itemList1 = item1.getAllItemName();
+					    BarrelEntryHelper item1 = new BarrelEntryHelper();
+					    List itemList1 = item1.getAllItemName1();
 						%>
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
 								</span>
-								<input list="itemId_drop" id="itemName" class="form-control" onchange="getProductList()" >
+								<input list="itemId_drop" id="itemName1" class="form-control" onchange="getProductList1()" >
 						        <datalist id="itemId_drop">
 						       <%
-							      for(int j =0 ;j<itemList.size();j++)
+							      for(int j =0 ;j<itemList1.size();j++)
 								{
-							    	  ProductNameBean itm = (ProductNameBean)itemList1.get(j);
+							    	  BarrelEntryBean itm = (BarrelEntryBean)itemList1.get(j);
 						       %>
 							      
-			             <option data-value="<%=itm.getCaregoryName()%>" value="<%=itm.getCaregoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>"> 
+			            <option data-value="<%=itm.getCategoryName()%>" value="<%=itm.getCategoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>">  
 							    
 							    
 							    
@@ -655,7 +682,7 @@ top: 2%;
 			<div class="row">
 					<div class="col-sm-10 col-sm-offset-1">
 						<div class="table-responsive">
-							<table id="jqGrid"></table>
+							<table id="jqGrid1"></table>
 			                <div id="jqGridPager"></div>
 						</div>
 					</div>
@@ -671,7 +698,7 @@ top: 2%;
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
-							</span> <input type="text" id='extraDiscount' name="extraDiscount"
+							</span> <input type="text" id='extraDiscount1' name="extraDiscount"
 								class="text-border form-control" placeholder="In %"
 								autofocus onkeyup="grasstotal1(); return false;"
 								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
@@ -679,20 +706,20 @@ top: 2%;
 					</div>
 				
 				
-					<div class="col-sm-1" align="center">
+					 <div class="col-sm-1" align="center">
 						<label class="control-label">Expenses:</label>
-					</div>
+					</div> 
 
-					<div class="col-sm-2">
+					 <div class="col-sm-2">
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
-							</span> <input type="text" id='expence' name="expence"
+							</span> <input type="text" id='expence1' name="expence"
 								class="text-border form-control" placeholder="Expenses"
 								autofocus onchange="grasstotal(); return false;"
 								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
 						</div>
-					</div>
+					</div> 
 
 					<div class="col-sm-2" align="right">
 						<label class="control-label">Tax % On Expenses:</label>
@@ -702,7 +729,7 @@ top: 2%;
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
-							</span> <input type="text" id='txPerexpence' name="txPerexpence"
+							</span> <input type="text" id='txPerexpence1' name="txPerexpence"
 								class="text-border form-control" placeholder="Tax % On Expenses"
 								autofocus onchange="grasstotalTax(); return false;"
 								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
@@ -723,7 +750,7 @@ top: 2%;
 						<div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
-							</span> <input type="text" id='finalExpenses' name="finalExpenses" readonly="readonly"
+							</span> <input type="text" id='finalExpenses1' name="finalExpenses" readonly="readonly"
 								class="text-border form-control" 
 								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
 						</div>
@@ -737,7 +764,7 @@ top: 2%;
 					</div>
 					<div class="col-sm-6" >
 						<div class="input-group">
-							<input type="text" name="resolution" id="resolution" readonly="readonly"
+							<input type="text" name="resolution" id="resolutionOil" readonly="readonly"
 								class="form-group"
 								style="font-size: 30px; float: right; width: 200px; height: 50px; background-color: rgba(251, 243, 0, 0.27);" />
 								 <input type="hidden" id='resolution1' name="resolution1" class="form-control"  />
@@ -747,17 +774,18 @@ top: 2%;
 				</div>
 			</div>
 
-			<div class="row buttons_margin_top">
+			 <div class="row buttons_margin_top">
 			<div align="center">
-    			<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btnSubmit" id="btnSubmit" onclick="validateRegGoodReceive()" value="Save" /> 
+    			<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btnSubmit" id="btnSubmit" onclick="validateRegGoodReceiveOil()" value="Save" /> 
 				<input type="reset" value="Cancel" onclick="reset()" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
 				<!-- <input type="button" onclick="window.location.href='http://localhost:8080/SMT/jsp/supplierAccountDetails.jsp'" 
-				value="Fill Supplier Payement" class="btn btn-lg btn-primary btn-md" />  -->
+				value="Fill Supplier Payement" class="btn btn-lg btn-primary btn-md" /> --> 
 			
 			</div>
-		</div>	
+		</div>	 
 				
 </form>
+</div>
 	  
 	  <!-- -----------------end of oil barrel------------------ -->
 	   

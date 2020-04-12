@@ -13,6 +13,7 @@ import org.json.JSONException;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.smt.bean.BarrelEntryBean;
 import com.smt.bean.CustomerBean;
 import com.smt.bean.GoodReceiveItemBean;
 import com.smt.bean.ServiceBean;
@@ -1497,5 +1498,25 @@ public class Controller {
 							helper.doProductRegister(request, response);
 							return toJson("Data Added Successfully");
 						}
+						
+						// to get itemName In GoodReceived Form In Grid
+						public String getProductInGrid1(HttpServletRequest request, HttpServletResponse response) {
+							BarrelEntryHelper helper = new BarrelEntryHelper();
+							BarrelEntryBean customer = helper.getDetailsById1(request, response);
+							Map<String, BarrelEntryBean> returnMap = new HashMap<String, BarrelEntryBean>();
+							returnMap.put("offer", customer);
+							System.out.println("$$$$$$$$$$$$$$$$" + returnMap);
+							return toJson(returnMap);
+						}
+						
+						// register gooods receive
+						public String regGoodReceiveOil(HttpServletRequest request, HttpServletResponse response) {
+							System.out.println("IN CONTROLLER");
+							BarrelEntryHelper Helper = new BarrelEntryHelper();
+							Helper.regGoodReceiveOil(request, response);
+							return toJson("Data Added Successfully");
+
+						}
+
 }
 
