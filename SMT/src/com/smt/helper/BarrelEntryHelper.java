@@ -103,12 +103,13 @@ public class BarrelEntryHelper {
 			String hsnsacno = request.getParameter("hsnsacno");
 			
 			BarrelEntryBean bean = new BarrelEntryBean();
+			
 			bean.setItemName(itemName);
 			bean.setCategoryName(categoryName);
 			bean.setHsnsacno(hsnsacno);
-			bean.setQuantity(0);
-			bean.setBuyPrice(0d);
-			bean.setSalePrice(0d);
+			//bean.setQuantity(0);
+			//bean.setBuyPrice(0d);
+			//bean.setSalePrice(0d);
 			
 			return bean;
 		}
@@ -158,9 +159,9 @@ public class BarrelEntryHelper {
 				gd.setItemName(itemName);
 
 				String catName = request.getParameter("catName" + i);
-				gd.setCatName(catName);
+				gd.setCategoryName(catName);
 
-				gd.setTxId(Txid);
+				//gd.setTxId(Txid);
 				
 				String quantity = request.getParameter("quantity" + i);
 				gd.setQuantity(Long.parseLong(quantity));
@@ -175,6 +176,7 @@ public class BarrelEntryHelper {
 				String discount = request.getParameter("discount" + i);
 				gd.setDiscount(Double.parseDouble(discount));
 				System.out.println("discount set- "+gd.getDiscount());
+				
 				String hsnsacno = request.getParameter("hsnsacno" + i);
 				gd.setHsnsacno(hsnsacno);
 
@@ -198,6 +200,7 @@ public class BarrelEntryHelper {
 				
 				String actualprice = request.getParameter("actualprice" + i);
 				System.out.println("actual price - "+actualprice);
+				
 				String extraDiscount = request.getParameter("extraDiscount");
 				gd.setExtraDiscount(Double.parseDouble(extraDiscount));
 
@@ -221,11 +224,13 @@ public class BarrelEntryHelper {
 				String pDate = request.getParameter("pDate");
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-				//				System.out.println(""+gd.get);	
+				
 				Date adate = null;
 				try {
 					adate = format.parse(pDate);
-				} catch (ParseException e1) {
+				} 
+				
+				catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

@@ -48,6 +48,7 @@
        <mapping resource="com/smt/hibernate/EstimateQuotationBill.hbm.xml"/>
        <mapping resource="com/smt/hibernate/ServiceDetail.hbm.xml"/> 
         <mapping resource="com/smt/hibernate/barrelEntry.hbm.xml"/>
+       <mapping resource="com/smt/hibernate/GoodReceiveBarrel.hbm.xml"/> 
        
     </session-factory>
 

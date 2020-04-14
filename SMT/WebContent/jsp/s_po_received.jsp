@@ -526,7 +526,7 @@ function openCreditCustomerBilling() {
 	   </div>
 	  <!-------------------  barrel oil purchase  ------------------------------------->
 	  <div id="CreditCustDetail">
-	  <form action="goods" method="post" name="good" class="form-horizontal" style="margin-top:1%" >
+	  <form action="goods" method="post" name="good1" class="form-horizontal" style="margin-top:1%" >
 
 			<div class="row">
 				<div class="form-group">
@@ -654,8 +654,8 @@ function openCreditCustomerBilling() {
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
 								</span>
-								<input list="itemId_drop" id="itemName1" class="form-control" onchange="getProductList1()" >
-						        <datalist id="itemId_drop">
+								<input list="itemId_drop1" id="itemName1" class="form-control" onchange="getProductList1()" >
+						        <datalist id="itemId_drop1">
 						       <%
 							      for(int j =0 ;j<itemList1.size();j++)
 								{
@@ -767,7 +767,7 @@ function openCreditCustomerBilling() {
 							<input type="text" name="resolution" id="resolutionOil" readonly="readonly"
 								class="form-group"
 								style="font-size: 30px; float: right; width: 200px; height: 50px; background-color: rgba(251, 243, 0, 0.27);" />
-								 <input type="hidden" id='resolution1' name="resolution1" class="form-control"  />
+								 <input type="hidden" id='resolutionOil1' name="resolutionOil1" class="form-control"  />
 						</div>
 					</div>
 

@@ -71,7 +71,7 @@ function productdel(){
 
 
 
-function getProductList()
+function getProductList1()
 {
 	//var itemName = document.getElementById('itemName').value;
 	
@@ -141,7 +141,7 @@ function getProductList()
 				$("#jqGrid1").jqGrid({
 					datatype:"local",
 					editurl: 'clientArray',
-					colNames: ["ItemName","Category Name","HSN/SAC","Quantity","BuyPrice","SalePrice","GST %","IGST %","TAX AMT","Discount %","DisAmt","Total","--S--"],
+					colNames: ["ItemName","Category Name","HSN/SAC","Quantity In Litres","BuyPrice","SalePrice","GST %","IGST %","TAX AMT","Discount %","DisAmt","Total","--S--"],
 
 					colModel: [
 					           { 	
@@ -298,26 +298,26 @@ function getProductList()
 			                    		Total = +Total + +Total1;
 			                    	} 
 			                        }
-			                            document.getElementById("resolution").value = Math.round(Total);
-			                            document.getElementById("resolution1").value = Math.round(Total);
+			                            document.getElementById("resolutionOil").value = Math.round(Total);
+			                            document.getElementById("resolutionOil1").value = Math.round(Total);
 			                            var totAmount = Math.round(Total);
 			                            
-			                            var extraDiscount = document.getElementById("extraDiscount").value;
+			                            var extraDiscount = document.getElementById("extraDiscount1").value;
 			                            if(extraDiscount != "0"){
-			    	             	    	document.getElementById("resolution").value = totAmount;
+			    	             	    	document.getElementById("resolutionOil").value = totAmount;
 			    	             	    }
 			    	             	    else{
 			    	             	    	var disAmount =  (extraDiscount/100)*totAmount;
 			    	            			var gross = +totAmount - +disAmount;
-			    	            			document.getElementById("resolution").value = Math.round(gross);
+			    	            			document.getElementById("resolutionOil").value = Math.round(gross);
 			    	             	    }
 			                            
 			    	             	    var expence = document.getElementById("expence1").value;
 			    	             	    if(expence != "0"){
-			    	             	    	document.getElementById("resolution").value = totAmount;
+			    	             	    	document.getElementById("resolutionOil").value = totAmount;
 			    	             	    }
 			    	             	    else{
-			    	             	    	document.getElementById("resolution").value = (+totAmount + +expence);
+			    	             	    	document.getElementById("resolutionOil").value = (+totAmount + +expence);
 			    	             	    }
 					        	},
 					        	  
@@ -433,34 +433,27 @@ function getProductList()
 		                    		Total = +Total + +Total1;
 		                    	} 
 		                        }
-		                            document.getElementById("resolution").value = Math.round(Total);
-		                            document.getElementById("resolution1").value = Math.round(Total);
+		                            document.getElementById("resolutionOil").value = Math.round(Total);
+		                            document.getElementById("resolutionOil1").value = Math.round(Total);
 		                            var totAmount = Math.round(Total);
 		                            
-		                            var extraDiscount = document.getElementById("extraDiscount").value;
+		                            var extraDiscount = document.getElementById("extraDiscount1").value;
 		                            if(extraDiscount != "0"){
-		    	             	    	document.getElementById("resolution").value = totAmount;
+		    	             	    	document.getElementById("resolutionOil").value = totAmount;
 		    	             	    }
 		    	             	    else{
 		    	             	    	var disAmount =  (extraDiscount/100)*totAmount;
 		    	            			var gross = +totAmount - +disAmount;
-		    	            			document.getElementById("resolution").value = Math.round(gross);
+		    	            			document.getElementById("resolutionOil").value = Math.round(gross);
 		    	             	    }
 		                            
-		    	             	    var expence = document.getElementById("expence").value;
+		    	             	    var expence = document.getElementById("expence1").value;
 		    	             	    if(expence != "0"){
-		    	             	    	document.getElementById("resolution").value = totAmount;
+		    	             	    	document.getElementById("resolutionOil").value = totAmount;
 		    	             	    }
 		    	             	    else{
-		    	             	    	document.getElementById("resolution").value = (+totAmount + +expence);
+		    	             	    	document.getElementById("resolutionOil").value = (+totAmount + +expence);
 		    	             	    }
-		                		
-		                		
-		                		
-		                		
-		                		
-		                		
-		                		
 		                		
 		                		
 		                		
@@ -501,12 +494,12 @@ function getProductList()
 //oil barrel grid details and form storing in database
 function validateRegGoodReceiveOil(){
 	
-		var billNo= $('#billNo').val();
-		var supplierId= $('#supplierId').val();
-		var contactPerson= $('#contactPerson').val();
-		var pDate= $('#pDate').val();
-		var expence= $('#expence').val();
-		var totalAmount= $('#resolution').val();
+		var billNo= $('#billNo1').val();
+		var supplierId= $('#supplierId1').val();
+		var contactPerson= $('#contactPerson1').val();
+		var pDate= $('#pDate1').val();
+		var expence= $('#expence1').val();
+		var totalAmount= $('#resolutionOil').val();
 		
 		var contactPersonNamePattern = /^[a-zA-Z ]{2,50}$/;
 		var contactPersonNamePatternRes = contactPersonNamePattern.test(contactPerson);
@@ -568,8 +561,8 @@ function validateRegGoodReceiveOil(){
 function regGoodReceive(){
 document.getElementById("btnSubmit").disabled = true; 
 var params= {};
-var count = jQuery("#jqGrid").jqGrid('getGridParam', 'records');
-var allRowsInGrid1 = $('#jqGrid').getGridParam('data');
+var count = jQuery("#jqGrid1").jqGrid('getGridParam', 'records');
+var allRowsInGrid1 = $('#jqGrid1').getGridParam('data');
 var AllRows=JSON.stringify(allRowsInGrid1);
 for (var i = 0; i < count; i++) {
 
@@ -607,6 +600,7 @@ var discount = allRowsInGrid1[i].discount;
 params["discount"+i] = discount;
 
 var actualprice = allRowsInGrid1[i].actualprice;
+
 if(actualprice == undefined){
 	actualprice = 0;
 }
@@ -623,8 +617,8 @@ params["Total"+i] = Total;
 }
 
 
-var input = document.getElementById('supplierId'),
-list = document.getElementById('supplierId_drop'),
+var input = document.getElementById('supplierId1'),
+list = document.getElementById('supplierId_drop1'),
 i,supplierId;
 for (i = 0; i < list.options.length; ++i) {
 if (list.options[i].value === input.value) {
@@ -632,27 +626,27 @@ if (list.options[i].value === input.value) {
 }
 }
 
-var billNo = $('#billNo').val();
-var contactPerson=$('#contactPerson').val();
-var vat=$('#vat').val();
-var pDate = $('#pDate').val();
-var extraDiscount = $('#extraDiscount').val();
+var billNo = $('#billNo1').val();
+var contactPerson=$('#contactPerson1').val();
+var vat=$('#vat1').val();
+var pDate = $('#pDate1').val();
+var extraDiscount = $('#extraDiscount1').val();
 if(extraDiscount == ""){
 	extraDiscount = 0;
 }
-var expence=$('#expence').val();
+var expence=$('#expence1').val();
 if(expence == ""){
 	expence = 0;
 }
-var txPerexpence= $('#txPerexpence').val();
+var txPerexpence= $('#txPerexpence1').val();
 if(txPerexpence == ""){
 	txPerexpence = 0;
 }
-var finalExpenses= $('#finalExpenses').val();
+var finalExpenses= $('#finalExpenses1').val();
 if(finalExpenses == ""){
 	finalExpenses = 0;
 }
-var resolution=$('#resolution').val();
+var resolution=$('#resolutionOil').val();
 
 
 params["billNo"] = billNo;
