@@ -149,12 +149,12 @@
 		column="GrossTotal"
 		length="255" />
 		
-		 <property
+		<!--  <property
 		name="barcodeNo" 
 		type="java.lang.Long" 
 		column="BarcodeNo"
 		 />	
-		 
+		  -->
 		 
 		 <property
 		name="salePrice" 
@@ -162,7 +162,17 @@
 		column="salePrice"
 		length="255" />
 		
-		
+		 <property
+        name="NumberofBarrel"
+        type="java.lang.Double"
+        column="NoOfBarrel"
+    />
+    
+     <property
+        name="TotalLitre"
+        type="java.lang.Double"
+        column="TotalLitre"
+    />
 		 
  </class>
    </hibernate-mapping> 		 

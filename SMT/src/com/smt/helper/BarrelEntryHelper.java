@@ -11,7 +11,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +31,7 @@ import com.smt.dao.ProductDetailDao;
 import com.smt.dao.StockDao;
 import com.smt.hibernate.BarrelEntryHibernate;
 import com.smt.hibernate.GoodReceive;
+import com.smt.hibernate.GoodsReceiveBarrelHibernate;
 import com.smt.hibernate.ProductRegister;
 import com.smt.hibernate.Stock;
 import com.smt.utility.HibernateUtility;
@@ -98,20 +101,35 @@ public class BarrelEntryHelper {
 				HttpServletResponse response) {
 			// TODO Auto-generated method stub
 			
-			String itemName = request.getParameter("itemName");
-			String categoryName = request.getParameter("catName");
-			String hsnsacno = request.getParameter("hsnsacno");
+			//String itemName = request.getParameter("itemName");
+			//String categoryName = request.getParameter("catName");
+			//String hsnsacno = request.getParameter("hsnsacno");
 			
-			BarrelEntryBean bean = new BarrelEntryBean();
+			/*
+			 * BarrelEntryBean bean = new BarrelEntryBean();
+			 * 
+			 * bean.setItemName(itemName); bean.setCategoryName(categoryName);
+			 * bean.setHsnsacno(hsnsacno); bean.setIgst(0d);
+			 * //bean.setQuantity(0); //bean.setBuyPrice(0d);
+			 * //bean.setSalePrice(0d);
+			 * 
+			 * return bean;
+			 */
 			
-			bean.setItemName(itemName);
-			bean.setCategoryName(categoryName);
-			bean.setHsnsacno(hsnsacno);
-			//bean.setQuantity(0);
-			//bean.setBuyPrice(0d);
-			//bean.setSalePrice(0d);
 			
-			return bean;
+			String key = request.getParameter("itemName");
+
+			Map<Long,BarrelEntryBean > map = new HashMap<Long, BarrelEntryBean>();
+
+			BarrelEntryDao dao = new BarrelEntryDao();
+			List<BarrelEntryBean> catList = dao.getAllItemDetails1(key);
+
+			BarrelEntryBean cs = null;
+			if (catList != null && catList.size() > 0) {
+				cs = (BarrelEntryBean) catList.get(0);
+			}
+			return cs;
+			
 		}
 		
 		
@@ -135,26 +153,27 @@ public class BarrelEntryHelper {
 			 */
 			 
 
-			BarrelEntryHibernate gd = new BarrelEntryHibernate();
+			GoodsReceiveBarrelHibernate gd = new GoodsReceiveBarrelHibernate();
 
 			Integer count = Integer.parseInt(request.getParameter("count"));
 			System.out.println("c111111   - " + count);
 
 			for (int i = 0; i < count; i++) {
 
-				HttpSession session3 = request.getSession();
-				GoodReciveDao data = new GoodReciveDao();
-				List stkList = data.getLastBarcodeNo();
-
-				for (int j = 0; j < stkList.size(); j++) {
-
-					BarrelEntryBean st = (BarrelEntryBean) stkList.get(j);
-					barcodeNo = st.getBarcodeNo();
-
-					barcodeNo++;
-
-				}
-
+				/*
+				 * HttpSession session3 = request.getSession(); GoodReciveDao
+				 * data = new GoodReciveDao(); List stkList =
+				 * data.getLastBarcodeNo();
+				 * 
+				 * for (int j = 0; j < stkList.size(); j++) {
+				 * 
+				 * BarrelEntryBean st = (BarrelEntryBean) stkList.get(j);
+				 * barcodeNo = st.getBarcodeNo();
+				 * 
+				 * barcodeNo++;
+				 * 
+				 * }
+				 */
 				String itemName = request.getParameter("itemName" + i);
 				gd.setItemName(itemName);
 
@@ -198,8 +217,16 @@ public class BarrelEntryHelper {
 				String gstamt = request.getParameter("gstamt" + i);
 				gd.setTaxAmount(Double.parseDouble(gstamt));
 				
+				String NumberofBarrel = request.getParameter("NumberofBarrel" + i);
+				gd.setNumberofBarrel(Double.parseDouble(NumberofBarrel));
+				
+				String TotalLitre = request.getParameter("TotalLitre" + i);
+				gd.setTotalLitre(Double.parseDouble(TotalLitre));
+				
+				
 				String actualprice = request.getParameter("actualprice" + i);
 				System.out.println("actual price - "+actualprice);
+				
 				
 				String extraDiscount = request.getParameter("extraDiscount");
 				gd.setExtraDiscount(Double.parseDouble(extraDiscount));
@@ -218,6 +245,7 @@ public class BarrelEntryHelper {
 				String resolution = request.getParameter("resolution");
 				gd.setGrossTotal(Double.parseDouble(resolution));
 
+				
 				String supplierId = request.getParameter("supplierId");
 				gd.setSupplierName(Long.parseLong(supplierId));
 
@@ -236,13 +264,12 @@ public class BarrelEntryHelper {
 				}
 				gd.setDate(adate);
 
-				session3.setAttribute("barcodeNo", barcodeNo);
+				//session3.setAttribute("barcodeNo", barcodeNo);
 
-				if (barcodeNo == null) {
-					gd.setBarcodeNo(1000l);
-				} else {
-					gd.setBarcodeNo(barcodeNo);
-				}
+				/*
+				 * if (barcodeNo == null) { gd.setBarcodeNo(1000l); } else {
+				 * gd.setBarcodeNo(barcodeNo); }
+				 */
 
 				BarrelEntryDao dao = new BarrelEntryDao();
 				dao.regGoodReceive(gd);
@@ -250,6 +277,7 @@ public class BarrelEntryHelper {
 				//////////stock code//////////
 				StockDao dao1 = new StockDao();
 				List stkList2 = dao1.getAllStockEntry();
+				System.out.println("Stock++++++"+stkList2);
 				
 				int quant = Integer.parseInt(quantity);
 

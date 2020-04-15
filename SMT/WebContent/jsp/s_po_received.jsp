@@ -662,7 +662,7 @@ function openCreditCustomerBilling() {
 							    	  BarrelEntryBean itm = (BarrelEntryBean)itemList1.get(j);
 						       %>
 							      
-			            <option data-value="<%=itm.getCategoryName()%>" value="<%=itm.getCategoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>">  
+			            <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getCategoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>">  
 							    
 							    
 							    

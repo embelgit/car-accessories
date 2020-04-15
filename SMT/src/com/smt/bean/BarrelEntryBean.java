@@ -25,9 +25,15 @@ public class BarrelEntryBean {
 	private Long pkBillId;
 	private String billNo;
 	private Long barcodeNo;
-	
+	private double igst;
     
     
+	public double getIgst() {
+		return igst;
+	}
+	public void setIgst(double igst) {
+		this.igst = igst;
+	}
 	public Long getPkBillId() {
 		return pkBillId;
 	}

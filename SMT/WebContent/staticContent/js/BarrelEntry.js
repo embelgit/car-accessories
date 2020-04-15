@@ -42,7 +42,7 @@ function productdel(){
  	params["hsnsacno"] = hsnsacno;
    
     params["modelName"] = modelName;
-    params["NoBarrel"] = hsnsacno;
+    params["NoBarrel"] = NoBarrel;
     params["perlitre"] = perlitre;
     params["TotalBarrel"] = TotalBarrel;
 
@@ -75,22 +75,33 @@ function getProductList1()
 {
 	//var itemName = document.getElementById('itemName').value;
 	
-	var input = document.getElementById('itemName1'),
+	/*var input = document.getElementById('itemName1'),
     list = document.getElementById('itemId_drop1'),
     i,catName,itemName, hsnsacno;
     for (i = 0; i < list.options.length; ++i) {
     if (list.options[i].value === input.value) {
-    	catName = list.options[i].getAttribute('data-value');
-    	itemName = list.options[i].getAttribute('myvalue');
-    	hsnsacno = list.options[i].getAttribute('myvalue1');
+    	itemName = list.options[i].getAttribute('data-value');
+    	//catName = list.options[i].getAttribute('data-value');
+    	//itemName = list.options[i].getAttribute('myvalue');
+    	//hsnsacno = list.options[i].getAttribute('myvalue1');
+    }
+   }*/
+	
+	var input = document.getElementById('itemName1'),
+    list = document.getElementById('itemId_drop1'),
+    i,itemName;
+    for (i = 0; i < list.options.length; ++i) {
+    if (list.options[i].value === input.value) {
+    	itemName = list.options[i].getAttribute('data-value');
+    	
     }
    }
 	
     itemparams={};
-	
+	//alert("ITEMID"+itemName)
 	itemparams["itemName"]= itemName;
-	itemparams["catName"]= catName;
-	itemparams["hsnsacno"]= hsnsacno;
+	//itemparams["catName"]= catName;
+	//itemparams["hsnsacno"]= hsnsacno;
 	
 	document.getElementById('itemName1').value = null;
 	var count=0;
@@ -141,7 +152,7 @@ function getProductList1()
 				$("#jqGrid1").jqGrid({
 					datatype:"local",
 					editurl: 'clientArray',
-					colNames: ["ItemName","Category Name","HSN/SAC","Quantity In Litres","BuyPrice","SalePrice","GST %","IGST %","TAX AMT","Discount %","DisAmt","Total","--S--"],
+					colNames: ["ItemName","Category Name","HSN/SAC","No.of.barrel","oil per litre","Total Litre","Qty In Litres","BuyPrice","SalePrice","GST %","IGST %","TAX AMT","Discount %","DisAmt","Total","--S--"],
 
 					colModel: [
 					           { 	
@@ -151,7 +162,7 @@ function getProductList1()
 					           },
 					          
 					           {
-					        	   name:  "catName",
+					        	   name:  "categoryName",
 					        	   width: 170,
 					        	   
 					           },
@@ -160,6 +171,26 @@ function getProductList1()
 					        	   width: 120,
 					        	   
 					           },
+					           {
+					        	   name:  "NumberofBarrel",
+					        	   width: 120,
+					        	  
+					        	   
+					           },
+					           
+					           {
+					        	   name:  "oilperlitre",
+					        	   width: 120,
+					        	   hidden: true
+					        	   
+					           },
+					           
+					           {
+					        	   name:  "TotalLitre",
+					        	   width: 120,
+					        	   
+					           },
+					           
 					           
 					           {
 					        	   name:  "quantity",
@@ -577,15 +608,19 @@ var itemName = allRowsInGrid1[i].itemName;
 	params["vat"+i] = vat;
 	
 	var igst = allRowsInGrid1[i].igst;
+	
+	if(igst == undefined){
+		igst = 0;
+	}
 	params["igst"+i] = igst;
 	
 	var gstamt = allRowsInGrid1[i].gstamt;
 	params["gstamt"+i] = gstamt;
 
-	var catName = allRowsInGrid1[i].catName;
+	var catName = allRowsInGrid1[i].categoryName;
 	params["catName"+i] = catName;
 	
-var quantity = allRowsInGrid1[i].quantity;
+    var quantity = allRowsInGrid1[i].quantity;
 	params["quantity"+i] = quantity;
 	
 	
@@ -595,6 +630,12 @@ params["buyPrice"+i] = buyPrice;
 
 var salePrice = allRowsInGrid1[i].SalePrice;
 params["salePrice"+i] = salePrice; 
+
+var NumberofBarrel = allRowsInGrid1[i].NumberofBarrel;
+params["NumberofBarrel"+i] = NumberofBarrel; 
+
+var TotalLitre = allRowsInGrid1[i].TotalLitre;
+params["TotalLitre"+i] = TotalLitre; 
 
 var discount = allRowsInGrid1[i].discount;
 params["discount"+i] = discount;
@@ -618,7 +659,7 @@ params["Total"+i] = Total;
 
 
 var input = document.getElementById('supplierId1'),
-list = document.getElementById('supplierId_drop1'),
+list = document.getElementById('supplierId_drop'),
 i,supplierId;
 for (i = 0; i < list.options.length; ++i) {
 if (list.options[i].value === input.value) {
