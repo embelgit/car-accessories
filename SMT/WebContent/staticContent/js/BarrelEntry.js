@@ -557,7 +557,7 @@ function validateRegGoodReceiveOil(){
 									 if(totalAmount != null && totalAmount != "" && totalAmount != " " )
 										{
 										 	//If validation is success than controller will go to regGoodReceive()
-										 	regGoodReceive();
+										 	regGoodReceiveOil();
 										}
 									 	else{
 									 		alert(" Please select item from item list and modify into table by proper way. Total amount is not dispayed !");
@@ -589,8 +589,8 @@ function validateRegGoodReceiveOil(){
 		
 	}
 
-function regGoodReceive(){
-document.getElementById("btnSubmit").disabled = true; 
+function regGoodReceiveOil(){
+document.getElementById("btnSubmit1").disabled = true; 
 var params= {};
 var count = jQuery("#jqGrid1").jqGrid('getGridParam', 'records');
 var allRowsInGrid1 = $('#jqGrid1').getGridParam('data');
@@ -725,13 +725,6 @@ $.post('/SMT/jsp/utility/controller.jsp',params,function(data)
 
 
 }
-
-
-
-
-
-
-
 
 
 

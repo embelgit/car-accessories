@@ -143,7 +143,37 @@ top: 2%;
     }
 
 </script>
-
+<script type="text/javascript">
+function grasstotalTaxOil(){
+    	
+    	var extraDiscount = document.getElementById("extraDiscount1").value;
+        var total = document.getElementById("resolutionOil1").value;
+        if(extraDiscount != ""){
+        	var disAmount =  (extraDiscount/100)*total;
+    		var gross = +total - +disAmount;
+    		var total = Math.round(gross);
+    		var expence = document.getElementById("expence1").value;
+    		var expencetx = document.getElementById("txPerexpence1").value;
+    		var extaxamt = (expencetx/100)*expence;
+    		var finalextax = +expence + +extaxamt;
+    		var gross = +total + +finalextax;
+    		
+    		document.getElementById("finalExpenses1").value = finalextax;
+    		document.getElementById("resolutionOil").value = gross;
+        	
+        }else{       
+        	var expence = document.getElementById("expence1").value;
+        	var expencetx = document.getElementById("txPerexpence1").value;
+    		var extaxamt = (expencetx/100)*expence;
+    		var finalextax = +expence + +extaxamt;
+    		var gross = +total + +finalextax;
+    		
+    		document.getElementById("finalExpenses1").value = finalextax;
+    		document.getElementById("resolutionOil").value = gross;
+        }
+    }
+    
+</script>
 
 <script type="text/javascript">
 function pageLoad(){	
@@ -172,9 +202,9 @@ function openCreditCustomerBilling() {
 	     <script src="/SMT/staticContent/js/jquery-ui.js"></script>
 	     <script src="/SMT/staticContent/js/jqueryUi.js"></script>
 	     <script src="/SMT/staticContent/y_js/jquery.jqgrid.min.js"></script>
-   
+        
 	     <script src="/SMT/staticContent/y_js/newgoodsreceived.js"></script>
-	      <script src="/SMT/staticContent/js/BarrelEntry.js"></script>
+	    <script src="/SMT/staticContent/js/BarrelEntry.js"></script>  
 	 
 	<body class="purchase_form_img">
 	<body onload="pageLoad();">
@@ -526,7 +556,7 @@ function openCreditCustomerBilling() {
 	   </div>
 	  <!-------------------  barrel oil purchase  ------------------------------------->
 	  <div id="CreditCustDetail">
-	  <form action="goods" method="post" name="good1" class="form-horizontal" style="margin-top:1%" >
+	  <form action="goods1" method="post" name="good1" class="form-horizontal" style="margin-top:1%" >
 
 			<div class="row">
 				<div class="form-group">
@@ -731,7 +761,7 @@ function openCreditCustomerBilling() {
 								class="glyphicon glyphicon-hand-right"></i>
 							</span> <input type="text" id='txPerexpence1' name="txPerexpence"
 								class="text-border form-control" placeholder="Tax % On Expenses"
-								autofocus onchange="grasstotalTax(); return false;"
+								autofocus onchange="grasstotalTaxOil(); return false;"
 								style="background-color: rgba(251, 243, 0, 0.27)" id="jander" />
 						</div>
 					</div>
@@ -764,7 +794,7 @@ function openCreditCustomerBilling() {
 					</div>
 					<div class="col-sm-6" >
 						<div class="input-group">
-							<input type="text" name="resolution" id="resolutionOil" readonly="readonly"
+							<input type="text" name="resolutionOil" id="resolutionOil" readonly="readonly"
 								class="form-group"
 								style="font-size: 30px; float: right; width: 200px; height: 50px; background-color: rgba(251, 243, 0, 0.27);" />
 								 <input type="hidden" id='resolutionOil1' name="resolutionOil1" class="form-control"  />
@@ -776,7 +806,7 @@ function openCreditCustomerBilling() {
 
 			 <div class="row buttons_margin_top">
 			<div align="center">
-    			<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btnSubmit" id="btnSubmit" onclick="validateRegGoodReceiveOil()" value="Save" /> 
+    			<input type="button" class="btn btn-lg btn-success btn-md button_hw button_margin_right" name="btnSubmit1" id="btnSubmit1" onclick="validateRegGoodReceiveOil()" value="Save" /> 
 				<input type="reset" value="Cancel" onclick="reset()" class="btn btn-lg btn-danger btn-md button_hw button_margin_right"/>
 				<!-- <input type="button" onclick="window.location.href='http://localhost:8080/SMT/jsp/supplierAccountDetails.jsp'" 
 				value="Fill Supplier Payement" class="btn btn-lg btn-primary btn-md" /> --> 

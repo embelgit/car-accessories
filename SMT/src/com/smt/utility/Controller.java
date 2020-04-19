@@ -64,7 +64,7 @@ public class Controller {
 
 	// register gooods receive
 	public String regGoodReceive(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("IN CONTROLLER");
+		System.out.println("IN CONTROLLER Regular");
 		GoodReceiveHelper Helper = new GoodReceiveHelper();
 		Helper.regGoodReceive(request, response);
 		return toJson("Data Added Successfully");
