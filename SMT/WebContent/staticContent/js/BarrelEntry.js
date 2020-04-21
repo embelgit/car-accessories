@@ -34,7 +34,7 @@ function productdel(){
  	var modelName = $("#modelName").val();
  	var categoryName = $("#catId").val();
  	var NoBarrel = $("#NoBarrel").val();
- 	var perlitre = $("#perlitre").val();
+ 	//var perlitre = $("#perlitre").val();
  	var TotalBarrel = $("#TotalBarrel").val();
  	//alert("category+++++"+category)
  
@@ -43,7 +43,7 @@ function productdel(){
    
     params["modelName"] = modelName;
     params["NoBarrel"] = NoBarrel;
-    params["perlitre"] = perlitre;
+    //params["perlitre"] = perlitre;
     params["TotalBarrel"] = TotalBarrel;
 
     params["catId"] =catId;
@@ -174,6 +174,7 @@ function getProductList1()
 					           {
 					        	   name:  "NumberofBarrel",
 					        	   width: 120,
+					        	   editable: true,
 					        	  
 					        	   
 					           },
@@ -195,8 +196,9 @@ function getProductList1()
 					           {
 					        	   name:  "quantity",
 					        	   width: 100,
-					        	   editable: true,
-					        	   required:true
+					        	   //editable: true,
+					        	   //required:true
+					        	   hidden: true
 					           },
 
 					           {
@@ -283,7 +285,7 @@ function getProductList1()
 					        	   // $(this).trigger('reloadGrid');
 					        	   	var rowId =$("#jqGrid1").jqGrid('getGridParam','selrow');  
 					        	   	var rowData = jQuery("#jqGrid1").getRowData(rowId);
-			                    	var quantity = rowData['quantity'];
+			                    	var quantity = rowData['NumberofBarrel'];
 			                    	var buyPrice = rowData['buyPrice'];
 			                    	var discount = rowData['discount'];
 			                    	var gst = rowData['vat'];

@@ -50,7 +50,7 @@ public class BarrelEntryHelper {
 		String hsnsacno = request.getParameter("hsnsacno");
 		String categoryName = request.getParameter("categoryName");
 		String NoBarrel = request.getParameter("NoBarrel");
-		String perlitre = request.getParameter("perlitre");
+		//String perlitre = request.getParameter("perlitre");
 		String TotalBarrel = request.getParameter("TotalBarrel");
 		
 		
@@ -73,7 +73,7 @@ public class BarrelEntryHelper {
 		pdreg.setVat(0.0);
 		pdreg.setHsnsacno(hsnsacno);
 		pdreg.setNumberofBarrel(Double.parseDouble(NoBarrel));
-		pdreg.setOilperlitre(Double.parseDouble(perlitre));
+		pdreg.setOilperlitre(0.0);
 		pdreg.setTotalLitre(Double.parseDouble(TotalBarrel));
 		
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");

@@ -243,7 +243,7 @@
 						 </div>
 				      
 							  
-					<div class="col-sm-2 " align="center">
+					<!-- <div class="col-sm-2 " align="center">
 					  <label class="control-label">oil per litre:</label>
 						</div>
 						
@@ -254,14 +254,28 @@
 											</span>
 										<input type="text" class="form-control  input-sm" id='perlitre' name="perlitre" placeholder="per Litre" onchange="calculateTotal()" >
 							  		</div>
-							  </div>
+							  </div> -->
+							  
+							   <div class="col-sm-2 " align="center">
+					    	  <label class="control-label">Total No.of.Litres in Barrel:<sup style="color: red">*</sup></label>
+						</div>
+						
+						
+						<div class="col-sm-3">
+						 			<div class="input-group">
+											<span class="input-group-addon">
+												<i class="glyphicon glyphicon-hand-right"></i>
+											</span>
+										<input type="text" class="form-control  input-sm" id='TotalBarrel' name="TotalBarrel" placeholder="Total litres in barrels">
+							  		</div>
+						 </div>
 						
 					</div>
 				</div>
 				
 				
 				
-				<div class="row">
+				<!-- <div class="row">
 					<div class="form-group">
 					    <div class="col-sm-3 " align="center">
 					    	  <label class="control-label">Total No.of.Litres :<sup style="color: red">*</sup></label>
@@ -277,7 +291,7 @@
 						 </div>
 				</div>
 				</div>
-			
+			 -->
 			<div class="row buttons_margin_top">
 					<div align="center">
 					  <input type="button" onclick="return validateProductDetail()" name="btn" id="btn" value="Save " class="btn btn-lg btn-success btn-md button_hw button_margin_right"/>
