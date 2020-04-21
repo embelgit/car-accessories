@@ -34,10 +34,69 @@
          <script src="/SMT/staticContent/y_js/customerOrder.js"></script>
 
 
-<style type="text/css">
+<style>
+.btn-mm {
+    transition: all 0.2s ease;
+    background-color: white ;
+    border: 1px solid !important;
+   /*  box-shadow: 0 3px  !important;*/
+    border-radius: 23px; 
+    font-size:19px;
+     width: 99px;
+      height:27px;
+   
+     
+}
+input[type="radio"] {
+     position: absolute;
+  visibility: hidden;
+}
+input[type="radio"] + div {
+    position: relative;
+}
+input[type="radio"]:checked + div {
+  background-color:#BA0707;
+}
+input[type="radio"]:checked + div>span {
+  color: white;
+}
+input[type="radio"] + div>span {
+position: relatives;
+top: 2%;}
+
+@media screen and (max-width: 600px){
+.btn-mm {
+    transition: all 0.2s ease;
+    background-color: white ;
+    border: 1px solid !important;
+   /*  box-shadow: 0 3px  !important; */
+    border-radius: 23px;
+    font-size:14px;
+     width: 99px;
+      height:27px;
+   
+     
+}
+input[type="radio"] {
+     position: absolute;
+  visibility: hidden;
+}
+input[type="radio"] + div {
+    position: relative;
+}
+input[type="radio"]:checked + div {
+  background-color:#f3073ad;
+}
+input[type="radio"]:checked + div>span {
+  color: white;
+}
+input[type="radio"] + div>span {
+position: relative;
+top: 2%;
+}
+}
 
 </style>
-
 
 
 
@@ -208,8 +267,27 @@ function grasstotal11(){
 				<hr style="border-top-color: #c1b1b1;">
 			</div>
 		</div>
+		<!---------------------------------++++++++++------Cash and Credit Radio---------++++++++++-----------------------------> 
+				
+	<div class=" " id="my_styles" >
+	<div class="textalign center" align="center">
+			
+   			 <label>
+       		    <input type="radio" checked name="customertype" id="customertype" checked="checked"
+					   onclick="openCashCustomerBilling()" > 
+                <div class="btn1 btn-mm text-center"><span>Regular</span></div> </label>
+                
+                 <label><input type="radio" name="customertype" id="customertype"
+					   onclick="openCreditCustomerBilling()"> 
+                <div class="btn1 btn-mm text-center"><span>oil</span></div></label>
+            
+        		
+       </div>		
+	 </div>
+	              	
+<!-- --------------------------------------------------end----------------------------------- -->
 		
-			      <div class="row">
+			      <div class="row" style="margin-top:2%">
 						<div class="col-md-2" align="right">
 
 							<label class="control-label" >Barcode No:</label>

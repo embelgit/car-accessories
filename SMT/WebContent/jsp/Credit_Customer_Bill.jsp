@@ -98,10 +98,10 @@ function grasstotal(){
 		     </div>	
     </div>
 			      <div class="row form-group">
-						<div class="col-md-3" align="center">
+						
 
-							<label class="control-label" >Barcode no:</label>
-						</div>
+							<label class="col-md-3 control-label" >Barcode no:</label>
+							
 						
 						<div class="col-md-2">
 						    <input type="text" id="key" class="form-control text-border" onchange="return getitemData1();" autofocus="key" placeholder="Enter Item Barcode" />
