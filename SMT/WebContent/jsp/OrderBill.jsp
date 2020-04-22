@@ -13,6 +13,9 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.smt.bean.BarrelEntryBean"%>
+
+<%@page import="com.smt.helper.BarrelEntryHelper"%>
  
  <%@page import="com.smt.hibernate.ServiceDetail"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,7 +36,7 @@
 	     
          <script src="/SMT/staticContent/y_js/customerOrder.js"></script>
 
-
+        <script src="/SMT/staticContent/js/BarrelEntry.js"></script>
 <style>
 .btn-mm {
     transition: all 0.2s ease;
@@ -571,40 +574,42 @@ function grasstotal11(){
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
 							</span> 
-						    <input type="text" id="key" class="form-control text-border" onchange="return getitemData1();" autofocus="key" placeholder="Enter Item Barcode" />
+						    <input type="text" id="key1" class="form-control text-border" onchange="return getitemData1();" autofocus="key" placeholder="Enter Item Barcode" />
 					     </div>	
 					     </div> -->
 					  
 					 
 					  <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
           					  <div class="col-md-3">
-								<div class="input-group">
-									 <span class="input-group-addon">
-										<i class="glyphicon glyphicon-user"></i>
-									</span> 
-					 	
-					 <%-- 	<%
-								ProductDetailDao cdd1 = new ProductDetailDao();
-							 List cList1 =cdd1.getProductNames();
-							
-							%>
-						<input list="prod_drop" id="productId"  class="form-control"  onchange="getproductgrid();">
-				         <datalist id="prod_drop">
-							
-							<%
-					           for(int i=0;i<cList1.size();i++){
-					        	   ProductRegister cust1 =(ProductRegister)cList1.get(i);
-							%>
-		
-						 <option data-value="<%=cust1.getPkProductId()%>" value="<%=cust1.getItemName() %>  =>  <%=cust1.getCategoryName()%>"> 
-						
-						
-							<%
-				      			}
-				    		%>
-						</datalist>     --%>
+								
+									 
+					 	 <%
+					    BarrelEntryHelper item1 = new BarrelEntryHelper();
+					    List itemList1 = item1.getAllItemName1();
+						%>
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+								</span>
+								<input list="itemId_drop1" id="itemName1" class="form-control" onchange="getProductList1()" >
+						        <datalist id="itemId_drop1">
+						       <%
+							      for(int j =0 ;j<itemList1.size();j++)
+								{
+							    	  BarrelEntryBean itm = (BarrelEntryBean)itemList1.get(j);
+						       %>
+							      
+			            <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getCategoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>">  
+							    
+							    
+							    
+						      <%   	
+						      
+								}	
+						       %>
+						</datalist>     
 				    </div>
-                </div>
+                
 					 
 					 </div>
 					 
@@ -616,7 +621,7 @@ function grasstotal11(){
 					<div class="col-md-12">
 						<!-- <div class="row"> -->
 							<div class="table-responsive">
-								<table id="list4"></table>
+								<table id="listOil"></table>
 								<div id="jqGridPager"></div>
 							</div>
 						</div>
@@ -625,34 +630,8 @@ function grasstotal11(){
 		
 				
 						<div class="row form-group" style="margin-top:10px;">
-						<!--     <div class="col-md-5" id="calculator" style="margin-left: 20px;">
-								Screen and clear key
-								<div class="top">
-									<span class="clear">C</span>
-									<div class="screen"></div>
-								</div>
-								
-								<div class="keys">
-									operators and other keys
-									<span>7</span>
-									<span>8</span>
-									<span>9</span>
-									<span class="operator">+</span>
-									<span>4</span>
-									<span>5</span>
-									<span>6</span>
-									<span class="operator">-</span>
-									<span>1</span>
-									<span>2</span>
-									<span>3</span>
-									<span class="operator">÷</span>
-									<span>0</span>
-									<span>.</span>
-									<span class="eval">=</span>
-									<span class="operator">x</span>
-								</div>
-							</div>
- -->
+						
+ 
 						<!-- PrefixFree -->
 						<script src="/SMT/staticContent/js/PrefixFree 1.0.7.js" type="text/javascript" type="text/javascript"></script>
 						
@@ -667,7 +646,7 @@ function grasstotal11(){
 							     <span class="input-group-addon">
 							       Rs
 						         </span>
-								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amout"   readonly="readonly"/>
+								<input type="text" class="form-control" id="totalAmountOil"  placeholder="Total Amout"   readonly="readonly"/>
 							  </div> 
 							</div>
 						</div>
@@ -680,7 +659,7 @@ function grasstotal11(){
 							   <span class="input-group-addon">
 							     Rs
 						       </span>
-								<input type="text" class="form-control" id="discount"  placeholder="Discount In Rs" autofocus onkeyup="grasstotal(); return false;" />
+								<input type="text" class="form-control" id="discountOil"  placeholder="Discount In Rs" autofocus onkeyup="grasstotal(); return false;" />
 							 </div> 
 							</div> 
 						</div>
@@ -694,7 +673,7 @@ function grasstotal11(){
 							    <span class="input-group-addon">
 							      Rs
 						        </span>
-								<input type="text" class="form-control" id="grossTotal" placeholder="Gross Total" readonly="readonly"/>
+								<input type="text" class="form-control" id="grossTotalOil" placeholder="Gross Total" readonly="readonly"/>
 							 </div> 
 							</div> 
 						</div>

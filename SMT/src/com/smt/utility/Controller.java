@@ -1517,6 +1517,15 @@ public class Controller {
 							return toJson("Data Added Successfully");
 
 						}
+						// to get itemName In GoodReceived Form In Grid
+						public String getProductInGridBillingOil(HttpServletRequest request, HttpServletResponse response) {
+							BarrelEntryHelper helper = new BarrelEntryHelper();
+							BarrelEntryBean customer = helper.getProductInGridBillingOil(request, response);
+							Map<String, BarrelEntryBean> returnMap = new HashMap<String, BarrelEntryBean>();
+							returnMap.put("offer", customer);
+							System.out.println("$$$$$$$$$$$$$$$$" + returnMap);
+							return toJson(returnMap);
+						}
 
 }
 

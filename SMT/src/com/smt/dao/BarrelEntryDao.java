@@ -194,4 +194,49 @@ public class BarrelEntryDao {
 		return itemlist;
 	}
 	
+	
+	
+	//////////Billing product grid oil////////////
+	
+	public List getProductInGridBillingOil(String key) {
+		HibernateUtility hbu = null;
+		Session session = null;
+		List<BarrelEntryBean> itemlist = null;
+		List<Object[]> list = null;
+		try {
+			hbu = HibernateUtility.getInstance();
+			session = hbu.getHibernateSession();
+			
+			
+			Query query = session.createSQLQuery("SELECT ProductName,Vat,HsnSacNo,category_name,NoOfBarrel,perlitre,TotalLitre FROM barrelentry WHERE pkProductNameId="+key);
+			 list = query.list();
+			itemlist = new ArrayList<BarrelEntryBean>(0);
+			for (Object[] objects : list) {
+				BarrelEntryBean bean = new BarrelEntryBean();
+				bean.setItemName(objects[0].toString());
+				bean.setVat(Double.parseDouble(objects[1].toString()));
+				bean.setHsnsacno(objects[2].toString());
+				bean.setCategoryName(objects[3].toString());
+				bean.setNumberofBarrel(Double.parseDouble(objects[4].toString()));
+				bean.setOilperlitre(Double.parseDouble(objects[5].toString()));
+				bean.setTotalLitre(Double.parseDouble(objects[6].toString()));
+				
+				//System.out.println("Total Weight=======" +bean.getTotelWeight());
+				
+				//bean.setVat(0d);
+				bean.setIgst(0d);
+				System.out.println(Arrays.toString(objects));
+				System.out.println("Done___=+++++=");
+				
+				
+				
+				itemlist.add(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return itemlist;
+	}
+	
+	
 }

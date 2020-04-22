@@ -728,6 +728,431 @@ $.post('/SMT/jsp/utility/controller.jsp',params,function(data)
 
 }
 
+////billing oil module///////////
 
+function getProductList1()
+{
+	
+	
+	var input = document.getElementById('itemName1'),
+    list = document.getElementById('itemId_drop1'),
+    i,itemName;
+    for (i = 0; i < list.options.length; ++i) {
+    if (list.options[i].value === input.value) {
+    	itemName = list.options[i].getAttribute('data-value');
+    	
+    }
+   }
+	
+    itemparams={};
+	
+	itemparams["itemName"]= itemName;
+	
+	
+	document.getElementById('itemName1').value = null;
+	var count=0;
+	var newrow;
+	var rowId;
+	itemparams["methodName"] = "getProductInGridBillingOil";
+	$.post('/SMT/jsp/utility/controller.jsp',itemparams,
+			function(data)
+			{ 
+				var jsonData = $.parseJSON(data);
+			
+			 count = jQuery("#listOil").jqGrid('getGridParam', 'records'); 
+		     var rowdata =$("#listOil").jqGrid('getGridParam','data');
+		     var ids = jQuery("#listOil").jqGrid('getDataIDs');
+			 
+			
+			  var ori_quantity,offerId;
+			  for (var j = 0; j < count; j++) 
+			  {
+				offerId = rowdata[j].itemName;
+				
+				 var rowId = ids[j];
+				 var rowData = jQuery('#listOil').jqGrid ('getRowData', rowId);
+				
+				if (offerId==jsonData.offer.itemName) {
+			    	ori_quantity = +rowdata[j].quantity+1;
+			    	alert("Product already entered !");
+			//    	$("#jqGrid").jqGrid("setCell", rowId, "quantity", ori_quantity);
+			    	var grid = jQuery("#listOil");
+			    	grid.trigger("reloadGrid");
+			    	newrow=false;
+			    	break;
+				}
+				else
+				{
+					newrow = true;
+				}
+			 }
+			  
+			  if(newrow== true)
+				 {
+					
+					 $("#listOil").addRowData(count,jsonData.offer);
+					
+				 }
+			 
+			 
+				$("#listOil").jqGrid({
+					datatype:"local",
+					editurl: 'clientArray',
+					colNames: ["ItemName","Category Name","HSN/SAC","No.of.barrel","oil per litre","Total Litre","Qty In Litres","SalePrice","GST %","IGST %","TAX AMT","Discount %","DisAmt","Total","--S--"],
+
+					colModel: [
+					           { 	
+					        	   name: "itemName",//PARTICULARS
+					        	   width:200,
+					        	 
+					           },
+					          
+					           {
+					        	   name:  "categoryName",
+					        	   width: 170,
+					        	   
+					           },
+					           {
+					        	   name:  "hsnsacno",
+					        	   width: 120,
+					        	   
+					           },
+					           {
+					        	   name:  "NumberofBarrel",
+					        	   width: 120,
+					        	   editable: true,
+					        	  
+					        	   
+					           },
+					           
+					           {
+					        	   name:  "oilperlitre",
+					        	   width: 120,
+					        	   hidden: true
+					        	   
+					           },
+					           
+					           {
+					        	   name:  "TotalLitre",
+					        	   width: 120,
+					        	   
+					           },
+					           
+					           
+					           {
+					        	   name:  "quantity",
+					        	   width: 100,
+					        	   //editable: true,
+					        	   //required:true
+					        	   hidden: true
+					           },
+
+					           
+					           
+					           {
+					        	   name: "SalePrice",
+					        	   width: 150,
+					        	   editable: true,
+					        	 
+					           },
+
+					           { 	
+			        	           name: "vat",//PARTICULARS cgst
+			        	           width: 100,
+			        	           editable: true,
+			                    },
+			                    /*{ 	
+				        	           name: "sgst",//PARTICULARS
+				        	           width: 100,
+				        	           editable: true,
+				                },*/
+			                    { 	
+				        	           name: "igst",//PARTICULARS
+				        	           width: 100,
+				        	           editable: true,
+				                },
+			                    { 	
+				        	           name: "gstamt",//PARTICULARS
+				        	           width: 140,
+				        	           //formatter: calculateGst
+				                },
+					           {
+					        	   name: "discount",
+					        	   width: 150,
+					        	   editable: true,
+					        	 
+					           },
+					           
+					           {
+					        	   name: "discountAmt",
+					        	   width: 150,
+					        	   //editable: true,
+					        	 
+					           },
+
+					           {
+					        	   name: "Total",
+					        	   width: 200,
+								   formatter: 'number',
+								  
+					        	//   formatter: calculateTotal
+					        	
+					           },
+					           {
+					        	   name: "actualprice",
+					        	   width: 100,
+					        	   editable: true,
+					        	 hidden: true
+					           }
+					           ],
+
+
+					           sortorder : 'desc',
+					           multiselect: false,	
+					           loadonce: false,
+					           viewrecords: true,
+					           width: 1300,
+					           shrinkToFit: true,
+							   rowheight: 300,
+							  /* footerrow: true,
+				               userDataOnFooter: true,
+				               grouping: true,*/
+							   rownumbers:true,
+							 //  onSelectRow: editRow,
+					           rowNum: 11,
+					           
+					           'cellEdit':true,
+					           afterSaveCell: function () {
+					        	   // $(this).trigger('reloadGrid');
+					        	   	var rowId =$("#listOil").jqGrid('getGridParam','selrow');  
+					        	   	var rowData = jQuery("#listOil").getRowData(rowId);
+			                    	var quantity = rowData['NumberofBarrel'];
+			                    	var buyPrice = rowData['buyPrice'];
+			                    	var discount = rowData['discount'];
+			                    	var gst = rowData['vat'];
+			                    	var igst = rowData['igst'];
+			                    	var vatAmt = 0;
+			                    	var discount1 = 0;
+			                    	var tota = 0;
+			                    	var totAmt = 0;
+			                    	var ctot = 0;
+			                    	tota = quantity * buyPrice;
+			                    	totAmt = quantity * buyPrice;
+			                    	if(discount != "0"){
+			                    		discount1 = ((tota*discount)/100);
+			                    		tota = +tota - +discount1;
+			                    		totAmt = +tota;
+			                    	}
+			                    	
+			                    	if(gst != "0" && igst ==0){
+			                    		vatAmt =  ((tota*(gst))/100);
+			                    		totAmt = +tota + +vatAmt;
+			                    	}
+			                    	if(igst != "0" && gst == 0){
+			                    		vatAmt =  ((tota*igst)/100);
+			                    		totAmt = +tota + +vatAmt;
+			                    	}
+			                    	if(gst !=0 && igst !=0){
+			                    		alert("please enter either gst or igst");
+			                    		var abc = 0;
+				                    	$("#listOil").jqGrid("setCell", rowId, "vat", abc);
+				                    	$("#listOil").jqGrid("setCell", rowId, "igst", abc);
+				                    	return false;
+			                    	}
+			                    	$("#listOil").jqGrid("setCell", rowId, "discountAmt", discount1);
+			                    	$("#listOil").jqGrid("setCell", rowId, "gstamt", vatAmt);
+			                    	$("#listOil").jqGrid("setCell", rowId, "Total", totAmt);
+			                    	var Total = 0;
+			                    	var count = jQuery("#listOil").jqGrid('getGridParam', 'records');
+			        				var allRowsInGrid1 = $('#listOil').getGridParam('data');
+			        				var AllRows=JSON.stringify(allRowsInGrid1);
+			                            for (var k = 0; k < count; k++) {
+			                    	var Total1 = allRowsInGrid1[k].Total;
+			                    	if(Total1 != undefined){
+			                    		Total = +Total + +Total1;
+			                    	} 
+			                        }
+			                            document.getElementById("resolutionOil").value = Math.round(Total);
+			                            document.getElementById("resolutionOil1").value = Math.round(Total);
+			                            var totAmount = Math.round(Total);
+			                            
+			                            var extraDiscount = document.getElementById("extraDiscount1").value;
+			                            if(extraDiscount != "0"){
+			    	             	    	document.getElementById("resolutionOil").value = totAmount;
+			    	             	    }
+			    	             	    else{
+			    	             	    	var disAmount =  (extraDiscount/100)*totAmount;
+			    	            			var gross = +totAmount - +disAmount;
+			    	            			document.getElementById("resolutionOil").value = Math.round(gross);
+			    	             	    }
+			                            
+			    	             	    var expence = document.getElementById("expence1").value;
+			    	             	    if(expence != "0"){
+			    	             	    	document.getElementById("resolutionOil").value = totAmount;
+			    	             	    }
+			    	             	    else{
+			    	             	    	document.getElementById("resolutionOil").value = (+totAmount + +expence);
+			    	             	    }
+					        	},
+					        	  
+					           pager: "#jqGridPager"
+			      });
+				
+				var lastSelection;
+
+	            function editRow(id) {
+	                if (id && id !== lastSelection) {
+	                    var grid = $("#listOil");
+	                    grid.jqGrid('restoreRow',lastSelection);
+	                    grid.jqGrid('editRow',id, {keys: true} );
+	                    lastSelection = id;
+	                }
+	            }
+					        	
+
+				
+				if(count==0 || count==null)
+				{
+					$("#listOil").addRowData(0,jsonData.offer);
+				}
+				
+				$('#listOil').navGrid('#jqGridPager',
+						// the buttons to appear on the toolbar of the grid
+						{ edit: true, add:false, del: true, search: true, refresh: true, view: true, position: "left", cloneToTop: false },
+						// options for the Edit Dialog
+						{
+							editCaption: "The Edit Dialog",
+							reloadAfterSubmit : true,
+							closeAfterEdit: true,
+							recreateForm: true,
+							
+							afterSubmit: function () {
+								
+								
+								   var rowId =$("#listOil").jqGrid('getGridParam','selrow');  
+			                       var rowData = jQuery("#listOil").getRowData(rowId);
+			                    	var quantity = rowData['quantity'];
+			                    	var buyPrice = rowData['buyPrice'];
+			                    	
+			                    	var tota = quantity * buyPrice;
+
+			                    	$("#listOil").jqGrid("setCell", rowId, "Total", tota);
+								
+			                    	
+							},
+							errorTextFormat: function (data) {
+								return 'Error: ' + data.responseText
+							}
+						 },
+						
+						 {},
+						
+						 {
+							closeAfterdel:true,
+							checkOnUpdate : true,
+							checkOnSubmit : true,
+							recreateForm: true,
+							afterComplete: function() {
+		                		//$('#jqGrid').trigger( 'reloadGrid' );
+		                		
+		                		
+		                		var rowId =$("#listOil").jqGrid('getGridParam','selrow');  
+				        	   	var rowData = jQuery("#listOil").getRowData(rowId);
+		                    	var quantity = rowData['quantity'];
+		                    	var buyPrice = rowData['buyPrice'];
+		                    	var discount = rowData['discount'];
+		                    	var gst = rowData['vat'];
+		                    	var igst = rowData['igst'];
+		                    	var vatAmt = 0;
+		                    	var discount1 = 0;
+		                    	var tota = 0;
+		                    	var totAmt = 0;
+		                    	var ctot = 0;
+		                    	tota = quantity * buyPrice;
+		                    	totAmt = quantity * buyPrice;
+		                    	if(discount != "0"){
+		                    		discount1 = ((tota*discount)/100);
+		                    		tota = +tota - +discount1;
+		                    		totAmt = +tota;
+		                    	}
+		                    	
+		                    	if(gst != "0" && igst ==0){
+		                    		vatAmt =  ((tota*(gst))/100);
+		                    		totAmt = +tota + +vatAmt;
+		                    	}
+		                    	if(igst != "0" && gst == 0){
+		                    		vatAmt =  ((tota*igst)/100);
+		                    		totAmt = +tota + +vatAmt;
+		                    	}
+		                    	if(gst !=0 && igst !=0){
+		                    		//alert("please enter either gst or igst");
+		                    		var abc = 0;
+			                    	$("#listOil").jqGrid("setCell", rowId, "vat", abc);
+			                    	$("#listOil").jqGrid("setCell", rowId, "igst", abc);
+			                    	return false;
+		                    	}
+		                    	$("#listOil").jqGrid("setCell", rowId, "discountAmt", discount1);
+		                    	$("#listOil").jqGrid("setCell", rowId, "gstamt", vatAmt);
+		                    	$("#listOil").jqGrid("setCell", rowId, "Total", totAmt);
+		                    	var Total = 0;
+		                    	var count = jQuery("#listOil").jqGrid('getGridParam', 'records');
+		        				var allRowsInGrid1 = $('#listOil').getGridParam('data');
+		        				var AllRows=JSON.stringify(allRowsInGrid1);
+		                            for (var k = 0; k < count; k++) {
+		                    	var Total1 = allRowsInGrid1[k].Total;
+		                    	if(Total1 != undefined){
+		                    		Total = +Total + +Total1;
+		                    	} 
+		                        }
+		                            document.getElementById("resolutionOil").value = Math.round(Total);
+		                            document.getElementById("resolutionOil1").value = Math.round(Total);
+		                            var totAmount = Math.round(Total);
+		                            
+		                            var extraDiscount = document.getElementById("extraDiscount1").value;
+		                            if(extraDiscount != "0"){
+		    	             	    	document.getElementById("resolutionOil").value = totAmount;
+		    	             	    }
+		    	             	    else{
+		    	             	    	var disAmount =  (extraDiscount/100)*totAmount;
+		    	            			var gross = +totAmount - +disAmount;
+		    	            			document.getElementById("resolutionOil").value = Math.round(gross);
+		    	             	    }
+		                            
+		    	             	    var expence = document.getElementById("expence1").value;
+		    	             	    if(expence != "0"){
+		    	             	    	document.getElementById("resolutionOil").value = totAmount;
+		    	             	    }
+		    	             	    else{
+		    	             	    	document.getElementById("resolutionOil").value = (+totAmount + +expence);
+		    	             	    }
+		                		
+		                		
+		                		
+		                		
+							},
+							errorTextFormat: function (data) {
+								return 'Error: ' + data.responseText
+							},
+							onSelectRow: function(id) {
+								if (id && id !== lastSel) {
+									jQuery("#listOil").saveRow(lastSel, true, 'clientArray');
+									jQuery("#listOil").editRow(id, true);
+									lastSel = id;
+									console.log(id);
+								}
+							}
+						});
+				
+
+			})
+ 	    	.error(function(jqXHR, textStatus, errorThrown){
+ 	    		if(textStatus==="timeout") {
+ 	    			$(loaderObj).hide();
+ 	    			$(loaderObj).find('#errorDiv').show();
+ 	    		}
+ 	    	})
+		
+	
+}
 
 

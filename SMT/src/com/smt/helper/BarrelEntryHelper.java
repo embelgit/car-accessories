@@ -346,5 +346,39 @@ public class BarrelEntryHelper {
 			}
 		}
 /////////////end//////////
+		
+		
+	//////////Billing oil module////////grid///////
+		
+		public BarrelEntryBean getProductInGridBillingOil(HttpServletRequest request,
+				HttpServletResponse response) {
+			
+			
+			
+			String key = request.getParameter("itemName");
+
+			Map<Long,BarrelEntryBean > map = new HashMap<Long, BarrelEntryBean>();
+
+			BarrelEntryDao dao = new BarrelEntryDao();
+			List<BarrelEntryBean> catList = dao.getProductInGridBillingOil(key);
+
+			BarrelEntryBean cs = null;
+			if (catList != null && catList.size() > 0) {
+				cs = (BarrelEntryBean) catList.get(0);
+			}
+			return cs;
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 }
