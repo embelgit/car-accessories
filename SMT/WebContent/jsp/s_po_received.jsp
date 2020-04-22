@@ -206,8 +206,8 @@ function openCreditCustomerBilling() {
 	     <script src="/SMT/staticContent/y_js/newgoodsreceived.js"></script>
 	    <script src="/SMT/staticContent/js/BarrelEntry.js"></script>  
 	 
-	<body class="purchase_form_img">
-	<body onload="pageLoad();">
+	
+	<body class="purchase_form_img" onload="pageLoad();">
 	<div class="container-fluid">
 
 		<div class="row header_margin_top">

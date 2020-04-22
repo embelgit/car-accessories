@@ -332,7 +332,7 @@ function grasstotal11(){
 							<input type="text" class="form-control" id="ownerName" name="ownerName" placeholder="Owner Name" readonly="readonly"  />
 						</div>	
 				   </div>
-				  
+				
 				   <div class="row" style="margin-top: 10px;">
 				
 					    <div class="col-md-2" align="right">
@@ -492,6 +492,7 @@ function grasstotal11(){
                 </div>
 				</div>
 				</div>
+				</div>
 						<!-- <div class="row" style="margin-top:10px;">
 							<div class="col-md-3" align="right">
 								<label class="control-label" style="font-size: 22px;" > Gross Total: </label>
@@ -509,9 +510,9 @@ function grasstotal11(){
 								<div id="jqGridPager5"></div>
 							</div>
 						</div>
-					
 					</div>
-				</div>	
+					
+				
 				
 				
 				  <div class="col-md-4">
@@ -537,7 +538,7 @@ function grasstotal11(){
 						</div>
 					
 					
-				</div>
+				
 	
 		      
 						  <input type="hidden" class="form-control" id="carID" name="carID" />
@@ -553,7 +554,7 @@ function grasstotal11(){
 				
 				</form>
 				</div>
-				
+				</div>
 		<!-- --------------------------end of regular billing------------------ -->	
 		<div id="CreditCustDetail">	
 				<form class="form-horizontal" action="" method="post"  name ="custord1">
@@ -724,7 +725,7 @@ function grasstotal11(){
         <div class="row footer_margin_top" align="center">
 			<%@include file="y_commons/footer.jsp"%>
 		</div> 
-		</div>
+		
 </body>
 </html>
 
