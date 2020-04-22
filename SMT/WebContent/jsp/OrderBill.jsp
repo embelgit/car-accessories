@@ -119,7 +119,23 @@ function loadd(){
 }
 </script>
 
-
+<script type="text/javascript">
+function pageLoad(){	
+	$("#CashCustDetail").show();
+	$("#CreditCustDetail").hide(); 	
+}
+function openCashCustomerBilling() {
+	$("#CashCustDetail").show();
+	$("#CreditCustDetail").hide();
+	location.reload();
+	
+}
+function openCreditCustomerBilling() {
+	$("#CreditCustDetail").show();
+	$("#CashCustDetail").hide();
+	
+}
+</script>
 
  <script>
 	
@@ -253,7 +269,7 @@ function grasstotal11(){
 
 </head>
 <body>
-<form class="form-horizontal" action="" method="post" name  ="custord">
+ <!-- <form class="form-horizontal" action="" method="post" name  ="custord"> --> 
 	<div class="container-fluid">
 		<h2 align="center" class="form-heading style_heading" style="margin-top: 50px;">Customer Bill</h2>
 		
@@ -286,7 +302,9 @@ function grasstotal11(){
 	 </div>
 	              	
 <!-- --------------------------------------------------end----------------------------------- -->
-		
+		<div id="CashCustDetail">
+		<!-- <form action="goods" method="post" name="good" class="form-horizontal" style="margin-top:1%"> -->
+		<form class="form-horizontal" action="" method="post" name  ="custord">
 			      <div class="row" style="margin-top:2%">
 						<div class="col-md-2" align="right">
 
@@ -532,16 +550,181 @@ function grasstotal11(){
 						<button type='button' onclick="loadd()" class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
 					</div>
 				</div> 
+				
+				</form>
+				</div>
+				
+		<!-- --------------------------end of regular billing------------------ -->	
+		<div id="CreditCustDetail">	
+				<form class="form-horizontal" action="" method="post"  name ="custord1">
+				
+				<div class="container">
+			      <div class="row">
+			        <div class="form-group">
+						<!-- <div class="col-sm-2 col-sm-offset-1" align="center">
+							<label class="control-label" >Barcode no:</label>
+						</div>
+						
+						<div class="col-md-3">
+						  <div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+							</span> 
+						    <input type="text" id="key" class="form-control text-border" onchange="return getitemData1();" autofocus="key" placeholder="Enter Item Barcode" />
+					     </div>	
+					     </div> -->
+					  
+					 
+					  <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
+          					  <div class="col-md-3">
+								<div class="input-group">
+									 <span class="input-group-addon">
+										<i class="glyphicon glyphicon-user"></i>
+									</span> 
+					 	
+					 <%-- 	<%
+								ProductDetailDao cdd1 = new ProductDetailDao();
+							 List cList1 =cdd1.getProductNames();
+							
+							%>
+						<input list="prod_drop" id="productId"  class="form-control"  onchange="getproductgrid();">
+				         <datalist id="prod_drop">
+							
+							<%
+					           for(int i=0;i<cList1.size();i++){
+					        	   ProductRegister cust1 =(ProductRegister)cList1.get(i);
+							%>
 		
-		</div>
+						 <option data-value="<%=cust1.getPkProductId()%>" value="<%=cust1.getItemName() %>  =>  <%=cust1.getCategoryName()%>"> 
+						
+						
+							<%
+				      			}
+				    		%>
+						</datalist>     --%>
+				    </div>
+                </div>
+					 
+					 </div>
+					 
+				</div>	
+					   
+		
+				<div class="row" style="margin-top: 10px; ">
+				    <div class="form-group">
+					<div class="col-md-12">
+						<!-- <div class="row"> -->
+							<div class="table-responsive">
+								<table id="list4"></table>
+								<div id="jqGridPager"></div>
+							</div>
+						</div>
+					</div>
+					</div>
+		
+				
+						<div class="row form-group" style="margin-top:10px;">
+						<!--     <div class="col-md-5" id="calculator" style="margin-left: 20px;">
+								Screen and clear key
+								<div class="top">
+									<span class="clear">C</span>
+									<div class="screen"></div>
+								</div>
+								
+								<div class="keys">
+									operators and other keys
+									<span>7</span>
+									<span>8</span>
+									<span>9</span>
+									<span class="operator">+</span>
+									<span>4</span>
+									<span>5</span>
+									<span>6</span>
+									<span class="operator">-</span>
+									<span>1</span>
+									<span>2</span>
+									<span>3</span>
+									<span class="operator">÷</span>
+									<span>0</span>
+									<span>.</span>
+									<span class="eval">=</span>
+									<span class="operator">x</span>
+								</div>
+							</div>
+ -->
+						<!-- PrefixFree -->
+						<script src="/SMT/staticContent/js/PrefixFree 1.0.7.js" type="text/javascript" type="text/javascript"></script>
+						
+	                    <script src="/SMT/staticContent/js/calculator.js"></script>
+						  <div class="col-md-5">
+						  	<div class="row form-group" style="margin-top:10px;">
+							<div class="col-md-6" align="right">
+								<label class="control-label"  >Total Amount: </label>
+							</div>
+							<div class="col-md-6">
+							  <div class="input-group">
+							     <span class="input-group-addon">
+							       Rs
+						         </span>
+								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amout"   readonly="readonly"/>
+							  </div> 
+							</div>
+						</div>
+							<div class="row form-group" style="margin-top:10px;">
+							<div class="col-md-6" align="right">
+								<label class="control-label"  > Discount: </label>
+							</div>
+							<div class="col-md-6">
+							 <div class="input-group">
+							   <span class="input-group-addon">
+							     Rs
+						       </span>
+								<input type="text" class="form-control" id="discount"  placeholder="Discount In Rs" autofocus onkeyup="grasstotal(); return false;" />
+							 </div> 
+							</div> 
+						</div>
+							
+							<div class="row form-group" style="margin-top:10px;">
+							<div class="col-md-6" align="right">
+								<label class="control-label"  > Gross Total: </label>
+							</div>
+							<div class="col-md-6">
+							 <div class="input-group">
+							    <span class="input-group-addon">
+							      Rs
+						        </span>
+								<input type="text" class="form-control" id="grossTotal" placeholder="Gross Total" readonly="readonly"/>
+							 </div> 
+							</div> 
+						</div>
+							
+						</div>
+				</div>	
+			</div>	
+				
+				
+				<div class="row" style="margin-top:20px;">
+				  <div class="form-group">
+					<div align="center" class="margin-top-10">
+						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right" id="btnSubmit"  onclick=" return resotherbill();" >Save</button>
+						<button type='button' class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
+					</div>
+				  </div>	
+				</div> 
+				
+				</form>
+				</div>
+				
+				
+				
+				<!-- ------------------end of oil barrel------------------------ -->
+				
 	
-	
-	
-</form>
 
         <div class="row footer_margin_top" align="center">
 			<%@include file="y_commons/footer.jsp"%>
 		</div> 
+		</div>
 </body>
 </html>
 
