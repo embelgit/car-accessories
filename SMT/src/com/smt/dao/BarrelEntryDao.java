@@ -10,6 +10,8 @@ import org.hibernate.Transaction;
 import org.jfree.util.Log;
 
 import com.smt.bean.BarrelEntryBean;
+import com.smt.bean.CategoryWisePurchase;
+import com.smt.bean.CustomerBean;
 import com.smt.hibernate.BarrelEntryHibernate;
 import com.smt.hibernate.Category;
 import com.smt.hibernate.GoodReceive;
@@ -198,45 +200,55 @@ public class BarrelEntryDao {
 	
 	//////////Billing product grid oil////////////
 	
-	public List getProductInGridBillingOil(String key) {
-		HibernateUtility hbu = null;
-		Session session = null;
-		List<BarrelEntryBean> itemlist = null;
-		List<Object[]> list = null;
-		try {
-			hbu = HibernateUtility.getInstance();
-			session = hbu.getHibernateSession();
-			
-			
-			Query query = session.createSQLQuery("SELECT ProductName,Vat,HsnSacNo,category_name,NoOfBarrel,perlitre,TotalLitre FROM barrelentry WHERE pkProductNameId="+key);
-			 list = query.list();
-			itemlist = new ArrayList<BarrelEntryBean>(0);
-			for (Object[] objects : list) {
-				BarrelEntryBean bean = new BarrelEntryBean();
-				bean.setItemName(objects[0].toString());
-				bean.setVat(Double.parseDouble(objects[1].toString()));
-				bean.setHsnsacno(objects[2].toString());
-				bean.setCategoryName(objects[3].toString());
-				bean.setNumberofBarrel(Double.parseDouble(objects[4].toString()));
-				bean.setOilperlitre(Double.parseDouble(objects[5].toString()));
-				bean.setTotalLitre(Double.parseDouble(objects[6].toString()));
-				
-				//System.out.println("Total Weight=======" +bean.getTotelWeight());
-				
-				//bean.setVat(0d);
-				bean.setIgst(0d);
-				System.out.println(Arrays.toString(objects));
-				System.out.println("Done___=+++++=");
-				
-				
-				
-				itemlist.add(bean);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return itemlist;
-	}
 	
+	public List<BarrelEntryBean> getProductInGridBillingOil(String productId) {
+		// TODO Auto-generated method stub
+		
+		HibernateUtility hbu=null;
+		Session session=null;
+		
+		List<BarrelEntryBean> itemlist=null;
+		try
+		{
+			
+			    System.out.println("priya");
+				hbu = HibernateUtility.getInstance();
+		        session = hbu.getHibernateSession();
+		
+
+		 Query query=session.createSQLQuery("SELECT ItemName,PkGoodRecId, CategoryName ,hsnsacno, vat, igst,salePrice FROM goodreceivebarrel WHERE ItemName ='"+productId+"'");
+			List<Object[]> list = query.list();
+
+			 itemlist = new ArrayList<BarrelEntryBean>(0);
+		     for (Object[] objects : list) {
+			 System.out.println(Arrays.toString(objects));
+			 BarrelEntryBean bean = new BarrelEntryBean();
+			  
+			 bean.setItemName(objects[0].toString());
+			 bean.setPkProductId(Long.parseLong(objects[1].toString()));
+			 bean.setCategoryName(objects[2].toString());
+			 //bean.setBarcodeNo(Long.parseLong(objects[3].toString()));
+			 bean.setHsnsacno(objects[3].toString());
+			 bean.setQuantity(0l);
+			 bean.setSalePrice(Double.parseDouble(objects[6].toString()));
+			 bean.setDiscount(0d);
+			 bean.setDiscountAmt(0d);
+			 bean.setVat(Double.parseDouble(objects[4].toString()));
+			 bean.setIgst(Double.parseDouble(objects[5].toString()));
+			 bean.setTaxAmt(0d);
+			 
+			 itemlist.add(bean);
+		     }
+		     }
+				catch(RuntimeException e)
+				{
+					Log.error("Error in getAllItemDetails(String key)", e);	
+				}finally
+				{if(session!=null){
+					hbu.closeSession(session);	
+				}
+				}
+		return itemlist;
+		}
 	
 }

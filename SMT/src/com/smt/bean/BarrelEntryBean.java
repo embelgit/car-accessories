@@ -20,14 +20,29 @@ public class BarrelEntryBean {
     private Double TotalLitre;
     private double salePrice;
 	private double discount;
+	private double discountAmt;
 	private long quantity;
 	private double buyPrice;
 	private Long pkBillId;
 	private String billNo;
 	private Long barcodeNo;
 	private double igst;
+	private double taxAmt;
+	
+	
     
-    
+	public double getTaxAmt() {
+		return taxAmt;
+	}
+	public void setTaxAmt(double taxAmt) {
+		this.taxAmt = taxAmt;
+	}
+	public double getDiscountAmt() {
+		return discountAmt;
+	}
+	public void setDiscountAmt(double discountAmt) {
+		this.discountAmt = discountAmt;
+	}
 	public double getIgst() {
 		return igst;
 	}

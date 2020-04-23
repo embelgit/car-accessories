@@ -23,9 +23,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.smt.bean.BarrelEntryBean;
+import com.smt.bean.CustomerBean;
 import com.smt.bean.GoodReceiveItemBean;
 import com.smt.bean.GoodreciveBillBean;
 import com.smt.dao.BarrelEntryDao;
+import com.smt.dao.CustomerOrderDao;
 import com.smt.dao.GoodReciveDao;
 import com.smt.dao.ProductDetailDao;
 import com.smt.dao.StockDao;
@@ -350,28 +352,25 @@ public class BarrelEntryHelper {
 		
 	//////////Billing oil module////////grid///////
 		
+		
 		public BarrelEntryBean getProductInGridBillingOil(HttpServletRequest request,
 				HttpServletResponse response) {
+			// TODO Auto-generated method stub
+			String productId=request.getParameter("productId");
 			
+			System.out.println(productId+"productName");
+			Map<Long,BarrelEntryBean> map = new HashMap<Long,BarrelEntryBean>();
 			
+			BarrelEntryDao dao = new BarrelEntryDao();			
+			List<BarrelEntryBean> catList = dao.getProductInGridBillingOil(productId);
 			
-			String key = request.getParameter("itemName");
-
-			Map<Long,BarrelEntryBean > map = new HashMap<Long, BarrelEntryBean>();
-
-			BarrelEntryDao dao = new BarrelEntryDao();
-			List<BarrelEntryBean> catList = dao.getProductInGridBillingOil(key);
-
 			BarrelEntryBean cs = null;
-			if (catList != null && catList.size() > 0) {
-				cs = (BarrelEntryBean) catList.get(0);
+			if(catList!= null && catList.size() > 0 )
+			{	
+				cs = (BarrelEntryBean)catList.get(0); 
 			}
 			return cs;
-			
 		}
-		
-		
-		
 		
 		
 		

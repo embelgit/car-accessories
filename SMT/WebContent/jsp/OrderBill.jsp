@@ -558,7 +558,7 @@ function grasstotal11(){
 				</form>
 				</div>
 				</div>
-		<!-- --------------------------end of regular billing------------------ -->	
+		 <!-- --------------------------end of regular billing------------------ -->	
 		<div id="CreditCustDetail">	
 				<form class="form-horizontal" action="" method="post"  name ="custord1">
 				
@@ -591,7 +591,7 @@ function grasstotal11(){
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
 								</span>
-								<input list="itemId_drop1" id="itemName1" class="form-control" onchange="getProductList1()" >
+								<input list="itemId_drop1" id="itemName1" class="form-control" onchange="getProductInGridBillingOil()" >
 						        <datalist id="itemId_drop1">
 						       <%
 							      for(int j =0 ;j<itemList1.size();j++)
@@ -599,10 +599,10 @@ function grasstotal11(){
 							    	  BarrelEntryBean itm = (BarrelEntryBean)itemList1.get(j);
 						       %>
 							      
-			            <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getCategoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>">  
+			             <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getCategoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>">   
+							  <%--  <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getItemName()%>"> --%> 
 							    
-							    
-							    
+							
 						      <%   	
 						      
 								}	
@@ -697,7 +697,7 @@ function grasstotal11(){
 				
 				
 				
-				<!-- ------------------end of oil barrel------------------------ -->
+				<!-- ------------------end of oil barrel------------------------ --> 
 				
 	
 
