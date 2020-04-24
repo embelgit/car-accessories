@@ -735,7 +735,7 @@ function getProductInGridBillingOil()
 	
 	var value = document.getElementById("itemName1").value;
 	var splitText = value.split(" =>");
-	var productId1 = splitText[1];
+	var productId1 = splitText[0];
 	
 	//var carNo = $('#carNo').val();
 	
@@ -799,7 +799,7 @@ function getProductInGridBillingOil()
 		$("#listOil").jqGrid({
 			datatype: "local",
 			
-			colNames:['pk_temp_id','item_id','CatName','ItemName','HSN/SAC','Quantity','SalePrice','Discount','DiscountAmt','GST%','IGST%','Tax Amt','Total Amt'],
+			colNames:['pk_temp_id','item_id','CatName','ItemName','HSN/SAC','No.of.barrels','Total litres','Quantity','SalePrice','Discount','DiscountAmt','GST%','IGST%','Tax Amt','Total Amt'],
 			colModel:[ 
 			          
 			          
@@ -827,6 +827,14 @@ function getProductInGridBillingOil()
 					
 				},
 				 {	name:'hsnsacno',
+			    	 width:100,
+					
+				},
+				 {	name:'NumberofBarrel',
+			    	 width:100,
+					
+				},
+				 {	name:'TotalLitre',
 			    	 width:100,
 					
 				},
@@ -899,7 +907,7 @@ function getProductInGridBillingOil()
                 var rowData = jQuery("#listOil").getRowData(rowId);
              	var quantity = rowData['quantity'];
              	var salePrice = rowData['salePrice'];
-             	var discount = rowData['discountGrid'];
+             	var discount = rowData['discount'];
              	var discountAmt = rowData['discountAmt'];
              	var gst = rowData['vat'];
             	var igst = rowData['igst'];
@@ -927,7 +935,7 @@ function getProductInGridBillingOil()
 					$("#listOil").jqGrid("setCell",rowId, "igst", abc);
 
 					$("#listOil").jqGrid("setCell",rowId, "gst", abc);
-					$("#listOil").jqGrid("setCell",rowId, "taxAmount", pqr);
+					$("#listOil").jqGrid("setCell",rowId, "taxAmt", pqr);
 					return false;
 					}
 				
@@ -951,7 +959,7 @@ function getProductInGridBillingOil()
 					$("#listOil").jqGrid("setCell",rowId, "igst", abc);
 
 					$("#listOil").jqGrid("setCell",rowId, "gst", abc);
-					$("#listOil").jqGrid("setCell",rowId, "taxAmount", pqr);
+					$("#listOil").jqGrid("setCell",rowId, "taxAmt", pqr);
 					return false;
 					}
 				
@@ -998,7 +1006,7 @@ function getProductInGridBillingOil()
                     	//var totalWithVatAmtTot= Math.round(totalWithVatAmt * 100.0) / 100.0;
                 	}
             	
-            	$("#listOil").jqGrid("setCell", rowId, "taxAmount", calculateVatTotal);
+            	$("#listOil").jqGrid("setCell", rowId, "taxAmt", calculateVatTotal);
              	$("#listOil").jqGrid("setCell", rowId, "total", totalWithVatAmt);
              	var Total = 0;
             	var count = jQuery("#listOil").jqGrid('getGridParam', 'records');
@@ -1011,14 +1019,14 @@ function getProductInGridBillingOil()
             		Total = +Total + +Total1;
             	}
                 }
-                    document.getElementById("totalAmount").value = Math.round(Total);
+                    document.getElementById("totalAmountOil").value = Math.round(Total);
                     var totAmount = Math.round(Total);
-             	    var dis = document.getElementById("discount").value;
+             	    var dis = document.getElementById("discountOil").value;
              	    if(dis != "0"){
-             	    	document.getElementById("grossTotal").value = totAmount;
+             	    	document.getElementById("grossTotalOil").value = totAmount;
              	    }
              	    else{
-             	    	document.getElementById("grossTotal").value = (+totAmount - +dis);
+             	    	document.getElementById("grossTotalOil").value = (+totAmount - +dis);
              	    }
              	
 	        	},
@@ -1077,7 +1085,7 @@ function getProductInGridBillingOil()
 	                        var rowData = jQuery("#listOil").getRowData(rowId);
 	                     	var quantity = rowData['quantity'];
 	                     	var salePrice = rowData['salePrice'];
-	                     	var discount = rowData['discountGrid'];
+	                     	var discount = rowData['discount'];
 	                     	var discountAmt = rowData['discountAmt'];
 	                     	var gst = rowData['vat'];
 	                    	var igst = rowData['igst'];
@@ -1176,7 +1184,7 @@ function getProductInGridBillingOil()
 	                            	//var totalWithVatAmtTot= Math.round(totalWithVatAmt * 100.0) / 100.0;
 	                        	}
 	                    	
-	                    	$("#listOil").jqGrid("setCell", rowId, "taxAmount", calculateVatTotal);
+	                    	$("#listOil").jqGrid("setCell", rowId, "taxAmt", calculateVatTotal);
 	                     	$("#listOil").jqGrid("setCell", rowId, "total", totalWithVatAmt);
 	                     	var Total = 0;
 	                    	var count = jQuery("#listOil").jqGrid('getGridParam', 'records');
@@ -1189,14 +1197,14 @@ function getProductInGridBillingOil()
 	                    		Total = +Total + +Total1;
 	                    	}
 	                        }
-	                            document.getElementById("totalAmount").value = Math.round(Total);
+	                            document.getElementById("totalAmountOil").value = Math.round(Total);
 	                            var totAmount = Math.round(Total);
-	                     	    var dis = document.getElementById("discount").value;
+	                     	    var dis = document.getElementById("discountOil").value;
 	                     	    if(dis != "0"){
-	                     	    	document.getElementById("grossTotal").value = totAmount;
+	                     	    	document.getElementById("grossTotalOil").value = totAmount;
 	                     	    }
 	                     	    else{
-	                     	    	document.getElementById("grossTotal").value = (+totAmount - +dis);
+	                     	    	document.getElementById("grossTotalOil").value = (+totAmount - +dis);
 	                     	    }
 	                     	
 		                    	
@@ -1209,3 +1217,90 @@ function getProductInGridBillingOil()
 			})
 }
 
+//register oil  in database
+function resotherbill(){
+
+	resOtherBill();
+	}
+function resOtherBill(){
+	document.getElementById("btnSubmit").disabled = true; 
+	var params= {};
+	var count = jQuery("#listOil").jqGrid('getGridParam', 'records');
+	var allRowsInGrid1 = $('#listOil').getGridParam('data');
+	var AllRows=JSON.stringify(allRowsInGrid1);
+	for (var i = 0; i < count; i++) {
+	
+		var pk_temp_id = allRowsInGrid1[i].pk_temp_id;
+     	params["pk_temp_id"+i] = pk_temp_id;
+		
+		var item_id = allRowsInGrid1[i].pkProductId;
+     	params["item_id"+i] = item_id;
+     	
+		var itemName = allRowsInGrid1[i].itemName;
+		params["itemName"+i] = itemName;
+		
+		var quantity = allRowsInGrid1[i].quantity;
+		params["quantity"+i] = quantity;
+		
+		/*var barcodeNo = allRowsInGrid1[i].barcodeNo;
+		params["barcodeNo"+i] = barcodeNo;
+		*/
+		var categoryName = allRowsInGrid1[i].categoryName;
+		params["categoryName"+i] = categoryName;
+
+		var salePrice = allRowsInGrid1[i].salePrice;
+		params["salePrice"+i] = salePrice;
+		
+		var total = allRowsInGrid1[i].total;
+		params["total"+i] = total;
+		
+		var hsnSacNo = allRowsInGrid1[i].hsnsacno;
+		params["hsnSacNo"+i] = hsnSacNo;
+		
+		var vat = allRowsInGrid1[i].vat;
+		params["vat"+i] = vat;
+		
+		var igst = allRowsInGrid1[i].igst;
+		params["igst"+i] = igst;
+		
+		var taxAmount = allRowsInGrid1[i].taxAmt;
+		params["taxAmount"+i] = taxAmount;
+		
+		var discountGrid = allRowsInGrid1[i].discount;
+		params["discountGrid"+i] = discountGrid;
+		
+		var discountAmt = allRowsInGrid1[i].discountAmt;
+		params["discountAmt"+i] = discountAmt;
+		
+		
+	}
+	
+	    var totalAmount=$('#totalAmountOil').val();
+	    var discount=$('#discountOil').val();
+	    if(discount == ""){
+	    	discount = 0;
+	    }
+	    var grossTotal=$('#grossTotalOil').val();
+	    
+		params["count"] = count;
+		params["totalAmount"] = totalAmount;
+		params["discount"] = discount;
+		params["grossTotal"] = grossTotal;
+		
+	    params["methodName"] = "registerOtherBill1";
+	    
+		$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+		    	{  
+			           alert(data);
+					   window.open("Other_Bill_PDF.jsp");
+					   location.reload(true);
+			
+				 }
+		    	).error(function(jqXHR, textStatus, errorThrown){
+		    		if(textStatus==="timeout") {
+		    			$(loaderObj).hide();
+		    			$(loaderObj).find('#errorDiv').show();
+		    		}
+		    	});
+	
+}

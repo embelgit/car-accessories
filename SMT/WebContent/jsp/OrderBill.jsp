@@ -122,7 +122,7 @@ function loadd(){
 }
 </script>
 
-<script type="text/javascript">
+<<!-- script type="text/javascript">
 function pageLoad(){	
 	$("#CashCustDetail").show();
 	$("#CreditCustDetail").hide(); 	
@@ -138,6 +138,19 @@ function openCreditCustomerBilling() {
 	$("#CashCustDetail").hide();
 	
 }
+</script> -->
+<script type="text/javascript">
+
+
+function grasstotalOil(){
+	
+	var total = document.getElementById("totalAmountOil").value;           
+	var discount = document.getElementById("discountOil").value;
+	var gross = +total - +discount;
+	
+	document.getElementById("grossTotalOil").value = gross;
+}
+
 </script>
 
  <script>
@@ -288,7 +301,7 @@ function grasstotal11(){
 		</div>
 		<!---------------------------------++++++++++------Cash and Credit Radio---------++++++++++-----------------------------> 
 				
-	<div class=" " id="my_styles" >
+	<!-- <div class=" " id="my_styles" >
 	<div class="textalign center" align="center">
 			
    			 <label>
@@ -302,7 +315,7 @@ function grasstotal11(){
             
         		
        </div>		
-	 </div>
+	 </div> -->
 	              	
 <!-- --------------------------------------------------end----------------------------------- -->
 		<div id="CashCustDetail">
@@ -540,7 +553,133 @@ function grasstotal11(){
 							</div> 
 						</div>
 					
-					
+		<!-- 	////////////oil billing//////////////////////	 -->	
+				
+				
+				<div class="form-group">
+						<!-- <div class="col-sm-2 col-sm-offset-1" align="center">
+							<label class="control-label" >Barcode no:</label>
+						</div>
+						
+						<div class="col-md-3">
+						  <div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+							</span> 
+						    <input type="text" id="key1" class="form-control text-border" onchange="return getitemData1();" autofocus="key" placeholder="Enter Item Barcode" />
+					     </div>	
+					     </div> -->
+					  
+					 
+					  <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
+          					  <div class="col-md-3">
+								
+									 
+					 	 <%
+					    BarrelEntryHelper item1 = new BarrelEntryHelper();
+					    List itemList1 = item1.getAllItemName1();
+						%>
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-hand-right"></i>
+								</span>
+								<input list="itemId_drop1" id="itemName1" class="form-control" onchange="getProductInGridBillingOil()" >
+						        <datalist id="itemId_drop1">
+						       <%
+							      for(int j =0 ;j<itemList1.size();j++)
+								{
+							    	  BarrelEntryBean itm = (BarrelEntryBean)itemList1.get(j);
+						       %>
+							      
+			            
+							     <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getItemName()%>  =>  <%=itm.getCategoryName()%>">
+							
+						      <%   	
+						      
+								}	
+						       %>
+						</datalist>     
+				    </div>
+                
+					 
+					 </div>
+					 
+				</div>	
+					   
+				
+				
+				
+				<div class="row" style="margin-top: 10px; ">
+				    <div class="form-group">
+					<div class="col-md-12">
+						<!-- <div class="row"> -->
+							<div class="table-responsive">
+								<table id="listOil"></table>
+								<div id="jqGridPager"></div>
+							</div>
+						</div>
+					</div>
+					</div>
+		
+				
+				
+						<div class="row form-group" style="margin-top:10px;">
+						
+ 
+						<!-- PrefixFree -->
+						<script src="/SMT/staticContent/js/PrefixFree 1.0.7.js" type="text/javascript" type="text/javascript"></script>
+						
+	                    <script src="/SMT/staticContent/js/calculator.js"></script>
+						  <div class="col-md-5">
+						  	<div class="row form-group" style="margin-top:10px;">
+							<div class="col-md-6" align="right">
+								<label class="control-label"  >Total Amount: </label>
+							</div>
+							<div class="col-md-6">
+							  <div class="input-group">
+							     <span class="input-group-addon">
+							       Rs
+						         </span>
+								<input type="text" class="form-control" id="totalAmountOil"  placeholder="Total Amout"   readonly="readonly"/>
+							  </div> 
+							</div>
+						</div>
+							<div class="row form-group" style="margin-top:10px;">
+							<div class="col-md-6" align="right">
+								<label class="control-label"  > Discount: </label>
+							</div>
+							<div class="col-md-6">
+							 <div class="input-group">
+							   <span class="input-group-addon">
+							     Rs
+						       </span>
+								<input type="text" class="form-control" id="discountOil"  placeholder="Discount In Rs" autofocus onkeyup="grasstotalOil(); return false;" />
+							 </div> 
+							</div> 
+						</div>
+							
+							<div class="row form-group" style="margin-top:10px;">
+							<div class="col-md-6" align="right">
+								<label class="control-label"  > Gross Total: </label>
+							</div>
+							<div class="col-md-6">
+							 <div class="input-group">
+							    <span class="input-group-addon">
+							      Rs
+						        </span>
+								<input type="text" class="form-control" id="grossTotalOil" placeholder="Gross Total" readonly="readonly"/>
+							 </div> 
+							</div> 
+						</div>
+							
+						</div>
+				</div>	
+				
+				
+				
+				
+				
+				
 				
 	
 		      
@@ -559,10 +698,10 @@ function grasstotal11(){
 				</div>
 				</div>
 		 <!-- --------------------------end of regular billing------------------ -->	
-		<div id="CreditCustDetail">	
-				<form class="form-horizontal" action="" method="post"  name ="custord1">
+		
+				<!-- <form class="form-horizontal" action="" method="post"  name ="custord1"> -->
 				
-				<div class="container">
+				<%-- <div class="container">
 			      <div class="row">
 			        <div class="form-group">
 						<!-- <div class="col-sm-2 col-sm-offset-1" align="center">
@@ -599,9 +738,8 @@ function grasstotal11(){
 							    	  BarrelEntryBean itm = (BarrelEntryBean)itemList1.get(j);
 						       %>
 							      
-			             <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getCategoryName()%> =>Itemname=> <%=itm.getItemName()%>  =>ModelName=> <%=itm.getModelName()%>" myvalue="<%=itm.getItemName()%>" myvalue1="<%=itm.getHsnsacno()%>">   
-							  <%--  <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getItemName()%>"> --%> 
-							    
+			            
+							     <option data-value="<%=itm.getPkProductId()%>" value="<%=itm.getItemName()%>  =>  <%=itm.getCategoryName()%>">
 							
 						      <%   	
 						      
@@ -613,26 +751,26 @@ function grasstotal11(){
 					 
 					 </div>
 					 
-				</div>	
+				</div>	 --%>
 					   
 		
-				<div class="row" style="margin-top: 10px; ">
+				<!-- <div class="row" style="margin-top: 10px; ">
 				    <div class="form-group">
 					<div class="col-md-12">
-						<!-- <div class="row"> -->
+						<div class="row">
 							<div class="table-responsive">
 								<table id="listOil"></table>
 								<div id="jqGridPager"></div>
 							</div>
 						</div>
 					</div>
-					</div>
+					</div> -->
 		
 				
-						<div class="row form-group" style="margin-top:10px;">
+					<!-- 	<div class="row form-group" style="margin-top:10px;">
 						
  
-						<!-- PrefixFree -->
+						PrefixFree
 						<script src="/SMT/staticContent/js/PrefixFree 1.0.7.js" type="text/javascript" type="text/javascript"></script>
 						
 	                    <script src="/SMT/staticContent/js/calculator.js"></script>
@@ -659,7 +797,7 @@ function grasstotal11(){
 							   <span class="input-group-addon">
 							     Rs
 						       </span>
-								<input type="text" class="form-control" id="discountOil"  placeholder="Discount In Rs" autofocus onkeyup="grasstotal(); return false;" />
+								<input type="text" class="form-control" id="discountOil"  placeholder="Discount In Rs" autofocus onkeyup="grasstotalOil(); return false;" />
 							 </div> 
 							</div> 
 						</div>
@@ -693,10 +831,10 @@ function grasstotal11(){
 				</div> 
 				
 				</form>
-				</div>
+			
 				
 				
-				
+				 -->
 				<!-- ------------------end of oil barrel------------------------ --> 
 				
 	

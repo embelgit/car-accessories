@@ -1528,5 +1528,13 @@ public class Controller {
 							System.out.println("$$$$$$$$$$$$$$$$" + returnMap);
 							return toJson(returnMap);
 						}
+						// reg oil bill to database
+						public String registerOtherBill1(HttpServletRequest request, HttpServletResponse response) {
+							System.out.println("IN CONTROLLER");
+							BarrelEntryHelper Helper = new BarrelEntryHelper();
+							Helper.registerOtherBill(request, response);
+							return toJson("Data Added Successfully");
+
+						}
 }
 
