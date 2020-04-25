@@ -25,8 +25,22 @@ public class BarrelBillingHibernate {
 	private Double taxAmount;
 	private Double discountGrid;
 	private Double discountAmt;
+	private Double NumberofBarrel;
+	private Double TotalLitre;
+	    
 	
-	
+	public Double getNumberofBarrel() {
+		return NumberofBarrel;
+	}
+	public void setNumberofBarrel(Double numberofBarrel) {
+		NumberofBarrel = numberofBarrel;
+	}
+	public Double getTotalLitre() {
+		return TotalLitre;
+	}
+	public void setTotalLitre(Double totalLitre) {
+		TotalLitre = totalLitre;
+	}
 	public Long getPkBillId() {
 		return pkBillId;
 	}

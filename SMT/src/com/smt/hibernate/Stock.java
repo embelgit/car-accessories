@@ -11,9 +11,19 @@ public class Stock {
 	private long quantity;
 	private Date UpdateDate;
 	private String date;
+	private double totalLitre;
 	
 	
-	
+	public double getTotalLitre() {
+		return totalLitre;
+	}
+
+
+	public void setTotalLitre(double totalLitre) {
+		this.totalLitre = totalLitre;
+	}
+
+
 	public Stock() {
 		// TODO Auto-generated constructor stub
 	}

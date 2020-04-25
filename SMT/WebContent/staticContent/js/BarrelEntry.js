@@ -1272,6 +1272,11 @@ function resOtherBill(){
 		var discountAmt = allRowsInGrid1[i].discountAmt;
 		params["discountAmt"+i] = discountAmt;
 		
+		var NumberofBarrel = allRowsInGrid1[i].NumberofBarrel;
+		params["NumberofBarrel"+i] = NumberofBarrel;
+		
+		var TotalLitre = allRowsInGrid1[i].TotalLitre;
+		params["TotalLitre"+i] = TotalLitre;
 		
 	}
 	

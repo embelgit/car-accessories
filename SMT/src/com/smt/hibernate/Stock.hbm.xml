@@ -16,7 +16,7 @@
         name="itemName"
         type="java.lang.String"
         column="ItemName"
-        not-null="true"
+        
         
         /> 
         
@@ -24,7 +24,7 @@
         name="catName"
         type="java.lang.String"
         column="CategoryName"
-        not-null="true"
+       
        
         /> 
         
@@ -32,16 +32,21 @@
         name="quantity"
         type="java.lang.Long"
         column="Quantity"
-        length="20"
+       
         />
         
         <property
         name="UpdateDate"
         type="java.sql.Date"
         column="UpdateDate"
-        length="19"
-        />
         
+        />
+       
+       <property
+		name="totalLitre" 
+		type="java.lang.Double" 
+		column="totalLitre"
+		/> 
         
 		</class>
     </hibernate-mapping>

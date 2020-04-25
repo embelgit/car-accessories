@@ -149,7 +149,17 @@
 		column="discountAmt"
 		/>
 		
-		
+		 <property
+        name="NumberofBarrel"
+        type="java.lang.Double"
+        column="NoOfBarrel"
+    />
+    
+     <property
+        name="TotalLitre"
+        type="java.lang.Double"
+        column="TotalLitre"
+    />
 		
 		
     </class>
