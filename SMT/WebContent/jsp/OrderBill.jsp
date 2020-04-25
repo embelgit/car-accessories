@@ -689,7 +689,7 @@ function grasstotal11(){
 				
 				<div class="row" style="margin-top:20px;">
 					<div align="center" class="margin-top-10">
-						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right" id="btnSubmit" autofocus onclick="resBill();" >Save</button>
+						<button type='button' class="btn btn-success btn-lg bottomButtons btn-md button_hw button_margin_right" id="btnSubmit" autofocus onclick="resBill();resotherbill()" >Save</button>
 						<button type='button' onclick="loadd()" class="btn btn-danger btn-lg bottomButtons btn-md button_hw button_margin_right">Cancel</button>
 					</div>
 				</div> 

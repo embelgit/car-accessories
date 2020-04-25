@@ -508,96 +508,96 @@ function resBill() {
      	
      	
 		var itemName = allRowsInGrid1[i].itemName;
-		if(itemName == undefined){
+		/*if(itemName == undefined){
 			itemName = "NA";
-		}
+		}*/
 		params["itemName"+i] = itemName;
 		
 		var quantity = allRowsInGrid1[i].quantity;
-		if(quantity == undefined){
+		/*if(quantity == undefined){
 			quantity = 0;
-		}
+		}*/
 		params["quantity"+i] = quantity;
 		
 		var barcodeNo = allRowsInGrid1[i].barcodeNo;
-		if(barcodeNo == undefined){
+		/*if(barcodeNo == undefined){
 			barcodeNo = 0;
-		}
+		}*/
 		params["barcodeNo"+i] = barcodeNo;
 		
 		var categoryName = allRowsInGrid1[i].categoryName;
-		if(categoryName == undefined){
+		/*if(categoryName == undefined){
 			categoryName = "NA";
-		}
+		}*/
 		params["categoryName"+i] = categoryName;
 
 		var salePrice = allRowsInGrid1[i].salePrice;
-		if(salePrice == undefined){
+		/*if(salePrice == undefined){
 			salePrice = 0;
-		}
+		}*/
 		params["salePrice"+i] = salePrice;
 		
 		var total = allRowsInGrid1[i].total;
-		if(total == undefined){
+		/*if(total == undefined){
 			total = 0;
-		}
+		}*/
 		params["total"+i] = total;
 		
 		var hsnSacNo = allRowsInGrid1[i].hsnSacNo;
-		if(hsnSacNo == undefined){
+		/*if(hsnSacNo == undefined){
 			hsnSacNo = 0;
-		}
+		}*/
 		params["hsnSacNo"+i] = hsnSacNo;
 		
 		
 		var vat = allRowsInGrid1[i].vat;
-		if(vat == undefined){
+		/*if(vat == undefined){
 			vat = 0;
-		}
+		}*/
 		params["vat"+i] = vat;
 		
 		var igst = allRowsInGrid1[i].igst;
-		if(igst == undefined){
+		/*if(igst == undefined){
 			igst = 0;
-		}
+		}*/
 		params["igst"+i] = igst;
 		
 		var taxAmount = allRowsInGrid1[i].taxAmount;
-		if(taxAmount == undefined){
+		/*if(taxAmount == undefined){
 			taxAmount = 0;
-		}
+		}*/
 		params["taxAmount"+i] = taxAmount;
 		
 		var discountGrid = allRowsInGrid1[i].discountGrid;
-		if(discountGrid == undefined){
+		/*if(discountGrid == undefined){
 			discountGrid = 0;
-		}
+		}*/
 		params["discountGrid"+i] = discountGrid;
 		
 		var discountAmt = allRowsInGrid1[i].discountAmt;
-		if(discountAmt == undefined){
+		/*if(discountAmt == undefined){
 			discountAmt = 0;
 		}
-		params["discountAmt"+i] = discountAmt;
+*/		params["discountAmt"+i] = discountAmt;
 		
 		
 	  }
 	    var contactNo = $('#contactNo').val();
-	    if(contactNo == ""){
+	    /*if(contactNo == ""){
 	    	contactNo = 0;
-	    }
+	    }*/
 	    var ownerName=$('#ownerName').val();
-	    if(ownerName == ""){
+	    /*if(ownerName == ""){
 	    	ownerName = "NA";
-	    }
+	    }*/
 	    var carNo=$('#carNo').val();
-	    if(carNo == ""){
+	   /* if(carNo == ""){
 	    	carNo = 0;
-	    }
+	    }*/
 	    var totalAmount=$('#totalAmount').val();
-	    if(totalAmount == ""){
+	    /*if(totalAmount == ""){
 	    	totalAmount = 0;
-	    }
+	    }*/
 	   /* var discount=$('#discount').val();
 	    if(discount == ""){
 	    	discount = 0;
@@ -613,9 +613,9 @@ function resBill() {
 	    	carID = 0;
 	    }*/
 	    var grossTotal=$('#grossTotal').val();
-	    if(grossTotal == ""){
+	   /* if(grossTotal == ""){
 	    	grossTotal = 0;
-	    }
+	    }*/
 		
 		//var params= {};
 			var count1 = jQuery("#list5").jqGrid('getGridParam', 'records');
