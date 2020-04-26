@@ -22,7 +22,7 @@
 <body>
 <footer>
 <div class="footer" > 
-		<p><b>Copyright© 2020 Embel Technology Pvt Ltd.</b> 
+		<p><b>Copyright© 2020 Embel Technologies Pvt Ltd.</b> 
 		<!-- <a href="http://embel.co.in/">embel.co.in</a> -->
 		<a href="http://embel.co.in/" target="_blank">embel.co.in</a>
 </div>

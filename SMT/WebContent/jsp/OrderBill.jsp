@@ -555,8 +555,9 @@ function grasstotal11(){
 					
 		<!-- 	////////////oil billing//////////////////////	 -->	
 				
+				 <div class="row" style="margin-top:10px;">
+				<div class="col-md-2" align="right">
 				
-				<div class="form-group">
 						<!-- <div class="col-sm-2 col-sm-offset-1" align="center">
 							<label class="control-label" >Barcode no:</label>
 						</div>
@@ -571,7 +572,7 @@ function grasstotal11(){
 					     </div> -->
 					  
 					 
-					  <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
+					  <label class=" control-label" for="customerName">Product Name<sup>*</sup></label>  
           					  <div class="col-md-3">
 								
 									 
@@ -600,7 +601,7 @@ function grasstotal11(){
 						       %>
 						</datalist>     
 				    </div>
-                
+               </div>
 					 
 					 </div>
 					 

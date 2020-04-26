@@ -110,8 +110,16 @@
 					</div>
 				</div>
 	      </div>	
-          <h2 align="center" class="form-heading" style="margin-top: 10px; margin-bottom: 40px;">Edit Category</h2>
-		
+	       <div class="row header_margin_top">
+			    <div align="center">
+          <h2 class="form-name style_heading">Edit Category</h2>
+          </div>
+          </div>
+		<div class="row">
+		     <div class="col-sm-offset-1 col-md-10">
+				  		<hr style="border-top-color:#c1b1b1;">
+		     </div>	
+    </div>
 				<div class="tab-content margin-t-13">
 				
 				    <div id="home" class="tab-pane fade in active">

@@ -44,7 +44,11 @@
 				<h2 class="form-name style_heading">Category List</h2>
 			</div>
 		</div>
-		
+		 <div class="row">
+		     <div class="col-sm-offset-1 col-md-10">
+				  		<hr style="border-top-color:#c1b1b1;">
+		     </div>	
+    </div>
 		<div class="row">
 			<div class="form-group" align="right">
 				<div class="col-sm-offset-8 col-md-4 control-label">

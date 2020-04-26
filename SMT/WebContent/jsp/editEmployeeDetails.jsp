@@ -35,7 +35,7 @@
           <fieldset>
        			 <div class="row form-group">
     	     	
-           				 <label class="col-md-2 control-label" for="employeename">Employee Name</label>  
+           				 <label class="col-md-2 control-label" for="employeename">Employee Name:</label>  
           					  <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -64,7 +64,7 @@
            		</div>	
            		</div>
        		<div class="row form-group">
-           		<label class="col-md-2 control-label" for="firstName">First Name<sup>*</sup></label>  
+           		<label class="col-md-2 control-label" for="firstName">First Name:<sup>*</sup></label>  
 		           	 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -74,7 +74,7 @@
             			</div>
             		</div>
 
-            	<label class="col-md-2 control-label" for="middleName"> Middle Name<sup>*</sup></label>  
+            	<label class="col-md-2 control-label" for="middleName"> Middle Name:<sup>*</sup></label>  
             		<div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -86,7 +86,7 @@
 			</div>
 			
 			 <div class="row form-group">
-				<label class="col-md-2 control-label" for="lastName">Last Name<sup>*</sup></label>  
+				<label class="col-md-2 control-label" for="lastName">Last Name:<sup>*</sup></label>  
            	 		<div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -96,7 +96,7 @@
             			</div>
             		</div>
 	
-	           <label class="col-md-2 control-label" for="joiningDate">Joining Date<sup>*</sup></label>  
+	           <label class="col-md-2 control-label" for="joiningDate">Joining Date:<sup>*</sup></label>  
            	 	<div class="col-md-3">
 					<div class="input-group">
 						<span class="input-group-addon">
@@ -108,7 +108,7 @@
 			</div>
            
            <div class="row form-group">
-           	<label class="col-md-2 control-label" for="emailId"> Email ID</label>  
+           	<label class="col-md-2 control-label" for="emailId"> Email ID:</label>  
            		<div class="col-md-3">
 					<div class="input-group">
 						<span class="input-group-addon">
@@ -118,7 +118,7 @@
             		</div>
 				</div>
 			
-			<label class="col-md-2 control-label" for="joiningDate">New Joining Date</label>  
+			<label class="col-md-2 control-label" for="joiningDate">New Joining Date:</label>  
            	 	<div class="col-md-3">
 					<div class="input-group">
 						<span class="input-group-addon">
@@ -132,7 +132,7 @@
 			</div>
 
 			<div class="row form-group">
-           		<label class="col-md-2 control-label" for="contactNo">Contact No.<sup>*</sup></label>  
+           		<label class="col-md-2 control-label" for="contactNo">Contact No.:<sup>*</sup></label>  
            	 		<div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -142,7 +142,7 @@
             			</div>
             		</div>
 				
-				<label class="col-md-2 control-label" for="salary">Salary<sup>*</sup></label>  
+				<label class="col-md-2 control-label" for="salary">Salary:<sup>*</sup></label>  
            	 	<div class="col-md-3">
 					<div class="input-group">
 						<span class="input-group-addon">
@@ -156,7 +156,7 @@
 			</div>
 			
 			<div class="row form-group">
-				<label class="col-md-2 control-label" for="zipCode">Zip code<sup>*</sup></label>  
+				<label class="col-md-2 control-label" for="zipCode">Zip code:<sup>*</sup></label>  
            			 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -166,7 +166,7 @@
             			</div>
             		</div>
             		
-            		 <label class="col-md-2 control-label" for="address">Address<sup>*</sup></label>  
+            		 <label class="col-md-2 control-label" for="address">Address:<sup>*</sup></label>  
 	            <div class="col-md-3">
 					<div class="input-group">
 						<span class="input-group-addon">

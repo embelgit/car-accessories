@@ -31,7 +31,7 @@
 		<form class="form-horizontal" method="post" action="" name="cstd1"><!-- Value of 'name' attribute is used in customerDetails.js  -->
           <fieldset>
 				    <div class="row form-group">
-           				 <label class="col-md-2 control-label" for="customerName">Credit Customer Name</label>  
+           				 <label class="col-md-2 control-label" for="customerName">Credit Customer Name:</label>  
           					  <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -61,7 +61,7 @@
 			</div>
 			
 			<div class="row form-group">
-           		<label class="col-md-2 control-label" for="firstName">First Name<sup>*</sup></label>  
+           		<label class="col-md-2 control-label" for="firstName">First Name:<sup>*</sup></label>  
            	 		<div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -72,7 +72,7 @@
            		 	</div>
 
            
-           	 	<label class="col-md-2 control-label" for="middleName">Middle Name <sup>*</sup></label>  
+           	 	<label class="col-md-2 control-label" for="middleName">Middle Name: <sup>*</sup></label>  
            			 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -84,7 +84,7 @@
 			</div>
 			
 			<div class="row form-group">
-				<label class="col-md-2 control-label" for="lastName">Last Name<sup>*</sup></label>  
+				<label class="col-md-2 control-label" for="lastName">Last Name:<sup>*</sup></label>  
            	 		<div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -94,7 +94,7 @@
            				 </div>
            			 </div>
            			 
-				<label class="col-md-2 control-label" for="address">Address<sup>*</sup></label>  
+				<label class="col-md-2 control-label" for="address">Address:<sup>*</sup></label>  
 	            	<div class="col-md-3 ">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -106,7 +106,7 @@
 				</div>
 			
 			<div class="row form-group">
-				<label class="col-md-2 control-label" for="contactNo">Contact No.<sup>*</sup></label>  
+				<label class="col-md-2 control-label" for="contactNo">Contact No.:<sup>*</sup></label>  
            	 		<div class="col-md-3 ">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -116,20 +116,20 @@
            				 </div>
            			</div>
             	
-            	<label class="col-md-2 control-label" for="aadharNo">GSTTIN/UIN No:.<sup>*</sup></label>  
+            	<label class="col-md-2 control-label" for="aadharNo">GSTTIN/UIN No. :<sup>*</sup></label>  
            	 		<div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
 								No.
 							</span>
-              				<input id="aadharNo" name="aadharNo" placeholder="Aadhar No." class="form-control input-md" type="text" >
+              				<input id="aadharNo" name="aadharNo" placeholder="GSTTIN/UIN No." class="form-control input-md" type="text" >
             			</div>
             		</div>
             	
 			</div>
 
 			<div class="row form-group">
-				 <label class="col-md-2 control-label" for="emailId">Email ID </label>  
+				 <label class="col-md-2 control-label" for="emailId">Email ID :</label>  
             	<div class="col-md-3 ">
 					<div class="input-group">
 						<span class="input-group-addon">
@@ -139,7 +139,7 @@
             		</div>
 				</div>
 				
-				<label class="col-md-2 control-label" for="zipCode">Zip code<sup>*</sup></label>  
+				<label class="col-md-2 control-label" for="zipCode">Zip code:<sup>*</sup></label>  
            		 <div class="col-md-3">
 					<div class="input-group">
 						<span class="input-group-addon">
