@@ -12,6 +12,7 @@ import org.jfree.util.Log;
 import com.smt.bean.BarrelEntryBean;
 import com.smt.bean.CategoryWisePurchase;
 import com.smt.bean.CustomerBean;
+import com.smt.bean.ItemList;
 import com.smt.hibernate.BarrelBillingHibernate;
 import com.smt.hibernate.BarrelEntryHibernate;
 import com.smt.hibernate.Category;
@@ -290,5 +291,43 @@ public class BarrelEntryDao {
 			}
 		}
 	}
+	
+	// get all main Item name for barrel entry form
+		public List<ItemList> getAllMAinItem() {
+			// TODO Auto-generated method stub
+			HibernateUtility hbu=null;
+			Session session=null;
+			List<ItemList> catList=null;
+			try
+			{
+				Long k = 0l;
+				hbu = HibernateUtility.getInstance();
+			 session = hbu.getHibernateSession();
+			 Query query2 = session.createSQLQuery("select ProductName,category_name,HsnSacNo,TotalLitre,NoOfBarrel,modelName FROM barrelentry");
+				
+		        List<Object[]> list = query2.list();
+		        catList= new ArrayList<ItemList>(0);
+				
+				
+				for (Object[] object : list) {
+					k++;	
+					ItemList reports = new ItemList();
+					reports.setSerialnumber(k);
+					reports.setItem_name(object[0].toString());
+					reports.setCategoryName(object[1].toString());
+					reports.setHsnsacno(object[2].toString());
+					reports.setTotalLitre(Double.parseDouble(object[3].toString()));
+					reports.setNumberofBarrel(Double.parseDouble(object[4].toString()));
+					reports.setModelName(object[5].toString());
+									
+					catList.add(reports); 
+			
+				}}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return catList;
+		}
 	
 }

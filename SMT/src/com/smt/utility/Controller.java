@@ -1536,5 +1536,14 @@ public class Controller {
 							return toJson("Data Added Successfully");
 
 						}
+						// get Item List for barrel entry form
+						public String getAllMAinItemOil(HttpServletRequest request, HttpServletResponse response) {
+							BarrelEntryHelper helper = new BarrelEntryHelper();
+							List categories = helper.getAllMAinItem(request, response);
+							Map<String, List> returnMap = new HashMap<String, List>();
+							returnMap.put("list", categories);
+							System.out.println("$$$$$$$$$$$$$$$$" + returnMap);
+							return toJson(returnMap);
+						}
 }
 

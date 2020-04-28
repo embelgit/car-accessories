@@ -27,6 +27,7 @@ import com.smt.bean.BillBean;
 import com.smt.bean.CustomerBean;
 import com.smt.bean.GoodReceiveItemBean;
 import com.smt.bean.GoodreciveBillBean;
+import com.smt.bean.ItemList;
 import com.smt.dao.BarrelEntryDao;
 import com.smt.dao.CustomerOrderDao;
 import com.smt.dao.GoodReciveDao;
@@ -527,5 +528,17 @@ public class BarrelEntryHelper {
 		}
 
 	}
+	
+	 //get all main product Name for barrel entry form
+		public List getAllMAinItem(HttpServletRequest request,
+				HttpServletResponse response) {
+			
+			 Map<Long,ItemList> map = new HashMap<Long,ItemList>();
+				
+			 BarrelEntryDao dao = new BarrelEntryDao();
+				List<ItemList> exp1List = dao.getAllMAinItem();
+				
+				return exp1List;
+		}
 
 }

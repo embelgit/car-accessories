@@ -1309,3 +1309,67 @@ function resOtherBill(){
 		    	});
 	
 }
+
+////List of barrel entry form//////
+
+function getAllMAinItem(){
+	
+	
+	var params= {};
+	
+	params["methodName"] = "getAllMAinItemOil";
+
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data)
+			{
+		
+		$('#itemName').dataTable().fnClearTable();
+		
+		var jsonData = $.parseJSON(data);
+		var catmap = jsonData.list;
+		
+		
+		
+		$(document).ready(function() {
+		 var total =   $('#itemName').DataTable( {
+			 
+			 dom: 'Bfrtip',
+	         buttons: [
+	             'copy', 'csv', 'excel', 'pdf', 'print'
+	         ],
+			 
+			 fnRowCallback : function(nRow, aData, iDisplayIndex){
+	                $("th:first", nRow).html(iDisplayIndex +1);
+	               return nRow;
+	            },
+	            
+			    
+	            "sPaginationType": "full_numbers",
+		    	destroy: true,
+		        searching: true,
+		        orderable: true,
+		        
+		      
+		columns: [
+		          	{"data": "serialnumber", "width": "5%", "defaultContent": ""},
+                    {"data": "categoryName", "width": "5%", "defaultContent": ""},
+		            {"data": "item_name", "width": "5%", "defaultContent": ""},
+		            {"data": "hsnsacno", "width": "5%", "defaultContent": ""},
+		            {"data": "modelName", "width": "5%", "defaultContent": ""},
+		            {"data": "NumberofBarrel", "width": "5%", "defaultContent": ""},
+		            {"data": "TotalLitre", "width": "5%", "defaultContent": ""},
+		            
+		            
+		        ],
+		      
+		        
+		    } );
+		} );
+		
+	var mydata = catmap;
+	$('#itemName').dataTable().fnAddData(mydata);
+	
+		}
+
+	);
+	
+}	

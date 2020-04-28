@@ -106,13 +106,13 @@
 	   
 </script>
  <script type="text/javascript">
- function editProduct()
+/*  function editProduct()
  {
  	window.location = "Edit_y_product_detail.jsp";
- }
+ } */
  function listProduct()
  {
- 	window.location = "s_item_list.jsp";
+ 	window.location = "barrelEntryList.jsp";
  }
  </script>
 

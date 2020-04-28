@@ -8,8 +8,31 @@ public class ItemList {
 	private String categoryName;
 	private String hsnsacno;
 	 private Long serialnumber;
+	  private String modelName;
+	  private Double TotalLitre;
+	  private Double NumberofBarrel;
+	  
+	  
+	  
 	
-	
+	public String getModelName() {
+		return modelName;
+	}
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+	public Double getTotalLitre() {
+		return TotalLitre;
+	}
+	public void setTotalLitre(Double totalLitre) {
+		TotalLitre = totalLitre;
+	}
+	public Double getNumberofBarrel() {
+		return NumberofBarrel;
+	}
+	public void setNumberofBarrel(Double numberofBarrel) {
+		NumberofBarrel = numberofBarrel;
+	}
 	public String getItem_name() {
 		return item_name;
 	}
