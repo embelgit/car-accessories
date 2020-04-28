@@ -48,7 +48,7 @@
  					
  	 			}
  	 			else{
- 	 				alert("Please Enter Product name");
+ 	 				alert("Please Enter item name");
  	 			}
  			}
  			else{
