@@ -108,6 +108,7 @@
 				<th> Item Name</th>
 				<th>Available Quantity</th>
 				<th>Update Date</th>
+				<th>Total Litres</th>
 
 			</tr>
 		</thead>

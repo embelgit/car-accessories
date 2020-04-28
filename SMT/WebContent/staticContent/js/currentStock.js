@@ -39,7 +39,7 @@ var params= {};
 		            {"data": "itemName", "width": "5%", "defaultContent": ""},
 		            {"data": "quantity", "width": "5%", "defaultContent": ""},
 		            {"data": "date", "width": "5%", "defaultContent": ""},
-		            
+		            {"data": "totalLitre", "width": "5%", "defaultContent": ""},
 		            
 		        ],
 		      
@@ -127,7 +127,7 @@ for (i = 0; i < list.options.length; ++i) {
                       {"data": "itemName", "width": "5%", "defaultContent": ""},
                       {"data": "quantity", "width": "5%", "defaultContent": ""},
                       {"data": "date", "width": "5%", "defaultContent": ""},
-			           
+                      {"data": "totalLitre", "width": "5%", "defaultContent": ""},
 			           
 			            
 			           

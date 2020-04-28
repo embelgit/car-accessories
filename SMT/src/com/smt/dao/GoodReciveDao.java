@@ -223,6 +223,9 @@ public class GoodReciveDao {
 			{
 				hbu = HibernateUtility.getInstance();
 			 session = hbu.getHibernateSession();
+			// select barcodeNo, itemName, CategoryName, quantity, buyPrice, Vat, igst from GoodReceive  UNION ALL SELECT BarcodeNo,ItemName,
+
+			 //CategoryName,TotalLitre,BuyPrice,vat,igst FROM goodreceivebarrel
 			 //Query query2 = session.createQuery("select itemName, catName, quantity, buyPrice, salePrice, billNo, barcodeNo from GoodReceive where barcodeNo=:barcodeNo");
 			 Query query2 = session.createSQLQuery("select barcodeNo, itemName, CategoryName, quantity, buyPrice, Vat, igst from GoodReceive where FksuppId ="+ suppId +" AND Date between '"+ fDate +"' and '"+ eDate +"';");
 			 //query2.setParameter("barcodeNo", barcodeNo);

@@ -573,7 +573,7 @@ function grasstotal11(){
 					  
 					 
 					  <label class=" control-label" for="customerName">Product Name<sup>*</sup></label>  
-          					  <div class="col-md-3">
+          					  <div class="col-md-4">
 								
 									 
 					 	 <%

@@ -133,7 +133,7 @@ public List<Stock> getAllCurrentStock() {
 	{
 		hbu = HibernateUtility.getInstance();
 	 session = hbu.getHibernateSession();
-	 Query query2 = session.createQuery("select itemName, catName, quantity, UpdateDate from Stock");
+	 Query query2 = session.createQuery("select itemName, catName, quantity, UpdateDate,totalLitre from Stock");
 		
         List<Object[]> list = query2.list();
         catList= new ArrayList<Stock>(0);
@@ -147,6 +147,7 @@ public List<Stock> getAllCurrentStock() {
 			reports.setCatName(object[1].toString());
 			reports.setQuantity(Long.parseLong(object[2].toString()));
 			reports.setDate(object[3].toString());
+			reports.setTotalLitre(Double.parseDouble(object[4].toString()));
 			
 			catList.add(reports); 
 	
@@ -167,7 +168,7 @@ public List<Stock> getCategoryWiseStock(String catId) {
 	{
 		hbu = HibernateUtility.getInstance();
 	 session = hbu.getHibernateSession();
-	 Query query2 = session.createQuery("select itemName, catName, quantity, UpdateDate from Stock where catName=:catId");
+	 Query query2 = session.createQuery("select itemName, catName, quantity, UpdateDate,totalLitre from Stock where catName=:catId");
 	 query2.setParameter("catId", catId);
         List<Object[]> list = query2.list();
         catList= new ArrayList<Stock>(0);
@@ -181,6 +182,7 @@ public List<Stock> getCategoryWiseStock(String catId) {
 			reports.setCatName(object[1].toString());
 			reports.setQuantity(Long.parseLong(object[2].toString()));
 			reports.setDate(object[3].toString());
+			reports.setTotalLitre(Double.parseDouble(object[4].toString()));
 			
 			catList.add(reports); 
 	
