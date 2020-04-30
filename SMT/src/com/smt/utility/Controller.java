@@ -1545,5 +1545,31 @@ public class Controller {
 							System.out.println("$$$$$$$$$$$$$$$$" + returnMap);
 							return toJson(returnMap);
 						}
+						
+						// update barrel entry details
+						public String updateProductDetailsOil(HttpServletRequest request, HttpServletResponse response) {
+							System.out.println("In controller update Supplier Details");
+							BarrelEntryHelper helper = new BarrelEntryHelper();
+							helper.editProductDetail(request, response);
+							System.out.println("In controller Updateemployee");
+							return toJson("Data Updated Successfully");
+
+						}
+						
+						// Fetching Product Details To Edit
+						public String getProductDetailsToEditOil(HttpServletRequest request, HttpServletResponse response) {
+							String productId = request.getParameter("productId");
+							Long productID = Long.parseLong(productId);
+							System.out.println("in controller customerId : " + productID);
+							BarrelEntryHelper helper = new BarrelEntryHelper();
+							Map map = helper.getProductDetailsForEdit(productId);
+							Map<String, List> returnMap = new HashMap<String, List>();
+							String xyz = toJson(map);
+							System.out.println(xyz);
+							System.out.println("going out of controller");
+							return xyz;
+						}
+
+
 }
 

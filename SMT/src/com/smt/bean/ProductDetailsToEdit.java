@@ -7,8 +7,29 @@ public class ProductDetailsToEdit {
 	private double vat;
 	private String ModelName;
 	private String hsnsacno;
+	 private Double NumberofBarrel;
+	    private Double oilperlitre;
+	    private Double TotalLitre;
+	    
 	
-	
+	public Double getNumberofBarrel() {
+			return NumberofBarrel;
+		}
+		public void setNumberofBarrel(Double numberofBarrel) {
+			NumberofBarrel = numberofBarrel;
+		}
+		public Double getOilperlitre() {
+			return oilperlitre;
+		}
+		public void setOilperlitre(Double oilperlitre) {
+			this.oilperlitre = oilperlitre;
+		}
+		public Double getTotalLitre() {
+			return TotalLitre;
+		}
+		public void setTotalLitre(Double totalLitre) {
+			TotalLitre = totalLitre;
+		}
 	public long getPkProduct() {
 		return pkProduct;
 	}

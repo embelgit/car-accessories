@@ -329,5 +329,58 @@ public class BarrelEntryDao {
 			}
 			return catList;
 		}
+		///barrel entry fetching product 
+		public List getAllProductSetailsForEdit(String ProductId) {
+
+
+			System.out.println("into dao supplier : "+ProductId);
+			HibernateUtility hbu = null;
+			Session session =  null;
+			Query query = null;
+			 List list = null;
+			 try {
+				 hbu = HibernateUtility.getInstance();
+				 session = hbu.getHibernateSession();
+				 query = session.createSQLQuery("select ProductName, Vat, modelName, pkProductNameId, HsnSacNo,NoOfBarrel,TotalLitre from barrelentry where pkProductNameId ="+ProductId);
+				 list = query.list(); 
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			}
+			 
+			 finally
+			 {
+				 if (session!=null) {
+					hbu.closeSession(session);
+				}
+			 }
+			 System.out.println("out of dao - return credit customer List : "+list);
+					return list;
+		}
+		
+		//edit drop down of product name
+		public List getProductNames()
+		{
+			HibernateUtility hbu = null;
+			Session session =  null;
+			Query query = null;
+			 List list = null;
+		 try {
+				 hbu = HibernateUtility.getInstance();
+				 session = hbu.getHibernateSession();
+				 query = session.createQuery("from BarrelEntryHibernate");
+				 list = query.list(); 
+			} catch (RuntimeException e) {
+				Log.error("Error in getAllSupllier", e);
+			}
+			 
+			 finally
+			 {
+				 if (session!=null) {
+					hbu.closeSession(session);
+				}
+			 }
+					return list;
+			
+		}
 	
 }

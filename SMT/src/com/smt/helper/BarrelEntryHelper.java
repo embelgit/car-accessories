@@ -28,6 +28,7 @@ import com.smt.bean.CustomerBean;
 import com.smt.bean.GoodReceiveItemBean;
 import com.smt.bean.GoodreciveBillBean;
 import com.smt.bean.ItemList;
+import com.smt.bean.ProductDetailsToEdit;
 import com.smt.dao.BarrelEntryDao;
 import com.smt.dao.CustomerOrderDao;
 import com.smt.dao.GoodReciveDao;
@@ -540,5 +541,85 @@ public class BarrelEntryHelper {
 				
 				return exp1List;
 		}
+		
+		public void editProductDetail(HttpServletRequest request,
+				HttpServletResponse response) {
+		
+			String productId = request.getParameter("productId");
+			String itemName = request.getParameter("itemName");
+			String modelName = request.getParameter("modelName");
+			String hsnsacno = request.getParameter("hsnsacno");
+			String NoBarrel = request.getParameter("NoBarrel");
+			String TotalBarrel = request.getParameter("TotalBarrel");
+			
+			HibernateUtility hbu=null;
+			Session session = null;
+			Transaction transaction = null;
+			
+			 hbu = HibernateUtility.getInstance();
+			session = hbu.getHibernateSession();
+			 transaction = session.beginTransaction();
+		
+			//long customerId = Long.parseLong(customerId);
+			 System.out.println("%%%%%%%%%%%%%%%%% Product id :"+productId);
+			long productID =Long.parseLong(productId);
+			//ProductRegister det = (ProductRegister) session.get(ProductRegister.class, productID);
+			
+			BarrelEntryHibernate det = (BarrelEntryHibernate) session.get(BarrelEntryHibernate.class, productID);
+			if (!"".equals(itemName)) {
+				det.setItemName(itemName);
+			} else {
+				det.setItemName("N/A");
+			}
+			
+			
+			det.setVat(0d);
+			
+			
+			if (!"".equals(modelName)) {
+				det.setModelName(modelName);
+			} else {
+				det.setModelName("N/A");
+			}
+			det.setHsnsacno(hsnsacno);
+			det.setNumberofBarrel(Double.parseDouble(NoBarrel));
+			det.setTotalLitre(Double.parseDouble(TotalBarrel));
+		    session.saveOrUpdate(det);
+			transaction.commit();
+			session.close();
+			System.out.println("Record updated successfully.");
+		
+		
+		
+		}
+		////barrel entry edit getting products//////
+		public Map getProductDetailsForEdit(String productId) {
+			
+		 	System.out.println("into helper class");
+		 	BarrelEntryDao dao1 = new BarrelEntryDao();
+			List catList = dao1.getAllProductSetailsForEdit(productId);
+			
+			Map  map =  new HashMap();
+			for(int i=0;i<catList.size();i++)
+			{
+				Object[] o = (Object[])catList.get(i);
+			
+				ProductDetailsToEdit bean = new ProductDetailsToEdit();
+				bean.setProName(o[0].toString());
+				String vat = o[1].toString();
+				bean.setVat(Double.parseDouble(vat));
+				bean.setModelName(o[2].toString());
+				String pkId = o[3].toString();
+				bean.setHsnsacno(o[4].toString());
+				bean.setPkProduct(Long.parseLong(pkId));
+				bean.setNumberofBarrel(Double.parseDouble(o[5].toString()));
+				bean.setTotalLitre(Double.parseDouble(o[6].toString()));
+				
+				map.put(bean.getPkProduct(),bean);
+			}
+			System.out.println("out of helper return map : "+map);
+			return map;
+		}
+
 
 }

@@ -1,10 +1,11 @@
+<%@page import="com.smt.dao.BarrelEntryDao"%>
 <%@page import="com.smt.bean.ItemList"%>
 <%@page import="com.smt.bean.ProductDetailBean"%>
 <%@page import="com.smt.dao.ProductDetailDao"%>
 <%@page import="com.smt.hibernate.Category"%>
 <%@page import="com.smt.hibernate.SupplierDetail"%>
 <%@page import="java.util.List"%>
-<%@page import="com.smt.hibernate.ProductRegister"%>
+<%@page import="com.smt.hibernate.BarrelEntryHibernate"%>
 <%@page import="com.smt.helper.CategoryHelper"%>
 <%@page import="com.smt.helper.SupplierDetailHelper"%>
 <%@page import="com.smt.helper.ProductDetailHelper"%>
@@ -23,7 +24,7 @@
 	    <script src="/SMT/staticContent/js/jquery.min.js"></script>
 	    <script src="/SMT/staticContent/js/jquery.jqgrid.min.js"></script> 
 	    
-        <script src="/SMT/staticContent/y_js/productDetail.js"></script>
+        <script src="/SMT/staticContent/js/BarrelEntry.js"></script>
         
         
  <script type="text/javascript">
@@ -71,7 +72,7 @@
 	  
 	     function backProduct()
 	     {
-	    	 window.location = "y_product_detail.jsp";
+	    	 window.location = "BarrelEntry.jsp";
 	     }
 </script>
 
@@ -81,7 +82,7 @@
 	
 	<div class="row header_margin_top">
 			    <div align="center">
-			  		<h2 class="form-name style_heading"> Edit Barrel Entry Detail</h2>
+			  		<h2 class="form-name style_heading"> Edit Product Detail</h2>
 			  	</div>
 			 
     </div>
@@ -124,7 +125,7 @@
 										<!-- <input type="text" class="form-control  input-sm" id='itemName' name="itemName" placeholder="Product Name" > -->
 										
 										<%
-											ProductDetailDao sdd = new ProductDetailDao();
+											BarrelEntryDao sdd = new BarrelEntryDao();
            									List sList =sdd.getProductNames();
 							
 										%>
@@ -134,7 +135,7 @@
 										<datalist id="sup_drop">
 											<%
 									           for(int i=0;i<sList.size();i++){
-									        	   ProductRegister sup =(ProductRegister)sList.get(i);
+									        	   BarrelEntryHibernate sup =(BarrelEntryHibernate)sList.get(i);
 											%>
 											<option data-value="<%=sup.getPkProductId()%>" value="<%=sup.getItemName() %>">
 											<%
@@ -179,7 +180,7 @@
 						</div>
 							  
 							   <div class="col-sm-2 " align="center">
-					    	  <label class="control-label">Model Name:</label>
+					    	  <label class="control-label">Brand Name:</label>
 						</div>
 						
 						<div class="col-sm-3">
@@ -193,6 +194,55 @@
 						
 					</div>
 				</div>
+				
+				
+				
+				<div class="row">
+					<div class="form-group">
+					    <div class="col-sm-3 " align="center">
+					    	  <label class="control-label">No.of.Barrels :<sup style="color: red">*</sup></label>
+						</div>
+						
+						<div class="col-sm-2">
+						 			<div class="input-group">
+											<span class="input-group-addon">
+												<i class="glyphicon glyphicon-hand-right"></i>
+											</span>
+										<input type="text" class="form-control  input-sm" id='NoBarrel' name="NoBarrel" placeholder="No of barrels">
+							  		</div>
+						 </div>
+				      
+							  
+					<!-- <div class="col-sm-2 " align="center">
+					  <label class="control-label">oil per litre:</label>
+						</div>
+						
+						<div class="col-sm-3">
+						 			<div class="input-group">
+											<span class="input-group-addon">
+												<i class="glyphicon glyphicon-hand-right"></i>
+											</span>
+										<input type="text" class="form-control  input-sm" id='perlitre' name="perlitre" placeholder="per Litre" onchange="calculateTotal()" >
+							  		</div>
+							  </div> -->
+							  
+							   <div class="col-sm-2 " align="center">
+					    	  <label class="control-label">Total No.of.Litres in Barrel:<sup style="color: red">*</sup></label>
+						</div>
+						
+						
+						<div class="col-sm-3">
+						 			<div class="input-group">
+											<span class="input-group-addon">
+												<i class="glyphicon glyphicon-hand-right"></i>
+											</span>
+										<input type="text" class="form-control  input-sm" id='TotalBarrel' name="TotalBarrel" placeholder="Total litres in barrels">
+							  		</div>
+						 </div>
+						
+					</div>
+				</div>
+				
 			
 				
 			

@@ -1373,3 +1373,123 @@ function getAllMAinItem(){
 	);
 	
 }	
+
+
+
+//Update Barrel entry details
+
+function updateProduct(){
+	
+var itemName = $('#itemName').val();
+	
+	if(itemName != null && itemName != "" && itemName != " ")
+		{
+		updateProduct1();
+		}
+	else{
+			alert("Please Enter Product name");
+		}
+
+}
+
+
+
+function updateProduct1(){
+
+	
+	document.UpdateProd.btn.disabled = true;
+	
+	var input = document.getElementById('product'),
+    list = document.getElementById('sup_drop'),
+    	i,fkRootSupId;
+	 		for (i = 0; i < list.options.length; ++i) {
+			     if (list.options[i].value === input.value) {
+			    	 fkRootSupId = list.options[i].getAttribute('data-value');
+			     }
+	 		}
+	
+	var itemName = $('#itemName').val();
+	var hsnsacno = $('#hsnsacno').val();
+	var modelName = $('#modelName').val();
+	var NoBarrel = $('#NoBarrel').val();
+	var TotalBarrel = $('#TotalBarrel').val();
+	
+	
+	var params = {};
+	
+	params["productId"] = fkRootSupId;
+	
+	params["itemName"] = itemName;
+	params["hsnsacno"] = hsnsacno;
+	params["modelName"] = modelName;
+	params["NoBarrel"] = NoBarrel;
+	params["TotalBarrel"] = TotalBarrel;
+	
+	params["methodName"] = "updateProductDetailsOil";
+
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data){
+			alert(data);
+				if(document.UpdateProd)
+				{
+					document.UpdateProd.reset();
+				}	
+				document.UpdateProd.btn.disabled =false;
+			}
+ 	    	).error(function(jqXHR, textStatus, errorThrown){
+ 	    		
+ 	    		/*alert("Data Added Successfully..");
+ 	    		location.reload();
+ 				document.ccd.btn.disabled =false;*/
+ 	    		
+ 	    		if(textStatus==="timeout") {
+ 	    			$(loaderObj).hide();
+ 	    			$(loaderObj).find('#errorDiv').show();
+ 	    		}
+ 	    	});
+
+
+}
+
+/********* get Product Details for edit ************/
+function getProductDetails(){
+	var params= {};
+	
+	var input = document.getElementById('product'),
+     list = document.getElementById('sup_drop'),
+     	i,fkRootSupId;
+	 		for (i = 0; i < list.options.length; ++i) {
+			     if (list.options[i].value === input.value) {
+			    	 fkRootSupId = list.options[i].getAttribute('data-value');
+			     }
+	 		}
+	
+	$("#itemName").append($("<input/>").attr("value","").text());
+	$("#modelName").append($("<input/>").attr("value","").text());
+	$("#hsnsacno").append($("<input/>").attr("value","").text());
+	
+	$("#NoBarrel").append($("<input/>").attr("value","").text());
+	$("#TotalBarrel").append($("<input/>").attr("value","").text());
+	
+	params["productId"]= fkRootSupId;
+	params["methodName"] = "getProductDetailsToEditOil";
+	
+	$.post('/SMT/jsp/utility/controller.jsp',params,function(data){
+		
+		var jsonData = $.parseJSON(data);
+		var catmap = jsonData.list;
+		$.each(jsonData,function(i,v)
+				{
+				  document.getElementById("itemName").value = v.ProName;
+			      document.getElementById("modelName").value = v.ModelName;
+			      document.getElementById("hsnsacno").value = v.hsnsacno;
+			      document.getElementById("NoBarrel").value = v.NumberofBarrel;
+			      document.getElementById("TotalBarrel").value = v.TotalLitre;
+		      
+				});
+			}).error(function(jqXHR, textStatus, errorThrown){
+				if(textStatus==="timeout") {
+
+				}
+			});
+ 	    	
+}
