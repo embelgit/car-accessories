@@ -50,7 +50,7 @@
 		   		 </div>
 		    </div>
         	       <div class="row form-group">
-           				 <label class="col-md-3 control-label" for="supplier">Supplier Name<sup>*</sup></label>  
+           				 <label class="col-md-3 control-label" for="supplier">Supplier Name:<sup>*</sup></label>  
           					  <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -80,7 +80,7 @@
 					</div>
            		</div>
             
-           				    <label class="col-md-2 control-label" for="bill_no"> Bill No<sup>*</sup> </label>  
+           				    <label class="col-md-2 control-label" for="bill_no"> Bill No:<sup>*</sup> </label>  
           					  <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -94,7 +94,7 @@
 						  </div> 
 					
 					<div class="row form-group">
-           				<label class="col-md-2 col-md-offset-6 control-label" for="totalAmt"> Total Amount</label>  
+           				<label class="col-md-2 col-md-offset-6 control-label" for="totalAmt"> Total Amount:</label>  
            							 <div class="col-md-3">
 										<div class="input-group">
 											<span class="input-group-addon">
@@ -106,7 +106,7 @@
 					</div>
 						  
 				<div class="row form-group">
-						 <label class="col-md-3 control-label" for="personname">Accountant Name<sup>*</sup> </label>  
+						 <label class="col-md-3 control-label" for="personname">Accountant Name:<sup>*</sup> </label>  
 			           		 <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -117,7 +117,7 @@
 						</div>
 				
 			
-          					<label class="col-md-2 control-label" for="balanceAmt"> Balance Amount</label>  
+          					<label class="col-md-2 control-label" for="balanceAmt"> Balance Amount:</label>  
            							 <div class="col-md-3">
 										<div class="input-group">
 											<span class="input-group-addon">
@@ -132,7 +132,7 @@
 						  
 	 <div class="row form-group">
 				
-				<label class="col-md-3 control-label" for="paymentMode"> Payment Mode<sup>*</sup></label>  
+				<label class="col-md-3 control-label" for="paymentMode"> Payment Mode:<sup>*</sup></label>  
 	           		<div class="col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">
@@ -196,7 +196,7 @@
 			          
 			     <div class="form-group">
 				
-				  <label class="col-md-3 control-label" for="paymentMode"> Payment Type<sup>*</sup></label>  
+				  <label class="col-md-3 control-label" for="paymentMode"> Payment Type:<sup>*</sup></label>  
 	           		<div class="col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">
@@ -262,8 +262,8 @@
 			          
 			<div class="form-group row">
 			  <div class="col-md-12 text-center">
-			  		<input type="button" id="btn1" name="btn1"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="supplierPayment(); return false;" value="Submit">
-		            <input type="reset" id="btn1"  class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn1" value="Cancel">
+			  		<input type="button" id="btn1" name="btn1"  class="btn btn-large btn-lg btn-success button-height-width btn-md button_hw button_margin_right"  onclick="supplierPayment(); return false;" value="Submit">
+		            <input type="reset" id="btn1"  class="btn btn-large btn-danger btn-lg  button-height-width btn-md button_hw button_margin_right" name="btn1" value="Cancel">
 			  
 			   </div>
 	 		</div>       	    
@@ -286,7 +286,7 @@
 			   		 </div>
 			    </div>
          	       <div class="row form-group">
-           				 <label class="col-md-3 control-label" for="customerName">Customer Name<sup>*</sup></label>  
+           				 <label class="col-md-3 control-label" for="customerName">Customer Name:<sup>*</sup></label>  
           					  <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -318,7 +318,7 @@
 	 
 						  
 					 <div class="row form-group">
-					 <label class="col-md-3 control-label" for="bill_no"> Bill No<sup>*</sup> </label>  
+					 <label class="col-md-3 control-label" for="bill_no"> Bill No:<sup>*</sup> </label>  
           					  <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -329,7 +329,7 @@
 									</select>
            						 </div>
 							</div>
-           				<label class="col-md-2  control-label" for="totalAmt"> Total Amount</label>  
+           				<label class="col-md-2  control-label" for="totalAmt"> Total Amount:</label>  
            							 <div class="col-md-3">
 										<div class="input-group">
 											<span class="input-group-addon">
@@ -343,7 +343,7 @@
 						  
 		<div class="row form-group">
 						
-						 <label class="col-md-3 control-label" for="personname">Accountant Name <sup>*</sup></label>  
+						 <label class="col-md-3 control-label" for="personname">Accountant Name: <sup>*</sup></label>  
 			           		 <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -355,7 +355,7 @@
 		
 
           	
-          			<label class="col-md-2 control-label" for="balanceAmt"> Balance Amount</label>  
+          			<label class="col-md-2 control-label" for="balanceAmt"> Balance Amount:</label>  
            							 <div class="col-md-3">
 										<div class="input-group">
 											<span class="input-group-addon">
@@ -369,7 +369,7 @@
 	</div>
        	<div class="row form-group">
 				
-				<label class="col-md-3 control-label" for="paymentMode"> Payment Mode<sup>*</sup></label>  
+				<label class="col-md-3 control-label" for="paymentMode"> Payment Mode:<sup>*</sup></label>  
 	           		<div class="col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">
@@ -432,7 +432,7 @@
 		</div>	          
 			   <div class="row form-group">
 				
-				  <label class="col-md-3 control-label" for="paymentMode"> Payment Type<sup>*</sup></label>  
+				  <label class="col-md-3 control-label" for="paymentMode"> Payment Type:<sup>*</sup></label>  
 	           		<div class="col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">
@@ -492,8 +492,8 @@
 			     <div class="form-group row">
 			            <div class="col-md-12 text-center">
 			           	 	
-			            <input type="button" id="btn2" name="btn2"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="customerPaymentValidation(); return false;" value="Submit">
-		            	<input type="reset" id="btn2"  class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn2" value="Cancel">
+			            <input type="button" id="btn2" name="btn2"  class="btn btn-large btn-lg btn-success button-height-width btn-md button_hw button_margin_right"  onclick="customerPaymentValidation(); return false;" value="Submit">
+		            	<input type="reset" id="btn2"  class="btn btn-large btn-danger btn-lg  button-height-width btn-md button_hw button_margin_right" name="btn2" value="Cancel">
 			            </div>
 			      </div>       	    
 			 </form>
@@ -516,7 +516,7 @@
 		    </div>
     	     	 <div class="row form-group">
     	     	
-           				 <label class="col-md-3 control-label" for="employeename">Employee Name<sup>*</sup></label>  
+           				 <label class="col-md-3 control-label" for="employeename">Employee Name:<sup>*</sup></label>  
           					  <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -544,7 +544,7 @@
 								</div>
            					 </div>
             
-           				 <label class="col-md-2 control-label" for="personName">Accountant Name <sup>*</sup></label>  
+           				 <label class="col-md-2 control-label" for="personName">Accountant Name:<sup>*</sup></label>  
 	          					  <div class="col-md-3">
 									<div class="input-group">
 										<span class="input-group-addon">
@@ -559,7 +559,7 @@
          	  	<div class="row form-group">
 	           				  
 								
-								<label class="col-md-3 control-label" for="reason2">Reason<sup>*</sup></label>  
+								<label class="col-md-3 control-label" for="reason2">Reason:<sup>*</sup></label>  
 	          					  <div class="col-md-3">
 									<div class="input-group">
 										<span class="input-group-addon">
@@ -570,7 +570,7 @@
 								</div>
 								
 								
-					<label class="col-md-2 control-label" for="paymentMode"> Payment Mode<sup>*</sup></label>  
+					<label class="col-md-2 control-label" for="paymentMode"> Payment Mode:<sup>*</sup></label>  
 	           		       <div class="col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">
@@ -643,7 +643,7 @@
 	  
 		<div class="row form-group">
 				
-				  <label class="col-md-3 control-label" for="paymentMode"> Payment Type<sup>*</sup></label>  
+				  <label class="col-md-3 control-label" for="paymentMode"> Payment Type:<sup>*</sup></label>  
 	           		<div class="col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">
@@ -710,8 +710,8 @@
          <div class="row form-group ">
             <div class="col-md-12 text-center">
               	
-            <input type="button" id="btn3" name="btn3"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="EmployeeValidation(); return false;" value="Submit">
-		    <input type="reset" id="btn2"  class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn2" value="Cancel">
+            <input type="button" id="btn3" name="btn3"  class="btn btn-large btn-lg btn-success button-height-width btn-md button_hw button_margin_right"  onclick="EmployeeValidation(); return false;" value="Submit">
+		    <input type="reset" id="btn2"  class="btn btn-large btn-danger btn-lg  button-height-width btn-md button_hw button_margin_right" name="btn2" value="Cancel">
             </div>
           </div>       	    
  	 </form> 
@@ -734,7 +734,7 @@
 		   		 </div>
 		    </div>
 			 <div class="row form-group">
-           		<label class="col-md-3 control-label" for="expenditureName">Expenditure Name<sup>*</sup></label>  
+           		<label class="col-md-3 control-label" align="right" for="expenditureName">Expenditure Name:<sup>*</sup></label>  
            	 	      		 <div class="col-md-3">
 								<div class="input-group">
 									<span class="input-group-addon">
@@ -763,7 +763,7 @@
 						</datalist>           	
 					</div>
            		</div>
-           	 	<label class="col-md-3 control-label" for="serviceProvider">Service Provider<sup>*</sup></label>  
+           	 	<label class="col-md-3 control-label" align="right"  for="serviceProvider">Service Provider:<sup>*</sup></label>  
            			 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -776,7 +776,7 @@
 			
 			<div class="row form-group">
 					
-					<label class="col-md-3 control-label" for="contactNumber">Contact Number<sup>*</sup></label>  
+					<label class="col-md-3 control-label" align="right"  for="contactNumber">Contact Number:<sup>*</sup></label>  
            			 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -786,7 +786,7 @@
            				 </div>
 					</div>
 					
-				<label class="col-md-3 control-label" for="expCredit">Credit Amount<sup>*</sup></label>  
+				<label class="col-md-3 control-label" align="right"  for="expCredit">Credit Amount:</label>  
            			 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -801,7 +801,7 @@
 				
 			<div class="row form-group">
 				
-				 <label class="col-md-3 control-label" for="personName">Accountant Name<sup>*</sup> </label>  
+				 <label class="col-md-3 control-label" align="right"  for="personName">Accountant Name:<sup>*</sup> </label>  
 	          		 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -811,7 +811,7 @@
 	           			</div>
 					</div>
 			
-				<label class="col-md-3 control-label" for="expDebit">Debit Amount<sup>*</sup></label>  
+				<label class="col-md-3 control-label" align="right"  for="expDebit">Debit Amount:</label>  
            			 <div class="col-md-3">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -826,8 +826,8 @@
 		<div class="form-group row">
             <div class="col-md-12 text-center">
              	
-            <input type="button" id="save" name="btn4"  class="btn btn-large btn-success button-height-width btn-md button_hw button_margin_right"  onclick="expensePaymentValidation(); return false;" value="Submit">
-		    <input type="reset" id="btn2" s class="btn btn-large btn-danger   button-height-width btn-md button_hw button_margin_right" name="btn4" value="Cancel">
+            <input type="button" id="save" name="btn4"  class="btn btn-large btn-lg btn-success button-height-width btn-md button_hw button_margin_right"  onclick="expensePaymentValidation(); return false;" value="Submit">
+		    <input type="reset" id="btn2" s class="btn btn-large btn-danger  btn-lg button-height-width btn-md button_hw button_margin_right" name="btn4" value="Cancel">
             </div>
         </div> 
 			

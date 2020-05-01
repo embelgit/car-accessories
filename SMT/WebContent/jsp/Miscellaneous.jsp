@@ -107,14 +107,14 @@ function grasstotal(){
 	
 		<%-- <h2 align="center" class="form-heading style_heading" style="margin-top: 75px;">Miscellaneous Bill</h2>
 		  <h3 align="right" style="color: red; margin-right: 20px;">Bill No :: <%out.println(BillNo); %></h3> --%>
-				<div class="container">
-			      <div class="row">
+			<div class="container-fuild col-md-offset-2">
+			      <div class="row ">
 			        <div class="form-group">
-						<div class="col-sm-2 col-sm-offset-1" align="center">
+						<div class="col-sm-2 " align="right">
 							<label class="control-label" >Barcode no:</label>
 						</div>
 						
-						<div class="col-md-3">
+						<div class="col-md-2">
 						  <div class="input-group">
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-hand-right"></i>
@@ -124,8 +124,8 @@ function grasstotal(){
 					     </div>
 					  
 					 
-					  <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
-          					  <div class="col-md-3">
+					  <label class="col-md-2 control-label" for="customerName">Product Name:<sup>*</sup></label>  
+          					  <div class="col-md-2">
 								<div class="input-group">
 									 <span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -205,12 +205,12 @@ function grasstotal(){
 						<script src="/SMT/staticContent/js/PrefixFree 1.0.7.js" type="text/javascript" type="text/javascript"></script>
 						
 	                    <script src="/SMT/staticContent/js/calculator.js"></script>
-						  <div class="col-md-5">
+						
 						  	<div class="row form-group" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  >Total Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							  <div class="input-group">
 							     <span class="input-group-addon">
 							       Rs
@@ -220,10 +220,10 @@ function grasstotal(){
 							</div>
 						</div>
 							<div class="row form-group" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  > Discount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							 <div class="input-group">
 							   <span class="input-group-addon">
 							     Rs
@@ -234,10 +234,10 @@ function grasstotal(){
 						</div>
 							
 							<div class="row form-group" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  > Gross Total: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							 <div class="input-group">
 							    <span class="input-group-addon">
 							      Rs
@@ -245,7 +245,7 @@ function grasstotal(){
 								<input type="text" class="form-control" id="grossTotal" placeholder="Gross Total" readonly="readonly"/>
 							 </div> 
 							</div> 
-						</div>
+						
 							
 						</div>
 				</div>	
@@ -261,7 +261,7 @@ function grasstotal(){
 				
 		</form>		
 				
-		</div>
+		
   </body>
 
         <div class="row footer_margin_top" align="center">

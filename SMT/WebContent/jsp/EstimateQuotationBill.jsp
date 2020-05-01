@@ -85,8 +85,8 @@ function grasstotal(){
 </head>
 <body>
 <form class="form-horizontal" action="" method="post" name  ="custord">
-	<div class="container-fluid">
-		<h2 align="center" class="form-heading style_heading" style="margin-top: 50px;">Estimate Quotation Bill</h2>
+	
+		<h2 align="center" class="form-heading style_heading header_margin_top " >Estimate Quotation Bill</h2>
 		<%--   <h3 align="right" style="color: red; margin-right: 50px;">Bill No :: <%out.println(BillNo); %></h3> --%>
 		<h4 align="right" style="color: red; margin-right: 50px;">A/ <%out.println(todayDate); %>/E00<%out.println(BillNo); %></h4>
 					 <div class="row">
@@ -94,18 +94,19 @@ function grasstotal(){
 				  		<hr style="border-top-color:#c1b1b1;">
 		     </div>	
     </div>	
+<div class="container-fuild col-md-offset-2 ">
 			      <div class="row  form-group">
-						<div class="col-md-2" align="center">
+						<div class="col-md-2" align="right">
 
-							<label class="control-label" style="font-size:22px;">Barcode no:</label>
+							<label class="control-label" >Barcode no:</label>
 						</div>
 						
 						<div class="col-md-2">
 						    <input type="text" id="key" class="form-control text-border" onchange="return getProdGrid();" autofocus="key" placeholder="Enter Item Barcode" />
 					     </div>	
 					     
-					     <label class="col-md-3 control-label" for="customerName">Customer Name<sup>*</sup></label>  
-          					  <div class="col-md-3">
+					     <label class="col-md-2 control-label" for="customerName">Customer Name:<sup>*</sup></label>  
+          					  <div class="col-md-2">
 								<div class="input-group">
 									<span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -134,8 +135,8 @@ function grasstotal(){
 		   </div>	
 					  
 					    <div class="row form-group">	
-					 <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
-          					  <div class="col-md-3">
+					 <label class="col-md-2 control-label" for="customerName">Product Name:<sup>*</sup></label>  
+          					  <div class="col-md-2">
 								<div class="input-group">
 									 <span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -165,7 +166,7 @@ function grasstotal(){
                 </div>
 					    </div> 
 		
-				<div class="row" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+				<div class="row" style="margin-top: 10px; ">
 				
 					<div class="col-md-12">
 						<div class="row">
@@ -176,8 +177,8 @@ function grasstotal(){
 						</div>
 						
 				</div>		
-						<div class="row" style="margin-top:10px;"></div>
-						<div class="row form-group" style="margin-top:10px;">
+						
+					
 						   <!--  <div class="col-md-5" id="calculator" style="margin-left: 20px;">
 								Screen and clear key
 								<div class="top">
@@ -211,17 +212,16 @@ function grasstotal(){
 						
 	                    <script src="/SMT/staticContent/js/calculator.js"></script>
 						
-						<div class="col-md-5">
+					
 						<div class="row" style="margin-top:15px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  >Total Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							
-								<input type="text" class="form-control" id="totalAmount" style="font-size:22px;height:35px;" placeholder="Total Amout" style="font-size: 22px;" readonly="readonly"/>
+								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amout"  readonly="readonly"/>
 							</div> 
-						</div>
-						</div>
+						
 						
 						<!-- <div class="col-md-5">
 						<div class="row" style="margin-top:15px;">
@@ -236,10 +236,10 @@ function grasstotal(){
 						
 						
 						
-						<div class="col-md-5">
-						 <div class="row" style="margin-top:10px;">
-						<label class="col-md-6 control-label" for="customerName">Service Name<sup>*</sup></label>  
-          					  <div class="col-md-6" >
+						
+						
+						<label class="col-md-2 control-label" for="customerName">Service Name:<sup>*</sup></label>  
+          					  <div class="col-md-2" >
 								<div class="input-group">
 									 <span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -268,7 +268,7 @@ function grasstotal(){
 				    </div>
                 </div>
 				</div>
-				</div>
+			
 						
 						
 						<div class="row" style="margin-top: 15px;">
@@ -285,33 +285,26 @@ function grasstotal(){
 				</div>	
 				
 						
-						 <div class="col-md-6">
+						
 	                      <div class="row" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  >ServiceTotal Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							
-								<input type="text" class="form-control" id="ServicetotalAmount" style="font-size:22px;height:35px;" placeholder="Total Amout" style="font-size: 22px;" readonly="readonly"/>
+								<input type="text" class="form-control" id="ServicetotalAmount"  placeholder="Total Amout"  readonly="readonly"/>
 							</div> 
-						  </div> 
-						  </div>
+						 
 						
-						
-						
-						
-						
-						<div class="col-md-5">
-						<div class="row" style="margin-top:15px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  > Gross Total: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							
 								<input type="text" class="form-control" id="grossTotal"  placeholder="Gross Total" readonly="readonly"/>
 							</div> 
 						</div>
-						</div>
+						
 						
 						<!-- <div class="col-md-5">
 						<div class="row" style="margin-top:15px;">

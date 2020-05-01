@@ -147,7 +147,7 @@
 
 <body id="dt_example">
 <div class="container-fluid">
-		<h2 align="center" class="form-heading" style="margin-top: 100px; margin-bottom: 45px;">Total Vehicle Entry Report</h2>
+		<h2 align="center" class="form-heading header_margin_top style_heading">Total Vehicle Entry Report</h2>
 
 
 	<%
