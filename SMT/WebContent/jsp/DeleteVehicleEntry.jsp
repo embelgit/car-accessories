@@ -19,7 +19,7 @@ function Back(){
 </head>
 		 	<div class="row header_margin_top">
 			    <div align="center">
-			  		<h2 class="form-name style_heading">Vehicle Entry</h2>
+			  		<h2 class="form-name style_heading">Delete Vehicle Entry</h2>
 			  	</div>
 			 
     </div>
@@ -35,7 +35,7 @@ function Back(){
 			 <div class="row form-group">
            		 
            		
-           	<label class="col-md-3 control-label" for="expenseName">Vehicle Number<sup>*</sup></label>  
+           	<label class="col-md-3 control-label" for="expenseName">Vehicle Number:<sup>*</sup></label>  
            	 		<div class="col-md-3">
             			<div class="input-group">
 							<span class="input-group-addon">
@@ -68,9 +68,9 @@ function Back(){
 				<div class="form-group row">
 		            <div class="col-md-10 text-center">
 		          
-       <input type="button"  id="btn" name="btn" style="font-size: 25" class="btn btn-large btn-success glyphicon glyphicon-save  button-height-width"  onclick="delvehicleEntry()" value="Submit">
-       <input  id="save" name="btn" style="font-size: 25" class="btn btn-large btn-danger glyphicon glyphicon-remove-circle  button-height-width" type="reset"  onclick="reset()" value="Cancel">
-       <input type="button" value="Back" style="font-size: 25" id="listBtn" class="btn btn-primary  btn-large  button-height-width" onclick="Back()" />
+       <input type="button"  id="btn" name="btn"  class="btn btn-large btn-lg btn-success button_hw button_margin_right  button-height-width"  onclick="delvehicleEntry()" value="Submit">
+       <input  id="save" name="btn" class="btn btn-large btn-danger btn-lg button_hw button_margin_right button-height-width" type="reset"  onclick="reset()" value="Cancel">
+       <input type="button" value="Back"  id="listBtn" class="btn btn-lg btn-primary  btn-large button_hw button_margin_right button-height-width" onclick="Back()" />
               	
               	
 

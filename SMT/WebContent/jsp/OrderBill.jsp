@@ -360,7 +360,7 @@ function grasstotal11(){
 						</div>	
 						
 						
-						 <label class="col-md-2 control-label" for="customerName">Product Name<sup>*</sup></label>  
+						 <label class="col-md-2 control-label" for="customerName">Product Name:<sup>*</sup></label>  
           					  <div class="col-md-2">
 								<div class="input-group">
 									 <span class="input-group-addon">
@@ -409,7 +409,6 @@ function grasstotal11(){
 					</div>
 				</div>
 						
-						<div class="row form-group" style="margin-top:10px;">
 						
 						  <!--  <div class="col-md-3" id="calculator" style="margin-left: 146px;">
 								Screen and clear key
@@ -444,17 +443,17 @@ function grasstotal11(){
 						
 	                    <script src="/SMT/staticContent/js/calculator.js"></script>
 	                    
-	                    <div class="col-md-4">
+	                   
 	                      <div class="row" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  >Spare Total Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							
-								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amout"  readonly="readonly"/>
+								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amount"  readonly="readonly"/>
 							</div> 
-						  </div> 
-						  </div>
+						 
+						 
 						
 						<!-- <div class="row" style="margin-top:10px;">
 							<div class="col-md-6" align="right">
@@ -475,10 +474,9 @@ function grasstotal11(){
 								<input type="text" class="form-control" id="laberCharges" style="font-size:22px;height:35px;" placeholder="Charges In Rs" autofocus onkeyup="return grasstotal11(); return false;" style="font-size: 22px;"/>
 							</div> 
 						</div> -->
-						 <div class="col-md-4">
-						 <div class="row" style="margin-top:10px;">
-						<label class="col-md-6 control-label" for="customerName">Service Name<sup>*</sup></label>  
-          					  <div class="col-md-6" >
+						
+						<label class="col-md-2 control-label" for="customerName">Service Name<sup>*</sup></label>  
+          					  <div class="col-md-2" >
 								<div class="input-group">
 									 <span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -507,8 +505,8 @@ function grasstotal11(){
 				    </div>
                 </div>
 				</div>
-				</div>
-				</div>
+				
+				
 						<!-- <div class="row" style="margin-top:10px;">
 							<div class="col-md-3" align="right">
 								<label class="control-label" style="font-size: 22px;" > Gross Total: </label>
@@ -531,20 +529,19 @@ function grasstotal11(){
 				
 				
 				
-				  <div class="col-md-4">
+				
 	                      <div class="row" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label" >ServiceTotal Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							
-								<input type="text" class="form-control" id="ServicetotalAmount"  placeholder="Total Amout" style="font-size: 22px;" readonly="readonly"/>
+								<input type="text" class="form-control" id="ServicetotalAmount"  placeholder="Total Amount"  readonly="readonly"/>
 							</div> 
-						  </div> 
-						  </div>
+						 
 						  
 						  
-						  <div class="row" style="margin-top:10px;">
+						 
 							<div class="col-md-2" align="right">
 								<label class="control-label"  > Gross Total: </label>
 							</div>
@@ -572,7 +569,8 @@ function grasstotal11(){
 					     </div> -->
 					  
 					 
-					  <label class=" control-label" for="customerName">Product Name<sup>*</sup></label>  
+					  <label class=" control-label" for="customerName">Oil Name:<sup>*</sup></label>  
+					  </div>
           					  <div class="col-md-4">
 								
 									 
@@ -603,8 +601,6 @@ function grasstotal11(){
 				    </div>
                </div>
 					 
-					 </div>
-					 
 				</div>	
 					   
 				
@@ -631,12 +627,12 @@ function grasstotal11(){
 						<script src="/SMT/staticContent/js/PrefixFree 1.0.7.js" type="text/javascript" type="text/javascript"></script>
 						
 	                    <script src="/SMT/staticContent/js/calculator.js"></script>
-						  <div class="col-md-5">
+						 
 						  	<div class="row form-group" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  >Total Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							  <div class="input-group">
 							     <span class="input-group-addon">
 							       Rs
@@ -644,12 +640,12 @@ function grasstotal11(){
 								<input type="text" class="form-control" id="totalAmountOil"  placeholder="Total Amout"   readonly="readonly"/>
 							  </div> 
 							</div>
-						</div>
-							<div class="row form-group" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+						
+							
+							<div class="col-md-2" align="right">
 								<label class="control-label"  > Discount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							 <div class="input-group">
 							   <span class="input-group-addon">
 							     Rs
@@ -660,15 +656,16 @@ function grasstotal11(){
 						</div>
 							
 							<div class="row form-group" style="margin-top:10px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  > Gross Total: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							 <div class="input-group">
 							    <span class="input-group-addon">
 							      Rs
 						        </span>
-								<input type="text" class="form-control" id="grossTotalOil" placeholder="Gross Total" readonly="readonly"/>
+								<input type="text" class="form-control" id="grossTotalOil" placeholder="Gross Total" style="font-size: 30px; float: right; width: 200px;
+								 height: 50px; background-color: rgba(251, 243, 0, 0.27);" readonly="readonly"/>
 							 </div> 
 							</div> 
 						</div>

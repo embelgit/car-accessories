@@ -26,7 +26,13 @@
 <body>
 
 	<div class="container-fluid">
-		<h2 align="center" class="form-heading" style="margin-top: 100px; margin-bottom: 45px;">Vehicle Entry</h2>
+		<h2 align="center" class="form-heading style_heading" style="margin-top: 50px;">Vehicle Entry</h2>
+		
+		<div class="row">
+			<div class="col-sm-offset-1 col-md-10">
+				<hr style="border-top-color: #c1b1b1;">
+			</div>
+		</div>
 			<form class="form-horizontal" action="" method="post">
 				<div class="row margin-top-50">
 					<div class="col-md-offset-2 col-sm-2">
