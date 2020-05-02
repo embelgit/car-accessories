@@ -85,7 +85,7 @@ function grasstotal(){
 </head>
 <body>
 <form class="form-horizontal" action="" method="post" name  ="custord">
-	<div class="container-fluid">
+	
 		<h2 align="center" class="form-heading style_heading" style="margin-top: 50px;">Credit Customer Bill</h2>
 		
 		<%--   <h3 align="right" style="color: red; margin-right: 50px;">Bill No :: <%out.println(BillNo);   %></h3> --%>
@@ -97,18 +97,19 @@ function grasstotal(){
 				  		<hr style="border-top-color:#c1b1b1;">
 		     </div>	
     </div>
+    <div class="container-fluid col-md-offset-2">
 			      <div class="row form-group">
 						
 
-							<label class="col-md-3 control-label" >Barcode no:</label>
+							<label class="col-md-2 control-label" >Barcode no:</label>
 							
 						
 						<div class="col-md-2">
 						    <input type="text" id="key" class="form-control text-border" onchange="return getitemData1();" autofocus="key" placeholder="Enter Item Barcode" />
 					     </div>	
 					     
-					     <label class="col-md-3 control-label" for="customerName">Customer Name:<sup>*</sup></label>  
-          					  <div class="col-md-3">
+					     <label class="col-md-2 control-label" for="customerName">Customer Name:<sup>*</sup></label>  
+          					  <div class="col-md-2">
 								<div class="input-group">
 									<span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -137,8 +138,8 @@ function grasstotal(){
 		   </div>	
 					
 				  <div class="row form-group">	
-					 <label class="col-md-3 control-label" for="customerName">Product Name:<sup>*</sup></label>  
-          					  <div class="col-md-3" >
+					 <label class="col-md-2 control-label" for="customerName">Product Name:<sup>*</sup></label>  
+          					  <div class="col-md-2" >
 								<div class="input-group">
 									 <span class="input-group-addon">
 										<i class="glyphicon glyphicon-user"></i>
@@ -179,10 +180,10 @@ function grasstotal(){
 						</div>
 						
 				</div>	
+				</div>
 				
-				
-					<div class="container">
-					<div class="row" style="margin-top:10px;"></div>
+					
+			
 						<div class="row form-group" style="margin-top:10px;">
 						    <!-- <div class="col-md-5" id="calculator" style="margin-left: 20px;">
 								Screen and clear key
@@ -217,55 +218,51 @@ function grasstotal(){
 						
 	                    <script src="/SMT/staticContent/js/calculator.js"></script>
 						
-						<div class="col-md-5">
+						
 						<div class="row" style="margin-top:15px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  >Total Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							
 								<input type="text" class="form-control" id="totalAmount"  placeholder="Total Amout"  readonly="readonly"/>
 							</div> 
-						</div>
-						</div>
 						
-						<div class="col-md-5">
-						<div class="row" style="margin-top:15px;">
-							<div class="col-md-6" align="right">
+						
+						
+						
+							<div class="col-md-2" align="right">
 								<label class="control-label"  > Discount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 								<input type="text" class="form-control" id="discount"  placeholder="Discount In Rs" autofocus onkeyup="grasstotal(); return false;" />
 							</div> 
 						</div>
-						</div>
 						
-						<div class="col-md-5">
+						
+						
 						<div class="row" style="margin-top:15px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  > Gross Total: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 							
 								<input type="text" class="form-control" id="grossTotal"  placeholder="Gross Total" readonly="readonly"/>
 							</div> 
-						</div>
-						</div>
+					
 						
-						<div class="col-md-5">
-						<div class="row" style="margin-top:15px;">
-							<div class="col-md-6" align="right">
+							<div class="col-md-2" align="right">
 								<label class="control-label"  >Net Paid Amount: </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-2">
 								<input type="text" class="form-control" id="paidAmt"  placeholder="Paid Amount" />
 							</div> 
 						</div>
-						</div>
+						
 					</div>
 					
 				</div>
-			</div>
+		
 		      
 					
 				
