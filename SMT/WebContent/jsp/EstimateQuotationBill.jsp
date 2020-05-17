@@ -94,7 +94,7 @@ function grasstotal(){
 				  		<hr style="border-top-color:#c1b1b1;">
 		     </div>	
     </div>	
-<div class="container-fuild col-md-offset-2 ">
+<div class="container-fuild col-md-offset-1 ">
 			      <div class="row  form-group">
 						<div class="col-md-2" align="right">
 

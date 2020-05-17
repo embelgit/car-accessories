@@ -571,8 +571,8 @@ function grasstotal11(){
 					 
 					  <label class=" control-label" for="customerName">Oil Name:<sup>*</sup></label>  
 					  </div>
-          					  <div class="col-md-4">
-								
+          					  <div class="col-md-2">
+					
 									 
 					 	 <%
 					    BarrelEntryHelper item1 = new BarrelEntryHelper();
